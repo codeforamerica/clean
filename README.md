@@ -15,4 +15,4 @@ The script is being developed on Ubuntu 14, and so might need to be modified for
 ## Copyright and License
 
 Copyright 2014 Dave Guarino
-BSD License
+MIT License

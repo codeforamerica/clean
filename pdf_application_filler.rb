@@ -12,4 +12,4 @@ field_names.each do |field_name|
   field_name_hash[field_name] = field_name
 end
 # Fill out each form's field with the field name itself
-pdftk.fill_form './form.pdf', "filled_in_form#{Time.now.strftime('%Y%m%d%H%M%S%L')}.pdf", field_name_hash
+pdftk.fill_form './calfresh_application.pdf', "filled_in_form#{Time.now.strftime('%Y%m%d%H%M%S%L')}.pdf", field_name_hash
