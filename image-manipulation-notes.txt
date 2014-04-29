@@ -2,3 +2,5 @@
 # Note -- the "-alpha deactivate" option is necessary to make sure the background is not transparent
 convert -alpha deactivate -density 300 -depth 8 -quality 85 INPUT.pdf OUTPUT.png
 
+# Decode base64 into png file using CLI
+echo QWxhZGRpbjpvcGVuIHNlc2FtZQ== | base64 --decode > FILENAME.png
