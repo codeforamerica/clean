@@ -65,7 +65,7 @@ module Calfresh
       filename_array = Array.new
       filename_array << "/tmp/application_#{@unique_key}-6-signed.png"
       (7..15).each do |page_number|
-        filename_array << File.new("/tmp/application_#{@unique_key}-#{page_number}.png")
+        filename_array << "/tmp/application_#{@unique_key}-#{page_number}.png"
       end
       files_exist = true
       filename_array.each do |filename|
