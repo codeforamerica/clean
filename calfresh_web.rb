@@ -6,6 +6,9 @@ class CalfreshWeb < Sinatra::Base
   end
 
   post '/applications' do
+    writer = Calfresh::ApplicationWriter.new
+    application = writer.fill_out_form(params)
+    send_file application.signed_png_path
     erb :application_sent
   end
 end

@@ -89,5 +89,9 @@ module Calfresh
       end
       file_array
     end
+
+    def signed_png_path
+      "/tmp/application_#{@unique_key}-6-signed.png"
+    end
   end
 end
