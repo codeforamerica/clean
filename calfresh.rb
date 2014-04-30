@@ -56,7 +56,7 @@ module Calfresh
     end
 
     def add_signature_to_application(unique_key)
-      system("composite -geometry +31+2700 /tmp/signature_#{unique_key}.png /tmp/application_#{unique_key}-6.png /tmp/application_#{unique_key}-6-signed.png")
+      system("composite -geometry +31+2700 /tmp/signature_#{unique_key}.png /tmp/application_#{unique_key}.png /tmp/application_#{unique_key}.png")
     end
 
     def symbolize_keys(hash)
