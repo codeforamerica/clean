@@ -7,7 +7,9 @@ module Calfresh
     home_city: 'Text5 PG 1', \
     home_state: 'Text6 PG 1', \
     home_zip_code: 'Text7 PG 1', \
-    date: 'Text32 PG 1'
+    date: 'Text32 PG 1', \
+    home_phone_number: 'Text12 PG 1', \
+    email: 'Text13 PG 1'
   }
 
   class ApplicationWriter
