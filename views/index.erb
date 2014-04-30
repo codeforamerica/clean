@@ -1,3 +1,20 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="js/flashcanvas.js"></script>
+<![endif]-->
+<script src="js/jSignature.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#signature_area").jSignature()
+    // Magic modified from http://paulology.com/signature-capture/
+    var $sigdiv = $("#signature_area")
+    $('#submit_button').click(function(e) {
+      var datapair = $sigdiv.jSignature("getData", "image")
+      $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
+    });
+  })
+</script>
+
 <h1>Apply to CalFresh (food assistance) in San Francisco</h1>
 <br>
 <br>
@@ -15,7 +32,9 @@ Email: <input type="text" name="email"><br>
 <br>
 <br>
 Sign Here:
+<div id="signature_area"></div>
+<div id="signature_value_hidden"></div>
 <br>
 <br>
-<input type="submit" value="Apply!">
+<input id="submit_button" type="submit" value="Apply!">
 </form>
