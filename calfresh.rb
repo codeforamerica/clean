@@ -14,7 +14,7 @@ module Calfresh
 
   class ApplicationWriter
     def initialize
-      @pdftk = PdfForms.new('/usr/bin/pdftk')
+      @pdftk = PdfForms.new('pdftk')
     end
 
     def fill_out_form(input)
