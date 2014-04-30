@@ -1,40 +1,103 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!--[if lt IE 9]>
-<script type="text/javascript" src="js/flashcanvas.js"></script>
-<![endif]-->
-<script src="js/jSignature.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $("#signature_area").jSignature()
-    // Magic modified from http://paulology.com/signature-capture/
-    var $sigdiv = $("#signature_area")
-    $('#submit_button').click(function(e) {
-      var datapair = $sigdiv.jSignature("getData", "image")
-      $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
-    });
-  })
-</script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
 
-<h1>Apply to CalFresh (food assistance) in San Francisco</h1>
-<br>
-<br>
-<form name="apply" action="applications" method="post">
-Name: <input type="text" name="name"><br>
-Address: <input type="text" name="home_address"><br>
-City: San Francisco, CA<br>
-<input type="hidden" name="home_city" value="San Francisco">
-<input type="hidden" name="home_state" value="CA">
-Zip Code: <input type="text" name="home_zip_code"><br>
-<br><br>
-(Optional)<br>
-Phone Number: <input type="text" name="home_phone_number"><br>
-Email: <input type="text" name="email"><br>
-<br>
-<br>
-Sign Here:
-<div id="signature_area"></div>
-<div id="signature_value_hidden"></div>
-<br>
-<br>
-<input id="submit_button" type="submit" value="Apply!">
-</form>
+    <title>CalFresh</title>
+    <!-- JQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/flashcanvas.js"></script>
+    <![endif]-->
+
+    <!-- jSignature -->
+    <script src="js/jSignature.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#signature_area").jSignature()
+        // Magic modified from http://paulology.com/signature-capture/
+        var $sigdiv = $("#signature_area")
+        $('#submit_button').click(function(e) {
+          var datapair = $sigdiv.jSignature("getData", "image")
+          $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
+        });
+      })
+    </script>
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  </head>
+
+  <body>
+    <h1>Apply to CalFresh (food assistance) in San Francisco</h1>
+
+    <form role="form">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputFile">File input</label>
+      <input type="file" id="exampleInputFile">
+      <p class="help-block">Example block-level help text here.</p>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"> Check me out
+      </label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+
+
+    <form role="form" name="apply" action="applications" method="post">
+      <div class="form-group">
+        <label for="name">Full name</label>
+        <input type="text" class="form-control" name="name" id="name" placeholder="John Smith">
+      </div>
+      
+      <div class="form-group">
+        <label for="home_address">Address</label>
+        <input type="text" class="form-control" name="home_address" placeholder="1234 Fake Street">
+      </div>
+      
+      <!-- City: San Francisco, CA -->
+      <input type="hidden" class="form-control" name="home_city" value="San Francisco">
+      <input type="hidden" class="form-control" name="home_state" value="CA">
+      
+      <div class="form-group">
+        <label for="home_zip_code">Zip code</label>
+        <input type="text" class="form-control" name="home_zip_code" placeholder="9410..."><br>
+      </div>
+      
+      <div class="form-group">
+        <label for="home_phone_number">Phone number</label>
+        <input type="text" class="form-control" name="home_phone_number" placeholder="(510)">
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="signature">Signature</label>
+      </div>
+      <div id="signature_area"></div>
+      <div id="signature_value_hidden"></div>
+      <br>
+      <button type="submit" id="submit_button" class="btn btn-default">Submit your San Francisco CalFresh application!</button>
+    </form>
+
+    <!-- Setup sig form -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
