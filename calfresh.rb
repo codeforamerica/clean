@@ -19,12 +19,13 @@ module Calfresh
 
     def fill_out_form(input)
       base64_signature_blob = input[:signature]
-      validated_field_input = filter_input_for_valid_fields(input)
+      symbolized_key_input = symbolize_keys(input)
+      validated_field_input = filter_input_for_valid_fields(symbolized_key_input)
       input_for_pdf_writer = map_input_to_pdf_field_names(validated_field_input)
       input_for_pdf_writer[FORM_FIELDS[:date]] = Date.today.strftime("%m/%d/%Y")
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
-      @pdftk.fill_form('./calfresh_application.pdf', filled_in_form_path, input_for_pdf_writer)
+      @pdftk.fill_form('./calfresh_application_single_page.pdf', filled_in_form_path, input_for_pdf_writer)
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
       convert_application_pdf_to_png_set(unique_key)
       add_signature_to_application(unique_key)
@@ -55,7 +56,13 @@ module Calfresh
     end
 
     def add_signature_to_application(unique_key)
-      system("composite -geometry +31+2700 /tmp/signature_#{unique_key}.png /tmp/application_#{unique_key}-6.png /tmp/application_#{unique_key}-6-signed.png")
+      system("composite -geometry +31+2700 /tmp/signature_#{unique_key}.png /tmp/application_#{unique_key}.png /tmp/application_#{unique_key}.png")
+    end
+
+    def symbolize_keys(hash)
+      symbolized_hash = Hash.new
+      hash.each { |key,value| symbolized_hash[key.to_sym] = value }
+      symbolized_hash
     end
   end
 
@@ -67,13 +74,8 @@ module Calfresh
     end
 
     def has_pngs?
-      filename_array = Array.new
-      filename_array << "/tmp/application_#{@unique_key}-6-signed.png"
-      (7..15).each do |page_number|
-        filename_array << "/tmp/application_#{@unique_key}-#{page_number}.png"
-      end
       files_exist = true
-      filename_array.each do |filename|
+      png_filenames.each do |filename|
         if File.exists?(filename) == false
           files_exist = false
         end
@@ -83,11 +85,23 @@ module Calfresh
 
     def png_file_set
       file_array = Array.new
-      file_array << File.new("/tmp/application_#{@unique_key}-6-signed.png")
-      (7..15).each do |page_number|
-        file_array << File.new("/tmp/application_#{@unique_key}-#{page_number}.png")
+      png_filenames.each do |filename|
+        file_array << File.new(filename)
       end
       file_array
+    end
+
+    def png_filenames
+      filename_array = Array.new
+      filename_array << "/tmp/application_#{@unique_key}.png"
+      (7..15).each do |page_number|
+        filename_array << "calfresh_application_images/page-#{page_number}.png"
+      end
+      filename_array
+    end
+
+    def signed_png_path
+      "/tmp/application_#{@unique_key}.png"
     end
   end
 end
