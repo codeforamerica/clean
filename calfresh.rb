@@ -6,7 +6,8 @@ module Calfresh
     home_address: 'Text4 PG 1', \
     home_city: 'Text5 PG 1', \
     home_state: 'Text6 PG 1', \
-    home_zip_code: 'Text7 PG 1' \
+    home_zip_code: 'Text7 PG 1', \
+    date: 'Text32 PG 1'
   }
 
   class ApplicationWriter
@@ -18,6 +19,7 @@ module Calfresh
       base64_signature_blob = input[:signature]
       validated_field_input = filter_input_for_valid_fields(input)
       input_for_pdf_writer = map_input_to_pdf_field_names(validated_field_input)
+      input_for_pdf_writer[FORM_FIELDS[:date]] = Date.today.strftime("%m/%d/%Y")
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
       @pdftk.fill_form('./calfresh_application.pdf', filled_in_form_path, input_for_pdf_writer)
