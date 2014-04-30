@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 
-    <title>CalFresh</title>
+    <title>Apply for CalFresh</title>
     <!-- JQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!--[if lt IE 9]>
@@ -26,77 +26,68 @@
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+    <!-- Custom css -->
+    <style>
+    /*#signature_area { max-width: 500px;}*/
+    </style>
   </head>
 
   <body>
-    <h1>Apply to CalFresh (food assistance) in San Francisco</h1>
+    
+    <div class="container-fluid">
+      <div class="col-xs-10 col-md-6">
+        <h1>Apply for CalFresh in San Francisco</h1>
+        <hr>
+        <form role="form" name="apply" action="applications" method="post">
+          <div class="form-group">
+            <label for="name">Full name</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="John Smith">
+              <span class="help-block">Include your full legal name.</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="home_address">Address</label>
+              <input type="text" class="form-control" name="home_address" placeholder="1234 Fake Street">
+              <div class="input-group">
+                <span class="input-group-addon">San Francisco, CA</span>
+                <input type="text" class="form-control" name="home_zip_code" placeholder="941...">
+              </div>
+              <span class="help-block">You have to live in San Francisco to get CalFresh.</span>
+          </div>
+          
+          <!-- City: San Francisco, State: CA -->
+          <input type="hidden" class="form-control" name="home_city" value="San Francisco">
+          <input type="hidden" class="form-control" name="home_state" value="CA">
+          
+          <div class="form-group">
+            <label for="home_phone_number">Phone number</label>
+              <input type="text" class="form-control" name="home_phone_number" placeholder="(415) 555-5555">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+              <input type="text" class="form-control" name="email" placeholder="john.smith@gmail.com">
+              <span class="help-block">You don't have to include your phone number or email address, but it will help us get in touch with you.</span>
+          
+          </div>
+          <div class="form-group">
+            <label for="signature">Signature</label>
+          
+              <div id="signature_area" class="panel"></div>
+              <div id="signature_value_hidden"></div>
+              <span class="help-block">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</span>
+          </div>
+          
+            <div class="form-group">
+                <button type="submit" id="submit_button" class="btn btn-default">Submit your San Francisco CalFresh application!</button>
+            </div>
+          </div>
+        </form>
 
-    <form role="form">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+      </div>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputFile">File input</label>
-      <input type="file" id="exampleInputFile">
-      <p class="help-block">Example block-level help text here.</p>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox"> Check me out
-      </label>
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-
-
-    <form role="form" name="apply" action="applications" method="post">
-      <div class="form-group">
-        <label for="name">Full name</label>
-        <input type="text" class="form-control" name="name" id="name" placeholder="John Smith">
-      </div>
-      
-      <div class="form-group">
-        <label for="home_address">Address</label>
-        <input type="text" class="form-control" name="home_address" placeholder="1234 Fake Street">
-      </div>
-      
-      <!-- City: San Francisco, CA -->
-      <input type="hidden" class="form-control" name="home_city" value="San Francisco">
-      <input type="hidden" class="form-control" name="home_state" value="CA">
-      
-      <div class="form-group">
-        <label for="home_zip_code">Zip code</label>
-        <input type="text" class="form-control" name="home_zip_code" placeholder="9410..."><br>
-      </div>
-      
-      <div class="form-group">
-        <label for="home_phone_number">Phone number</label>
-        <input type="text" class="form-control" name="home_phone_number" placeholder="(510)">
-      </div>
-      
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" name="email">
-      </div>
-      <br>
-      <div class="form-group">
-        <label for="signature">Signature</label>
-      </div>
-      <div id="signature_area"></div>
-      <div id="signature_value_hidden"></div>
-      <br>
-      <button type="submit" id="submit_button" class="btn btn-default">Submit your San Francisco CalFresh application!</button>
-    </form>
-
-    <!-- Setup sig form -->
-
-
-
+    
     <!-- Bootstrap core JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
   </body>
