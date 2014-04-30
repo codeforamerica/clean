@@ -1,2 +1,2 @@
-require './sinatratest'
-run Hello
+require './calfresh_web'
+run CalfreshWeb
