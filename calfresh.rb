@@ -24,6 +24,7 @@ module Calfresh
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
       convert_application_pdf_to_png_set(unique_key)
       add_signature_to_application(unique_key)
+      Application.new(unique_key)
     end
 
     #private
