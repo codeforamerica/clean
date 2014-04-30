@@ -19,7 +19,8 @@ module Calfresh
 
     def fill_out_form(input)
       base64_signature_blob = input[:signature]
-      validated_field_input = filter_input_for_valid_fields(input)
+      symbolized_key_input = symbolize_keys(input)
+      validated_field_input = filter_input_for_valid_fields(symbolized_key_input)
       input_for_pdf_writer = map_input_to_pdf_field_names(validated_field_input)
       input_for_pdf_writer[FORM_FIELDS[:date]] = Date.today.strftime("%m/%d/%Y")
       unique_key = SecureRandom.hex
@@ -56,6 +57,12 @@ module Calfresh
 
     def add_signature_to_application(unique_key)
       system("composite -geometry +31+2700 /tmp/signature_#{unique_key}.png /tmp/application_#{unique_key}-6.png /tmp/application_#{unique_key}-6-signed.png")
+    end
+
+    def symbolize_keys(hash)
+      symbolized_hash = Hash.new
+      hash.each { |key,value| symbolized_hash[key.to_sym] = value }
+      symbolized_hash
     end
   end
 
