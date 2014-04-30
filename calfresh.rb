@@ -53,4 +53,36 @@ module Calfresh
       system("composite -geometry +31+2700 /tmp/signature_#{unique_key}.png /tmp/application_#{unique_key}-6.png /tmp/application_#{unique_key}-6-signed.png")
     end
   end
+
+  class Application
+    attr_reader :unique_key
+
+    def initialize(unique_key)
+      @unique_key = unique_key
+    end
+
+    def has_pngs?
+      filename_array = Array.new
+      filename_array << "/tmp/application_#{@unique_key}-6-signed.png"
+      (7..15).each do |page_number|
+        filename_array << File.new("/tmp/application_#{@unique_key}-#{page_number}.png")
+      end
+      files_exist = true
+      filename_array.each do |filename|
+        if File.exists?(filename) == false
+          files_exist = false
+        end
+      end
+      files_exist
+    end
+
+    def png_file_set
+      file_array = Array.new
+      file_array << File.new("/tmp/application_#{@unique_key}-6-signed.png")
+      (7..15).each do |page_number|
+        file_array << File.new("/tmp/application_#{@unique_key}-#{page_number}.png")
+      end
+      file_array
+    end
+  end
 end
