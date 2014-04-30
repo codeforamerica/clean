@@ -1,4 +1,5 @@
 require 'sinatra'
+require './lib/calfresh'
 
 class CalfreshWeb < Sinatra::Base
   get '/' do
