@@ -1,0 +1,9 @@
+<% if @fax_result.successful? %>
+Your application has been submitted!
+<% else %>
+Thanks! We didn't actually submit submit your application. Here's why:
+<br><br>
+<%= @fax_result.message %>
+<% end %>
+<br><br>
+<a href="/applications/<%= @application.unique_key %>">Click here to view your application.</a>
