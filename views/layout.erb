@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- JQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/flashcanvas.js"></script>
+    <![endif]-->
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <!-- Custom css -->
+    <style>
+    #main { max-width: 700px;}
+    </style>
+  </head>
+
+
+  <title>Apply for CalFresh</title>
+
+  <!-- jSignature -->
+  <script src="js/jSignature.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#signature_area").jSignature()
+      // Magic modified from http://paulology.com/signature-capture/
+      var $sigdiv = $("#signature_area")
+      $('#submit_button').click(function(e) {
+        var datapair = $sigdiv.jSignature("getData", "image")
+        $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
+      });
+    })
+  </script>
+
+
+  <body>
+    <div class="container-fluid" id="main">
+      <%= yield %>
+    </div>
+  </body>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</html>

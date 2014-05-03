@@ -1,9 +1,21 @@
 <% if @fax_result.successful? %>
-Your application has been submitted!
+  <h1>Great! You've applied for CalFresh in San Francisco!</h1>
+  <br>
+  Your application has been submitted!
 <% else %>
-Thanks! We didn't actually submit your application. Here's why:
-<br><br>
-<%= @fax_result.message %>
+  <h1>Great! Your application was created!</h1>
+  <br>
+  We didn't actually submit your application just yet. Here's why:
+  <br><br>
+  <i><%= @fax_result.message %></i>
 <% end %>
+
 <br><br>
-<a href="/applications/<%= @application.unique_key %>">Click here to view your application.</a>
+<ul>
+  <li>
+    <a href="/applications/<%= @application.unique_key %>">Click here to view your application</a>
+  </li>
+  <li>
+    <a href="/">Click here to start over</a>
+  </li>
+</ul>
