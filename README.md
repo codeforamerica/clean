@@ -1,6 +1,16 @@
-# PDF Application Experiments
+# CalFresh and So Clean
 
-("CalFresh and So Clean")
+Making applying to the CalFresh program not suck.
+
+## How it sucks now
+
+If you want to understand the genesis of the project, [click here](https://github.com/codeforamerica/health-project-ideas/issues/6).
+
+[Click here to experience what it's like to apply to CalFresh right now.](http://codeforamerica.github.io/citizen-onboard/calfresh/)
+
+## What's this?
+
+A user-friendly web form with the minimal fields necessary that generates a PDF application and faxes it in to HSA.
 
 ## Setup
 
