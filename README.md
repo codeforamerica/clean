@@ -28,6 +28,12 @@ For faxing capabilities, set the following environment variables:
 - PHAXIO_API_SECRET
 - FAX_DESTINATION_NUMBER
 
+## SSL
+
+If `RACK_ENV` is set to anything other than the default (`development`) then all unencrypted HTTP requests will be redirected to their HTTPS equivalents.
+
+Put another way: when developing locally, you should be good to go. If you're deploying, you will need to configure SSL (works by default on Heroku if you're using their default XXX.herokuapp.com domain for your app).
+
 ## Deployment to Heroku
 
 ```bash
