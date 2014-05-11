@@ -1,8 +1,11 @@
 require 'sinatra'
+require 'rack/ssl'
 require './calfresh'
 require './faxer'
 
 class CalfreshWeb < Sinatra::Base
+  use Rack::SSL unless settings.environment == :development
+
   get '/' do
     erb :index
   end
