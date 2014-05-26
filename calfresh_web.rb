@@ -12,7 +12,10 @@ class CalfreshWeb < Sinatra::Base
 
   post '/applications' do
     writer = Calfresh::ApplicationWriter.new
-    @application = writer.fill_out_form(params)
+    input_for_writer = params
+    input_for_writer[:name_page3] = params[:name]
+    input_for_writer[:ssn_page3] = params[:ssn]
+    @application = writer.fill_out_form(input_for_writer)
     if @application.has_pngs?
       @fax_result = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], @application.png_file_set)
       erb :after_fax
