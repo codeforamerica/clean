@@ -13,6 +13,14 @@ class CalfreshWeb < Sinatra::Base
   post '/applications' do
     writer = Calfresh::ApplicationWriter.new
     input_for_writer = params
+    input_for_writer[:sex] = case params[:sex]
+      when "Male"
+        "M"
+      when "Female"
+        "F"
+      else
+        ""
+    end
     input_for_writer[:name_page3] = params[:name]
     input_for_writer[:ssn_page3] = params[:ssn]
     @application = writer.fill_out_form(input_for_writer)

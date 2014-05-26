@@ -12,7 +12,7 @@ module Calfresh
     home_phone_number: 'Text12 PG 1', \
     email: 'Text13 PG 1', \
     date_of_birth: 'Text5 PG 3', \
-    gender: 'Text6 PG 3', \
+    sex: 'Text6 PG 3', \
     ssn: 'Text3 PG 1', \
     ssn_page3: 'Text9 PG 3'
   }

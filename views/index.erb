@@ -4,17 +4,27 @@
 <hr>
 <form role="form" name="apply" action="applications" method="post">
   <div class="row">
-  <h2 class="h4">Your Name</h2>
+  <h2 class="h4">Your Basic Information</h2>
     <div class="form-group">
         <span class="help-block">Type your full legal name--it's required to receive benefits from CalFresh.</span>
+        <label for="name">Name</label>
         <input type="text" class="form-control" name="name" id="name" placeholder="ex. Joanna Smith">
     </div>
     <div class="form-group">
+      <label for="sex">Sex</label>
       <select class="form-control" id="sex" name="sex">
         <option>Female</option>
         <option>Male</option>
         <option>Prefer not to answer</option>
       </select>
+    </div>
+    <div class="form-group">
+      <label for="date_of_birth">Date of Birth</label>
+        <input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="ex. 1/14/82">
+    </div>
+    <div class="form-group">
+      <label for="ssn">Social Security Number</label>
+        <input type="text" class="form-control" name="ssn" id="ssn" placeholder="ex. 000112222">
     </div>
   </div>
   <hr>
