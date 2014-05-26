@@ -1,45 +1,96 @@
-<h1>Apply for CalFresh in San Francisco</h1>
+<div class="row">
+  <h1>Apply for CalFresh in San Francisco</h1>
+</div>
 <hr>
 <form role="form" name="apply" action="applications" method="post">
-  <div class="form-group">
-    <label for="name">Full name</label>
-      <input type="text" class="form-control" name="name" id="name" placeholder="John Smith">
-      <span class="help-block">Include your full legal name.</span>
-  </div>
-  
-  <div class="form-group">
-    <label for="home_address">Address</label>
-      <input type="text" class="form-control" name="home_address" placeholder="1234 Fake Street">
-      <div class="input-group">
-        <span class="input-group-addon">San Francisco, CA</span>
-        <input type="text" class="form-control" name="home_zip_code" placeholder="941...">
-      </div>
-      <span class="help-block">You have to live in San Francisco to get CalFresh.</span>
-  </div>
-  
-  <!-- City: San Francisco, State: CA -->
-  <input type="hidden" class="form-control" name="home_city" value="San Francisco">
-  <input type="hidden" class="form-control" name="home_state" value="CA">
-  
-  <div class="form-group">
-    <label for="home_phone_number">Phone number</label>
-      <input type="text" class="form-control" name="home_phone_number" placeholder="(415) 555-5555">
-  </div>
-  
-  <div class="form-group">
-    <label for="email">Email</label>
-      <input type="text" class="form-control" name="email" placeholder="john.smith@gmail.com">
-      <span class="help-block">You don't have to include your phone number or email address, but it will help us get in touch with you.</span>
-  </div>
-
-  <div class="form-group">
-    <label for="signature">Signature</label>
-      <div id="signature_area" class="panel"></div>
-      <div id="signature_value_hidden"></div>
-      <span class="help-block">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</span>
-  </div>
-  
+  <div class="row">
+  <h2 class="h4">Your Name</h2>
     <div class="form-group">
-        <button type="submit" id="submit_button" class="btn btn-default">Submit your CalFresh application!</button>
+        <span class="help-block">Type your full legal name--it's required to receive benefits from CalFresh.</span>
+        <input type="text" class="form-control" name="name" id="name" placeholder="ex. Joanna Smith">
     </div>
+    <div class="form-group">
+      <select class="form-control" id="sex" name="sex">
+        <option>Female</option>
+        <option>Male</option>
+        <option>Prefer not to answer</option>
+      </select>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <h2 class="h4">Your Best Address</h2>
+    <div class="form-group">
+      <span class="help-block">You <b>must</b> live in San Francisco to use this application. Provide your City of San Francisco mailing address so CalFresh can send along important information about your application.</span>
+      <label for="home_address">Street Address</label>
+        <input type="text" class="form-control" name="home_address" placeholder="ex. 1200 Market St">
+    </div>
+    <div class="form-group">
+      <label for="home_zip_code">ZIP Code</label>
+        <input type="text" class="form-control" name="home_zip_code" placeholder="ex. 94117">
+    </div>
+    <input type="hidden" class="form-control" name="home_city" value="San Francisco">
+    <input type="hidden" class="form-control" name="home_state" value="CA">
+  </div>
+  <hr>
+  <div class="row">
+    <h2 class="h4">Your Contact Information</h2>
+    <span class="help-block">You don't have to include your phone number or email address, but it will help CalFresh staff get in touch with you.</span>
+    <div class="form-group">
+      <label for="home_phone_number">Phone number</label>
+        <input type="text" class="form-control" name="home_phone_number" placeholder="ex. (415) 555-5555">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" placeholder="ex. joanna.smith@gmail.com">
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <h2 class="h4">Please Upload Photos of Key Documents and Information</h2>
+      <p class="help-block">In order to enroll in CalFresh, the staff will need to confirm that you are eligible. Aside from residency in San Francisco, eligibility is mostly a matter of your income and expenses.</p>
+    <div class="form-group">
+      <label for="exampleInputFile">Your Photo ID</label>
+      <input type="file" id="identification">
+      <p class="help-block">Upload a photo of your Driver's License, Passport or other government-issued photo ID.</p>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputFile">Your Income</label>
+      <input type="file" id="income">
+      <p class="help-block">Upload a photo documenting your income or wages. This could be a photo of a paystub, bank statement. If you don't have any of those, simply write down your weekly or monthly income on a piece of paper, then upload a photo of that note.</p>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputFile">Your Expenses: Rent</label>
+      <input type="file" id="rent">
+      <p class="help-block">Upload a photo documenting your monthly rent expenses. This could be a photo of a lease agreement or a rent check. If you don't have any of those, simply write down your monthly rent on a piece of paper, then upload a photo of that note.</p>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputFile">Your Expenses: Utilities</label>
+      <input type="file" id="utilities">
+      <p class="help-block">Upload a photo documenting your monthly utility expenses. Utilities include electricity, gas, water and garbage collection. This could be a photo of your monthly statments, bills, or checks you've written. If you don't have any of those, simply write down your monthly utility expenses on a piece of paper, then upload a photo of that note.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="form-group">
+      <h2 class="h4">Your Signature</h2>
+        <span class="help-block">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</span>
+        <div id="signature_area" class="panel"></div>
+        <div id="signature_value_hidden"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <h2 class="h4">Confirm and Submit</h2>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> By clicking this box, you confirm your intent to submit this application to receive benefits from CalFresh. This web tool will take the information you have provided, and transcribe it onto an official CalFresh application form. That form, along with any documents you upload, will then automatically be faxed to the City of San Francisco Health Services Administration.
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" id="submit_button" class="btn btn-default">Submit your CalFresh application!</button>
+    </div>
+  </div>
 </form>
