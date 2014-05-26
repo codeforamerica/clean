@@ -109,7 +109,7 @@ module Calfresh
     end
 
     def signed_png_path
-      "/tmp/application_#{@unique_key}.png"
+      "/tmp/application_#{@unique_key}-0.png"
     end
   end
 end
