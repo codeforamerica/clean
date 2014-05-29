@@ -112,4 +112,27 @@ module Calfresh
       "/tmp/application_#{@unique_key}-0.png"
     end
   end
+
+  class VerificationDocSet
+    attr_reader :verification_docs
+
+    def initialize(params)
+      @verification_docs = filter_hash_for_doc_keys(params)
+    end
+
+    def filepath_array
+      verification_docs.map { |doc_name, doc_hash| doc_hash[:tempfile].path }
+    end
+
+    def file_array
+      filepath_array.map { |path| File.new(path) }
+    end
+
+    private
+    def filter_hash_for_doc_keys(hash)
+      hash.select do |key, value|
+        ['identification', 'income', 'rent', 'utilities'].include?(key)
+      end
+    end
+  end
 end

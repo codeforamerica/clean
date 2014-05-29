@@ -25,7 +25,11 @@ class CalfreshWeb < Sinatra::Base
     input_for_writer[:ssn_page3] = params[:ssn]
     @application = writer.fill_out_form(input_for_writer)
     if @application.has_pngs?
-      @fax_result = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], @application.png_file_set)
+      @verification_docs = Calfresh::VerificationDocSet.new(params)
+      images_to_send = @application.png_file_set
+      images_to_send << @verification_docs.file_array
+      puts images_to_send
+      @fax_result = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], images_to_send)
       erb :after_fax
     else
       puts "No PNGs! WTF!?!"
