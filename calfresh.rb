@@ -100,9 +100,9 @@ module Calfresh
     def png_filenames
       filename_array = Array.new
       filename_array << "/tmp/application_#{@unique_key}-0.png"
-      filename_array << "calfresh_application_images/page-8.png"
+      filename_array << "calfresh_application_images/page-7.png"
       filename_array << "/tmp/application_#{@unique_key}-1.png"
-      (10..15).each do |page_number|
+      (9..15).each do |page_number|
         filename_array << "calfresh_application_images/page-#{page_number}.png"
       end
       filename_array
