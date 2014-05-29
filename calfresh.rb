@@ -114,18 +114,22 @@ module Calfresh
   end
 
   class VerificationDocSet
-    attr_reader :verification_docs
+    attr_reader :filepaths_with_extensions
 
     def initialize(params)
-      @verification_docs = filter_hash_for_doc_keys(params)
-    end
-
-    def filepath_array
-      verification_docs.map { |doc_name, doc_hash| doc_hash[:tempfile].path }
+      raw_docs = filter_hash_for_doc_keys(params)
+      raw_doc_paths = raw_docs.map { |doc_name, doc_hash| doc_hash[:tempfile].path }
+      @filepaths_with_extensions = raw_doc_paths.map do |raw_doc_path|
+        file_call_result = `file -ib #{raw_doc_path}`
+        extension = /\/(.+);/.match(file_call_result).captures.first
+        new_file_path = raw_doc_path + "." + extension
+        system("cp #{raw_doc_path} #{new_file_path}")
+        new_file_path
+      end
     end
 
     def file_array
-      filepath_array.map { |path| File.new(path) }
+      filepaths_with_extensions.map { |path| File.new(path) }
     end
 
     private
