@@ -120,12 +120,24 @@ reader.readAsDataURL(file);
       canvas.height = tempH;
       var ctx = canvas.getContext("2d");
       ctx.drawImage(this, 0, 0, tempW, tempH);
-      var dataURL = canvas.toDataURL("image/jpeg");
+      var dataURL = canvas.toDataURL("image/jpeg", 0.8);
       console.log(dataURL);
       console.log ("new image width="+ (canvas.width))
       console.log ("new image height="+ (canvas.height))
+      var blob = dataURItoBlob(dataURL);
+      console.log(blob);
     }
   }
+}
+
+function dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: 'image/jpeg' });
 }
 
 
