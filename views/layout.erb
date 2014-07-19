@@ -45,3 +45,91 @@
   <!-- Bootstrap core JavaScript -->
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </html>
+
+  <!-- File compression JS -->
+
+<script>
+
+// [ X ] event when file is uploaded
+// check to make sure it is an image
+// if it is an image, get the data URI
+// convert the data
+// create the new file at a smaller size
+// save it for upload on form submission
+
+// $('input').change(function(e) {
+//   var input = e.target;
+//   console.log(input);
+//   var file = input.files[0];
+//   console.log(file);
+//   processfile(file);
+// });
+
+
+// function processfile(file) {
+//   console.log("processfile called by event!");
+//   if( !( /image/i ).test(file.type) ) {
+//     console.log ("File "+ file.name +" is not an image.");
+//     return false;
+//   }
+// }
+
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+    document.getElementById('test-file').onchange = function() {
+        var files = document.getElementById('test-file').files;
+        for(var i = 0; i < files.length; i++) {
+            resizeAndUpload(files[i]);
+        }
+    };
+} else {
+    alert('The File APIs are not fully supported in this browser.');
+}
+
+function resizeAndUpload(file) {
+console.log(file)
+
+var reader = new FileReader();
+reader.readAsDataURL(file);
+
+  reader.onloadend = function() {
+    console.log("reading operation complete")
+
+    var tempImg = new Image();
+    tempImg.src = reader.result;
+    tempImg.onload = function () {
+
+      var MAX_WIDTH = 800;
+      var MAX_HEIGHT = 600;
+      var tempW = tempImg.width;
+      var tempH = tempImg.height;
+      //  is it landscape? if so...
+      if (tempW > tempH) {
+        if (tempW > MAX_WIDTH) {
+          tempH *= MAX_WIDTH / tempW;
+          tempW = MAX_WIDTH;
+        }
+      } else {
+        if (tempH > MAX_HEIGHT) {
+          tempW *= MAX_HEIGHT / tempH;
+          tempH = MAX_HEIGHT;
+        }
+      }
+
+      var canvas = document.createElement('canvas');
+      canvas.width = tempW;
+      canvas.height = tempH;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(this, 0, 0, tempW, tempH);
+      var dataURL = canvas.toDataURL("image/jpeg");
+      console.log(dataURL);
+      console.log ("new image width="+ (canvas.width))
+      console.log ("new image height="+ (canvas.height))
+    }
+  }
+}
+
+
+
+
+
+</script>
