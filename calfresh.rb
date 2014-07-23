@@ -3,13 +3,18 @@ require 'securerandom'
 
 module Calfresh
   FORM_FIELDS = { name: 'Text1 PG 1', \
+    name_page3: 'Text3 PG 3', \
     home_address: 'Text4 PG 1', \
     home_city: 'Text5 PG 1', \
     home_state: 'Text6 PG 1', \
     home_zip_code: 'Text7 PG 1', \
     date: 'Text32 PG 1', \
     home_phone_number: 'Text12 PG 1', \
-    email: 'Text13 PG 1'
+    email: 'Text13 PG 1', \
+    date_of_birth: 'Text5 PG 3', \
+    sex: 'Text6 PG 3', \
+    ssn: 'Text3 PG 1', \
+    ssn_page3: 'Text9 PG 3'
   }
 
   class ApplicationWriter
@@ -23,9 +28,10 @@ module Calfresh
       validated_field_input = filter_input_for_valid_fields(symbolized_key_input)
       input_for_pdf_writer = map_input_to_pdf_field_names(validated_field_input)
       input_for_pdf_writer[FORM_FIELDS[:date]] = Date.today.strftime("%m/%d/%Y")
+      input_for_pdf_writer['Check Box1 PG 3'] = "Yes"
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
-      @pdftk.fill_form('./calfresh_application_single_page.pdf', filled_in_form_path, input_for_pdf_writer)
+      @pdftk.fill_form('./calfresh_2pager.pdf', filled_in_form_path, input_for_pdf_writer)
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
       convert_application_pdf_to_png_set(unique_key)
       add_signature_to_application(unique_key)
@@ -56,7 +62,7 @@ module Calfresh
     end
 
     def add_signature_to_application(unique_key)
-      system("composite -geometry +31+2700 /tmp/signature_#{unique_key}.png /tmp/application_#{unique_key}.png /tmp/application_#{unique_key}.png")
+      system("composite -geometry +31+2700 /tmp/signature_#{unique_key}.png /tmp/application_#{unique_key}-0.png /tmp/application_#{unique_key}-0.png")
     end
 
     def symbolize_keys(hash)
@@ -93,15 +99,44 @@ module Calfresh
 
     def png_filenames
       filename_array = Array.new
-      filename_array << "/tmp/application_#{@unique_key}.png"
-      (7..15).each do |page_number|
+      filename_array << "/tmp/application_#{@unique_key}-0.png"
+      filename_array << "calfresh_application_images/page-7.png"
+      filename_array << "/tmp/application_#{@unique_key}-1.png"
+      (9..15).each do |page_number|
         filename_array << "calfresh_application_images/page-#{page_number}.png"
       end
       filename_array
     end
 
     def signed_png_path
-      "/tmp/application_#{@unique_key}.png"
+      "/tmp/application_#{@unique_key}-0.png"
+    end
+  end
+
+  class VerificationDocSet
+    attr_reader :filepaths_with_extensions
+
+    def initialize(params)
+      raw_docs = filter_hash_for_doc_keys(params)
+      raw_doc_paths = raw_docs.map { |doc_name, doc_hash| doc_hash[:tempfile].path }
+      @filepaths_with_extensions = raw_doc_paths.map do |raw_doc_path|
+        file_call_result = `file -ib #{raw_doc_path}`
+        extension = /\/(.+);/.match(file_call_result).captures.first
+        new_file_path = raw_doc_path + "." + extension
+        system("cp #{raw_doc_path} #{new_file_path}")
+        new_file_path
+      end
+    end
+
+    def file_array
+      filepaths_with_extensions.map { |path| File.new(path) }
+    end
+
+    private
+    def filter_hash_for_doc_keys(hash)
+      hash.select do |key, value|
+        ['identification', 'income', 'rent', 'utilities'].include?(key)
+      end
     end
   end
 end
