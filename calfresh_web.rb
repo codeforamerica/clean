@@ -34,9 +34,10 @@ class CalfreshWeb < Sinatra::Base
     @application = writer.fill_out_form(input_for_writer)
     if @application.has_pngs?
       @verification_docs = Calfresh::VerificationDocSet.new(params)
-      images_to_send = @application.png_file_set + @verification_docs.file_array
-      puts images_to_send
-      @fax_result = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], images_to_send)
+      @fax_result_application = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], @application.png_file_set)
+      @fax_result_verification_docs = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], @verification_docs.file_array)
+      puts @fax_result_application
+      puts @fax_result_verification_docs
       erb :after_fax
     else
       puts "No PNGs! WTF!?!"
