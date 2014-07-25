@@ -7,6 +7,7 @@ class CalfreshWeb < Sinatra::Base
   use Rack::SSL unless settings.environment == :development
 
   get '/' do
+    @language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog)
     erb :index
   end
 
@@ -23,6 +24,8 @@ class CalfreshWeb < Sinatra::Base
     end
     input_for_writer[:name_page3] = params[:name]
     input_for_writer[:ssn_page3] = params[:ssn]
+    input_for_writer[:language_preference_reading] = params[:primary_language]
+    input_for_writer[:language_preference_writing] = params[:primary_language]
     @application = writer.fill_out_form(input_for_writer)
     if @application.has_pngs?
       @verification_docs = Calfresh::VerificationDocSet.new(params)

@@ -55,6 +55,16 @@
       <label for="email">Email</label>
         <input type="text" class="form-control" name="email" placeholder="ex. joanna.smith@gmail.com">
     </div>
+
+    <div class="form-group">
+      <label for="primary_language">Language Preference</label>
+        <select class="form-control" name="primary_language">
+          <% @language_options.each do |language| %>
+            <option value="<%= language %>"><%= language %></option>
+          <% end %>
+        </select>
+    </div>
+
   </div>
   <hr>
   <div class="row">
