@@ -14,7 +14,9 @@ module Calfresh
     date_of_birth: 'Text5 PG 3', \
     sex: 'Text6 PG 3', \
     ssn: 'Text3 PG 1', \
-    ssn_page3: 'Text9 PG 3'
+    ssn_page3: 'Text9 PG 3', \
+    language_preference_reading: 'Text19 PG 1', \
+    language_preference_writing: 'Text20 PG 1'
   }
 
   class ApplicationWriter
