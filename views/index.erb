@@ -1,101 +1,109 @@
-<div class="row">
-  <h1>Apply for CalFresh in San Francisco</h1>
-</div>
-<hr>
 <form role="form" name="apply" action="applications" method="post" enctype="multipart/form-data">
   <div class="row">
-  <h2 class="h4">Your Basic Information</h2>
-    <div class="form-group">
-        <span class="help-block">Type your full legal name--it's required to receive benefits from CalFresh.</span>
-        <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" id="name" placeholder="ex. Joanna Smith">
-    </div>
-    <div class="form-group">
-      <label for="sex">Sex</label>
-      <select class="form-control" id="sex" name="sex">
-        <option>Female</option>
-        <option>Male</option>
-        <option>Prefer not to answer</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="date_of_birth">Date of Birth</label>
-        <input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="ex. 1/14/82">
-    </div>
-    <div class="form-group">
-      <label for="ssn">Social Security Number</label>
-        <input type="text" class="form-control" name="ssn" id="ssn" placeholder="ex. 000112222">
+    <div class="col-md-12">
+      <h1>Apply for CalFresh in San Francisco</h1>
+      <hr> <!-- keyline -->
     </div>
   </div>
-  <hr>
   <div class="row">
-    <h2 class="h4">Your Best Address</h2>
-    <div class="form-group">
-      <span class="help-block">You <b>must</b> live in San Francisco to use this application. Provide your City of San Francisco mailing address so CalFresh can send along important information about your application.</span>
-      <label for="home_address">Street Address</label>
-        <input type="text" class="form-control" name="home_address" placeholder="ex. 1200 Market St">
-    </div>
-    <div class="form-group">
-      <label for="home_zip_code">ZIP Code</label>
-        <input type="text" class="form-control" name="home_zip_code" placeholder="ex. 94117">
-    </div>
-    <input type="hidden" class="form-control" name="home_city" value="San Francisco">
-    <input type="hidden" class="form-control" name="home_state" value="CA">
-  </div>
-  <hr>
-  <div class="row">
-    <h2 class="h4">Your Contact Information</h2>
-    <span class="help-block">You don't have to include your phone number or email address, but it will help CalFresh staff get in touch with you.</span>
-    <div class="form-group">
-      <label for="home_phone_number">Phone number</label>
-        <input type="text" class="form-control" name="home_phone_number" placeholder="ex. (415) 555-5555">
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-        <input type="text" class="form-control" name="email" placeholder="ex. joanna.smith@gmail.com">
-    </div>
-
-    <div class="form-group">
-      <label for="primary_language">Language Preference</label>
-        <select class="form-control" name="primary_language">
-          <% @language_options.each do |language| %>
-            <option value="<%= language %>"><%= language %></option>
-          <% end %>
+    <div class="col-md-12">
+      <h2 class="h4">Your Basic Information</h2>
+      <div class="form-group">
+          <span class="help-block">Type your full legal name--it's required to receive benefits from CalFresh.</span>
+          <label for="name">Name</label>
+          <input type="text" class="form-control" name="name" id="name" placeholder="ex. Joanna Smith">
+      </div>
+      <div class="form-group">
+        <label for="sex">Sex</label>
+        <select class="form-control" id="sex" name="sex">
+          <option>Female</option>
+          <option>Male</option>
+          <option>Prefer not to answer</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label for="date_of_birth">Date of Birth</label>
+          <input type="text" class="form-control" name="date_of_birth" id="date_of_birth" placeholder="ex. 1/14/82">
+      </div>
+      <div class="form-group">
+        <label for="ssn">Social Security Number</label>
+          <input type="text" class="form-control" name="ssn" id="ssn" placeholder="ex. 000112222">
+      </div>
     </div>
-
+    <hr>  <!-- keyline -->
   </div>
-  <hr>
   <div class="row">
-    <h2 class="h4">Please Upload Photos of Key Documents and Information</h2>
-      <p class="help-block">In order to enroll in CalFresh, the staff will need to confirm that you are eligible. Aside from residency in San Francisco, eligibility is mostly a matter of your income and expenses.</p>
-    <div class="form-group">
-      <label for="identification">Your Photo ID</label>
-      <input type="file" name="identification">
-      <p class="help-block">Upload a photo of your Driver's License, Passport or other government-issued photo ID.</p>
+    <div class="col-md-12">
+      <h2 class="h4">Your Best Address</h2>
+      <div class="form-group">
+        <span class="help-block">You <b>must</b> live in San Francisco to use this application. Provide your City of San Francisco mailing address so CalFresh can send along important information about your application.</span>
+        <label for="home_address">Street Address</label>
+          <input type="text" class="form-control" name="home_address" placeholder="ex. 1200 Market St">
+      </div>
+      <div class="form-group">
+        <label for="home_zip_code">ZIP Code</label>
+          <input type="text" class="form-control" name="home_zip_code" placeholder="ex. 94117">
+      </div>
+      <input type="hidden" class="form-control" name="home_city" value="San Francisco">
+      <input type="hidden" class="form-control" name="home_state" value="CA">
     </div>
-    <div class="form-group">
-      <label for="income">Your Income</label>
-      <input type="file" name="income">
-      <p class="help-block">Upload a photo documenting your income or wages. This could be a photo of a paystub, bank statement. If you don't have any of those, simply write down your weekly or monthly income on a piece of paper, then upload a photo of that note.</p>
-    </div>
-    <div class="form-group">
-      <label for="rent">Your Expenses: Rent</label>
-      <input type="file" name="rent">
-      <p class="help-block">Upload a photo documenting your monthly rent expenses. This could be a photo of a lease agreement or a rent check. If you don't have any of those, simply write down your monthly rent on a piece of paper, then upload a photo of that note.</p>
-    </div>
-    <div class="form-group">
-      <label for="utilities">Your Expenses: Utilities</label>
-      <input type="file" name="utilities">
-      <p class="help-block">Upload a photo documenting your monthly utility expenses. Utilities include electricity, gas, water and garbage collection. This could be a photo of your monthly statements, bills, or checks you've written. If you don't have any of those, simply write down your monthly utility expenses on a piece of paper, then upload a photo of that note.</p>
-    </div>
+    <hr>  <!-- keyline -->
   </div>
-  <hr>
   <div class="row">
-    <div class="form-group">
+    <div class="col-md-12">
+      <h2 class="h4">Your Contact Information</h2>
+      <span class="help-block">You don't have to include your phone number or email address, but it will help CalFresh staff get in touch with you.</span>
+      <div class="form-group">
+        <label for="home_phone_number">Phone number</label>
+          <input type="text" class="form-control" name="home_phone_number" placeholder="ex. (415) 555-5555">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+          <input type="text" class="form-control" name="email" placeholder="ex. joanna.smith@gmail.com">
+      </div>
+      <div class="form-group">
+        <label for="primary_language">Language Preference</label>
+          <select class="form-control" name="primary_language">
+            <% @language_options.each do |language| %>
+              <option value="<%= language %>"><%= language %></option>
+            <% end %>
+          </select>
+      </div>
+    </div>
+    <hr>  <!-- keyline -->
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="h4">Please Upload Photos of Key Documents and Information</h2>
+        <p class="help-block">In order to enroll in CalFresh, the staff will need to confirm that you are eligible. Aside from residency in San Francisco, eligibility is mostly a matter of your income and expenses.</p>
+      <div class="form-group">
+        <label for="identification">Your Photo ID</label>
+        <input type="file" name="identification">
+        <p class="help-block">Upload a photo of your Driver's License, Passport or other government-issued photo ID.</p>
+      </div>
+      <div class="form-group">
+        <label for="income">Your Income</label>
+        <input type="file" name="income">
+        <p class="help-block">Upload a photo documenting your income or wages. This could be a photo of a paystub, bank statement. If you don't have any of those, simply write down your weekly or monthly income on a piece of paper, then upload a photo of that note.</p>
+      </div>
+      <div class="form-group">
+        <label for="rent">Your Expenses: Rent</label>
+        <input type="file" name="rent">
+        <p class="help-block">Upload a photo documenting your monthly rent expenses. This could be a photo of a lease agreement or a rent check. If you don't have any of those, simply write down your monthly rent on a piece of paper, then upload a photo of that note.</p>
+      </div>
+      <div class="form-group">
+        <label for="utilities">Your Expenses: Utilities</label>
+        <input type="file" name="utilities">
+        <p class="help-block">Upload a photo documenting your monthly utility expenses. Utilities include electricity, gas, water and garbage collection. This could be a photo of your monthly statements, bills, or checks you've written. If you don't have any of those, simply write down your monthly utility expenses on a piece of paper, then upload a photo of that note.</p>
+      </div>
+    </div>
+    <hr> <!-- keyline -->
+  </div>
+  <div class="row">
+    <div class="col-md-12">
       <h2 class="h4">Your Signature</h2>
-        I understand that by signing this application under penalty of perjury (making false statements), that:
+      <div class="form-group">
+        <p>I understand that by signing this application under penalty of perjury (making false statements), that:</p>
         <ul>
           <li>I read, or had read to me, the information in this application and my answers to the questions in this application.</li>
           <li>My answers to the questions are true and complete to the best of my knowledge.</li>
@@ -105,31 +113,32 @@
           <li>I understand that giving false or misleading statements or misrepresenting, hiding or withholding facts to establish eligibility for CalFresh is fraud. Fraud can cause a criminal case to be filed against me and/or I may be barred for a period of time (or life) from getting CalFresh benefits.
           <li>I understand that Social Security Numbers or immigration status for household members applying for benefits may be shared with the appropriate government agencies as required by federal law.</li>
         </ul>
-        <br>
-        <span class="help-block">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</span>
-        <div id="signature_area" class="panel"></div>
-        <div id="signature_value_hidden"></div>
+      </div>
+      <br>
+      <span class="help-block">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</span>
+      <div id="signature_area" class="panel"></div>
+      <div id="signature_value_hidden"></div>
     </div>
   </div>
   <div class="row">
-    <div class="form-group">
-      <h2 class="h4">Confirm and Submit</h2>
+    <div class="col-md-12">
+      <div class="form-group">
+        <h2 class="h4">Confirm and Submit</h2>
 
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="medi_cal_interest"> Are you interested in applying for Medi-Cal?
-        </label>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="medi_cal_interest"> Are you interested in applying for Medi-Cal?
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> By clicking this box, you confirm your intent to submit this application to receive benefits from CalFresh. This web tool will take the information you have provided, and transcribe it onto an official CalFresh application form. That form, along with any documents you upload, will then automatically be faxed to the City of San Francisco Health Services Administration.
+          </label>
+        </div>
       </div>
-
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> By clicking this box, you confirm your intent to submit this application to receive benefits from CalFresh. This web tool will take the information you have provided, and transcribe it onto an official CalFresh application form. That form, along with any documents you upload, will then automatically be faxed to the City of San Francisco Health Services Administration.
-        </label>
+      <div class="form-group">
+        <button type="submit" id="submit_button" class="btn btn-default">Submit your CalFresh application!</button>
       </div>
-
-    </div>
-    <div class="form-group">
-      <button type="submit" id="submit_button" class="btn btn-default">Submit your CalFresh application!</button>
     </div>
   </div>
 </form>
