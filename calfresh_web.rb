@@ -22,6 +22,11 @@ class CalfreshWeb < Sinatra::Base
       else
         ""
     end
+    date_of_birth_array = params[:date_of_birth].split('/')
+    birth_year = date_of_birth_array[2]
+    if birth_year.length == 4
+      input_for_writer[:date_of_birth] = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
+    end
     input_for_writer[:name_page3] = params[:name]
     input_for_writer[:ssn_page3] = params[:ssn]
     input_for_writer[:language_preference_reading] = params[:primary_language]
