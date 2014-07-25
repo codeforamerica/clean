@@ -66,13 +66,15 @@ function sendXHR() {
   console.log("sendXHR called");
   XHR.open("POST", formURL, true);
   XHR.onload = function(e) {
-    if (sendXHR.status == 200) {
+    if (XHR.status == 200) {
       alert("Uploaded!");
     } else {
       alert("Error " + sendXHR.status + " occurred uploading your file.");
     }
   }
   XHR.send(FD);
+  // var responseHeader = XHR.getResponseHeader();
+  // console.log(responseHeader);
 }
 
 function appendTextFieldsToFD() {
