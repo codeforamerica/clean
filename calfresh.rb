@@ -31,6 +31,9 @@ module Calfresh
       input_for_pdf_writer = map_input_to_pdf_field_names(validated_field_input)
       input_for_pdf_writer[FORM_FIELDS[:date]] = Date.today.strftime("%m/%d/%Y")
       input_for_pdf_writer['Check Box1 PG 3'] = "Yes"
+      if input[:medi_cal_interest] == "on"
+        input_for_pdf_writer['Check Box24 PG 1'] = "Yes"
+      end
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
       @pdftk.fill_form('./calfresh_2pager.pdf', filled_in_form_path, input_for_pdf_writer)
