@@ -2,7 +2,11 @@
   <h1>Apply for CalFresh in San Francisco</h1>
 </div>
 <hr>
-<form role="form" name="apply" action="applications" method="post" enctype="multipart/form-data">
+<!--
+removed from form element for debugging:
+action="applications" method="post"
+ -->
+<form role="form" id="primary-form" name="apply" enctype="multipart/form-data">
   <div class="row">
   <h2 class="h4">Your Basic Information</h2>
     <div class="form-group">
@@ -62,22 +66,22 @@
       <p class="help-block">In order to enroll in CalFresh, the staff will need to confirm that you are eligible. Aside from residency in San Francisco, eligibility is mostly a matter of your income and expenses.</p>
     <div class="form-group">
       <label for="identification">Your Photo ID</label>
-      <input type="file" name="identification" id="test-file" multiple="multiple">
+      <input type="file" class="form-upload" name="identification" id="test-file" multiple="multiple">
       <p class="help-block">Upload a photo of your Driver's License, Passport or other government-issued photo ID.</p>
     </div>
     <div class="form-group">
       <label for="income">Your Income</label>
-      <input type="file" name="income" multiple="multiple">
+      <input type="file" class="form-upload" name="income" multiple="multiple">
       <p class="help-block">Upload a photo documenting your income or wages. This could be a photo of a paystub, bank statement. If you don't have any of those, simply write down your weekly or monthly income on a piece of paper, then upload a photo of that note.</p>
     </div>
     <div class="form-group">
       <label for="rent">Your Expenses: Rent</label>
-      <input type="file" name="rent" multiple="multiple">
+      <input type="file" class="form-upload" name="rent" multiple="multiple">
       <p class="help-block">Upload a photo documenting your monthly rent expenses. This could be a photo of a lease agreement or a rent check. If you don't have any of those, simply write down your monthly rent on a piece of paper, then upload a photo of that note.</p>
     </div>
     <div class="form-group">
       <label for="utilities">Your Expenses: Utilities</label>
-      <input type="file" name="utilities" multiple="multiple">
+      <input type="file" class="form-upload" name="utilities" multiple="multiple">
       <p class="help-block">Upload a photo documenting your monthly utility expenses. Utilities include electricity, gas, water and garbage collection. This could be a photo of your monthly statments, bills, or checks you've written. If you don't have any of those, simply write down your monthly utility expenses on a piece of paper, then upload a photo of that note.</p>
     </div>
   </div>
