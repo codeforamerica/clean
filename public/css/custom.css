@@ -1,1 +1,11 @@
 /* Overriding Bootstrap style for more screen margins on mobile */
+#main {
+	max-width: 700px;
+}
+
+.subhead {
+	line-height: 1.6;
+}
+
+
+
