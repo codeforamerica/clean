@@ -14,7 +14,7 @@ class CalfreshWeb < Sinatra::Base
   post '/applications' do
     writer = Calfresh::ApplicationWriter.new
     input_for_writer = params
-    input_for_writer[:sex] = case params[:sex]
+    input_for_writer["sex"] = case params["sex"]
       when "Male"
         "M"
       when "Female"
@@ -22,11 +22,11 @@ class CalfreshWeb < Sinatra::Base
       else
         ""
     end
-    if params.has_key?(:date_of_birth)
-      date_of_birth_array = params[:date_of_birth].split('/')
+    if params.has_key?("date_of_birth")
+      date_of_birth_array = params["date_of_birth"].split('/')
       birth_year = date_of_birth_array[2]
       if birth_year.length == 4
-        input_for_writer[:date_of_birth] = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
+        input_for_writer["date_of_birth"] = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
       end
     end
     input_for_writer[:name_page3] = params[:name]
