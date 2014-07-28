@@ -55,6 +55,10 @@ var FD = new FormData();
 var XHR = new XMLHttpRequest();
 var formURL = '/applications'
 
+$(document).ready(function() {
+  $('.spinner').hide();
+});
+
 $('#primary-form').submit(function(e) {
   serializeTextFields(e);
   appendTextFieldsToFD();
@@ -65,16 +69,16 @@ $('#primary-form').submit(function(e) {
 function sendXHR() {
   console.log("sendXHR called");
   XHR.open("POST", formURL, true);
+  $('.spinner').show();
   XHR.onload = function(e) {
     if (XHR.status == 200) {
       alert("Uploaded!");
+      $('.spinner').hide();
     } else {
       alert("Error " + sendXHR.status + " occurred uploading your file.");
     }
   }
   XHR.send(FD);
-  // var responseHeader = XHR.getResponseHeader();
-  // console.log(responseHeader);
 }
 
 function appendTextFieldsToFD() {
@@ -83,18 +87,15 @@ function appendTextFieldsToFD() {
   console.log(textFields);
 }
 
-
 //  This may need to be updated to include both the key and the value
 
 function serializeTextFields(e) {
   $.each($(".form-control").serializeArray(), function() {
     textFields[this.name] = this.value;
   });
-  // $(".form-control").each(function() {
-  //   textValues.push($(this).val());
-  // });
-console.log(textFields);
+  console.log(textFields);
 }
+
 
 if (window.File && window.FileReader && window.FileList && window.Blob) {
 
