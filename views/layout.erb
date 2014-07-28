@@ -70,10 +70,11 @@ function sendXHR() {
   loadingbtn.button('loading');
   XHR.onload = function(e) {
     if (XHR.status == 200) {
-      alert("Uploaded!");
       loadingbtn.button('reset');
+      window.location = "/applications"
     } else {
-      alert("Error " + sendXHR.status + " occurred uploading your file.");
+      alert("Error code: " + sendXHR.status + " occurred. Your application was not submitted.");
+      loadingbtn.button('reset');
     }
   }
   XHR.send(FD);
