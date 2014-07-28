@@ -1,1 +1,55 @@
 /* Overriding Bootstrap style for more screen margins on mobile */
+
+.masthead-page {
+	display: inline-block;
+	width: auto;
+	height: auto;
+	padding: 2em 0;
+	background-color: #00618D;
+	/* alternates */
+	/* darker #00618D*/
+	/* mid #BAD2DF*/
+	/* light #DFE9EE */
+}
+
+.masthead-page .lead {
+	color: #f1f1f1;
+}
+
+.form-body {
+	display: inline-block;
+	width: 100%;
+	padding: 2em 0;
+}
+
+.form-page {
+	display: inline-block;
+	width: 100%;
+}
+
+.page-content {}
+
+.form-section {
+	padding: 1em 0;
+}
+
+.section-intro {
+	padding: .5em 0;
+}
+
+.section-lead {
+	font-weight: 200;
+	line-height: 1.4;
+	font-size: ;
+}
+
+.form-group {}
+
+.file-group {
+	padding: .5em 0;
+}
+
+h1 {
+	color: #f1f1f1;
+}
+

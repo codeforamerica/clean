@@ -13,10 +13,8 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <!-- Custom css -->
-    <link rel="stylesheet" src="css/custom.css">
-    <style>
-    #main { max-width: 700px;}
-    </style>
+    <link rel="stylesheet"  href="<%= url('css/custom.css') %>" type="text/css">
+
   </head>
 
 
@@ -38,7 +36,7 @@
 
 
   <body>
-    <div class="container-fluid" id="main">
+    <div id="main">
       <%= yield %>
     </div>
   </body>
