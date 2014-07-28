@@ -5,3 +5,8 @@ gem 'sinatra'
 gem 'phaxio'
 gem 'pdf-forms'
 gem 'rack-ssl'
+
+group :test, :development do
+  gem 'rspec'
+  gem 'rack-test'
+end
