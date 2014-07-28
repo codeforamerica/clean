@@ -22,7 +22,7 @@ class CalfreshWeb < Sinatra::Base
       else
         ""
     end
-    if params.has_key?("date_of_birth")
+    if params["date_of_birth"] != ""
       date_of_birth_array = params["date_of_birth"].split('/')
       birth_year = date_of_birth_array[2]
       if birth_year.length == 4
