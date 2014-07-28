@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <!-- Custom css -->
-    <link rel="stylesheet" src="css/custom.css">
+    <link rel="stylesheet" href="<%= url('css/custom.css') %>" type="text/css">
     <style>
     #main { max-width: 700px;}
     </style>
@@ -55,9 +55,6 @@ var FD = new FormData();
 var XHR = new XMLHttpRequest();
 var formURL = '/applications'
 
-$(document).ready(function() {
-  $('.spinner').hide();
-});
 
 $('#primary-form').submit(function(e) {
   serializeTextFields(e);
@@ -69,11 +66,12 @@ $('#primary-form').submit(function(e) {
 function sendXHR() {
   console.log("sendXHR called");
   XHR.open("POST", formURL, true);
-  $('.spinner').show();
+  var loadingbtn = $('#submit_button');
+  loadingbtn.button('loading');
   XHR.onload = function(e) {
     if (XHR.status == 200) {
       alert("Uploaded!");
-      $('.spinner').hide();
+      loadingbtn.button('reset');
     } else {
       alert("Error " + sendXHR.status + " occurred uploading your file.");
     }
