@@ -6,7 +6,7 @@
   </div>
 </div>
 <div class="form-body">
-  <form role="form" name="apply" action="applications" method="post" enctype="multipart/form-data">
+  <form role="form" name="apply" action="applications" method="post" enctype="multipart/form-data" data-parsley-validate>
     <section class="form-page personal-info-page">
       <div class="page-content col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
         <section class="form-section">
@@ -16,7 +16,7 @@
           </div>
           <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="ex. Joanna Smith">
+              <input type="text" class="form-control" name="name" id="name" placeholder="ex. Joanna Smith" required required data-parsley-required-message="Name is required to apply" \>
           </div>
           <div class="form-group">
             <label for="sex">Sex</label>
@@ -42,7 +42,7 @@
           </div>
           <div class="form-group">
             <label for="home_address">Street Address</label>
-              <input type="text" class="form-control" name="home_address" placeholder="ex. 1200 Market St">
+              <input type="text" class="form-control" name="home_address" placeholder="ex. 1200 Market St" required required data-parsley-required-message="Address is required to apply" \>
           </div>
           <div class="form-group">
             <label for="home_zip_code">ZIP Code</label>
@@ -136,8 +136,11 @@
                 </label>
               </div>
               <div class="checkbox">
+                <p>
+                  <input type="checkbox" name="confirmation" required data-parsley-required-message="Please click the box above to confirm that you have read and are okay with how we are submitting your application (described above)." \>
+                  By clicking this box, you confirm your intent to submit this application to receive benefits from CalFresh. This web tool will take the information you have provided, and transcribe it onto an official CalFresh application form. That form, along with any documents you upload, will then automatically be faxed to the City of San Francisco Human Services Administration.
+                </p>
                 <label>
-                  <input type="checkbox"> By clicking this box, you confirm your intent to submit this application to receive benefits from CalFresh. This web tool will take the information you have provided, and transcribe it onto an official CalFresh application form. That form, along with any documents you upload, will then automatically be faxed to the City of San Francisco Human Services Administration.
                 </label>
               </div>
             </div>
