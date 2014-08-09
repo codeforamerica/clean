@@ -14,13 +14,13 @@ A user-friendly web form with the minimal fields necessary that generates a PDF 
 
 ## Setup
 
-The script is a proof of concept, and has a few dependencies:
+This app has a few dependencies:
 
-- Ruby
-- The `pdf-forms` gem ( https://github.com/jkraemer/pdf-forms )
-- `pdftk` utility (on Debian-like systems, install via `apt-get install pdftk`)
+- Ruby 2.1.1
+- pdftk
+- imagemagick
+- gems (installed by running `bundle` inside the repo)
 
-The script is being developed on Ubuntu 14, and so might need to be modified for other environments.
 
 For faxing capabilities, set the following environment variables:
 
