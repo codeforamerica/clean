@@ -28,6 +28,71 @@ For faxing capabilities, set the following environment variables:
 - PHAXIO_API_SECRET
 - FAX_DESTINATION_NUMBER
 
+
+### Developing locally with Vagrant
+
+Because we've experienced problems running `pdftk` on Mac OSX, the recommended setup for developing locally is using a Vagrant virtual machine running Ubuntu.
+
+Here's how to get that set up:
+
+1 - Download and install VirtualBox ( https://www.virtualbox.org/wiki/Downloads ) and Vagrant ( https://www.vagrantup.com/downloads )
+
+2 - Clone this repo and go into the folder
+
+3 - Turn on the virtual machine and log in
+
+```
+vagrant up
+vagrant ssh
+```
+
+4 - Install system dependencies inside the virtual machine
+
+```
+sudo apt-get update
+sudo apt-get install pdftk
+sudo apt-get install imagemagick
+sudo apt-get install curl
+```
+
+5 - Install RVM and Ruby
+
+```
+\curl -sSL https://get.rvm.io | bash
+source /home/vagrant/.rvm/scripts/rvm
+```
+
+6 - Install Ruby 2.1 and gems
+
+```
+cd macbook-air-folder # if not already in /home/vagrant/macbook-air-folder
+rvm install 2.1.1
+bundle
+```
+
+Now you can run the app by running:
+
+```
+rackup
+```
+
+and navigating in your browser to [http://localhost:1234](http://localhost:1234)
+
+
+To shut down the vagrant VM, go to your local repo folder and run:
+
+```
+vagrant halt
+```
+
+To restart the VM later, go into your local copy of the repo and run:
+
+```
+vagrant up
+vagrant ssh
+```
+
+
 ## SSL
 
 If `RACK_ENV` is set to anything other than the default (`development`) then all unencrypted HTTP requests will be redirected to their HTTPS equivalents.
