@@ -11,6 +11,30 @@ class CalfreshWeb < Sinatra::Base
     erb :index
   end
 
+  get '/application/basic_info' do
+    erb :basic_info, layout: :v4_layout
+  end
+
+  get '/application/contact_info' do
+    erb :contact_info, layout: :v4_layout
+  end
+
+  get '/application/interview' do
+    erb :interview, layout: :v4_layout
+  end
+
+  get '/application/additional_household_member' do
+    erb :additional_household_member, layout: :v4_layout
+  end
+
+  get '/application/review_and_submit' do
+    erb :review_and_submit, layout: :v4_layout
+  end
+
+  get '/verification_doc' do
+    erb :verification_doc, layout: false
+  end
+
   post '/applications' do
     writer = Calfresh::ApplicationWriter.new
     input_for_writer = params
