@@ -109,6 +109,12 @@ heroku config:set PATH=/app/bin:/app/vendor/bundle/bin:/app/vendor/bundle/ruby/2
 heroku config:set LD_LIBRARY_PATH=/app/vendor/pdftk/lib
 ```
 
+## Metrics on production deployment
+Primary metrics:
+- # of approved applications (quantity)
+- % of submitted applications approved (quality)
+
+<iframe height=667 width=1440 src="//docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/gviz/chartiframe?oid=1275325088" seamless frameborder=0 scrolling=no></iframe>
 
 ## Copyright and License
 
