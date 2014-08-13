@@ -114,7 +114,8 @@ Primary metrics:
 - # of approved applications (quantity)
 - % of submitted applications approved (quality)
 
-<iframe height=667 width=1440 src="//docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/gviz/chartiframe?oid=1275325088" seamless frameborder=0 scrolling=no></iframe>
+[![Metrics](https://docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/embed/oimg?id=1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0&oid=1275325088&zx=yib87acgmeyq)](https://docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/edit#gid=1258013118)
+([raw data](https://docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/edit#gid=1258013118))
 
 ## Copyright and License
 
