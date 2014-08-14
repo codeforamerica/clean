@@ -129,6 +129,31 @@
 
 .form-group {}
 
+/* form-controls, by position in a stack. */
+/* There can only be one top and one bottom, but there can be many middles.*/
+.top {
+	height: 4em;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.middle {
+	height: 4em;
+	border-radius: 0;
+	border-top: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.bottom {
+	height: 4em;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-top: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
 .file-group {
 	padding: .5em 0;
 }
