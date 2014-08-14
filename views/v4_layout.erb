@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- JQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="js/flashcanvas.js"></script>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet"  href="<%= url('css/custom.css') %>" type="text/css">
 
-  <title>Apply for CalFresh</title>
-
+    <!-- Client-side field validation -->
+    <script src="js/parsley.min.js"></script>
+    <link rel="stylesheet" href="css/parsley.css">
+  </head>
   <body>
     <div id="main">
       <%= yield %>
