@@ -74,7 +74,7 @@
 }
 
 .application-steps ul li {
-
+	padding: .5em 1em;
 }
 
 .application-steps ul li:first-child {
@@ -93,7 +93,7 @@
 	margin-right: 1em;
 }
 
-.application-steps p {
+.application-steps small {
 	display: inline-block;
 	margin: 0;
 }
