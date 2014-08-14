@@ -12,6 +12,10 @@
 	/* light #DFE9EE */
 }
 
+.masthead-page h1 {
+	color: #f1f1f1;
+}
+
 .masthead-page .lead {
 	color: #f1f1f1;
 }
@@ -47,9 +51,5 @@
 
 .file-group {
 	padding: .5em 0;
-}
-
-h1 {
-	color: #f1f1f1;
 }
 
