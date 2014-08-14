@@ -1,24 +1,104 @@
-/* Overriding Bootstrap style for more screen margins on mobile */
+
+/* C A L F R E S H    A N D   S O   C L E A N */
+/* Calfres-and-so-clean is meant to be a dead simple form for SNAP applicant */
+/* These styles are overrides and modifications on top of Bootsrap 3 */
+/* If you want to suggest an improvement to these styles, please visit: */
+/* https://github.com/codeforamerica/calfresh-and-so-clean/issues */
+
+/* G L O B A L S */
+
+/* in each context, redefine the equal height and width of the circle */
+.circle {
+	border-radius: 50%;
+}
+
+/* Calfresh blue: #00618D; */
+/* alternates */
+/* darker #00618D*/
+/* mid #BAD2DF*/
+/* light #DFE9EE */
+
+
+/* T H E    M A S T H E A D  */
+/* Masthead content sticks to the top of each view, and presents metadata about the application */
 
 .masthead-page {
 	display: inline-block;
-	width: auto;
+	width: 100%;
 	height: auto;
 	padding: 2em 0;
+	/* Blue background color */
 	background-color: #00618D;
-	/* alternates */
-	/* darker #00618D*/
-	/* mid #BAD2DF*/
-	/* light #DFE9EE */
 }
 
 .masthead-page h1 {
+	/* Offwhite color */
 	color: #f1f1f1;
 }
 
 .masthead-page .lead {
 	color: #f1f1f1;
 }
+
+.masthead-page .panel-default {
+
+}
+
+.application-overview {
+	padding: 0;
+	background-color: white;
+	border-radius: 4px;
+	border: 2px solid #00618D;
+}
+
+.application-identity {
+	display: inline-block;
+	float: left;
+	width: auto;
+	min-width: 48%
+	vertical-align: top;
+	padding: 15px;
+}
+.application-steps {
+	display: inline-block;
+	float: right;
+	width: auto;
+	min-width: 48%
+}
+
+.application-steps ul {
+	margin: 0;
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.application-steps ul li {
+
+}
+
+.application-steps ul li:first-child {
+	border-top-left-radius: 0;
+}
+
+.application-steps ul li:last-child {
+	border-bottom-left-radius: 0;
+}
+
+.application-steps .circle {
+	display: inline-block;
+	background-color: #00618D;
+	height: 10px;
+	width: 10px;
+	margin-right: 1em;
+}
+
+.application-steps p {
+	display: inline-block;
+	margin: 0;
+}
+
+/* F O R M   S T Y L E S */
 
 .form-body {
 	display: inline-block;
