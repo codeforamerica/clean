@@ -12,6 +12,10 @@
 	border-radius: 50%;
 }
 
+/* San Francisco Red Orange: #CF6354*/
+/* Government blue: #2E394B*/
+/* Government brigh gray type for header: BAC2CC*/
+/* Government gray type on blue: 929AA5*/
 /* Calfresh blue: #00618D; */
 /* alternates */
 /* darker #00618D*/
@@ -28,7 +32,7 @@
 	height: auto;
 	padding: 2em 0;
 	/* Blue background color */
-	background-color: #00618D;
+	background-color: #2E394B;
 }
 
 .masthead-page h1 {
@@ -46,24 +50,35 @@
 
 .application-overview {
 	padding: 0;
-	background-color: white;
+	background-color: #2E394B;
 	border-radius: 4px;
-	border: 2px solid #00618D;
 }
 
 .application-identity {
 	display: inline-block;
 	float: left;
 	width: auto;
-	min-width: 48%
 	vertical-align: top;
 	padding: 15px;
+	max-width: 40%;
 }
+.application-identity h4, h3, p, small {
+	display: block;
+	width: auto;
+}
+
+.application-identity h3, h4 {
+	color: #CF6354;
+}
+
+.application-identity small, p {
+	color: #929AA5;
+}
+
 .application-steps {
 	display: inline-block;
 	float: right;
 	width: auto;
-	min-width: 48%
 }
 
 .application-steps ul {
@@ -74,7 +89,10 @@
 }
 
 .application-steps ul li {
+	color: #929AA5;
 	padding: .5em 1em;
+	background-color: #2E394B;
+	border: none;
 }
 
 .application-steps ul li:first-child {
@@ -87,7 +105,7 @@
 
 .application-steps .circle {
 	display: inline-block;
-	background-color: #00618D;
+	background-color: #BAC2CC;
 	height: 10px;
 	width: 10px;
 	margin-right: 1em;
@@ -144,6 +162,19 @@
 	color: white;
 	background-color: #d6d6d6;
 }
+
+/* For now, subheader is exclusive. It shouldn't be mixed with top/middle/bottom */
+/* It takes properties from middle, assuming a header above and content below */
+/* The change is that the heigh is dynamic based on content */
+.subheader {
+	height: auto;
+	min-height: 4em;
+	border-radius: 0;
+	border-top: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
 .top {
 	height: 4em;
 	border-bottom-left-radius: 0;
