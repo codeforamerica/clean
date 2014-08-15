@@ -111,7 +111,9 @@
 	width: 100%;
 }
 
-.page-content {}
+.page-content {
+	padding-bottom: 1em;
+}
 
 .form-section {
 	padding: 1em 0;
@@ -152,4 +154,29 @@
 	border-top: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+}
+
+/* F O R M   B U T T O N / T O G G L E */
+
+.form-button {
+	color: white;
+	height: 3em;
+	border: 1px solid white;
+	background-color: #00618D;
+}
+
+/* F O O T E R    S T Y L E S */
+
+.page-footer {
+	display: inline-block;
+	width: 100%;
+	border-top: 1px solid gray;
+	padding: 2em 0 1.5em 0;
+}
+
+.next-step {
+	width: 100%;
+	height: 4em;
+	border::1px solid black;
+	border-radius: 4px;
 }
