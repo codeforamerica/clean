@@ -133,6 +133,17 @@
 
 /* form-controls, by position in a stack. */
 /* There can only be one top and one bottom, but there can be many middles.*/
+
+.solo {
+	height: 4em;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.header {
+	color: white;
+	background-color: #d6d6d6;
+}
 .top {
 	height: 4em;
 	border-bottom-left-radius: 0;
@@ -156,6 +167,10 @@
 	box-shadow: none;
 }
 
+.dropdown {
+	height: 4em;
+}
+
 /* F O R M   B U T T O N / T O G G L E */
 
 .form-button {
@@ -163,6 +178,10 @@
 	height: 3em;
 	border: 1px solid white;
 	background-color: #00618D;
+}
+
+.form-button:hover {
+	color: #f6f6f6;
 }
 
 /* F O O T E R    S T Y L E S */
