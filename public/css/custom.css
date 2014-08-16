@@ -14,7 +14,7 @@
 
 /* San Francisco Red Orange: #CF6354*/
 /* Government blue: #2E394B*/
-/* Government brigh gray type for header: BAC2CC*/
+/* Government bright gray type for header: BAC2CC*/
 /* Government gray type on blue: 929AA5*/
 /* Calfresh blue: #00618D; */
 /* alternates */
@@ -65,6 +65,7 @@
 .application-identity h4, h3, p, small {
 	display: block;
 	width: auto;
+
 }
 
 .application-identity h3, h4 {
@@ -159,8 +160,11 @@
 }
 
 .header {
-	color: white;
-	background-color: #d6d6d6;
+	background-color: #929AA5;
+}
+
+.form-control h4 {
+	color: #2E394B;
 }
 
 /* For now, subheader is exclusive. It shouldn't be mixed with top/middle/bottom */
@@ -226,15 +230,32 @@
 
 /* F O R M   B U T T O N / T O G G L E */
 
+.btn-primary {
+	color: #2E394B;
+	text-shadow: none;
+	background-color: white;
+/*	background-color: #5C93D6;*/
+	border-color: #ccc;
+}
+
+.btn-primary:hover {
+	background-color: #2E394B;
+	border-color: #2E394B;
+}
+
+.btn-primary:active, .btn-primary.active {
+	background-color: #2E394B;
+	border-color: #2E394B;
+}
+
 .form-button {
-	color: white;
-	height: 3em;
-	border: 1px solid white;
-	background-color: #00618D;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 4px;
 }
 
 .form-button:hover {
-	color: #f6f6f6;
 }
 
 /* F O R M   L I S T S */
@@ -268,6 +289,56 @@ the content column, so we override bootstrap.*/
 .next-step {
 	width: 100%;
 	height: 4em;
-	border::1px solid black;
+	color: #929AA5;
+	background-color: #1D71F5;
 	border-radius: 4px;
+	margin: 10px 0;
 }
+
+.page-footer .or {
+	text-align: center;
+}
+
+.next-step h5 {
+	color: white;
+	margin: 1em 0;
+}
+
+.next-step h5:hover {
+	color: #f6f6f6;
+}
+
+.alternate-step {
+	width: 100%;
+	height: 4em;
+	color: #929AA5;
+	background-color: #5C93D6;
+	border-radius: 4px;
+	margin: 10px 0;
+}
+
+.alternate-step h5 {
+	color: white;
+	margin: 1em 0;
+}
+
+.alternate-step h5:hover {
+	color: #f6f6f6;
+}
+
+
+.submit-btn {
+	width: 100%;
+	height: 4em;
+	color: #929AA5;
+	background-color: #1D71F5;
+	border-radius: 4px;
+	margin: 10px 0;
+}
+
+.submit-btn h5 {
+	color: white;
+	margin: 1em 0;
+}
+
+/* When there is more than once choice of next step */

@@ -23,20 +23,29 @@
   <body>
     <div id="main">
      <section class="form-page verification-document-page">
-      <div class="page-content col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+      <div class="page-content col-md-4 col-md-offset-4">
         <section class="form-section">
           <div class="section-intro">
-          	<h2 class="h3">Please Upload Photos of Key Documents and Information</h2>
-          	<p class="lead">In order to enroll in CalFresh, the staff will need to confirm that you are eligible. Aside from residency in San Francisco, eligibility is mostly a matter of your income and expenses.</p>
+          	<h3>Upload a Photo</h3>
+          	<p>Upload a photo of documents. The copy here should be generic and inclusive of all income, expense, and identification documents. I am going to keep typing because there will likely be a entire paragraph of help copy and thus these words help the layout feel more like it actually will in the future.</p>
           </div>
           <div class="form-group file-group">
-          	<label for="identification">Your Photo ID</label>
-          	<input type="file" name="identification">
-          	<p class="help-block">Upload a photo of your Driver's License, Passport or other government-issued photo ID.</p>
+          	<label for="identification">Upload Document</label>
+            <!-- 'Name' removed since docs are now generic -->
+          	<input type="file"></input>
           </div>
       	</section>
       </div>
   	</section>
+  </div>
+  <div class="page-footer">
+    <div class="footer-content col-md-4 col-md-offset-4">
+      <a class="btn alternate-step" href="<%= url('/verification_doc') %>">
+      <h5>Submit and Upload Another Document</h5></a>
+      <h5 class="or">or</h5>
+      <a class="btn next-step" href="<%= url('/application/basic_info') %>">
+      <h5>Submit and call it a day!</h5></a>
+    </div>
   </div>
 </body>
 
