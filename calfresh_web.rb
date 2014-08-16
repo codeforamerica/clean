@@ -7,7 +7,7 @@ class CalfreshWeb < Sinatra::Base
   use Rack::SSL unless settings.environment == :development
 
   get '/' do
-    @language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog)
+    @language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog Other)
     erb :index
   end
 
@@ -16,7 +16,7 @@ class CalfreshWeb < Sinatra::Base
   end
 
   get '/application/contact_info' do
-    @language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog)
+    @language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog Other)
     erb :contact_info, layout: :v4_layout
   end
 
@@ -30,6 +30,10 @@ class CalfreshWeb < Sinatra::Base
 
   get '/application/review_and_submit' do
     erb :review_and_submit, layout: :v4_layout
+  end
+
+  get '/application/confirmation' do
+    erb :confirmation, layout: :v4_layout
   end
 
   get '/verification_doc' do
