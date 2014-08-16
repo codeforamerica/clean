@@ -175,6 +175,10 @@
 	box-shadow: none;
 }
 
+.subheader p {
+	margin: 10px 20px;
+}
+
 .top {
 	height: 4em;
 	border-bottom-left-radius: 0;
@@ -191,7 +195,8 @@
 	box-shadow: none;
 }
 .bottom {
-	height: 4em;
+	height: auto;
+	min-height: 4em;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 	border-top: none;
@@ -209,13 +214,14 @@
 
 .times-of-day {}
 .time-of-day {
+	margin-left: 20px;
 	display: inline-block;
 }
 
 .days-of-week .checkbox input[type=checkbox] {
-	display: block;
 	float: none;
 	margin-left: 0;
+	padding-right: 20px;
 }
 
 /* F O R M   B U T T O N / T O G G L E */
