@@ -183,7 +183,8 @@
 	box-shadow: none;
 }
 .middle {
-	height: 4em;
+	height: auto;
+	min-height: 4em;
 	border-radius: 0;
 	border-top: none;
 	-webkit-box-shadow: none;
@@ -202,6 +203,21 @@
 	height: 4em;
 }
 
+.checkbox {
+	display: inline-block;
+}
+
+.times-of-day {}
+.time-of-day {
+	display: inline-block;
+}
+
+.days-of-week .checkbox input[type=checkbox] {
+	display: block;
+	float: none;
+	margin-left: 0;
+}
+
 /* F O R M   B U T T O N / T O G G L E */
 
 .form-button {
@@ -214,6 +230,25 @@
 .form-button:hover {
 	color: #f6f6f6;
 }
+
+/* F O R M   L I S T S */
+
+/* Sie by side lists, found on the interview.html */
+/* We want two columns, taking up the entire width of
+the content column, so we override bootstrap.*/
+.left-list {
+	padding-left: 0;
+	padding-right: 0;
+}
+.right-list {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.list-context {
+	height: ;
+}
+
 
 /* F O O T E R    S T Y L E S */
 
