@@ -38,8 +38,20 @@
 		<div class="page-content col-md-4 col-md-offset-4">
 			<section class="form-section">
 				<div class="form-group">
-					<input type="text" class="form-control top" name="name" id="name" placeholder="Full name" required required data-parsley-required-message="Name is required to apply" \>
-					<input type="text" class="form-control bottom" name="date_of_birth" id="date_of_birth" placeholder="Date of Birth">
+					<input type="text" class="form-control solo" name="ssn" id="ssn" placeholder="Social Security Number" required required data-parsley-required-message="Social Security Number which is required to apply" \>
+				</div>
+				<div class-"form-group">
+					<div class="btn-group btn-group-justified" data-toggle="buttons">
+					  <label class="btn btn-primary form-button" data-toggle="button">
+					    <input class="form-control" type="radio" name="options" id="female">Female
+					  </label>
+					  <label class="btn btn-primary form-button" data-toggle="button">
+					    <input class="form-control" type="radio" name="options" id="male">Male
+					  </label>
+					  <label class="btn btn-primary form-button" data-toggle="button">
+					    <input class="form-control" type="radio" name="options" id="no-answer">No Answer
+					  </label>
+					</div>
 				</div>
 			</section>
 		</div>
@@ -47,8 +59,8 @@
 </div>
 <div class="page-footer">
 	<div class="footer-content col-md-4 col-md-offset-4">
-		<a class="btn next-step" href="<%= url('/application/sex_and_ssn') %>">
-      <h5>Next Step: Personal information</h5></a>
+		<a class="btn next-step" href="<%= url('/application/contact_info') %>">
+      <h5>Next Step: Contact information</h5></a>
 	</div>
 </div>
 <script>
