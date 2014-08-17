@@ -15,17 +15,25 @@ class CalfreshWeb < Sinatra::Base
     erb :basic_info, layout: :v4_layout
   end
 
-  get '/application/sex_and_ssn' do
-    erb :sex_and_ssn, layout: :v4_layout
-  end
-
   get '/application/contact_info' do
     @language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog Other)
     erb :contact_info, layout: :v4_layout
   end
 
+  get '/application/sex_and_ssn' do
+    erb :sex_and_ssn, layout: :v4_layout
+  end
+
+  get '/application/medical' do
+    erb :medical, layout: :v4_layout
+  end
+
   get '/application/interview' do
     erb :interview, layout: :v4_layout
+  end
+
+  get '/application/household_question' do
+    erb :household_question, layout: :v4_layout
   end
 
   get '/application/additional_household_member' do

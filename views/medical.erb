@@ -37,32 +37,25 @@
 	<section class="form-page basic-info">
 		<div class="page-content col-md-4 col-md-offset-4">
 			<section class="form-section">
-				<div class="form-group">
-					<input type="text" class="form-control solo" name="ssn" id="ssn" placeholder="Social Security Number">
-				</div>
-				<div class-"form-group">
-					<div class="btn-group btn-group-justified" data-toggle="buttons">
-					  <label class="btn btn-primary form-button" data-toggle="button">
-					    <input class="form-control" type="radio" name="options" id="female">Female
-					  </label>
-					  <label class="btn btn-primary form-button" data-toggle="button">
-					    <input class="form-control" type="radio" name="options" id="male">Male
-					  </label>
-					  <label class="btn btn-primary form-button" data-toggle="button">
-					    <input class="form-control" type="radio" name="options" id="no-answer">No Answer
-					  </label>
-					</div>
-				</div>
-			</section>
+		        <div class="form-group">
+		          <div class="checkbox">
+		            <label>
+		              <input type="checkbox" name="medi_cal_interest">
+		              <h5>Are you interested in applying for Medi-Cal?</h5>
+		            </label>
+		          </div>
+		      </div>
+		  </section>
 		</div>
 	</section>
 </div>
 <div class="page-footer">
 	<div class="footer-content col-md-4 col-md-offset-4">
-		<a class="btn next-step" href="<%= url('/application/medical') %>">
-      <h5>Next Step: Include Medical</h5></a>
+		<a class="btn next-step" href="<%= url('/application/interview') %>">
+      <h5>Next Step: Interview times</h5></a>
 	</div>
 </div>
 <script>
   $('.btn').button()
 </script>
+	</div>
