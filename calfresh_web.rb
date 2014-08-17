@@ -77,7 +77,7 @@ class CalfreshWeb < Sinatra::Base
   end
 
   get '/next_other_doc' do
-    erb :next_expense_doc, layout: :verification_doc_layout
+    erb :next_other_doc, layout: :verification_doc_layout
   end
 
   post '/applications' do
