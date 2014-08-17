@@ -48,8 +48,36 @@ class CalfreshWeb < Sinatra::Base
     erb :confirmation, layout: :v4_layout
   end
 
-  get '/verification_doc' do
-    erb :verification_doc, layout: false
+  get '/first_id_doc' do
+    erb :first_id_doc, layout: :verification_doc_layout
+  end
+
+  get '/next_id_doc' do
+    erb :next_id_doc, layout: :verification_doc_layout
+  end
+
+  get '/first_income_doc' do
+    erb :first_income_doc, layout: :verification_doc_layout
+  end
+
+  get '/next_income_doc' do
+    erb :next_income_doc, layout: :verification_doc_layout
+  end
+
+  get '/first_expense_doc' do
+    erb :first_expense_doc, layout: :verification_doc_layout
+  end
+
+  get '/next_expense_doc' do
+    erb :next_expense_doc, layout: :verification_doc_layout
+  end
+
+  get '/first_other_doc' do
+    erb :first_other_doc, layout: :verification_doc_layout
+  end
+
+  get '/next_other_doc' do
+    erb :next_expense_doc, layout: :verification_doc_layout
   end
 
   post '/applications' do
