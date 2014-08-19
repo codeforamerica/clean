@@ -1,20 +1,123 @@
-/* Overriding Bootstrap style for more screen margins on mobile */
+
+/* C A L F R E S H    A N D   S O   C L E A N */
+/* Calfres-and-so-clean is meant to be a dead simple form for SNAP applicant */
+/* These styles are overrides and modifications on top of Bootsrap 3 */
+/* If you want to suggest an improvement to these styles, please visit: */
+/* https://github.com/codeforamerica/calfresh-and-so-clean/issues */
+
+/* G L O B A L S */
+
+/* in each context, redefine the equal height and width of the circle */
+.circle {
+	border-radius: 50%;
+}
+
+/* San Francisco Red Orange: #CF6354*/
+/* Government blue: #2E394B*/
+/* Government bright gray type for header: BAC2CC*/
+/* Government gray type on blue: 929AA5*/
+/* Calfresh blue: #00618D; */
+/* alternates */
+/* darker #00618D*/
+/* mid #BAD2DF*/
+/* light #DFE9EE */
+
+
+/* T H E    M A S T H E A D  */
+/* Masthead content sticks to the top of each view, and presents metadata about the application */
 
 .masthead-page {
 	display: inline-block;
-	width: auto;
+	width: 100%;
 	height: auto;
 	padding: 2em 0;
-	background-color: #00618D;
-	/* alternates */
-	/* darker #00618D*/
-	/* mid #BAD2DF*/
-	/* light #DFE9EE */
+	/* Blue background color */
+	background-color: #2E394B;
+}
+
+.masthead-page h1 {
+	/* Offwhite color */
+	color: #f1f1f1;
 }
 
 .masthead-page .lead {
 	color: #f1f1f1;
 }
+
+.masthead-page .panel-default {
+
+}
+
+.application-overview {
+	padding: 0;
+	background-color: #2E394B;
+	border-radius: 4px;
+}
+
+.application-identity {
+	display: inline-block;
+	float: left;
+	width: auto;
+	vertical-align: top;
+	padding: 15px;
+	max-width: 40%;
+}
+.application-identity h4, h3, p, small {
+	display: block;
+	width: auto;
+
+}
+
+.application-identity h3, h4 {
+	color: #CF6354;
+}
+
+.application-identity small, p {
+	color: #929AA5;
+}
+
+.application-steps {
+	display: inline-block;
+	float: right;
+	width: auto;
+}
+
+.application-steps ul {
+	margin: 0;
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.application-steps ul li {
+	color: #929AA5;
+	padding: .5em 1em;
+	background-color: #2E394B;
+	border: none;
+}
+
+.application-steps ul li:first-child {
+	border-top-left-radius: 0;
+}
+
+.application-steps ul li:last-child {
+	border-bottom-left-radius: 0;
+}
+
+.application-steps .circle {
+	display: inline-block;
+	background-color: #BAC2CC;
+	height: 10px;
+	width: 10px;
+	margin-right: 1em;
+}
+
+.application-steps small {
+	display: inline-block;
+	margin: 0;
+}
+
+/* F O R M   S T Y L E S */
 
 .form-body {
 	display: inline-block;
@@ -27,7 +130,9 @@
 	width: 100%;
 }
 
-.page-content {}
+.page-content {
+	padding-bottom: 1em;
+}
 
 .form-section {
 	padding: 1em 0;
@@ -45,11 +150,195 @@
 
 .form-group {}
 
-.file-group {
-	padding: .5em 0;
+/* form-controls, by position in a stack. */
+/* There can only be one top and one bottom, but there can be many middles.*/
+
+.solo {
+	height: 4em;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 
-h1 {
-	color: #f1f1f1;
+.header {
+	background-color: #929AA5;
 }
 
+.form-control h4 {
+	color: #2E394B;
+}
+
+/* For now, subheader is exclusive. It shouldn't be mixed with top/middle/bottom */
+/* It takes properties from middle, assuming a header above and content below */
+/* The change is that the heigh is dynamic based on content */
+.subheader {
+	height: auto;
+	min-height: 4em;
+	border-radius: 0;
+	border-top: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.subheader p {
+	margin: 10px 20px;
+}
+
+.top {
+	height: 4em;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.middle {
+	height: auto;
+	min-height: 4em;
+	border-radius: 0;
+	border-top: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.bottom {
+	height: auto;
+	min-height: 4em;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-top: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.dropdown {
+	height: 4em;
+}
+
+.checkbox {
+	display: inline-block;
+}
+
+.times-of-day {}
+.time-of-day {
+	margin-left: 20px;
+	display: inline-block;
+}
+
+.days-of-week .checkbox input[type=checkbox] {
+	float: none;
+	margin-left: 0;
+	padding-right: 20px;
+}
+
+/* F O R M   B U T T O N / T O G G L E */
+
+.btn-primary {
+	color: #2E394B;
+	text-shadow: none;
+	background-color: white;
+/*	background-color: #5C93D6;*/
+	border-color: #ccc;
+}
+
+.btn-primary:hover {
+	background-color: #2E394B;
+	border-color: #2E394B;
+}
+
+.btn-primary:active, .btn-primary.active {
+	background-color: #2E394B;
+	border-color: #2E394B;
+}
+
+.form-button {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 4px;
+}
+
+.form-button:hover {
+}
+
+/* F O R M   L I S T S */
+
+/* Sie by side lists, found on the interview.html */
+/* We want two columns, taking up the entire width of
+the content column, so we override bootstrap.*/
+.left-list {
+	padding-left: 0;
+	padding-right: 0;
+}
+.right-list {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.list-context {
+	height: ;
+}
+
+
+/* F O O T E R    S T Y L E S */
+
+.page-footer {
+	display: inline-block;
+	width: 100%;
+	border-top: 1px solid gray;
+	padding: 2em 0 1.5em 0;
+}
+
+.next-step {
+	width: 100%;
+	height: 4em;
+	color: #929AA5;
+	background-color: #1D71F5;
+	border-radius: 4px;
+	margin: 10px 0;
+}
+
+.page-footer .or {
+	text-align: center;
+}
+
+.next-step h5 {
+	color: white;
+	margin: 1em 0;
+}
+
+.next-step h5:hover {
+	color: #f6f6f6;
+}
+
+.alternate-step {
+	width: 100%;
+	height: 4em;
+	color: #929AA5;
+	background-color: #5C93D6;
+	border-radius: 4px;
+	margin: 10px 0;
+}
+
+.alternate-step h5 {
+	color: white;
+	margin: 1em 0;
+}
+
+.alternate-step h5:hover {
+	color: #f6f6f6;
+}
+
+
+.submit-btn {
+	width: 100%;
+	height: 4em;
+	color: #929AA5;
+	background-color: #1D71F5;
+	border-radius: 4px;
+	margin: 10px 0;
+}
+
+.submit-btn h5 {
+	color: white;
+	margin: 1em 0;
+}
+
+/* When there is more than once choice of next step */

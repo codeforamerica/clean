@@ -1,3 +1,4 @@
+<!-- Remember there is no layout here, so add full info here (eg, HTML declaration) -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,37 +16,13 @@
     <!-- Custom css -->
     <link rel="stylesheet"  href="<%= url('css/custom.css') %>" type="text/css">
 
-    <script href="<%= url('js/custom.js') %>"></script>
     <!-- Client-side field validation -->
-
+    <script src="js/parsley.min.js"></script>
     <link rel="stylesheet" href="css/parsley.css">
   </head>
-
-
-  <title>Apply for CalFresh</title>
-
-  <!-- jSignature -->
-  <script src="js/jSignature.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $("#signature_area").jSignature()
-      // Magic modified from http://paulology.com/signature-capture/
-      var $sigdiv = $("#signature_area")
-      $('#submit_button').click(function(e) {
-        var datapair = $sigdiv.jSignature("getData", "image")
-        $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
-      });
-    })
-  </script>
-
-
   <body>
     <div id="main">
       <%= yield %>
     </div>
   </body>
-
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </html>
