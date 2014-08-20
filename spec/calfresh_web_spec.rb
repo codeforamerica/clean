@@ -2,7 +2,10 @@ require 'spec_helper'
 require File.expand_path("../../calfresh_web", __FILE__)
 
 describe CalfreshWeb do
-  it "exists" do
-    CalfreshWeb
+  describe 'GET /application/basic_info' do
+    it 'responds successfully' do
+      get '/application/basic_info'
+      expect(last_response.status).to eq(200)
+    end
   end
 end

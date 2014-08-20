@@ -7,9 +7,8 @@ gem 'pdf-forms'
 gem 'rack-ssl'
 
 group :test, :development do
-  gem 'rspec'
   gem 'rack-test'
-  gem 'database_cleaner'
-  gem 'email_spec'
-  gem 'capybara'
+  gem 'rspec'
+  gem 'pry'
+  gem 'dotenv'
 end
