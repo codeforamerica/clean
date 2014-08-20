@@ -33,6 +33,8 @@
     </div>
   </div>
 </div>
+
+<form name="basic_info" action="/application/basic_info" method="post">
 <div class="form-body">
 	<section class="form-page basic-info">
 		<div class="page-content col-md-4 col-md-offset-4">
@@ -47,10 +49,11 @@
 </div>
 <div class="page-footer">
 	<div class="footer-content col-md-4 col-md-offset-4">
-		<a class="btn next-step" href="<%= url('/application/contact_info') %>">
-      <h5>Next Step: Contact information</h5></a>
+          <input class="btn next-step" type="submit" value="Next Step: Contact information">
 	</div>
 </div>
+</form>
+
 <script>
   $('.btn').button()
 </script>

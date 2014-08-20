@@ -9,7 +9,11 @@ describe CalfreshWeb do
     end
   end
 
-  pending
   describe 'POST /application/basic_info' do
+    it 'asdasd' do
+      input_hash = { name: 'dave', date_of_birth: '06/01/75' }
+      post '/application/basic_info', input_hash
+      expect(last_request.session).to eq(input_hash)
+    end
   end
 end

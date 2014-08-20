@@ -17,9 +17,25 @@ class CalfreshWeb < Sinatra::Base
     erb :basic_info, layout: :v4_layout
   end
 
+  post '/application/basic_info' do
+    session[:name] = params[:name]
+    session[:date_of_birth] = params[:date_of_birth]
+    redirect to('/application/contact_info'), 303
+  end
+
   get '/application/contact_info' do
     @language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog Other)
     erb :contact_info, layout: :v4_layout
+  end
+
+  post '/application/contact_info' do
+    session[:home_phone_number] = params[:home_phone_number]
+    session[:email] = params[:email]
+    session[:home_address] = params[:home_address]
+    session[:home_zip_code] = params[:home_zip_code]
+    session[:home_city] = params[:home_city]
+    session[:home_state] = params[:home_state]
+    redirect to('/application/sex_and_ssn'), 303
   end
 
   get '/application/sex_and_ssn' do
