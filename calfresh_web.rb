@@ -1,9 +1,11 @@
 require 'sinatra'
 require 'rack/ssl'
+require 'encrypted_cookie'
 require './calfresh'
 require './faxer'
 
 class CalfreshWeb < Sinatra::Base
+  use Rack::Session::EncryptedCookie, :secret => ENV['SECRET_TOKEN']
   use Rack::SSL unless settings.environment == :development
 
   get '/' do
