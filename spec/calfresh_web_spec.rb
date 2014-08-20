@@ -8,4 +8,8 @@ describe CalfreshWeb do
       expect(last_response.status).to eq(200)
     end
   end
+
+  pending
+  describe 'POST /application/basic_info' do
+  end
 end
