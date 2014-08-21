@@ -35,6 +35,7 @@ class CalfreshWeb < Sinatra::Base
     session[:home_zip_code] = params[:home_zip_code]
     session[:home_city] = params[:home_city]
     session[:home_state] = params[:home_state]
+    session[:primary_language] = params[:primary_language]
     redirect to('/application/sex_and_ssn'), 303
   end
 

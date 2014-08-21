@@ -40,7 +40,8 @@ describe CalfreshWeb do
         home_address: '1234 Fake St',
         home_zip_code: '94113',
         home_city: 'San Francisco',
-        home_state: 'CA'
+        home_state: 'CA',
+        primary_language: "English"
       }
       post '/application/contact_info', @input_hash
     end
