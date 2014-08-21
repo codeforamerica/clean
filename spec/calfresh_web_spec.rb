@@ -10,10 +10,18 @@ describe CalfreshWeb do
   end
 
   describe 'POST /application/basic_info' do
+    before do
+      @input_hash = { name: 'dave', date_of_birth: '06/01/75' }
+      post '/application/basic_info', @input_hash
+    end
+
     it 'saves basic_info to the session' do
-      input_hash = { name: 'dave', date_of_birth: '06/01/75' }
-      post '/application/basic_info', input_hash
-      expect(last_request.session).to eq(input_hash)
+      expect(last_request.session).to eq(@input_hash)
+    end
+
+    it 'redirects to contact_info' do
+      expect(last_response).to be_redirect
+      expect(last_response.location).to include('/application/contact_info')
     end
   end
 
