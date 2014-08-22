@@ -33,6 +33,8 @@
     </div>
   </div>
 </div>
+
+<form name="sex_and_ssn" action="/application/sex_and_ssn" method="post">
 <div class="form-body">
 	<section class="form-page basic-info">
 		<div class="page-content col-md-4 col-md-offset-4">
@@ -43,13 +45,13 @@
 				<div class-"form-group">
 					<div class="btn-group btn-group-justified" data-toggle="buttons">
 					  <label class="btn btn-primary form-button" data-toggle="button">
-					    <input class="form-control" type="radio" name="options" id="female">Female
+					    <input class="form-control" type="radio" name="Male" id="female">Female
 					  </label>
 					  <label class="btn btn-primary form-button" data-toggle="button">
-					    <input class="form-control" type="radio" name="options" id="male">Male
+					    <input class="form-control" type="radio" name="Female" id="male">Male
 					  </label>
 					  <label class="btn btn-primary form-button" data-toggle="button">
-					    <input class="form-control" type="radio" name="options" id="no-answer">No Answer
+					    <input class="form-control" type="radio" name="NoAnswer" id="no-answer">No Answer
 					  </label>
 					</div>
 				</div>
@@ -59,10 +61,11 @@
 </div>
 <div class="page-footer">
 	<div class="footer-content col-md-4 col-md-offset-4">
-		<a class="btn next-step" href="<%= url('/application/medical') %>">
-      <h5>Next Step: Include Medical</h5></a>
+          <input class="btn next-step" type="submit" value="Next Step: Include Medi-Cal">
 	</div>
 </div>
+</form>
+
 <script>
   $('.btn').button()
 </script>

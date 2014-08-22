@@ -43,6 +43,15 @@ class CalfreshWeb < Sinatra::Base
     erb :sex_and_ssn, layout: :v4_layout
   end
 
+  post '/application/sex_and_ssn' do
+    sex = params.select do |key, value|
+      value == "on"
+    end.keys.first.capitalize
+    session[:ssn] = params[:ssn]
+    session[:sex] = sex
+    redirect to('/application/medical'), 303
+  end
+
   get '/application/medical' do
     erb :medical, layout: :v4_layout
   end
