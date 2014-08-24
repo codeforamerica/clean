@@ -45,27 +45,6 @@ body {
 	overflow: auto;
 }
 
-/* M E D I A    Q U E R I E S */
-@media (min-device-width : 320px) {
-	#main {
-		margin: 0;
-		background: #fff;
-	}
-}
-
-/* iPads (portrait and landscape) ----------- */
-@media (min-device-width : 768px) {
-	#main {
-		margin: 24px;
-	}
-}
-
-@media (min-width : 1224px) {
-	#main {
-		margin: 24px;
-	}
-}
-
 
 /* T H E    M A S T H E A D  */
 /* Masthead content sticks to the top of each view, and presents metadata about the application */
@@ -87,35 +66,16 @@ body {
 
 /* F O R M   S T Y L E S */
 
-.form-body {
-	display: inline-block;
-	width: 100%;
-}
-
-.form-page {
-	display: inline-block;
-	width: 100%;
+.form {
 }
 
 .page-content {
 	padding-bottom: 1em;
 }
 
-.form-section {
-	padding: 1em 0;
+.form-group {
+	padding: 1em 0 0 0;
 }
-
-.section-intro {
-	padding: .5em 0;
-}
-
-.section-lead {
-	font-weight: 200;
-	line-height: 1.4;
-	font-size: ;
-}
-
-.form-group {}
 
 /* form-controls, by position in a stack. */
 /* There can only be one top and one bottom, but there can be many middles.*/
@@ -142,12 +102,16 @@ body {
 	min-height: 4em;
 	border-radius: 0;
 	border-top: none;
+	border-left: none;
+	border-right: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .subheader p {
-	margin: 10px 20px;
+	margin: 10px 0px;
 }
 
 .top {
@@ -187,10 +151,20 @@ body {
 	display: inline-block;
 }
 
-.times-of-day {}
-.time-of-day {
-	margin-left: 20px;
-	display: inline-block;
+.times-of-day .checkbox {
+	padding-top: .5em;
+	padding-bottom: .5em;
+}
+
+.times-of-day .checkbox input[type=checkbox] {
+	float: none;
+	margin-left: 0;
+	padding-right: 20px;
+}
+
+.days-of-week .checkbox {
+	padding-top: .5em;
+	padding-bottom: .5em;
 }
 
 .days-of-week .checkbox input[type=checkbox] {
@@ -285,37 +259,29 @@ the content column, so we override bootstrap.*/
 	text-align: center;
 }
 
-.alternate-step {
-	width: 100%;
-	height: 4em;
-	color: #929AA5;
-	background-color: #5C93D6;
-	border-radius: 4px;
-	margin: 10px 0;
-}
-
-.alternate-step h5 {
-	color: white;
-	margin: 1em 0;
-}
-
-.alternate-step h5:hover {
-	color: #f6f6f6;
+.footer-question {
+	padding-top: 1em;
 }
 
 
-.submit-btn {
-	width: 100%;
-	height: 4em;
-	color: #929AA5;
-	background-color: #1D71F5;
-	border-radius: 4px;
-	margin: 10px 0;
+/* M E D I A    Q U E R I E S */
+@media (min-device-width : 320px) {
+	#main {
+		margin: 0;
+		background: #fff;
+	}
+	/* Extra vertical padding for usability on smaller devices*/
 }
 
-.submit-btn h5 {
-	color: white;
-	margin: 1em 0;
+/* iPads (portrait and landscape) ----------- */
+@media (min-device-width : 768px) {
+	#main {
+		margin: 24px;
+	}
 }
 
-/* When there is more than once choice of next step */
+@media (min-width : 1224px) {
+	#main {
+		margin: 24px;
+	}
+}

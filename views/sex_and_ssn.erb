@@ -4,24 +4,22 @@
   </div>
 </div>
 <form name="sex_and_ssn" action="/application/sex_and_ssn" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-  <div class="page-content">
-		<div class="form-group">
-			<input type="text" class="form-control bottom" name="ssn" id="ssn" placeholder="Social Security Number">
+	<div class="form-group">
+		<input type="text" class="form-control bottom" name="ssn" id="ssn" placeholder="Social Security Number">
+	</div>
+	<div class="form-group">
+		<div class="btn-group btn-group-justified" data-toggle="buttons">
+		  <label class="btn btn-primary form-button" data-toggle="button">
+		    <input class="form-control" type="radio" name="Male" id="female">Female
+		  </label>
+		  <label class="btn btn-primary form-button" data-toggle="button">
+		    <input class="form-control" type="radio" name="Female" id="male">Male
+		  </label>
+		  <label class="btn btn-primary form-button" data-toggle="button">
+		    <input class="form-control" type="radio" name="NoAnswer" id="no-answer">No Answer
+		  </label>
 		</div>
-		<div class-"form-group">
-			<div class="btn-group btn-group-justified" data-toggle="buttons">
-			  <label class="btn btn-primary form-button" data-toggle="button">
-			    <input class="form-control" type="radio" name="Male" id="female">Female
-			  </label>
-			  <label class="btn btn-primary form-button" data-toggle="button">
-			    <input class="form-control" type="radio" name="Female" id="male">Male
-			  </label>
-			  <label class="btn btn-primary form-button" data-toggle="button">
-			    <input class="form-control" type="radio" name="NoAnswer" id="no-answer">No Answer
-			  </label>
-			</div>
-		</div>
-  </div>
+	</div>
   <div class="page-footer">
   	<div class="footer-content">
         <input class="btn next-step" type="submit" value="Next Step: Include Medi-Cal">

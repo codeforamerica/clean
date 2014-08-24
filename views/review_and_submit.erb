@@ -1,77 +1,41 @@
-<div class="masthead-page">
-  <div class="col-md-4 col-md-offset-4">
-    <div class="panel-body application-overview">
-      <div class="application-identity">
-        <small>This is the application of</small>
-        <h4>Applicant name</h4>
-        <p>Today's date</p>
-      </div>
-      <div class="application-steps">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Basic information</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Contact information</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Schedule your interview</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Submit your application</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Upload documentation</small>
-          </li>
-        </ul>
-      </div>
-    </div>
+
+<div class="masthead">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+    <h3>Confirm and Submit</h3>
   </div>
 </div>
-<div class="form-body">
-  <section class="form-page confirmation-page">
-    <div class="page-content col-md-4 col-md-offset-4 ">
-      <section class="form-section">
-        <div class="form-group">
-          <small>I understand that by signing this application under penalty of perjury (making false statements), that:</small>
-          <br>
-          <ul>
-            <li><small>I read, or had read to me, the information in this application and my answers to the questions in this application.</small></li>
-            <li><small>My answers to the questions are true and complete to the best of my knowledge.</small></li>
-            <li><small>Any answers I may give for my application process will be true and complete to the best of my knowledge.</small></li>
-            <li><small>I read or had read to me and I understand and agree to the Rights and Responsibilities (Program Rules Page 1) for the CalFresh Program.</small></li>
-            <li><small>I read, or had read to me, the CalFresh Program Rules and Penalties (Program Rules Pages 2 through 3).</small></li>
-            <li><small>I understand that giving false or misleading statements or misrepresenting, hiding or withholding facts to establish eligibility for CalFresh is fraud. Fraud can cause a criminal case to be filed against me and/or I may be barred for a period of time (or life) from getting CalFresh benefits.</small></li>
-            <li><small>I understand that Social Security Numbers or immigration status for household members applying for benefits may be shared with the appropriate government agencies as required by federal law.</small></li>
-          </ul>
-        </div>
-        <br>
-        <span class="help-block">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</span>
-        <div id="signature_area" class="panel"></div>
-        <div id="signature_value_hidden"></div>
-      </section>
-      <section class="form-section">
-        <div class="form-group">
-          <div class="checkbox">
-            <p>
-              <input type="checkbox" name="confirmation" required data-parsley-required-message="Please click the box above to confirm that you have read and are okay with how we are submitting your application (described above)." \>
-                  By clicking this box, you confirm your intent to submit this application to receive benefits from CalFresh. This web tool will take the information you have provided, and transcribe it onto an official CalFresh application form. That form, along with any documents you upload, will then automatically be faxed to the City of San Francisco Human Services Administration.
-            </p>
-            <label></label>
-          </div>
-        </div>
-      </section>
-    </div>
-  </section>
-</div>
-<div class="page-footer">
-  <div class="footer-content col-md-4 col-md-offset-4">
-    <a type="submit" id="submit_button" class="btn submit-btn">
-      <h5>Submit your CalFresh application!</h5></a>
+<form name="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+  <div class="form-group">
+    <small>I understand that by signing this application under penalty of perjury (making false statements), that:</small>
+    <br>
+    <ul>
+      <li><small>I read, or had read to me, the information in this application and my answers to the questions in this application.</small></li>
+      <li><small>My answers to the questions are true and complete to the best of my knowledge.</small></li>
+      <li><small>Any answers I may give for my application process will be true and complete to the best of my knowledge.</small></li>
+      <li><small>I read or had read to me and I understand and agree to the Rights and Responsibilities (Program Rules Page 1) for the CalFresh Program.</small></li>
+      <li><small>I read, or had read to me, the CalFresh Program Rules and Penalties (Program Rules Pages 2 through 3).</small></li>
+      <li><small>I understand that giving false or misleading statements or misrepresenting, hiding or withholding facts to establish eligibility for CalFresh is fraud. Fraud can cause a criminal case to be filed against me and/or I may be barred for a period of time (or life) from getting CalFresh benefits.</small></li>
+      <li><small>I understand that Social Security Numbers or immigration status for household members applying for benefits may be shared with the appropriate government agencies as required by federal law.</small></li>
+    </ul>
   </div>
-</div>
+  <div class="form-group">
+    <br>
+    <span class="help-block">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</span>
+    <div id="signature_area" class="panel"></div>
+    <div id="signature_value_hidden"></div>
+  </div>
+  <div class="form-group">
+    <div class="checkbox">
+      <p>
+        <input type="checkbox" name="confirmation" required data-parsley-required-message="Please click the box above to confirm that you have read and are okay with how we are submitting your application (described above)." \>
+            By clicking this box, you confirm your intent to submit this application to receive benefits from CalFresh. This web tool will take the information you have provided, and transcribe it onto an official CalFresh application form. That form, along with any documents you upload, will then automatically be faxed to the City of San Francisco Human Services Administration.
+      </p>
+      <label></label>
+    </div>
+  </div>
+  <div class="page-footer">
+<!--       <a type="submit" id="submit_button" class="btn submit-btn">
+        <h5>Submit your CalFresh application!</h5></a> -->
+      <input class="btn next-step" type="submit" value="Next Step: Submit">
+  </div>
+</form>
