@@ -5,14 +5,10 @@
 /* If you want to suggest an improvement to these styles, please visit: */
 /* https://github.com/codeforamerica/calfresh-and-so-clean/issues */
 
-/* G L O B A L S */
 
-/* in each context, redefine the equal height and width of the circle */
-.circle {
-	border-radius: 50%;
-}
+/* C O L O R S */
 
-/* San Francisco Red Orange: #CF6354*/
+/* San Francisco Red Orange: #CF6354
 /* Government blue: #2E394B*/
 /* Government bright gray type for header: BAC2CC*/
 /* Government gray type on blue: 929AA5*/
@@ -23,106 +19,77 @@
 /* light #DFE9EE */
 
 
+/* G L O B A L S */
+
+/* in each context, redefine the equal height and width of the circle */
+.circle {
+	border-radius: 50%;
+}
+
+
+body {
+	margin: 0;
+	background: #929AA5;
+	width: 100%;
+	height: 100%;
+}
+
+#main {
+	background: #f6f6f6;
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	box-shadow: 0 0 5px #888;
+	overflow: auto;
+}
+
+/* M E D I A    Q U E R I E S */
+@media (min-device-width : 320px) {
+	#main {
+		margin: 0;
+		background: #fff;
+	}
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media (min-device-width : 768px) {
+	#main {
+		margin: 24px;
+	}
+}
+
+@media (min-width : 1224px) {
+	#main {
+		margin: 24px;
+	}
+}
+
+
 /* T H E    M A S T H E A D  */
 /* Masthead content sticks to the top of each view, and presents metadata about the application */
 
-.masthead-page {
+.masthead {
 	display: inline-block;
 	width: 100%;
 	height: auto;
-	padding: 2em 0;
+	padding: .5em 0;
 	/* Blue background color */
 	background-color: #2E394B;
 }
 
-.masthead-page h1 {
+.masthead h3 {
 	/* Offwhite color */
-	color: #f1f1f1;
+	color: #f6f6f6;
 }
 
-.masthead-page .lead {
-	color: #f1f1f1;
-}
-
-.masthead-page .panel-default {
-
-}
-
-.application-overview {
-	padding: 0;
-	background-color: #2E394B;
-	border-radius: 4px;
-}
-
-.application-identity {
-	display: inline-block;
-	float: left;
-	width: auto;
-	vertical-align: top;
-	padding: 15px;
-	max-width: 40%;
-}
-.application-identity h4, h3, p, small {
-	display: block;
-	width: auto;
-
-}
-
-.application-identity h3, h4 {
-	color: #CF6354;
-}
-
-.application-identity small, p {
-	color: #929AA5;
-}
-
-.application-steps {
-	display: inline-block;
-	float: right;
-	width: auto;
-}
-
-.application-steps ul {
-	margin: 0;
-	border-radius: 0;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-
-.application-steps ul li {
-	color: #929AA5;
-	padding: .5em 1em;
-	background-color: #2E394B;
-	border: none;
-}
-
-.application-steps ul li:first-child {
-	border-top-left-radius: 0;
-}
-
-.application-steps ul li:last-child {
-	border-bottom-left-radius: 0;
-}
-
-.application-steps .circle {
-	display: inline-block;
-	background-color: #BAC2CC;
-	height: 10px;
-	width: 10px;
-	margin-right: 1em;
-}
-
-.application-steps small {
-	display: inline-block;
-	margin: 0;
-}
 
 /* F O R M   S T Y L E S */
 
 .form-body {
 	display: inline-block;
 	width: 100%;
-	padding: 2em 0;
 }
 
 .form-page {
@@ -164,7 +131,7 @@
 }
 
 .form-control h4 {
-	color: #2E394B;
+	color: #fff;
 }
 
 /* For now, subheader is exclusive. It shouldn't be mixed with top/middle/bottom */
@@ -195,14 +162,18 @@
 	min-height: 4em;
 	border-radius: 0;
 	border-top: none;
+	border-left: none;
+	border-right: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 .bottom {
 	height: auto;
 	min-height: 4em;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+	border-left: none;
+	border-right: none;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 	border-top: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
@@ -231,28 +202,34 @@
 /* F O R M   B U T T O N / T O G G L E */
 
 .btn-primary {
-	color: #2E394B;
+	height: 4em;
+	color: #555;
 	text-shadow: none;
 	background-color: white;
 /*	background-color: #5C93D6;*/
 	border-color: #ccc;
+	opacity: .85;
 }
 
 .btn-primary:hover {
-	background-color: #2E394B;
-	border-color: #2E394B;
+	background-color: #5C93D6;
+	border-color: #5C93D6;
 }
 
 .btn-primary:active, .btn-primary.active {
-	background-color: #2E394B;
-	border-color: #2E394B;
+	background-color: #1D71F5;
+	border-color: #1D71F5;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-color: #ccc;
+	opacity: .85;
 }
 
 .form-button {
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	background-image: none;
-	border-radius: 4px;
+	border-radius: 0;
 }
 
 .form-button:hover {
@@ -282,30 +259,30 @@ the content column, so we override bootstrap.*/
 .page-footer {
 	display: inline-block;
 	width: 100%;
-	border-top: 1px solid gray;
-	padding: 2em 0 1.5em 0;
+	padding: 0;
 }
 
 .next-step {
 	width: 100%;
 	height: 4em;
-	color: #929AA5;
-	background-color: #1D71F5;
-	border-radius: 4px;
+	color: #fff;
+	background-color: #5C93D6;
+	border-radius: 0;
 	margin: 10px 0;
+}
+
+.next-step:hover {
+	color: #fff;
+	background-color: #1D71F5;
+}
+
+.next-step:focus {
+	color: #fff;
+	background-color: #1D71F5;
 }
 
 .page-footer .or {
 	text-align: center;
-}
-
-.next-step h5 {
-	color: white;
-	margin: 1em 0;
-}
-
-.next-step h5:hover {
-	color: #f6f6f6;
 }
 
 .alternate-step {
