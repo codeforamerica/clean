@@ -56,8 +56,20 @@ class CalfreshWeb < Sinatra::Base
     erb :medical, layout: :v4_layout
   end
 
+  post '/application/medical' do
+    medical = params.select do |key, value|
+      value == "on"
+    end.keys.first.capitalize
+    session[:medical_interest] = medical
+    redirect to('/application/interview'), 303
+  end
+
   get '/application/interview' do
     erb :interview, layout: :v4_layout
+  end
+
+  post '/application/interview' do
+    redirect to('/application/household_question'), 303
   end
 
   get '/application/household_question' do

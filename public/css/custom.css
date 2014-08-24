@@ -18,7 +18,21 @@
 /* mid #BAD2DF*/
 /* light #DFE9EE */
 
+/* F O N T S */
 
+h3 {
+  font-family: "franklin-gothic-urw", sans-serif;
+  font-weight: 700;
+ }
+
+.form {
+  font-family: "brandon-grotesque", sans-serif;
+ }
+
+ .next-step {
+ 	font-family: "franklin-gothic-urw", sans-serif;
+ 	font-weight: 300;
+ }
 /* G L O B A L S */
 
 /* in each context, redefine the equal height and width of the circle */
@@ -29,20 +43,20 @@
 
 body {
 	margin: 0;
-	background: #929AA5;
+	background:  #fff;
 	width: 100%;
 	height: 100%;
 }
 
 #main {
-	background: #f6f6f6;
-	position: absolute;
+	background: #fff;
+/*	position: absolute;
 	bottom: 0;
 	top: 0;
 	left: 0;
 	right: 0;
 	box-shadow: 0 0 5px #888;
-	overflow: auto;
+	overflow: auto;*/
 }
 
 
@@ -100,10 +114,7 @@ body {
 .subheader {
 	height: auto;
 	min-height: 4em;
-	border-radius: 0;
-	border-top: none;
-	border-left: none;
-	border-right: none;
+	border: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	padding-left: 0;
@@ -154,6 +165,8 @@ body {
 .times-of-day .checkbox {
 	padding-top: .5em;
 	padding-bottom: .5em;
+	padding-right: 20px;
+	padding-left: 0;
 }
 
 .times-of-day .checkbox input[type=checkbox] {
@@ -165,6 +178,8 @@ body {
 .days-of-week .checkbox {
 	padding-top: .5em;
 	padding-bottom: .5em;
+	padding-right: 20px;
+	padding-left: 0;
 }
 
 .days-of-week .checkbox input[type=checkbox] {
@@ -187,7 +202,7 @@ body {
 
 .btn-primary:hover {
 	background-color: #5C93D6;
-	border-color: #5C93D6;
+	border-color: #ccc;
 }
 
 .btn-primary:active, .btn-primary.active {
@@ -209,23 +224,22 @@ body {
 .form-button:hover {
 }
 
+
+/* Left button in 2 and 3 button groups */
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+	border-right: none;
+}
+
+/* Right button in 2 and 3 button groups */
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+	border-left: none;
+}
 /* F O R M   L I S T S */
 
 /* Sie by side lists, found on the interview.html */
 /* We want two columns, taking up the entire width of
 the content column, so we override bootstrap.*/
-.left-list {
-	padding-left: 0;
-	padding-right: 0;
-}
-.right-list {
-	padding-left: 0;
-	padding-right: 0;
-}
 
-.list-context {
-	height: ;
-}
 
 
 /* F O O T E R    S T Y L E S */
@@ -263,6 +277,11 @@ the content column, so we override bootstrap.*/
 	padding-top: 1em;
 }
 
+/* S I G N A T U R E   F O R M */
+
+#signature_area {
+	min-height: 100px;
+}
 
 /* M E D I A    Q U E R I E S */
 @media (min-device-width : 320px) {
@@ -276,12 +295,12 @@ the content column, so we override bootstrap.*/
 /* iPads (portrait and landscape) ----------- */
 @media (min-device-width : 768px) {
 	#main {
-		margin: 24px;
+/*		margin: 24px;*/
 	}
 }
 
 @media (min-width : 1224px) {
 	#main {
-		margin: 24px;
+/*		margin: 24px;*/
 	}
 }
