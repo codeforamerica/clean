@@ -1,16 +1,16 @@
 <div class="masthead">
   <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-    <h3>Additional Household Member</h3>
+    <h3>Household member information</h3>
   </div>
 </div>
 <form name="additional_household_member" action="/application/additional_household_member" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
   <div class="form-group">
-    <input type="text" class="form-control middle" name="name" id="name" placeholder="Full name" required required data-parsley-required-message="Name is required to apply" \>
-    <input type="text" class="form-control middle" name="date_of_birth" id="date_of_birth" placeholder="Date of Birth">
-    <input type="text" class="form-control bottom" name="ssn" id="ssn" placeholder="Social Security Number">
+    <input type="text" class="form-control middle" name="name" id="name" placeholder="Their full name" required required data-parsley-required-message="Name is required to apply" \>
+    <input type="text" class="form-control middle" name="date_of_birth" id="date_of_birth" placeholder="Date of birth">
+    <input type="text" class="form-control bottom" name="ssn" id="ssn" placeholder="Social security number">
   </div>
-  <div class-"form-group">
-    <h5>Sex</h5>
+  <div class="form-group">
+    <h5 class="form-context">Choose a sex</h5>
     <div class="btn-group btn-group-justified" data-toggle="buttons">
       <label class="btn btn-primary form-button" data-toggle="button">
         <input class="form-control" type="radio" name="options" id="female">Female
@@ -23,12 +23,8 @@
       </label>
     </div>
   </div>
-  <div class="page-footer">
-
-    <h5 class="footer-question">Any other household members to document?</h5>
-<!--       <a class="btn alternate-step" href="<%= url('/application/additional_household_member') %>"><h5>Yes</h5></a>
-      <h5 class="or">or</h5>
-      <a class="btn next-step" href="<%= url('/application/review_and_submit') %>"><h5>No</h5></a> -->
+  <div class="form-group">
+    <h5 class="form-context">Any other household members to document?</h5>
     <div class="btn-group btn-group-justified" data-toggle="buttons">
       <label class="btn btn-primary form-button">
         <input type="radio" name="additional_household_member" id="yes"> Yes

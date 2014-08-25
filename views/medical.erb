@@ -5,10 +5,12 @@
 </div>
 <form name="medical" action="/application/medical" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
   <div class="form-group">
-    <p>Medi-cal is a subsidized health insurance benefit.</p>
+    <div class="form-control subheader">
+      <p>Medi-cal is a subsidized health insurance benefit.</p>
+    </div>
     <div class="btn-group btn-group-justified" data-toggle="buttons">
-      <label class="btn btn-primary form-button active">
-        <input type="radio" name="medical_interest" id="yes" checked> Yes
+      <label class="btn btn-primary form-button">
+        <input type="radio" name="medical_interest" id="yes"> Yes
       </label>
       <label class="btn btn-primary form-button">
         <input type="radio" name="medical_interest" id="no"> No
@@ -16,8 +18,7 @@
     </div>
   </div>
   <div class="page-footer">
-  <!-- 		<a class="btn next-step" href="<%= url('/application/interview') %>"> -->
-      <input class="btn next-step" type="submit" value="Next Step: Interview">
+    <input class="btn next-step" type="submit" value="Next Step">
   </div>
 </form>
 <script>
