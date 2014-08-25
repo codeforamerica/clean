@@ -76,6 +76,9 @@ class CalfreshWeb < Sinatra::Base
     erb :household_question, layout: :v4_layout
   end
 
+  post '/application/household_question' do
+  end
+
   get '/application/additional_household_member' do
     erb :additional_household_member, layout: :v4_layout
   end
