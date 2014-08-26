@@ -362,6 +362,7 @@ the content column, so we override bootstrap.*/
 	border-radius: 0;
 	border: 1px solid #ccc;
 	line-height: 2;
+	color: #555;
 }
 
 .skip:hover {
