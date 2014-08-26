@@ -18,11 +18,41 @@
 /* mid #BAD2DF*/
 /* light #DFE9EE */
 
+/* B O O T S T R A P   O V E R R I D E */
+
+
 /* F O N T S */
 
-h3 {
+.masthead p {
   font-family: "brandon-grotesque", sans-serif;
   font-weight: 700;
+  letter-spacing: 0.0625em;
+  display: inline-block;
+  padding-right: 0.625em;
+  margin-top: 6px;
+}
+
+.logo {
+	color: white;
+}
+
+.divider {
+	color: white;
+	opacity: .25;
+}
+
+.program {
+	color: #CF6354;
+}
+
+.masthead h3 {
+	margin-top: 8px;
+}
+
+h3 {
+  font-family: "merriweather", sans-serif;
+  font-weight: 900;
+  font-style: italic;
  }
 
 .form {
@@ -30,7 +60,7 @@ h3 {
  }
 
  .next-step {
- 	font-family: "brandon-grotesque", sans-serif;
+ 	font-family: "ff-tisa-sans-web-pro", sans-serif;
  	font-weight: 500;
  	font-size: 16px;
  }
@@ -226,8 +256,20 @@ body {
 	opacity: .85;
 }
 
-.form-button {
+/* This is a hack of Bootstrap's input/button madness */
+.btn-primary.form-button-3 {
 	height: 3.5em;
+	width: 33%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+}
+
+/* This is a hack of Bootstrap's input/button madness */
+.btn-primary.form-button-2 {
+	height: 3.5em;
+	width: 50%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	background-image: none;
@@ -332,6 +374,9 @@ the content column, so we override bootstrap.*/
 	}
 	.form-button {
 		font-size: 11px;
+	}
+	.next-step {
+/*		font-size: 11px;*/
 	}
 }
 
