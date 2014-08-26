@@ -306,7 +306,7 @@ body {
 }
 
 .btn-primary.form-button-link-left {
-	height: 3.5em;
+	height: 3em;
 	line-height: 2.428571;
 	width: 48%;
 	float: left;
@@ -315,10 +315,11 @@ body {
 	box-shadow: none;
 	background-image: none;
 	border-radius: 0;
+	line-height: 2;
 }
 
 .btn-primary.form-button-link-right {
-	height: 3.5em;
+	height: 3em;
 	line-height: 2.428571;
 	width: 48%;
 	float: right;
@@ -327,6 +328,7 @@ body {
 	box-shadow: none;
 	background-image: none;
 	border-radius: 0;
+	line-height: 2;
 }
 
 .form-button-link-solo {
