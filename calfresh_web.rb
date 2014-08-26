@@ -91,6 +91,10 @@ class CalfreshWeb < Sinatra::Base
     erb :confirmation, layout: :v4_layout
   end
 
+  get '/document_question' do
+    erb :document_question, layout: :verification_doc_layout
+  end
+
   get '/first_id_doc' do
     erb :first_id_doc, layout: :verification_doc_layout
   end
