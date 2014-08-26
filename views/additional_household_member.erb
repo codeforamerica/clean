@@ -6,12 +6,13 @@
 </div>
 <form name="additional_household_member" action="/application/additional_household_member" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
   <div class="form-group">
+    <h5 class="form-context">Please provide:</h5>
     <input type="text" class="form-control middle" name="name" id="name" placeholder="Their full name" required required data-parsley-required-message="Name is required to apply" autofocus="autofocus"\>
     <input type="text" class="form-control middle" name="date_of_birth" id="date_of_birth" placeholder="Date of birth">
     <input type="text" class="form-control bottom" name="ssn" id="ssn" placeholder="Social security number">
   </div>
   <div class="form-group">
-    <h5 class="form-context">Choose a sex</h5>
+    <h5 class="form-context">Choose a sex:</h5>
     <div class="btn-group btn-group-justified" data-toggle="buttons">
       <button class="btn btn-primary form-button-3" data-toggle="button">
         <input class="form-control" type="radio" name="options" id="female">Female
@@ -24,19 +25,8 @@
       </button>
     </div>
   </div>
-  <div class="form-group">
-    <h5 class="form-context">Any other household members to document?</h5>
-    <div class="btn-group btn-group-justified" data-toggle="buttons">
-      <button class="btn btn-primary form-button-2">
-        <input type="radio" name="additional_household_member" id="yes"> Yes
-      </button>
-      <button class="btn btn-primary form-button-2">
-        <input type="radio" name="review_and_submit" id="no"> No
-      </button>
-    </div>
-  </div>
   <div class="page-footer">
-    <input class="btn next-step" type="submit" value="Next Step">
+    <input class="btn next-step" type="submit" value="Submit member">
   </div>
 </form>
 <script>
