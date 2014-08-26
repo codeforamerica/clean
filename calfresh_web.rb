@@ -127,6 +127,10 @@ class CalfreshWeb < Sinatra::Base
     erb :next_other_doc, layout: :verification_doc_layout
   end
 
+  get '/complete' do
+    erb :complete, layout: :verification_doc_layout
+  end
+
   post '/applications' do
     writer = Calfresh::ApplicationWriter.new
     input_for_writer = params

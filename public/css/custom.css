@@ -332,7 +332,8 @@ body {
 .form-button-link-solo {
 	color: #555;
 	height: 3.5em;
-	line-height: 2.8;
+	line-height: 2.6;
+	width: 100%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	background-image: none;
@@ -353,11 +354,12 @@ the content column, so we override bootstrap.*/
 
 .skip {
 	width: 100%;
-	height: 4em;
+	height: 3em;
 	margin: 10px 0;
 	background-color: #F3F3F3;
 	border-radius: 0;
 	border: 1px solid #ccc;
+	line-height: 2;
 }
 
 .skip:hover {
@@ -377,7 +379,7 @@ the content column, so we override bootstrap.*/
 
 .next-step {
 	width: 100%;
-	height: 4em;
+	height: 3em;
 	color: #fff;
 	background-color: #5C93D6;
 	border-radius: 0;

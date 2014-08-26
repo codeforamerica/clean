@@ -1,6 +1,7 @@
 <div class="masthead">
   <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-    <h3>Do you have any expense documents?</h3>
+    <p class="program"> CALFRESH & MEDI-CAL</p>
+    <h3>Do you have any more expense documents?</h3>
   </div>
 </div>
 <form name="next_expense_doc" action="/next_expense_doc" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
@@ -12,17 +13,8 @@
     <input type="file" autofocus="autofocus"></input>
   </div>
   <h5 class="or" style="text-align:center">or</h5>
-  <input class="btn skip" type="submit" value="Skip">
+  <a class="btn skip form-button-link-solo" href="/next_other_doc">Skip</a>
   <div class="page-footer" style="display:none">
-    <h5 class="footer-question">Do you have any more expense documents to upload?</h5>
-    <div class="btn-group btn-group-justified" data-toggle="buttons">
-      <label class="btn btn-primary form-button">
-        <input type="radio" name="next_expense_doc" id="yes"> Yes
-      </label>
-      <label class="btn btn-primary form-button">
-        <input type="radio" name="first_other_doc" id="no"> No
-      </label>
-    </div>
     <input class="btn next-step" type="submit" value="Submit">
   </div>
 </form>
