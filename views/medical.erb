@@ -1,0 +1,27 @@
+<div class="masthead">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+    <p class="program"> CALFRESH & MEDI-CAL</p>
+    <h3 class="truncate-title">Would you like to apply for Medi-Cal?</h3>
+  </div>
+</div>
+<form name="medical" action="/application/medical" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+  <div class="form-group">
+    <div class="form-control subheader">
+      <p>If you are eligible for Calfresh, you are also eligible for Medi-Cal. The Medi-Cal  program is a subsidized health insurance benefit. If you are approved, you don't have to enroll in the program.</p>
+    </div>
+    <div class="btn-group btn-group-justified" data-toggle="buttons">
+      <button class="btn btn-primary form-button-2">
+        <input type="radio" name="medical_interest" id="yes" autofocus="autofocus"> Yes
+      </button>
+      <button class="btn btn-primary form-button-2">
+        <input type="radio" name="medical_interest" id="no"> No
+      </button>
+    </div>
+  </div>
+  <div class="page-footer">
+    <input class="btn next-step" type="submit" value="Next Step: Your Interview">
+  </div>
+</form>
+<script>
+  $('.btn').button()
+</script>
