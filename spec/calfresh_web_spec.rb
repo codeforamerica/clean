@@ -64,25 +64,116 @@ describe CalfreshWeb do
   end
 
   describe 'POST /application/sex_and_ssn' do
-    before do
-      @input_hash = {
-        ssn: '1112223333',
-        male: 'on'
-      }
-      post '/application/sex_and_ssn', @input_hash
+    context 'with ssn and sex selected' do
+      before do
+        @input_hash = {
+          ssn: '1112223333',
+          male: 'on'
+        }
+        post '/application/sex_and_ssn', @input_hash
+      end
+
+      it 'saves contact info into the session' do
+        desired_hash = {
+          ssn: '1112223333',
+          sex: 'M'
+        }
+        expect(last_request.session).to eq(desired_hash)
+      end
+
+      it 'redirects to medi-cal page' do
+        expect(last_response).to be_redirect
+        expect(last_response.location).to include('/application/medical')
+      end
     end
 
-    it 'saves contact info into the session' do
-      desired_hash = {
-        ssn: '1112223333',
-        sex: 'Male'
-      }
-      expect(last_request.session).to eq(desired_hash)
+    context 'missing sex' do
+      before do
+        @input_hash = {
+          ssn: '1112223333',
+        }
+        post '/application/sex_and_ssn', @input_hash
+      end
+
+      it 'saves contact info into the session' do
+        desired_hash = {
+          ssn: '1112223333',
+          sex: ''
+        }
+        expect(last_request.session).to eq(desired_hash)
+      end
+
+      it 'redirects to medi-cal page' do
+        expect(last_response).to be_redirect
+        expect(last_response.location).to include('/application/medical')
+      end
+    end
+  end
+
+  describe 'GET /application/medical' do
+    it 'responds successfully' do
+      get '/application/medical'
+      expect(last_response.status).to eq(200)
+    end
+  end
+
+  describe 'POST /application/medical' do
+    context 'with medi-cal yes selected' do
+      before do
+        @input_hash = {
+          yes: 'on'
+        }
+        post '/application/medical', @input_hash
+      end
+
+      it 'marks medi_cal_interest as on in session' do
+        desired_hash = {
+          medi_cal_interest: 'on'
+        }
+        expect(last_request.session).to eq(desired_hash)
+      end
+
+      it 'redirects to interview page' do
+        expect(last_response).to be_redirect
+        expect(last_response.location).to include('/application/interview')
+      end
     end
 
-    it 'redirects to sex_and_ssn page' do
-      expect(last_response).to be_redirect
-      expect(last_response.location).to include('/application/medical')
+    context 'with medi-cal no selected' do
+      before do
+        @input_hash = {
+          no: 'on'
+        }
+        post '/application/medical', @input_hash
+      end
+
+      it 'saves nothing in session' do
+        desired_hash = {}
+        expect(last_request.session).to eq(desired_hash)
+      end
+
+      it 'redirects to interview page' do
+        expect(last_response).to be_redirect
+        expect(last_response.location).to include('/application/interview')
+      end
+    end
+
+    context 'with nothing on medi-cal page selected' do
+      before do
+        @input_hash = {
+        }
+        post '/application/medical', @input_hash
+      end
+
+      it 'saves nothing in session' do
+        desired_hash = {}
+        expect(last_request.session).to eq(desired_hash)
+      end
+
+      it 'redirects to interview page' do
+        expect(last_response).to be_redirect
+        expect(last_response.location).to include('/application/interview')
+      end
     end
   end
 end

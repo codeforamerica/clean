@@ -44,9 +44,17 @@ class CalfreshWeb < Sinatra::Base
   end
 
   post '/application/sex_and_ssn' do
-    sex = params.select do |key, value|
+    sex_field_name = params.select do |key, value|
       value == "on"
-    end.keys.first.capitalize
+    end.keys.first
+    sex = case sex_field_name
+      when "male"
+        "M"
+      when "female"
+        "F"
+      else
+        ""
+    end
     session[:ssn] = params[:ssn]
     session[:sex] = sex
     redirect to('/application/medical'), 303
@@ -57,10 +65,9 @@ class CalfreshWeb < Sinatra::Base
   end
 
   post '/application/medical' do
-    medical = params.select do |key, value|
-      value == "on"
-    end.keys.first.capitalize
-    session[:medical_interest] = medical
+    if params[:yes] == "on"
+      session[:medi_cal_interest] = "on"
+    end
     redirect to('/application/interview'), 303
   end
 
