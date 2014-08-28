@@ -1,0 +1,19 @@
+<div class="masthead">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+    <p class="program"> CALFRESH & MEDI-CAL</p>
+  </div>
+</div>
+<form name="household_question" action="/application/household_question" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+  <h3>Do you cook or prepare food with anyone else?</h3>
+  <div class="form-group">
+    <div class="form-control subheader">
+      <p>We need you to provide information for each individual you cook and prepare food with. Please document all roommates, adult family members or children that fit that description.</p>
+    </div>
+    <div class="page-footer">
+        <a href="/application/additional_household_member" class="btn btn-primary form-button-link-left" autofocus="autofocus">Yes</a>
+        <a href="/application/review_and_submit" class="btn btn-primary form-button-link-right">No</a>
+    </div>
+</form>
+<script>
+  $('.btn').button()
+</script>

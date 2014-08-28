@@ -1,0 +1,38 @@
+<div class="masthead">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+    <p class="program"> CALFRESH & MEDI-CAL</p>
+  </div>
+</div>
+<form name="next_income_doc" action="/next_income_doc" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+  <h3>Upload another income document, if you have one.</h3>
+  <div class="form-group">
+    <p>Every Calfresh applicant needs to provide proof of income. You can provide as many documents as you have. Acceptable income documents include:
+      <ul>
+        <li>Paystubs</li>
+        <li>Bank statements</li>
+        <li>Last year's tax return</li>
+        <li>Written and signed statements</li>
+      </ul>
+    </p>
+    <p>If you don't have additional income documents, that's ok. Skip this step for now, and try to locate relevant documents in advance of your interview.</p>
+  </div>
+  <div class="form-group file-group">
+    <label for="identification">Upload Document</label>
+    <input type="file" autofocus="autofocus"></input>
+  </div>
+  <h5 class="or" style="text-align:center">or</h5>
+  <a class="btn skip form-button-link-solo" href="/first_expense_doc">Skip</a>
+  <div class="page-footer" style="display:none">
+    <input class="btn next-step" type="submit" value="Submit">
+  </div>
+</form>
+<script>
+  $('.btn').button();
+  $(function() {
+     $("input:file").change(function () {
+       $(".page-footer").removeAttr("style");
+       $(".or").hide();
+       $(".skip").hide();
+     });
+  });
+</script>
