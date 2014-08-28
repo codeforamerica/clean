@@ -72,6 +72,10 @@ class CalfreshWeb < Sinatra::Base
     redirect to('/application/household_question'), 303
   end
 
+  get '/application/household_question' do
+    erb :household_question, layout: :v4_layout
+  end
+
   get '/application/additional_household_member' do
     erb :additional_household_member, layout: :v4_layout
   end
