@@ -30,6 +30,7 @@
   display: inline-block;
   padding-right: 0.625em;
   margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .logo {
@@ -102,7 +103,7 @@ body {
 	display: inline-block;
 	width: 100%;
 	height: auto;
-	padding: .15em 0;
+	padding: .2em 0;
 	/* Blue background color */
 	background-color: #2E394B;
 }
