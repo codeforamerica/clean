@@ -108,7 +108,7 @@ class CalfreshWeb < Sinatra::Base
   end
 
   get '/first_id_doc' do
-    erb :first_id_doc, layout: :verification_doc_layout
+    erb :first_id_doc, layout: :v4_layout
   end
 
   post '/first_id_doc' do
