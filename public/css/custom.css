@@ -317,6 +317,7 @@ body {
 	background-image: none;
 	border-radius: 0;
 	line-height: 2;
+	margin: 10px 0;
 }
 
 .btn-primary.form-button-link-right {
@@ -331,6 +332,7 @@ body {
 	background-image: none;
 	border-radius: 0;
 	line-height: 2;
+	margin: 10px 0;
 }
 
 .btn-primary.form-button-link-right:hover {
