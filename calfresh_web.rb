@@ -95,7 +95,7 @@ class CalfreshWeb < Sinatra::Base
     erb :review_and_submit, layout: :v4_layout
   end
 
-  post '/applications/review_and_submit' do
+  post '/application/review_and_submit' do
     redirect to('/application/confirmation'), 303
   end
 
