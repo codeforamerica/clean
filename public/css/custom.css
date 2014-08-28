@@ -52,8 +52,9 @@
 
 h3 {
   font-family: "merriweather", sans-serif;
-  font-weight: 900;
-  font-style: italic;
+  font-weight: 700;
+  color: #6f6f6f;
+  font-size: 21px;
  }
 
 .form {
@@ -100,15 +101,9 @@ body {
 	display: inline-block;
 	width: 100%;
 	height: auto;
-	padding: .5em 0;
+	padding: .15em 0;
 	/* Blue background color */
 	background-color: #2E394B;
-}
-
-.masthead h3 {
-	/* Offwhite color */
-	color: #f6f6f6;
-	opacity: .95;
 }
 
 /* F O R M   S T Y L E S */
@@ -137,7 +132,8 @@ body {
 	width: auto;
 	display: block;
 	color: #6F6F6F;
-	font-style: italic;
+	font-weight: 700;
+	opacity: .9;
 }
 
 .header {
@@ -469,3 +465,29 @@ the content column, so we override bootstrap.*/
 		font-size: 16px;
 	}
 }
+
+
+/* K E Y F R A M E S   &    P A G E    T R A N S I T I O N S */
+
+@-webkit-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/*
+ * CSS Page Transitions
+ */
+
+
