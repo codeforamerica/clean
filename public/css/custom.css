@@ -99,13 +99,11 @@ body {
 
 #main {
 	background: #fff;
-/*	position: absolute;
+	position: absolute;
 	bottom: 0;
 	top: 0;
 	left: 0;
 	right: 0;
-	box-shadow: 0 0 5px #888;
-	overflow: auto;*/
 }
 
 
@@ -394,6 +392,7 @@ the content column, so we override bootstrap.*/
 	border: 1px solid #ccc;
 	line-height: 2;
 	color: #555;
+	margin-bottom: 42px;
 }
 
 .skip:hover {
@@ -467,10 +466,6 @@ the content column, so we override bootstrap.*/
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
 /* Styles */
-	#main {
-		margin: 0;
-		background: #fff;
-	}
 	.form-button-2 {
 		font-size: 11px;
 		height: 42px;
@@ -523,5 +518,12 @@ the content column, so we override bootstrap.*/
 /*
  * CSS Page Transitions
  */
+
+ /* B O O T S R A P   H A C K S */
+
+/* No width file pickers were breaking the layout on mobile */
+ input[type=file] {
+ 	width: 100%;
+ }
 
 
