@@ -52,11 +52,12 @@
 }
 
 h3 {
-  font-family: "merriweather", sans-serif;
+  font-family: "ff-tisa-web-pro", sans-serif;
   font-weight: 700;
-  color: #6f6f6f;
+  color: #2E394B;
   font-size: 21px;
   line-height: 1.4;
+  margin-bottom: 0;
  }
 
 .form {
@@ -266,7 +267,8 @@ body {
 
 /* This is a hack of Bootstrap's input/button madness */
 .btn-primary.form-button-3 {
-	height: 3.5em;
+	min-height: 3.5em;
+	height: auto;
 	width: 33%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
@@ -432,40 +434,55 @@ the content column, so we override bootstrap.*/
 }
 
 /* M E D I A    Q U E R I E S */
-@media (min-device-width : 320px) {
+
+
+/* iPads (portrait and landscape) ----------- */
+@media screen and (min-width: 768px)  {}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
 	#main {
 		margin: 0;
 		background: #fff;
 	}
-	.form-button {
+	.form-button-2 {
 		font-size: 11px;
+		height: 42px;
+	}
+	.form-button-3 {
+		font-size: 11px;
+		height: 42px;
 	}
 	.next-step {
-/*		font-size: 11px;*/
+		font-size: 11px;
+		height: 42px;
 	}
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media (min-device-width : 768px) {
-	#main {
-/*		margin: 24px;*/
-	}
-	.form-button {
-		font-size: 16px;
-	}
-	/* A class specifically for the Medi-cal page, where at full width*/
-	.truncate-title {
-		width: 85%;
-	}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
 }
 
-@media (min-width : 1224px) {
-	#main {
-/*		margin: 24px;*/
-	}
-	.form-button {
-		font-size: 16px;
-	}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+/* Styles */
 }
 
 
