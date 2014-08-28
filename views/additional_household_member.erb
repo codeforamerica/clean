@@ -1,75 +1,34 @@
-<div class="masthead-page">
-  <div class="col-md-4 col-md-offset-4">
-    <div class="panel-body application-overview">
-      <div class="application-identity">
-        <small>This is the application of</small>
-        <h4>Applicant name</h4>
-        <p>Today's date</p>
-      </div>
-      <div class="application-steps">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Basic information</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Contact information</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Schedule your interview</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Submit your application</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Upload documentation</small>
-          </li>
-        </ul>
-      </div>
-    </div>
+<div class="masthead">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+    <p class="program"> CALFRESH & MEDI-CAL</p>
   </div>
 </div>
-<div class="form-body">
-  <section class="form-page contact-info">
-    <div class="page-content col-md-4 col-md-offset-4">
-      <section class="form-section">
-        <div class="form-group">
-          <div class="form-control top header">
-            <h4>Additional Household Member</h4>
-          </div>
-          <input type="text" class="form-control middle" name="name" id="name" placeholder="Full name" required required data-parsley-required-message="Name is required to apply" \>
-          <input type="text" class="form-control middle" name="date_of_birth" id="date_of_birth" placeholder="Date of Birth">
-          <input type="text" class="form-control bottom" name="ssn" id="ssn" placeholder="Social Security Nubmer">
-        </div>
-        <div class-"form-group">
-          <div class="btn-group btn-group-justified" data-toggle="buttons">
-            <label class="btn btn-primary form-button" data-toggle="button">
-              <input class="form-control" type="radio" name="options" id="female">Female
-            </label>
-            <label class="btn btn-primary form-button" data-toggle="button">
-              <input class="form-control" type="radio" name="options" id="male">Male
-            </label>
-            <label class="btn btn-primary form-button" data-toggle="button">
-              <input class="form-control" type="radio" name="options" id="no-answer">No Answer
-            </label>
-          </div>
-        </div>
-      </section>
-    </div>
-  </section>
-</div>
-<div class="page-footer">
-  <div class="footer-content col-md-4 col-md-offset-4">
-    <h3>Any other household members to document?</h3>
-    <a class="btn alternate-step" href="<%= url('/application/additional_household_member') %>"><h5>Yes</h5></a>
-    <h5 class="or">or</h5>
-    <a class="btn next-step" href="<%= url('/application/review_and_submit') %>"><h5>No</h5></a>
+<form name="additional_household_member" action="/application/additional_household_member" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+  <h3>Household member information</h3>
+  <div class="form-group">
+    <h5 class="form-context">Please provide:</h5>
+    <input type="text" class="form-control middle" name="their_name" id="their-name" placeholder="Their full name" required required data-parsley-required-message="Name is required to apply" autofocus="autofocus"\>
+    <input type="text" class="form-control middle" name="their_date_of_birth" id="date_of_birth" placeholder="Date of birth">
+    <input type="text" class="form-control bottom" name="their_ssn" id="their_ssn" placeholder="Social security number">
   </div>
-</div>
+  <div class="form-group">
+    <h5 class="form-context">Choose a sex:</h5>
+    <div class="btn-group btn-group-justified" data-toggle="buttons">
+      <button class="btn btn-primary form-button-3" data-toggle="button">
+        <input class="form-control" type="radio" name="Female" id="female">Female
+      </button>
+      <button class="btn btn-primary form-button-3" data-toggle="button">
+        <input class="form-control" type="radio" name="Male" id="male">Male
+      </button>
+      <button class="btn btn-primary form-button-3" data-toggle="button">
+        <input class="form-control" type="radio" name="NoAnswer" id="no-answer">No Answer
+      </button>
+    </div>
+  </div>
+  <div class="page-footer">
+    <input class="btn next-step" type="submit" value="Submit and Move On">
+  </div>
+</form>
 <script>
   $('.btn').button()
 </script>

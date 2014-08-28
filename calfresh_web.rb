@@ -56,8 +56,20 @@ class CalfreshWeb < Sinatra::Base
     erb :medical, layout: :v4_layout
   end
 
+  post '/application/medical' do
+    medical = params.select do |key, value|
+      value == "on"
+    end.keys.first.capitalize
+    session[:medical_interest] = medical
+    redirect to('/application/interview'), 303
+  end
+
   get '/application/interview' do
     erb :interview, layout: :v4_layout
+  end
+
+  post '/application/interview' do
+    redirect to('/application/household_question'), 303
   end
 
   get '/application/household_question' do
@@ -68,44 +80,99 @@ class CalfreshWeb < Sinatra::Base
     erb :additional_household_member, layout: :v4_layout
   end
 
+  post '/application/additional_household_member' do
+    sex = params.select do |key, value|
+      value == "on"
+    end.keys.first.capitalize
+    session[:name] = params[:their_name]
+    session[:date_of_birth] = params[:their_date_of_birth]
+    session[:ssn] = params[:ssn]
+    session[:sex] = sex
+    redirect to('/application/household_question'), 303
+  end
+
   get '/application/review_and_submit' do
     erb :review_and_submit, layout: :v4_layout
+  end
+
+  post '/applications/review_and_submit' do
+    redirect to('/application/confirmation'), 303
   end
 
   get '/application/confirmation' do
     erb :confirmation, layout: :v4_layout
   end
 
+  get '/document_question' do
+    erb :document_question, layout: :verification_doc_layout
+  end
+
   get '/first_id_doc' do
     erb :first_id_doc, layout: :verification_doc_layout
+  end
+
+  post '/first_id_doc' do
+    redirect to('/next_id_doc'), 303
   end
 
   get '/next_id_doc' do
     erb :next_id_doc, layout: :verification_doc_layout
   end
 
+  post '/next_id_doc' do
+    redirect to('/next_id_doc'), 303
+  end
+
   get '/first_income_doc' do
     erb :first_income_doc, layout: :verification_doc_layout
+  end
+
+  post '/first_income_doc' do
+    redirect to('/next_income_doc'), 303
   end
 
   get '/next_income_doc' do
     erb :next_income_doc, layout: :verification_doc_layout
   end
 
+  post '/next_income_doc' do
+    redirect to('/next_income_doc'), 303
+  end
+
   get '/first_expense_doc' do
     erb :first_expense_doc, layout: :verification_doc_layout
+  end
+
+  post '/first_expense_doc' do
+    redirect to('/next_expense_doc')
   end
 
   get '/next_expense_doc' do
     erb :next_expense_doc, layout: :verification_doc_layout
   end
 
+  post '/next_expense_doc' do
+    redirect to('/next_expense_doc')
+  end
+
   get '/first_other_doc' do
     erb :first_other_doc, layout: :verification_doc_layout
   end
 
+  post '/first_other_doc' do
+    redirect to('/next_other_doc')
+  end
+
   get '/next_other_doc' do
     erb :next_other_doc, layout: :verification_doc_layout
+  end
+
+  post '/next_other_doc' do
+    redirect to('/next_other_doc')
+  end
+
+  get '/complete' do
+    erb :complete, layout: :verification_doc_layout
   end
 
   post '/applications' do

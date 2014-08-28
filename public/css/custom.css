@@ -5,14 +5,10 @@
 /* If you want to suggest an improvement to these styles, please visit: */
 /* https://github.com/codeforamerica/calfresh-and-so-clean/issues */
 
-/* G L O B A L S */
 
-/* in each context, redefine the equal height and width of the circle */
-.circle {
-	border-radius: 50%;
-}
+/* C O L O R S */
 
-/* San Francisco Red Orange: #CF6354*/
+/* San Francisco Red Orange: #CF6354
 /* Government blue: #2E394B*/
 /* Government bright gray type for header: BAC2CC*/
 /* Government gray type on blue: 929AA5*/
@@ -22,149 +18,135 @@
 /* mid #BAD2DF*/
 /* light #DFE9EE */
 
+/* B O O T S T R A P   O V E R R I D E */
+
+
+/* F O N T S */
+
+.masthead p {
+  font-family: "brandon-grotesque", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.0625em;
+  display: inline-block;
+  padding-right: 0.625em;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.logo {
+	color: white;
+}
+
+.divider {
+	color: white;
+	opacity: .25;
+}
+
+.program {
+	color: #F1AB00;
+/*	color: #CF6354;*/
+}
+
+.masthead h3 {
+	margin-top: 8px;
+}
+
+h3 {
+  font-family: "merriweather", sans-serif;
+  font-weight: 700;
+  color: #6f6f6f;
+  font-size: 21px;
+  line-height: 1.4;
+ }
+
+.form {
+  font-family: "ff-tisa-sans-web-pro", sans-serif;
+ }
+
+ .next-step {
+ 	font-family: "ff-tisa-sans-web-pro", sans-serif;
+ 	font-weight: 500;
+ 	font-size: 14px;
+ }
+
+/* G L O B A L S */
+
+/* in each context, redefine the equal height and width of the circle */
+.circle {
+	border-radius: 50%;
+}
+
+
+body {
+	margin: 0;
+	background:  #fff;
+	width: 100%;
+	height: 100%;
+}
+
+#main {
+	background: #fff;
+/*	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	box-shadow: 0 0 5px #888;
+	overflow: auto;*/
+}
+
 
 /* T H E    M A S T H E A D  */
 /* Masthead content sticks to the top of each view, and presents metadata about the application */
 
-.masthead-page {
+.masthead {
 	display: inline-block;
 	width: 100%;
 	height: auto;
-	padding: 2em 0;
+	padding: .2em 0;
 	/* Blue background color */
 	background-color: #2E394B;
 }
 
-.masthead-page h1 {
-	/* Offwhite color */
-	color: #f1f1f1;
-}
-
-.masthead-page .lead {
-	color: #f1f1f1;
-}
-
-.masthead-page .panel-default {
-
-}
-
-.application-overview {
-	padding: 0;
-	background-color: #2E394B;
-	border-radius: 4px;
-}
-
-.application-identity {
-	display: inline-block;
-	float: left;
-	width: auto;
-	vertical-align: top;
-	padding: 15px;
-	max-width: 40%;
-}
-.application-identity h4, h3, p, small {
-	display: block;
-	width: auto;
-
-}
-
-.application-identity h3, h4 {
-	color: #CF6354;
-}
-
-.application-identity small, p {
-	color: #929AA5;
-}
-
-.application-steps {
-	display: inline-block;
-	float: right;
-	width: auto;
-}
-
-.application-steps ul {
-	margin: 0;
-	border-radius: 0;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-
-.application-steps ul li {
-	color: #929AA5;
-	padding: .5em 1em;
-	background-color: #2E394B;
-	border: none;
-}
-
-.application-steps ul li:first-child {
-	border-top-left-radius: 0;
-}
-
-.application-steps ul li:last-child {
-	border-bottom-left-radius: 0;
-}
-
-.application-steps .circle {
-	display: inline-block;
-	background-color: #BAC2CC;
-	height: 10px;
-	width: 10px;
-	margin-right: 1em;
-}
-
-.application-steps small {
-	display: inline-block;
-	margin: 0;
-}
-
 /* F O R M   S T Y L E S */
 
-.form-body {
-	display: inline-block;
-	width: 100%;
-	padding: 2em 0;
-}
-
-.form-page {
-	display: inline-block;
-	width: 100%;
+.form {
 }
 
 .page-content {
 	padding-bottom: 1em;
 }
 
-.form-section {
-	padding: 1em 0;
+.form-group {
+	padding: 1em 0 0 0;
 }
-
-.section-intro {
-	padding: .5em 0;
-}
-
-.section-lead {
-	font-weight: 200;
-	line-height: 1.4;
-	font-size: ;
-}
-
-.form-group {}
 
 /* form-controls, by position in a stack. */
 /* There can only be one top and one bottom, but there can be many middles.*/
 
 .solo {
-	height: 4em;
+	height: 3.5em;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+}
+
+.form-context {
+	width: auto;
+	display: block;
+	color: #6F6F6F;
+	font-weight: 700;
+	opacity: .9;
 }
 
 .header {
 	background-color: #929AA5;
 }
 
+.form-control {
+	font-size: 14px;
+}
 .form-control h4 {
-	color: #2E394B;
+	color: #fff;
 }
 
 /* For now, subheader is exclusive. It shouldn't be mixed with top/middle/bottom */
@@ -172,15 +154,17 @@
 /* The change is that the heigh is dynamic based on content */
 .subheader {
 	height: auto;
-	min-height: 4em;
-	border-radius: 0;
-	border-top: none;
+	min-height: 3.5em;
+	border: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .subheader p {
-	margin: 10px 20px;
+	margin: 10px 0px;
+	line-height: 1.6em;
 }
 
 .top {
@@ -195,14 +179,18 @@
 	min-height: 4em;
 	border-radius: 0;
 	border-top: none;
+	border-left: none;
+	border-right: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 .bottom {
 	height: auto;
 	min-height: 4em;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+	border-left: none;
+	border-right: none;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 	border-top: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
@@ -216,10 +204,24 @@
 	display: inline-block;
 }
 
-.times-of-day {}
-.time-of-day {
-	margin-left: 20px;
-	display: inline-block;
+.times-of-day .checkbox {
+	padding-top: .5em;
+	padding-bottom: .5em;
+	padding-right: 20px;
+	padding-left: 0;
+}
+
+.times-of-day .checkbox input[type=checkbox] {
+	float: none;
+	margin-left: 0;
+	padding-right: 20px;
+}
+
+.days-of-week .checkbox {
+	padding-top: .5em;
+	padding-bottom: .5em;
+	padding-right: 20px;
+	padding-left: 0;
 }
 
 .days-of-week .checkbox input[type=checkbox] {
@@ -231,114 +233,263 @@
 /* F O R M   B U T T O N / T O G G L E */
 
 .btn-primary {
-	color: #2E394B;
+	height: 4em;
+	color: #555;
 	text-shadow: none;
 	background-color: white;
 /*	background-color: #5C93D6;*/
 	border-color: #ccc;
+	opacity: .85;
 }
 
 .btn-primary:hover {
-	background-color: #2E394B;
-	border-color: #2E394B;
+	color: #333;
+	background-color: #F3F3F3;
+	border-color: #ccc;
 }
+
+.btn-primary:focus {
+	color: #333;
+	background-color: #F3F3F3;
+	border-color: #ccc;
+}
+
 
 .btn-primary:active, .btn-primary.active {
-	background-color: #2E394B;
-	border-color: #2E394B;
+	color: #333;
+	background-color: #E6E6E6;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-color: #ccc;
+	opacity: .85;
 }
 
-.form-button {
+/* This is a hack of Bootstrap's input/button madness */
+.btn-primary.form-button-3 {
+	height: 3.5em;
+	width: 33%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	background-image: none;
-	border-radius: 4px;
+	border-radius: 0;
 }
+
+/* This is a hack of Bootstrap's input/button madness */
+.btn-primary.form-button-2 {
+	height: 3.5em;
+	width: 50%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+}
+
 
 .form-button:hover {
 }
 
+
+/* Left button in 2 and 3 button groups */
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+	border-right: none;
+}
+
+/* Middle button in 3 button groups */
+.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+	border-right: none;
+}
+
+/* Right button in 2 and 3 button groups */
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+}
+
+.btn-primary.form-button-link-left {
+	height: 3em;
+	line-height: 2.428571;
+	width: 48%;
+	float: left;
+	border-right: 1px solid #ccc;
+	background-color: #F3F3F3;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+	line-height: 2;
+}
+
+.btn-primary.form-button-link-right {
+	height: 3em;
+	line-height: 2.428571;
+	width: 48%;
+	float: right;
+	border-right: 1px solid #ccc;
+	background-color: #F3F3F3;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+	line-height: 2;
+}
+
+.btn-primary.form-button-link-right:hover {
+	background-color: #E6E6E6;
+}
+.btn-primary.form-button-link-right:active {
+	background-color: #E6E6E6;
+}
+
+.btn-primary.form-button-link-left:hover {
+	background-color: #E6E6E6;
+}
+
+.btn-primary.form-button-link-right:hover {
+	background-color: #E6E6E6;
+}
+
+.form-button-link-solo {
+	color: #555;
+	height: 3.5em;
+	line-height: 2.6;
+	width: 100%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+}
 /* F O R M   L I S T S */
 
 /* Sie by side lists, found on the interview.html */
 /* We want two columns, taking up the entire width of
 the content column, so we override bootstrap.*/
-.left-list {
-	padding-left: 0;
-	padding-right: 0;
-}
-.right-list {
-	padding-left: 0;
-	padding-right: 0;
+
+/* F I L E   U P L O A D */
+
+.file-group {
+	padding-bottom: 1em;
+	border-bottom: 1px solid #ccc;
 }
 
-.list-context {
-	height: ;
+.skip {
+	width: 100%;
+	height: 3em;
+	margin: 10px 0;
+	background-color: #F3F3F3;
+	border-radius: 0;
+	border: 1px solid #ccc;
+	line-height: 2;
+	color: #555;
 }
 
+.skip:hover {
+	background-color: #E6E6E6;
+}
+.skip:active {
+	background-color: #E6E6E6;
+}
 
 /* F O O T E R    S T Y L E S */
 
 .page-footer {
 	display: inline-block;
 	width: 100%;
-	border-top: 1px solid gray;
-	padding: 2em 0 1.5em 0;
+	padding: 0;
 }
 
 .next-step {
 	width: 100%;
-	height: 4em;
-	color: #929AA5;
-	background-color: #1D71F5;
-	border-radius: 4px;
+	height: 3em;
+	color: #fff;
+	background-color: #5C93D6;
+	border-radius: 0;
 	margin: 10px 0;
+}
+
+.next-step:hover {
+	color: #fff;
+	background-color: #1D71F5;
+	opacity: .85;
+}
+
+.next-step:focus {
+	color: #fff;
+	background-color: #1D71F5;
+	opacity: .85;
 }
 
 .page-footer .or {
 	text-align: center;
 }
 
-.next-step h5 {
-	color: white;
-	margin: 1em 0;
+.footer-question {
+	padding-top: 1em;
 }
 
-.next-step h5:hover {
-	color: #f6f6f6;
+/* S I G N A T U R E   F O R M */
+
+#signature_area {
+	min-height: 100px;
+	border: 1px solid #ccc;
 }
 
-.alternate-step {
-	width: 100%;
-	height: 4em;
-	color: #929AA5;
-	background-color: #5C93D6;
-	border-radius: 4px;
-	margin: 10px 0;
+/* M E D I A    Q U E R I E S */
+@media (min-device-width : 320px) {
+	#main {
+		margin: 0;
+		background: #fff;
+	}
+	.form-button {
+		font-size: 11px;
+	}
+	.next-step {
+/*		font-size: 11px;*/
+	}
 }
 
-.alternate-step h5 {
-	color: white;
-	margin: 1em 0;
+/* iPads (portrait and landscape) ----------- */
+@media (min-device-width : 768px) {
+	#main {
+/*		margin: 24px;*/
+	}
+	.form-button {
+		font-size: 16px;
+	}
+	/* A class specifically for the Medi-cal page, where at full width*/
+	.truncate-title {
+		width: 85%;
+	}
 }
 
-.alternate-step h5:hover {
-	color: #f6f6f6;
+@media (min-width : 1224px) {
+	#main {
+/*		margin: 24px;*/
+	}
+	.form-button {
+		font-size: 16px;
+	}
 }
 
 
-.submit-btn {
-	width: 100%;
-	height: 4em;
-	color: #929AA5;
-	background-color: #1D71F5;
-	border-radius: 4px;
-	margin: 10px 0;
+/* K E Y F R A M E S   &    P A G E    T R A N S I T I O N S */
+
+@-webkit-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-.submit-btn h5 {
-	color: white;
-	margin: 1em 0;
-}
+/*
+ * CSS Page Transitions
+ */
 
-/* When there is more than once choice of next step */
+

@@ -1,57 +1,18 @@
-<div class="masthead-page">
-  <div class="col-md-4 col-md-offset-4">
-    <div class="panel-body application-overview">
-      <div class="application-identity">
-        <small>This is the application of</small>
-        <h4>Applicant name</h4>
-        <p>Today's date</p>
-      </div>
-      <div class="application-steps">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Basic information</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Contact information</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Schedule your interview</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Submit your application</small>
-          </li>
-          <li class="list-group-item">
-            <div class="circle"></div>
-            <small>Upload documentation</small>
-          </li>
-        </ul>
-      </div>
-    </div>
+<div class="masthead m-aside scene_element scene_element--fadein">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+    <p class="program">CALFRESH & MEDI-CAL</p>
   </div>
 </div>
-
-<form name="basic_info" action="/application/basic_info" method="post">
-<div class="form-body">
-	<section class="form-page basic-info">
-		<div class="page-content col-md-4 col-md-offset-4">
-			<section class="form-section">
-				<div class="form-group">
-					<input type="text" class="form-control top" name="name" id="name" placeholder="Full name" required required data-parsley-required-message="Name is required to apply" \>
-					<input type="text" class="form-control bottom" name="date_of_birth" id="date_of_birth" placeholder="Date of Birth">
-				</div>
-			</section>
-		</div>
-	</section>
-</div>
-<div class="page-footer">
-	<div class="footer-content col-md-4 col-md-offset-4">
-          <input class="btn next-step" type="submit" value="Next Step: Contact information">
+<form name="basic_info" action="/application/basic_info" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 m-page scene_element scene_element--fadeinup">
+  <h3>Get started</h3>
+	<div class="form-group">
+    <h5 class="form-context">Please provide:</h5>
+		<input type="text" class="form-control middle" name="name" id="name" placeholder="Your full name" required required data-parsley-required-message="Name is required to apply" \>
+		<input type="text" class="form-control bottom" name="date_of_birth" id="date_of_birth" placeholder="Date of birth">
 	</div>
-</div>
+  <div class="page-footer">
+    <input class="btn next-step" type="submit" value="Next Step: Contact Information">
+  </div>
 </form>
 
 <script>
