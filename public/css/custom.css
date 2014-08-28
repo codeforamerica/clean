@@ -52,13 +52,25 @@
 }
 
 h3 {
-  font-family: "ff-tisa-web-pro", sans-serif;
+  font-family: "ff-tisa-web-pro", serif;
   font-weight: 700;
   color: #2E394B;
   font-size: 21px;
   line-height: 1.4;
   margin-bottom: 0;
  }
+
+ h4 {
+ 	font-family: "ff-tisa-web-pro", serif;
+ 	font-size: 14px;
+ 	font-weight: 700;
+ 	color: #2E394B;
+ 	margin-top: 0;
+ }
+
+.page-footer h4 {
+	margin-top: 10px;
+}
 
 .form {
   font-family: "ff-tisa-sans-web-pro", sans-serif;
@@ -397,6 +409,7 @@ the content column, so we override bootstrap.*/
 	display: inline-block;
 	width: 100%;
 	padding: 0;
+	margin-bottom: 42px;
 }
 
 .next-step {
