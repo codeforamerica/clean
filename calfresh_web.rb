@@ -76,6 +76,15 @@ class CalfreshWeb < Sinatra::Base
   end
 
   post '/application/interview' do
+    selected_times = params.select do |key, value|
+      value == "on"
+    end.keys
+    underscored_selections = selected_times.map do  |t|
+      t.gsub("-","_")
+    end
+    underscored_selections.each do |selection|
+      session["interview_#{selection}"] = 'Yes'
+    end
     redirect to('/application/household_question'), 303
   end
 

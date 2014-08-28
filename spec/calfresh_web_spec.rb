@@ -176,4 +176,55 @@ describe CalfreshWeb do
       end
     end
   end
+
+  describe 'GET /application/interview' do
+    it 'responds successfully' do
+      get '/application/interview'
+      expect(last_response.status).to eq(200)
+    end
+  end
+
+  describe 'POST /application/interview' do
+    context 'with one time of day and one day selected' do
+      before do
+        @input_hash = {
+          'early-morning' => 'on',
+          'monday' => 'on'
+        }
+        post '/application/interview', @input_hash
+      end
+
+      it 'saves the selections in session' do
+        desired_hash = {
+          'interview_early_morning' => 'Yes',
+          'interview_monday' => 'Yes'
+        }
+        expect(last_request.session).to eq(desired_hash)
+      end
+
+      it 'redirects to household_question page' do
+        expect(last_response).to be_redirect
+        expect(last_response.location).to include('/application/household_question')
+      end
+    end
+
+    context 'with no selections' do
+      before do
+        @input_hash = {
+        }
+        post '/application/interview', @input_hash
+      end
+
+      it 'puts nothing in session' do
+        desired_hash = {
+        }
+        expect(last_request.session).to eq(desired_hash)
+      end
+
+      it 'redirects to household_question page' do
+        expect(last_response).to be_redirect
+        expect(last_response.location).to include('/application/household_question')
+      end
+    end
+  end
 end
