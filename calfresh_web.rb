@@ -5,8 +5,13 @@ require './calfresh'
 require './faxer'
 
 class CalfreshWeb < Sinatra::Base
-  use Rack::Session::EncryptedCookie, :secret => ENV['SECRET_TOKEN']
-  use Rack::SSL unless settings.environment == :development
+  if settings.environment == :production
+    use Rack::Session::EncryptedCookie, :secret => ENV['SECRET_TOKEN']
+    use Rack::SSL unless settings.environment
+  elsif settings.environment == :development
+    # Breaking tests, but needed for dev use
+    #enable :sessions
+  end
 
   get '/' do
     @language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog Other)
@@ -97,14 +102,16 @@ class CalfreshWeb < Sinatra::Base
   end
 
   post '/application/additional_household_member' do
+=begin
+    sex = params.select do |key, value|
+      value == "on"
+    end.keys.first.capitalize
     session[:name] = params[:their_name]
     session[:date_of_birth] = params[:their_date_of_birth]
     session[:ssn] = params[:ssn]
-    redirect to('/application/next_household_question'), 303
-  end
-
-  get '/application/next_household_question' do
-    erb :next_household_question, layout: :v4_layout
+    session[:sex] = sex
+=end
+    redirect to('/application/household_question'), 303
   end
 
   get '/application/review_and_submit' do
@@ -112,6 +119,31 @@ class CalfreshWeb < Sinatra::Base
   end
 
   post '/application/review_and_submit' do
+    writer = Calfresh::ApplicationWriter.new
+    input_for_writer = session
+    if session[:date_of_birth] != ""
+      date_of_birth_array = session[:date_of_birth].split('/')
+      birth_year = date_of_birth_array[2]
+      if birth_year.length == 4
+        input_for_writer[:date_of_birth] = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
+      end
+    end
+    input_for_writer[:name_page3] = session[:name]
+    input_for_writer[:ssn_page3] = session[:ssn]
+    input_for_writer[:language_preference_reading] = session[:primary_language]
+    input_for_writer[:language_preference_writing] = session[:primary_language]
+    @application = writer.fill_out_form(input_for_writer)
+    if @application.has_pngs?
+      @fax_result_application = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], @application.png_file_set)
+      puts @fax_result_application
+      #erb :after_fax
+    end
+=begin
+    else
+      puts "No PNGs! WTF!?!"
+      #redirect to('/')
+    end
+=end
     redirect to('/application/confirmation'), 303
   end
 

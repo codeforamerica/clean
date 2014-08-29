@@ -227,4 +227,77 @@ describe CalfreshWeb do
       end
     end
   end
+
+  describe 'GET /application/household_question' do
+    it 'responds successfully' do
+      get '/application/household_question'
+      expect(last_response.status).to eq(200)
+    end
+  end
+
+  describe 'GET /application/additional_household_member' do
+    it 'responds successfully' do
+      get '/application/additional_household_member'
+      expect(last_response.status).to eq(200)
+    end
+  end
+
+=begin
+  describe 'POST /application/additional_household_member' do
+    context '' do
+      before do
+        @input_hash = {
+        }
+        post '/application/additional_household_member', @input_hash
+      end
+
+      it '' do
+        desired_hash = {
+        }
+        expect(last_request.session).to eq(desired_hash)
+      end
+
+      it '' do
+        expect(last_response).to be_redirect
+        expect(last_response.location).to include('/application/household_question')
+      end
+    end
+  end
+
+  # Will want to test limit of N household members
+=end
+
+  describe 'GET /application/review_and_submit' do
+    it 'responds successfully' do
+      get '/application/review_and_submit'
+      expect(last_response.status).to eq(200)
+    end
+  end
+
+  describe 'POST /application/review_and_submit' do
+    let(:fake_app) { double("FakeApp", :has_pngs? => true, :png_file_set => 'pngfileset') }
+    let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
+    #let(:fake_faxer) { double("Faxer", :send_fax => "faxresult") }
+
+    before do
+      allow(Calfresh::ApplicationWriter).to receive(:new).and_return(fake_app_writer)
+      allow(Faxer).to receive(:send_fax).and_return("faxresult")
+      @data_hash = {
+        date_of_birth: '06/09/1985'
+      }
+      post '/application/review_and_submit', {}, { "rack.session" => @data_hash }
+    end
+
+    it 'properly reformats the date of birth (and adds extraneous fields)' do
+      expected_hash = @data_hash
+      [:name_page3, :ssn_page3, :language_preference_reading, :language_preference_writing].each do |key|
+        expected_hash[key] = nil
+      end
+      expect(fake_app_writer).to have_received(:fill_out_form).with(expected_hash)
+    end
+
+    it 'sends a fax' do
+      expect(Faxer).to have_received(:send_fax).with("12223334444", 'pngfileset')
+    end
+  end
 end
