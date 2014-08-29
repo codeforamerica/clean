@@ -23,6 +23,7 @@ class CalfreshWeb < Sinatra::Base
   end
 
   get '/application/basic_info' do
+    session.clear
     erb :basic_info, layout: :v4_layout
   end
 
