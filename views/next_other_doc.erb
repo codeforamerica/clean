@@ -3,7 +3,7 @@
     <p class="program"> CALFRESH & MEDI-CAL</p>
   </div>
 </div>
-<form name="next_other_doc" action="/next_other_doc" method="post" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+<form name="next_other_doc" action="/next_other_doc" method="post" enctype="multipart/form-data" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
   <h3>Do you have other documents you'd like to provide?</h3>
   <div class="form-group">
     <p>You may need to share other documents about your residency, financial or citizenship status. Potentially useful or required ocuments include:
@@ -18,8 +18,8 @@
     <p>If you don't have any of these documents on hand, that's ok. Skip this step for now, and try to locate the documents you need to provide in advance of your interview.</p>
   </div>
   <div class="form-group file-group">
-    <label for="identification">Upload Document</label>
-    <input type="file" autofocus="autofocus"></input>
+    <label for="other">Upload Document</label>
+    <input type="file" name="other" autofocus="autofocus"></input>
   </div>
   <h5 class="or" style="text-align:center">or</h5>
   <a class="btn skip form-button-link-solo" href="/complete">Skip</a>

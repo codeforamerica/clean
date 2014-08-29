@@ -118,6 +118,26 @@ module Calfresh
     end
   end
 
+  class VerificationDoc
+    attr_reader :path
+
+    def initialize(doc_param)
+      if doc_param.count > 0
+        raw_doc = doc_param.first[1]
+        raw_doc_path = raw_doc[:tempfile].path
+        filename = raw_doc[:filename]
+        new_file_path = raw_doc_path + filename
+        new_file_path_no_spaces = new_file_path.gsub(" ", "")
+        system("cp #{raw_doc_path} #{new_file_path_no_spaces}")
+        @path = new_file_path
+      end
+    end
+
+    def file
+      File.new(path)
+    end
+  end
+
   class VerificationDocSet
     attr_reader :filepaths_with_extensions
 
