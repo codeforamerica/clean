@@ -1,4 +1,4 @@
-
+xr
 /* C A L F R E S H    A N D   S O   C L E A N */
 /* Calfres-and-so-clean is meant to be a dead simple form for SNAP applicant */
 /* These styles are overrides and modifications on top of Bootsrap 3 */
@@ -23,15 +23,6 @@
 
 /* F O N T S */
 
-.masthead p {
-  font-family: "brandon-grotesque", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.0625em;
-  display: inline-block;
-  padding-right: 0.625em;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
 
 .logo {
 	color: white;
@@ -44,7 +35,13 @@
 
 .program {
 	color: #F1AB00;
-/*	color: #CF6354;*/
+	font-family: "brandon-grotesque", sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.0625em;
+	display: inline-block;
+	padding-right: 0.625em;
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 
 .masthead h3 {
@@ -296,19 +293,28 @@ body {
 	border-radius: 0;
 }
 
+.btn-primary.form-button-1 {
+	height: 3.5em;
+	width: 100%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+}
+
 
 .form-button:hover {
 }
 
 
 /* Left button in 2 and 3 button groups */
-.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+/*.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
 	border-right: none;
-}
+}*/
 
 /* Middle button in 3 button groups */
-.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
-	border-right: none;
+/*.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+	border-right: none;*/
 }
 
 /* Right button in 2 and 3 button groups */
