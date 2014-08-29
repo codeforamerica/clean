@@ -1,19 +1,32 @@
-<% if @fax_result_application.successful? && @fax_result_verification_docs.successful? %>
-  <h1>Great! You've applied for CalFresh in San Francisco!</h1>
-  <br>
-  Your application has been submitted!
-<% else %>
-  <h1>Great! Your application was created!</h1>
-  <br>
-  We didn't actually submit your application just yet...probably because this is a demo, but also possibly because something went wrong. Contact the team and let them know what happened.
-<% end %>
+<div class="masthead-page">
+  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+    <h1>Apply for CalFresh in San Francisco</h1>
+    <br>
+    <p class="lead">With some basic personal information, a few photos of important documents, and your signature, you can apply for food benefits. If you are eligible for CalFresh, you are likely eligible for the Medi-Cal health insurance program as well.</p>
+  </div>
+</div>
+<div class="form-body">
+  <section class="form-page after-fax">
+    <div class="page-content col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+      <% if @fax_result_application.successful? && @fax_result_verification_docs.successful? %>
+        <h1>Great! You've applied for CalFresh in San Francisco!</h1>
+        <br>
+        Your application has been submitted!
+      <% else %>
+        <h1>Great! Your application was created!</h1>
+        <br>
+        We didn't actually submit your application just yet...probably because this is a demo, but also possibly because something went wrong. Contact the team and let them know what happened.
+      <% end %>
 
-<br><br>
-<ul>
-  <li>
-    <a href="/applications/<%= @application.unique_key %>">Click here to view your application</a>
-  </li>
-  <li>
-    <a href="/">Click here to start over</a>
-  </li>
-</ul>
+      <br><br>
+      <ul>
+        <li>
+          <a href="/applications/<%= @application.unique_key %>">Click here to view your application</a>
+        </li>
+        <li>
+          <a href="/">Click here to start over</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
