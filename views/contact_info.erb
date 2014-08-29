@@ -1,0 +1,28 @@
+<div class="masthead m-aside scene_element scene_element--fadein">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+    <p class="program">CALFRESH & MEDI-CAL</p>
+  </div>
+</div>
+<form name="contact_info" action="/application/contact_info" method="post" class="form col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 m-page scene_element scene_element--fadeinup" >
+  <h3>Contact information</h3>
+  <div class="form-group">
+    <h5 class="form-context">Please provide:</h5>
+    <input type="text" class="form-control middle" name="home_phone_number" placeholder="Your phone number"autofocus="autofocus">
+    <input type="text" class="form-control middle" name="email" placeholder="Email address">
+    <input type="text" class="form-control middle" name="home_address" placeholder="Home street address" required required data-parsley-required-message="Address is required to apply" \>
+    <input type="text" class="form-control bottom" name="home_zip_code" placeholder="ZIP code">
+    <input type="hidden" class="form-control" name="home_city" value="San Francisco">
+    <input type="hidden" class="form-control" name="home_state" value="CA">
+  </div>
+  <div class="form-group">
+    <h5 class="form-context">Your preferred language:</h5>
+    <select class="form-control solo" name="primary_language">
+      <% @language_options.each do |language| %>
+        <option value="<%= language %>"><%= language %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="page-footer">
+    <input class="btn next-step" type="submit" value="Next Step: Personal Information">
+  </div>
+</form>
