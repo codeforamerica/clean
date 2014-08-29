@@ -170,8 +170,8 @@ class CalfreshWeb < Sinatra::Base
   post '/first_id_doc' do
     puts params
     doc = Calfresh::VerificationDoc.new(params)
-    puts doc.file_path
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file_path)
+    puts doc.path
+    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file)
     puts fax_result_verification_doc.message
     redirect to('/next_id_doc'), 303
   end

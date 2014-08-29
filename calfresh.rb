@@ -119,7 +119,7 @@ module Calfresh
   end
 
   class VerificationDoc
-    attr_reader :file_path
+    attr_reader :path
 
     def initialize(doc_param)
       if doc_param.count > 0
@@ -129,8 +129,12 @@ module Calfresh
         new_file_path = raw_doc_path + filename
         new_file_path_no_spaces = new_file_path.gsub(" ", "")
         system("cp #{raw_doc_path} #{new_file_path_no_spaces}")
-        @file_path = new_file_path
+        @path = new_file_path
       end
+    end
+
+    def file
+      File.new(path)
     end
   end
 
