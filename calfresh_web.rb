@@ -81,14 +81,14 @@ class CalfreshWeb < Sinatra::Base
   end
 
   post '/application/additional_household_member' do
-    sex = params.select do |key, value|
-      value == "on"
-    end.keys.first.capitalize
     session[:name] = params[:their_name]
     session[:date_of_birth] = params[:their_date_of_birth]
     session[:ssn] = params[:ssn]
-    session[:sex] = sex
-    redirect to('/application/household_question'), 303
+    redirect to('/application/next_household_question'), 303
+  end
+
+  get '/application/next_household_question' do
+    erb :next_household_question, layout: :v4_layout
   end
 
   get '/application/review_and_submit' do
@@ -108,7 +108,7 @@ class CalfreshWeb < Sinatra::Base
   end
 
   get '/first_id_doc' do
-    erb :first_id_doc, layout: :verification_doc_layout
+    erb :first_id_doc, layout: :v4_layout
   end
 
   post '/first_id_doc' do

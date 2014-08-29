@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- JQuery -->
@@ -27,8 +25,22 @@
     <script type="text/javascript" src="//use.typekit.net/qly2lma.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
+  <title>Apply for Calfresh & Medi-Cal</title>
+  <script src="<%= url('js/jSignature.min.js') %>"></script>
+  <script>
+    $(document).ready(function() {
+      $("#signature_area").jSignature()
+      // Magic modified from http://paulology.com/signature-capture/
+      var $sigdiv = $("#signature_area")
+      $('#submit_button').click(function(e) {
+        var datapair = $sigdiv.jSignature("getData", "image")
+        $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
+      });
+    })
+  </script>
+
   <body>
-    <div id="main m-scene">
+    <div id="main">
       <%= yield %>
     </div>
   </body>

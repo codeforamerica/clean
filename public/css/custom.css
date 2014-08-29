@@ -52,12 +52,25 @@
 }
 
 h3 {
-  font-family: "merriweather", sans-serif;
+  font-family: "ff-tisa-web-pro", Georgia, serif;
   font-weight: 700;
-  color: #6f6f6f;
+  color: #2E394B;
   font-size: 21px;
   line-height: 1.4;
+  margin-bottom: 0;
  }
+
+ h4 {
+ 	font-family: "ff-tisa-web-pro", Georgia, serif;
+ 	font-size: 14px;
+ 	font-weight: 700;
+ 	color: #2E394B;
+ 	margin-top: 0;
+ }
+
+.page-footer h4 {
+	margin-top: 10px;
+}
 
 .form {
   font-family: "ff-tisa-sans-web-pro", sans-serif;
@@ -86,13 +99,11 @@ body {
 
 #main {
 	background: #fff;
-/*	position: absolute;
+	position: absolute;
 	bottom: 0;
 	top: 0;
 	left: 0;
 	right: 0;
-	box-shadow: 0 0 5px #888;
-	overflow: auto;*/
 }
 
 
@@ -266,7 +277,8 @@ body {
 
 /* This is a hack of Bootstrap's input/button madness */
 .btn-primary.form-button-3 {
-	height: 3.5em;
+	min-height: 3.5em;
+	height: auto;
 	width: 33%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
@@ -315,6 +327,7 @@ body {
 	background-image: none;
 	border-radius: 0;
 	line-height: 2;
+	margin: 10px 0;
 }
 
 .btn-primary.form-button-link-right {
@@ -329,6 +342,7 @@ body {
 	background-image: none;
 	border-radius: 0;
 	line-height: 2;
+	margin: 10px 0;
 }
 
 .btn-primary.form-button-link-right:hover {
@@ -378,6 +392,7 @@ the content column, so we override bootstrap.*/
 	border: 1px solid #ccc;
 	line-height: 2;
 	color: #555;
+	margin-bottom: 42px;
 }
 
 .skip:hover {
@@ -393,6 +408,7 @@ the content column, so we override bootstrap.*/
 	display: inline-block;
 	width: 100%;
 	padding: 0;
+	margin-bottom: 42px;
 }
 
 .next-step {
@@ -429,43 +445,58 @@ the content column, so we override bootstrap.*/
 #signature_area {
 	min-height: 100px;
 	border: 1px solid #ccc;
+	margin-bottom: 0;
 }
 
+.jSignature {
+	min-height: 160px;
+}
 /* M E D I A    Q U E R I E S */
-@media (min-device-width : 320px) {
-	#main {
-		margin: 0;
-		background: #fff;
-	}
-	.form-button {
+
+
+/* iPads (portrait and landscape) ----------- */
+@media screen and (min-width: 768px)  {}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+	.form-button-2 {
 		font-size: 11px;
+		height: 42px;
+	}
+	.form-button-3 {
+		font-size: 11px;
+		height: 42px;
 	}
 	.next-step {
-/*		font-size: 11px;*/
+		font-size: 11px;
+		height: 42px;
 	}
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media (min-device-width : 768px) {
-	#main {
-/*		margin: 24px;*/
-	}
-	.form-button {
-		font-size: 16px;
-	}
-	/* A class specifically for the Medi-cal page, where at full width*/
-	.truncate-title {
-		width: 85%;
-	}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
 }
 
-@media (min-width : 1224px) {
-	#main {
-/*		margin: 24px;*/
-	}
-	.form-button {
-		font-size: 16px;
-	}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+/* Styles */
 }
 
 
@@ -491,5 +522,12 @@ the content column, so we override bootstrap.*/
 /*
  * CSS Page Transitions
  */
+
+ /* B O O T S R A P   H A C K S */
+
+/* No width file pickers were breaking the layout on mobile */
+ input[type=file] {
+ 	width: 100%;
+ }
 
 
