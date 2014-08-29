@@ -13,6 +13,10 @@ class CalfreshWeb < Sinatra::Base
     #enable :sessions
   end
 
+  before do
+    puts session
+  end
+
   get '/' do
     @language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog Other)
     erb :index
