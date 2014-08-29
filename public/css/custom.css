@@ -23,15 +23,6 @@ xr
 
 /* F O N T S */
 
-.masthead p {
-  font-family: "brandon-grotesque", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.0625em;
-  display: inline-block;
-  padding-right: 0.625em;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
 
 .logo {
 	color: white;
@@ -44,7 +35,13 @@ xr
 
 .program {
 	color: #F1AB00;
-/*	color: #CF6354;*/
+	font-family: "brandon-grotesque", sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.0625em;
+	display: inline-block;
+	padding-right: 0.625em;
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 
 .masthead h3 {
