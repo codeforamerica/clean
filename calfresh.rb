@@ -151,7 +151,7 @@ module Calfresh
   end
 
   class VerificationDoc
-    attr_reader :path
+    attr_reader :original_file_path, :grayscaled_file_path, :sketched_file_path
 
     def initialize(doc_param)
       if doc_param.count > 0
@@ -161,12 +161,23 @@ module Calfresh
         new_file_path = raw_doc_path + filename
         new_file_path_no_spaces = new_file_path.gsub(" ", "")
         system("cp #{raw_doc_path} #{new_file_path_no_spaces}")
-        @path = new_file_path_no_spaces
+        @original_file_path = new_file_path_no_spaces
       end
     end
 
-    def file
-      File.new(path)
+    def pre_process!
+      f = File.new(original_file_path)
+      extension = File.extname(f)
+      name_without_extension = File.basename(f, extension)
+      directory_path = File.dirname(f)
+      @grayscaled_file_path = directory_path + '/' + name_without_extension + "_grayscaled" + extension
+      @sketched_file_path = directory_path + '/' + name_without_extension + "_sketched" + extension
+      system("convert #{original_file_path} -geometry 1200x1200 -type Grayscale -brightness-contrast 25x25 #{grayscaled_file_path}")
+      system("convert #{original_file_path} in.jpg -geometry 1200x1200 -brightness-contrast 25x25 -type Grayscale -bias 50% -morphology Convolve DoG:0x4 -negate -threshold 47% -gaussian-blur 1 #{sketched_file_path}")
+    end
+
+    def processed_file_set
+      [File.new(grayscaled_file_path), File.new(sketched_file_path)]
     end
   end
 
