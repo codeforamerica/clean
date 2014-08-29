@@ -67,8 +67,8 @@ describe CalfreshWeb do
     context 'with ssn and sex selected' do
       before do
         @input_hash = {
-          ssn: '1112223333',
-          male: 'on'
+          "ssn" => '1112223333',
+          "Male" => 'on'
         }
         post '/application/sex_and_ssn', @input_hash
       end

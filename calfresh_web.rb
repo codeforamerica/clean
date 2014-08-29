@@ -53,9 +53,9 @@ class CalfreshWeb < Sinatra::Base
       value == "on"
     end.keys.first
     sex = case sex_field_name
-      when "male"
+      when "Male"
         "M"
-      when "female"
+      when "Female"
         "F"
       else
         ""
