@@ -18,12 +18,12 @@
     <!-- Custom JS -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script href="<%= url('js/custom.js') %>"></script>
-    <!-- Client-side field validation -->
-    <script src="js/parsley.min.js"></script>
-    <link rel="stylesheet" href="css/parsley.css">
     <!-- Typekit -->
     <script type="text/javascript" src="//use.typekit.net/qly2lma.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+      <!-- Client-side field validation -->
+    <script src="<%= url('js/parsley.min.js') %>"></script>
+    <link rel="stylesheet" href="<%= url('css/parsley.css') %>">
   </head>
   <title>Apply for Calfresh & Medi-Cal</title>
   <script src="<%= url('js/jSignature.min.js') %>"></script>
@@ -44,5 +44,4 @@
       <%= yield %>
     </div>
   </body>
-
 </html>
