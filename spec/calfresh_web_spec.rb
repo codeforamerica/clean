@@ -299,11 +299,12 @@ describe CalfreshWeb do
   describe 'POST /application/review_and_submit' do
     let(:fake_app) { double("FakeApp", :has_pngs? => true, :png_file_set => 'pngfileset') }
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
+    let(:fake_fax_result) { double("FaxResult", :message => "success!") }
     #let(:fake_faxer) { double("Faxer", :send_fax => "faxresult") }
 
     before do
       allow(Calfresh::ApplicationWriter).to receive(:new).and_return(fake_app_writer)
-      allow(Faxer).to receive(:send_fax).and_return("faxresult")
+      allow(Faxer).to receive(:send_fax).and_return(fake_fax_result)
       @data_hash = {
         date_of_birth: '06/09/1985'
       }
