@@ -16,7 +16,11 @@ module Calfresh
     ssn: 'Text3 PG 1', \
     ssn_page3: 'Text9 PG 3', \
     language_preference_reading: 'Text19 PG 1', \
-    language_preference_writing: 'Text20 PG 1'
+    language_preference_writing: 'Text20 PG 1',
+    addlhh_1_name: "Text12 PG 3",
+    addlhh_1_date_of_birth: "Text14 PG 3",
+    addlhh_1_sex: "Text15 PG 3",
+    addlhh_1_ssn: "Text18 PG 3"
   }
 
   class ApplicationWriter
@@ -27,7 +31,8 @@ module Calfresh
     def fill_out_form(input)
       base64_signature_blob = input[:signature]
       symbolized_key_input = symbolize_keys(input)
-      validated_field_input = filter_input_for_valid_fields(symbolized_key_input)
+      symbolized_key_input_with_addlhhs = process_addl_hh_members(symbolized_key_input)
+      validated_field_input = filter_input_for_valid_fields(symbolized_key_input_with_addlhhs)
       input_for_pdf_writer = map_input_to_pdf_field_names(validated_field_input)
       input_for_pdf_writer[FORM_FIELDS[:date]] = Date.today.strftime("%m/%d/%Y")
       input_for_pdf_writer['Check Box1 PG 3'] = "Yes"
@@ -41,6 +46,21 @@ module Calfresh
       convert_application_pdf_to_png_set(unique_key)
       add_signature_to_application(unique_key)
       Application.new(unique_key)
+    end
+
+    def process_addl_hh_members(input)
+      if input[:additional_household_members] != nil
+        new_input = input
+        input[:additional_household_members].each_with_index do |person_hash, array_index|
+          index_starting_at_one = array_index + 1
+          person_hash.each do |key, value|
+            new_input["addlhh_#{index_starting_at_one}_#{key}".to_sym] = value
+          end
+        end
+        return new_input
+      else
+        return input
+      end
     end
 
     #private
