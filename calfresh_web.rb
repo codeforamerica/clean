@@ -201,8 +201,8 @@ class CalfreshWeb < Sinatra::Base
   post '/first_id_doc' do
     puts params
     doc = Calfresh::VerificationDoc.new(params)
-    puts doc.path
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file)
+    doc.pre_process!
+    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
     puts fax_result_verification_doc.message
     redirect to('/next_id_doc'), 303
   end
@@ -214,8 +214,8 @@ class CalfreshWeb < Sinatra::Base
   post '/next_id_doc' do
     puts params
     doc = Calfresh::VerificationDoc.new(params)
-    puts doc.path
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file)
+    doc.pre_process!
+    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
     puts fax_result_verification_doc.message
     redirect to('/next_id_doc'), 303
   end
@@ -227,8 +227,8 @@ class CalfreshWeb < Sinatra::Base
   post '/first_income_doc' do
     puts params
     doc = Calfresh::VerificationDoc.new(params)
-    puts doc.path
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file)
+    doc.pre_process!
+    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
     puts fax_result_verification_doc.message
     redirect to('/next_income_doc'), 303
   end
@@ -240,8 +240,8 @@ class CalfreshWeb < Sinatra::Base
   post '/next_income_doc' do
     puts params
     doc = Calfresh::VerificationDoc.new(params)
-    puts doc.path
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file)
+    doc.pre_process!
+    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
     puts fax_result_verification_doc.message
     redirect to('/next_income_doc'), 303
   end
@@ -253,8 +253,8 @@ class CalfreshWeb < Sinatra::Base
   post '/first_expense_doc' do
     puts params
     doc = Calfresh::VerificationDoc.new(params)
-    puts doc.path
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file)
+    doc.pre_process!
+    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
     puts fax_result_verification_doc.message
     redirect to('/next_expense_doc')
   end
@@ -266,8 +266,8 @@ class CalfreshWeb < Sinatra::Base
   post '/next_expense_doc' do
     puts params
     doc = Calfresh::VerificationDoc.new(params)
-    puts doc.path
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file)
+    doc.pre_process!
+    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
     puts fax_result_verification_doc.message
     redirect to('/next_expense_doc')
   end
@@ -279,8 +279,8 @@ class CalfreshWeb < Sinatra::Base
   post '/first_other_doc' do
     puts params
     doc = Calfresh::VerificationDoc.new(params)
-    puts doc.path
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file)
+    doc.pre_process!
+    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
     puts fax_result_verification_doc.message
     redirect to('/next_other_doc')
   end
@@ -292,8 +292,8 @@ class CalfreshWeb < Sinatra::Base
   post '/next_other_doc' do
     puts params
     doc = Calfresh::VerificationDoc.new(params)
-    puts doc.path
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.file)
+    doc.pre_process!
+    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
     puts fax_result_verification_doc.message
     redirect to('/next_other_doc')
   end
