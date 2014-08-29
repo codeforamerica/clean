@@ -136,7 +136,7 @@ class CalfreshWeb < Sinatra::Base
     @application = writer.fill_out_form(input_for_writer)
     if @application.has_pngs?
       @fax_result_application = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], @application.png_file_set)
-      puts @fax_result_application
+      puts @fax_result_application.message
       #erb :after_fax
     end
 =begin
