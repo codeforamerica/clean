@@ -239,7 +239,7 @@ describe CalfreshWeb do
       before do
         @input_hash = {
           "their_name" => "Joe Blow",
-          "their_date_of_birth" => "12/23/1985",
+          "their_date_of_birth" => "12/23/85",
           "their_ssn" => "0001112222",
           "Male" => "on"
         }

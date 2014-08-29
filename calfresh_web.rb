@@ -125,6 +125,8 @@ class CalfreshWeb < Sinatra::Base
       birth_year = date_of_birth_array[2]
       if birth_year.length == 4
         clean_date_of_birth = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
+      else
+        clean_date_of_birth = params["their_date_of_birth"]
       end
     end
     session[:additional_household_members] ||= []
