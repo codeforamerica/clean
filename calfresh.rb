@@ -20,7 +20,19 @@ module Calfresh
     addlhh_1_name: "Text12 PG 3",
     addlhh_1_date_of_birth: "Text14 PG 3",
     addlhh_1_sex: "Text15 PG 3",
-    addlhh_1_ssn: "Text18 PG 3"
+    addlhh_1_ssn: "Text18 PG 3",
+    addlhh_2_name: "Text21 PG 3",
+    addlhh_2_date_of_birth: "Text23 PG 3",
+    addlhh_2_sex: "Text24 PG 3",
+    addlhh_2_ssn: "Text27 PG 3",
+    addlhh_3_name: "Text30 PG 3",
+    addlhh_3_date_of_birth: "Text32 PG 3",
+    addlhh_3_sex: "Text33 PG 3",
+    addlhh_3_ssn: "Text36 PG 3",
+    addlhh_4_name: "Text39 PG 3",
+    addlhh_4_date_of_birth: "Text41 PG 3",
+    addlhh_4_sex: "Text42 PG 3",
+    addlhh_4_ssn: "Text45 PG 3"
   }
 
   class ApplicationWriter
