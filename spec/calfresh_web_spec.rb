@@ -134,10 +134,10 @@ describe CalfreshWeb do
       end
 
       #it 'redirects to interview page' do
-      it 'redirects to review and submit page' do
+      it 'redirects to addl household members page' do
         expect(last_response).to be_redirect
         #expect(last_response.location).to include('/application/interview')
-        expect(last_response.location).to include('/application/review_and_submit')
+        expect(last_response.location).to include('/application/household_question')
       end
     end
 
@@ -234,30 +234,60 @@ describe CalfreshWeb do
     end
   end
 
-=begin
   describe 'POST /application/additional_household_member' do
-    context '' do
+    context 'first addl household member' do
       before do
         @input_hash = {
+          "their_name" => "Joe Blow",
+          "their_date_of_birth" => "12/23/85",
+          "their_ssn" => "0001112222",
+          "Male" => "on"
         }
         post '/application/additional_household_member', @input_hash
       end
 
-      it '' do
+      it 'saves the info to session' do
         desired_hash = {
+          additional_household_members: [{
+            :name => "Joe Blow",
+            :date_of_birth => "12/23/85",
+            :sex => "M",
+            :ssn => "0001112222"
+          }]
         }
         expect(last_request.session).to eq(desired_hash)
       end
 
-      it '' do
+      # To be changed to next_addl_household_member in future
+      it 'redirects back to household_question' do
         expect(last_response).to be_redirect
         expect(last_response.location).to include('/application/household_question')
+      end
+    end
+
+    context 'with 4-digit year in DOB' do
+      before do
+        @input_hash = {
+          "their_date_of_birth" => "12/23/1985",
+        }
+        post '/application/additional_household_member', @input_hash
+      end
+
+      it 'trims the year to 2 digits and saves in session' do
+        desired_hash = {
+          additional_household_members: [{
+            :date_of_birth => "12/23/85",
+            :name => "",
+            :sex => "",
+            :ssn => ""
+          }]
+        }
+        expect(last_request.session).to eq(desired_hash)
       end
     end
   end
 
   # Will want to test limit of N household members
-=end
 
   describe 'GET /application/review_and_submit' do
     it 'responds successfully' do
@@ -269,11 +299,12 @@ describe CalfreshWeb do
   describe 'POST /application/review_and_submit' do
     let(:fake_app) { double("FakeApp", :has_pngs? => true, :png_file_set => 'pngfileset') }
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
+    let(:fake_fax_result) { double("FaxResult", :message => "success!") }
     #let(:fake_faxer) { double("Faxer", :send_fax => "faxresult") }
 
     before do
       allow(Calfresh::ApplicationWriter).to receive(:new).and_return(fake_app_writer)
-      allow(Faxer).to receive(:send_fax).and_return("faxresult")
+      allow(Faxer).to receive(:send_fax).and_return(fake_fax_result)
       @data_hash = {
         date_of_birth: '06/09/1985'
       }

@@ -79,7 +79,7 @@ class CalfreshWeb < Sinatra::Base
       session[:medi_cal_interest] = "on"
     end
     #redirect to('/application/interview'), 303
-    redirect to('/application/review_and_submit'), 303
+    redirect to('/application/household_question'), 303
   end
 
   get '/application/interview' do
@@ -108,15 +108,45 @@ class CalfreshWeb < Sinatra::Base
   end
 
   post '/application/additional_household_member' do
-=begin
-    sex = params.select do |key, value|
+    sex_field_name = params.select do |key, value|
       value == "on"
-    end.keys.first.capitalize
-    session[:name] = params[:their_name]
-    session[:date_of_birth] = params[:their_date_of_birth]
-    session[:ssn] = params[:ssn]
-    session[:sex] = sex
-=end
+    end.keys.first
+    sex = case sex_field_name
+      when "Male"
+        "M"
+      when "Female"
+        "F"
+      else
+        ""
+    end
+    clean_date_of_birth = ""
+    if params["their_date_of_birth"] != ""
+      date_of_birth_array = params["their_date_of_birth"].split('/')
+      birth_year = date_of_birth_array[2]
+      if birth_year.length == 4
+        clean_date_of_birth = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
+      else
+        clean_date_of_birth = params["their_date_of_birth"]
+      end
+    end
+    session[:additional_household_members] ||= []
+    name = if params["their_name"] == nil
+             ""
+           else
+             params["their_name"]
+           end
+    ssn = if params["their_ssn"] == nil
+             ""
+           else
+             params["their_ssn"]
+           end
+    hash_for_person = {
+      name: name,
+      date_of_birth: clean_date_of_birth,
+      ssn: ssn,
+      sex: sex
+    }
+    session[:additional_household_members] << hash_for_person
     redirect to('/application/household_question'), 303
   end
 
