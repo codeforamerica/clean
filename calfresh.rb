@@ -161,7 +161,7 @@ module Calfresh
         new_file_path = raw_doc_path + filename
         new_file_path_no_spaces = new_file_path.gsub(" ", "")
         system("cp #{raw_doc_path} #{new_file_path_no_spaces}")
-        @path = new_file_path
+        @path = new_file_path_no_spaces
       end
     end
 
