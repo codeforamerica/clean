@@ -125,8 +125,10 @@ class CalfreshWeb < Sinatra::Base
   end
 
   post '/application/review_and_submit' do
+    puts params
     writer = Calfresh::ApplicationWriter.new
     input_for_writer = session
+    input_for_writer[:signature] = params["signature"]
     if session[:date_of_birth] != ""
       date_of_birth_array = session[:date_of_birth].split('/')
       birth_year = date_of_birth_array[2]
