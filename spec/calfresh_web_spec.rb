@@ -133,9 +133,11 @@ describe CalfreshWeb do
         expect(last_request.session).to eq(desired_hash)
       end
 
-      it 'redirects to interview page' do
+      #it 'redirects to interview page' do
+      it 'redirects to review and submit page' do
         expect(last_response).to be_redirect
-        expect(last_response.location).to include('/application/interview')
+        #expect(last_response.location).to include('/application/interview')
+        expect(last_response.location).to include('/application/review_and_submit')
       end
     end
 
@@ -151,11 +153,6 @@ describe CalfreshWeb do
         desired_hash = {}
         expect(last_request.session).to eq(desired_hash)
       end
-
-      it 'redirects to interview page' do
-        expect(last_response).to be_redirect
-        expect(last_response.location).to include('/application/interview')
-      end
     end
 
     context 'with nothing on medi-cal page selected' do
@@ -168,11 +165,6 @@ describe CalfreshWeb do
       it 'saves nothing in session' do
         desired_hash = {}
         expect(last_request.session).to eq(desired_hash)
-      end
-
-      it 'redirects to interview page' do
-        expect(last_response).to be_redirect
-        expect(last_response.location).to include('/application/interview')
       end
     end
   end
