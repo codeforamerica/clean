@@ -10,7 +10,7 @@ module Faxer
 
   def send_fax(phone_number, file_or_files)
     if configured_for_sending?
-      FaxResult.new(Phaxio.send_fax(to: phone_number, filename: file_or_files, batch: true, batch_delay: 30))
+      FaxResult.new(Phaxio.send_fax(to: phone_number, filename: file_or_files, batch: true, batch_delay: 300, batch_collision_avoidance: true))
     else
       FaxResult.new({"success" => false, "message" => "Faxer not configured." })
     end
