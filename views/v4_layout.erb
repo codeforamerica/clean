@@ -36,6 +36,9 @@
         var datapair = $sigdiv.jSignature("getData", "image")
         $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
       });
+      $('#signature_clear_button').click(function(e) {
+        $sigdiv.jSignature('clear');
+      });
     })
   </script>
 
