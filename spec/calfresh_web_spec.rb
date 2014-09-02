@@ -141,11 +141,9 @@ describe CalfreshWeb do
         expect(last_request.session).to eq(desired_hash)
       end
 
-      #it 'redirects to interview page' do
-      it 'redirects to addl household members page' do
+      it 'redirects to interview page' do
         expect(last_response).to be_redirect
-        #expect(last_response.location).to include('/application/interview')
-        expect(last_response.location).to include('/application/household_question')
+        expect(last_response.location).to include('/application/interview')
       end
     end
 
