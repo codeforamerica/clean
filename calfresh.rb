@@ -32,7 +32,16 @@ module Calfresh
     addlhh_4_name: "Text39 PG 3",
     addlhh_4_date_of_birth: "Text41 PG 3",
     addlhh_4_sex: "Text42 PG 3",
-    addlhh_4_ssn: "Text45 PG 3"
+    addlhh_4_ssn: "Text45 PG 3",
+    interview_monday: 'Check Box47 PG 2',
+    interview_tuesday: 'Check Box48 PG 2',
+    interview_wednesday: 'Check Box49 PG 2',
+    interview_thursday: 'Check Box50 PG 2',
+    interview_friday: 'Check Box51 PG 2',
+    interview_early_morning: 'Check Box52 PG 2',
+    interview_mid_morning: 'Check Box53 PG 2',
+    interview_afternoon: 'Check Box54 PG 2',
+    interview_late_afternoon: 'Check Box55 PG 2'
   }
 
   class ApplicationWriter
