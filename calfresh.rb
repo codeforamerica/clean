@@ -62,7 +62,7 @@ module Calfresh
       end
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
-      @pdftk.fill_form('./calfresh_2pager.pdf', filled_in_form_path, input_for_pdf_writer)
+      @pdftk.fill_form('./calfresh_3pager.pdf', filled_in_form_path, input_for_pdf_writer)
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
       convert_application_pdf_to_png_set(unique_key)
       add_signature_to_application(unique_key)
@@ -146,8 +146,8 @@ module Calfresh
     def png_filenames
       filename_array = Array.new
       filename_array << "/tmp/application_#{@unique_key}-0.png"
-      filename_array << "calfresh_application_images/page-7.png"
       filename_array << "/tmp/application_#{@unique_key}-1.png"
+      filename_array << "/tmp/application_#{@unique_key}-2.png"
       (9..15).each do |page_number|
         filename_array << "calfresh_application_images/page-#{page_number}.png"
       end
