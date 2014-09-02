@@ -92,6 +92,31 @@ describe Calfresh do
           writer.fill_out_form(fake_input)
         end
       end
+
+      context 'given all interview times selected' do
+        let(:fake_input) { {
+          interview_early_morning: 'Yes',
+          interview_mid_morning: 'Yes',
+          interview_afternoon: 'Yes',
+          interview_late_afternoon: 'Yes',
+          interview_monday: 'Yes',
+          interview_tuesday: 'Yes',
+          interview_wednesday: 'Yes',
+          interview_thursday: 'Yes',
+          interview_friday: 'Yes'
+          }
+        }
+
+        it 'checks all the selected interview time boxes available via app' do
+          desired_hash_subset = Hash.new
+          (47..55).each do |number|
+            desired_hash_subset["Check Box#{number} PG 2"] = 'Yes'
+          end
+          hash_for_fill_form = mandatory_pdf_form_inputs.merge(desired_hash_subset)
+          expect(fake_pdftk).to receive(:fill_form).with("./calfresh_2pager.pdf", "/tmp/application_fakehex.pdf", hash_for_fill_form)
+          writer.fill_out_form(fake_input)
+        end
+      end
     end
   end
 end
