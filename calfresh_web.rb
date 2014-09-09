@@ -79,8 +79,7 @@ class CalfreshWeb < Sinatra::Base
     if params[:yes] == "on"
       session[:medi_cal_interest] = "on"
     end
-    #redirect to('/application/interview'), 303
-    redirect to('/application/household_question'), 303
+    redirect to('/application/interview'), 303
   end
 
   get '/application/interview' do
