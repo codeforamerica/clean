@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/codeforamerica/calfresh-and-so-clean.png?label=ready&title=Ready)](https://waffle.io/codeforamerica/calfresh-and-so-clean)
 # CalFresh and So Clean
 
 Making applying to the CalFresh program not suck.
