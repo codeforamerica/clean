@@ -303,7 +303,7 @@ describe CalfreshWeb do
   end
 
   describe 'POST /application/review_and_submit' do
-    let(:fake_app) { double("FakeApp", :has_pngs? => true, :png_file_set => 'pngfileset') }
+    let(:fake_app) { double("FakeApp", :has_pngs? => true, :final_pdf_path => '/tmp/fakefinal.pdf') }
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
     let(:fake_sendgrid_client) { double("SendGrid::Client", :send => { "message" => "success" } ) }
     let(:fake_sendgrid_mail) { double("SendGrid::Mail", :add_attachment => 'cool') }
@@ -355,7 +355,7 @@ EOF
     end
 
     it 'adds application as attachment' do
-      expect(fake_sendgrid_mail).to have_received(:add_attachment).with(fake_app)
+      expect(fake_sendgrid_mail).to have_received(:add_attachment).with('/tmp/fakefinal.pdf')
     end
 
     it 'sends an email' do

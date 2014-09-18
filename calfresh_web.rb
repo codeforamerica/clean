@@ -192,7 +192,7 @@ Thanks for your time!
 Suzanne, your friendly neighborhood CalFresh robot
 EOF
       )
-      mail.add_attachment(@application)
+      mail.add_attachment(@application.final_pdf_path)
       @email_result_application = client.send(mail)
       puts @email_result_application
       #erb :after_fax

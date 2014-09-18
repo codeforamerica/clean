@@ -123,6 +123,11 @@ module Calfresh
 
     def initialize(unique_key)
       @unique_key = unique_key
+      write_pdf_from_pngs!
+    end
+
+    def final_pdf_path
+      "/tmp/final_application_pdf_#{unique_key}.pdf"
     end
 
     def has_pngs?
@@ -156,6 +161,11 @@ module Calfresh
 
     def signed_png_path
       "/tmp/application_#{@unique_key}-0.png"
+    end
+
+    private
+    def write_pdf_from_pngs!
+      system("convert #{png_filenames.join(' ')} #{final_pdf_path}")
     end
   end
 
