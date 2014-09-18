@@ -305,12 +305,13 @@ describe CalfreshWeb do
   describe 'POST /application/review_and_submit' do
     let(:fake_app) { double("FakeApp", :has_pngs? => true, :png_file_set => 'pngfileset') }
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
-    let(:fake_fax_result) { double("FaxResult", :message => "success!") }
-    #let(:fake_faxer) { double("Faxer", :send_fax => "faxresult") }
+    let(:fake_sendgrid_client) { double("SendGrid::Client", :send => { "message" => "success" } ) }
+    let(:fake_sendgrid_mail) { double("SendGrid::Mail", :add_attachment => 'cool') }
 
     before do
       allow(Calfresh::ApplicationWriter).to receive(:new).and_return(fake_app_writer)
-      allow(Faxer).to receive(:send_fax).and_return(fake_fax_result)
+      allow(SendGrid::Client).to receive(:new).and_return(fake_sendgrid_client)
+      allow(SendGrid::Mail).to receive(:new).and_return(fake_sendgrid_mail)
       @data_hash = {
         date_of_birth: '06/09/1985'
       }
@@ -325,8 +326,40 @@ describe CalfreshWeb do
       expect(fake_app_writer).to have_received(:fill_out_form).with(expected_hash)
     end
 
-    it 'sends a fax' do
-      expect(Faxer).to have_received(:send_fax).with("12223334444", 'pngfileset')
+    it 'instantiates a sendgrid client with the correct credentials' do
+      expect(SendGrid::Client).to have_received(:new).with(
+        api_user: 'fakesendgridusername',
+        api_key: 'fakesendgridpassword'
+      )
+    end
+
+    it 'puts content into a new mail object' do
+      expect(SendGrid::Mail).to have_received(:new).with(
+        to: 'fakeemailaddress',
+        from: 'ted@cleanassist.org',
+        subject: 'New Clean CalFresh application!',
+        text: <<EOF
+Hi there!
+
+An application for Calfresh benefits was just submitted!
+
+You can find a completed CF-285 in the attached .zip file. You will probably receive another e-mail shortly containing photos of their verification documents.
+
+The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a key to access it, please get in touch with Jake Soloman at jacob@codeforamerica.org
+
+Thanks for your time!
+
+Suzanne, your friendly neighborhood CalFresh robot
+EOF
+      )
+    end
+
+    it 'adds application as attachment' do
+      expect(fake_sendgrid_mail).to have_received(:add_attachment).with(fake_app)
+    end
+
+    it 'sends an email' do
+      expect(fake_sendgrid_client).to have_received(:send).with(fake_sendgrid_mail)
     end
   end
 end

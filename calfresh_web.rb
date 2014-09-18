@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'rack/ssl'
 require 'encrypted_cookie'
+require 'sendgrid-ruby'
 require './calfresh'
 require './faxer'
 
@@ -172,8 +173,28 @@ class CalfreshWeb < Sinatra::Base
     input_for_writer[:language_preference_writing] = session[:primary_language]
     @application = writer.fill_out_form(input_for_writer)
     if @application.has_pngs?
-      @fax_result_application = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], @application.png_file_set)
-      puts @fax_result_application.message
+      client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
+      mail = SendGrid::Mail.new(
+        to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
+        from: 'ted@cleanassist.org',
+        subject: 'New Clean CalFresh application!',
+        text: <<EOF
+Hi there!
+
+An application for Calfresh benefits was just submitted!
+
+You can find a completed CF-285 in the attached .zip file. You will probably receive another e-mail shortly containing photos of their verification documents.
+
+The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a key to access it, please get in touch with Jake Soloman at jacob@codeforamerica.org
+
+Thanks for your time!
+
+Suzanne, your friendly neighborhood CalFresh robot
+EOF
+      )
+      mail.add_attachment(@application)
+      @email_result_application = client.send(mail)
+      puts @email_result_application
       #erb :after_fax
     end
 =begin

@@ -6,6 +6,7 @@ gem 'phaxio'
 gem 'pdf-forms'
 gem 'rack-ssl'
 gem 'encrypted_cookie'
+gem 'sendgrid-ruby'
 
 group :test, :development do
   gem 'rack-test'
