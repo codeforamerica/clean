@@ -32,7 +32,16 @@ module Calfresh
     addlhh_4_name: "Text39 PG 3",
     addlhh_4_date_of_birth: "Text41 PG 3",
     addlhh_4_sex: "Text42 PG 3",
-    addlhh_4_ssn: "Text45 PG 3"
+    addlhh_4_ssn: "Text45 PG 3",
+    interview_monday: 'Check Box47 PG 2',
+    interview_tuesday: 'Check Box48 PG 2',
+    interview_wednesday: 'Check Box49 PG 2',
+    interview_thursday: 'Check Box50 PG 2',
+    interview_friday: 'Check Box51 PG 2',
+    interview_early_morning: 'Check Box52 PG 2',
+    interview_mid_morning: 'Check Box53 PG 2',
+    interview_afternoon: 'Check Box54 PG 2',
+    interview_late_afternoon: 'Check Box55 PG 2'
   }
 
   class ApplicationWriter
@@ -53,7 +62,7 @@ module Calfresh
       end
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
-      @pdftk.fill_form('./calfresh_2pager.pdf', filled_in_form_path, input_for_pdf_writer)
+      @pdftk.fill_form('./calfresh_3pager.pdf', filled_in_form_path, input_for_pdf_writer)
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
       convert_application_pdf_to_png_set(unique_key)
       add_signature_to_application(unique_key)
@@ -137,8 +146,8 @@ module Calfresh
     def png_filenames
       filename_array = Array.new
       filename_array << "/tmp/application_#{@unique_key}-0.png"
-      filename_array << "calfresh_application_images/page-7.png"
       filename_array << "/tmp/application_#{@unique_key}-1.png"
+      filename_array << "/tmp/application_#{@unique_key}-2.png"
       (9..15).each do |page_number|
         filename_array << "calfresh_application_images/page-#{page_number}.png"
       end
