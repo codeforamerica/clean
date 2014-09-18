@@ -116,6 +116,29 @@ body {
 	background-color: #2E394B;
 }
 
+
+/* B R A N D I N G */
+
+.cfa-brand {
+	padding-top: 0;
+	border-bottom: 1px solid #cccccc;
+	margin-bottom: 3em;
+}
+
+.cfa-brand h4 {
+	width: 75%;
+	display: inline-block;
+}
+
+.flag-tag {
+	width: 20%;
+	display: inline-block;
+	padding-bottom: 1em;
+	margin-top: -5px;
+}
+
+
+
 /* F O R M   S T Y L E S */
 
 .form {
