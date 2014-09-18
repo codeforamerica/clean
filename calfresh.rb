@@ -63,9 +63,9 @@ module Calfresh
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
       @pdftk.fill_form('./calfresh_3pager.pdf', filled_in_form_path, input_for_pdf_writer)
-      write_signature_png_to_tmp(base64_signature_blob, unique_key)
-      convert_application_pdf_to_png_set(unique_key)
-      add_signature_to_application(unique_key)
+      #write_signature_png_to_tmp(base64_signature_blob, unique_key)
+      #convert_application_pdf_to_png_set(unique_key)
+      #add_signature_to_application(unique_key)
       Application.new(unique_key)
     end
 
@@ -123,11 +123,12 @@ module Calfresh
 
     def initialize(unique_key)
       @unique_key = unique_key
-      write_pdf_from_pngs!
+      #write_pdf_from_pngs!
     end
 
     def final_pdf_path
-      "/tmp/final_application_pdf_#{unique_key}.pdf"
+      #"/tmp/final_application_pdf_#{unique_key}.pdf"
+      "/tmp/application_#{unique_key}.pdf"
     end
 
     def has_pngs?

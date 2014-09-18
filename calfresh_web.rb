@@ -172,7 +172,7 @@ class CalfreshWeb < Sinatra::Base
     input_for_writer[:language_preference_reading] = session[:primary_language]
     input_for_writer[:language_preference_writing] = session[:primary_language]
     @application = writer.fill_out_form(input_for_writer)
-    if @application.has_pngs?
+    #if @application.has_pngs?
       client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
       mail = SendGrid::Mail.new(
         to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
@@ -196,7 +196,7 @@ EOF
       @email_result_application = client.send(mail)
       puts @email_result_application
       #erb :after_fax
-    end
+    #end
 =begin
     else
       puts "No PNGs! WTF!?!"
