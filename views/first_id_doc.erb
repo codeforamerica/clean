@@ -20,12 +20,19 @@
     <label for="identification">Upload Document</label>
     <input type="file" name="identification" autofocus="autofocus"></input>
   </div>
-  <h5 class="or" style="text-align:center">or</h5>
-  <a class="btn skip form-button-link-solo" href="/first_income_doc">Skip</a>
   <div class="page-footer" style="display:none">
-    <input class="btn next-step" type="submit" value="Submit">
+    <input class="btn next-step" type="submit" value="Add this document">
   </div>
 </form>
+
+
+<form name="send" action="/documents/<%= @token %>/<%= @number_of_docs %>/submit" method="post" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+  <div class="page-footer" id="done-partial">
+    <h3 class="or" style="text-align:center">or</h5>
+    <input class="btn next-step" type="submit" value="I'm Done! Submit My Documents!">
+  </div>
+</form>
+
 <script>
   $('.btn').button();
   $(function() {
@@ -33,6 +40,7 @@
        $(".page-footer").removeAttr("style");
        $(".or").hide();
        $(".skip").hide();
+       $("#done-partial").hide();
      });
   });
 </script>
