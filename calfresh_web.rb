@@ -233,7 +233,7 @@ EOF
   get '/documents/:user_token/:number_of_docs' do
     @token = params[:user_token]
     @number_of_docs = params[:number_of_docs]
-    erb :first_id_doc, layout: :verification_doc_layout
+    erb :new_doc, layout: :verification_doc_layout
   end
 
   post '/documents/:user_token/:doc_number/create' do
