@@ -243,6 +243,31 @@ EOF
     redirect to("/documents/#{params[:user_token]}/#{new_number_of_docs}"), 302
   end
 
+  post '/documents/:user_token/:doc_number/submit' do
+    token = params[:user_token]
+    max_doc_index = params[:doc_number].to_i - 1
+    redis = Redis.new(:url => settings.redis_url)
+    file_paths_array = Array.new
+    (0..max_doc_index).to_a.each do |index|
+      # Get binary from Redis
+      binary = redis.get("#{token}_#{index}_binary")
+      # Get filename from Redis
+      filename = redis.get("#{token}_#{index}_filename")
+      # Write file to /tmp with proper extension
+      temp_file_path = "/tmp/" + token + filename
+      File.open(temp_file_path, 'wb') do |file|
+        file.write(binary)
+      end
+      # Add full path for new file to array
+      file_paths_array << temp_file_path
+    end
+    # Combine all files into single PDF
+    final_pdf_path = "/tmp/#{token}_all_images.pdf"
+    system("convert #{file_paths_array.join(' ')} #{final_pdf_path}")
+    # Encrypt and zip file
+    # ...
+  end
+
   get '/first_id_doc' do
     erb :first_id_doc, layout: :v4_layout
   end
