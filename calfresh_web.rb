@@ -2,6 +2,8 @@ require 'sinatra'
 require 'rack/ssl'
 require 'encrypted_cookie'
 require 'sendgrid-ruby'
+require 'redis'
+require 'securerandom'
 require './calfresh'
 require './faxer'
 
@@ -12,6 +14,10 @@ class CalfreshWeb < Sinatra::Base
   elsif settings.environment == :development
     # Breaking tests, but needed for dev use
     #enable :sessions
+  end
+
+  configure do
+    set :redis_url, URI.parse(ENV["REDISTOGO_URL"])
   end
 
   before do
@@ -211,7 +217,31 @@ EOF
   end
 
   get '/document_question' do
+    @user_token = SecureRandom.hex
     erb :document_question, layout: :verification_doc_layout
+  end
+
+  get '/documents/:user_token/:number_of_docs' do
+    @token = params[:user_token]
+    @number_of_docs = params[:number_of_docs]
+    erb :first_id_doc, layout: :verification_doc_layout
+  end
+
+  post '/documents/:user_token/:doc_number/create' do
+    token = params[:user_token]
+    doc_number = params[:doc_number].to_i
+    redis = Redis.new(:url => settings.redis_url)
+    doc = Calfresh::VerificationDoc.new(params)
+    image_binary = IO.binread(doc.original_file_path)
+    binary_keyname = "#{token}_#{doc_number}_binary"
+    filename_keyname = "#{token}_#{doc_number}_filename"
+    filename = params["identification"][:filename].gsub(" ","")
+    redis.set(binary_keyname, image_binary)
+    redis.expire(binary_keyname, 1800)
+    redis.set(filename_keyname, filename)
+    redis.expire(filename_keyname, 1800)
+    new_number_of_docs = doc_number + 1
+    redirect to("/documents/#{params[:user_token]}/#{new_number_of_docs}"), 302
   end
 
   get '/first_id_doc' do

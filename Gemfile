@@ -7,6 +7,7 @@ gem 'pdf-forms'
 gem 'rack-ssl'
 gem 'encrypted_cookie'
 gem 'sendgrid-ruby'
+gem 'redis'
 
 group :test, :development do
   gem 'rack-test'
