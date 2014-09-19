@@ -192,7 +192,9 @@ An application for Calfresh benefits was just submitted!
 
 You can find a completed CF-285 in the attached .zip file. You will probably receive another e-mail shortly containing photos of their verification documents.
 
-The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a key to access it, please get in touch with Jake Soloman at jacob@codeforamerica.org
+The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a password to access it, please get in touch with Jake Solomon at jacob@codeforamerica.org
+
+When you finish clearing the case, please help us track the case by filling out a bit of info here: http://bit.ly/cleancases
 
 Thanks for your time!
 
@@ -294,7 +296,7 @@ Hi there!
 
 Verification docs were just submitted for a CalFresh application!
 
-You can the docs in the attached .zip file.
+You can find the docs in the attached .zip file.
 
 The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a key to access it, please get in touch with Jake Soloman at jacob@codeforamerica.org
 
