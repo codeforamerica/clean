@@ -184,7 +184,7 @@ class CalfreshWeb < Sinatra::Base
       mail = SendGrid::Mail.new(
         to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
         from: 'suzanne@cleanassist.org',
-        subject: 'New Clean CalFresh application!',
+        subject: 'New Clean CalFresh Application!',
         text: <<EOF
 Hi there!
 
