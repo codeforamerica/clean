@@ -273,7 +273,6 @@ EOF
     Zip::Archive.encrypt(zip_file_path, 'faxonfax')
     puts zip_file_path
     # Email file
-=begin
     sendgrid_client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
     mail = SendGrid::Mail.new(
       to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
@@ -296,7 +295,6 @@ EOF
     mail.add_attachment(zip_file_path)
     @email_result_application = sendgrid_client.send(mail)
     puts @email_result_application
-=end
     # ...
   end
 
