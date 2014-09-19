@@ -270,7 +270,7 @@ EOF
     Zip::Archive.open(zip_file_path, Zip::CREATE) do |ar|
       ar.add_file(final_pdf_path) # add file to zip archive
     end
-    Zip::Archive.encrypt(zip_file_path, 'faxonfax')
+    Zip::Archive.encrypt(zip_file_path, ENV['ZIP_FILE_PASSWORD'])
     puts zip_file_path
     # Email file
     sendgrid_client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
