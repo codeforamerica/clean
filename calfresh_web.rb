@@ -221,6 +221,7 @@ EOF
   end
 
   get '/application/confirmation' do
+    @user_token = SecureRandom.hex
     erb :confirmation, layout: :v4_layout
   end
 
