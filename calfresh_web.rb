@@ -233,13 +233,12 @@ EOF
     redis = Redis.new(:url => settings.redis_url)
     doc = Calfresh::VerificationDoc.new(params)
     image_binary = IO.binread(doc.original_file_path)
-    binary_keyname = "#{token}_#{doc_number}_binary"
-    filename_keyname = "#{token}_#{doc_number}_filename"
+    key_base = "#{token}_#{doc_number}"
     filename = params["identification"][:filename].gsub(" ","")
-    redis.set(binary_keyname, image_binary)
-    redis.expire(binary_keyname, 1800)
-    redis.set(filename_keyname, filename)
-    redis.expire(filename_keyname, 1800)
+    redis.set(key_base + "_binary", image_binary)
+    redis.expire(key_base + "_binary", 1800)
+    redis.set(key_base + "_filename", filename)
+    redis.expire(key_base + "_filename", 1800)
     new_number_of_docs = doc_number + 1
     redirect to("/documents/#{params[:user_token]}/#{new_number_of_docs}"), 302
   end
