@@ -4,6 +4,7 @@ require 'encrypted_cookie'
 require 'sendgrid-ruby'
 require 'redis'
 require 'securerandom'
+require 'zipruby'
 require './calfresh'
 require './faxer'
 
@@ -265,6 +266,37 @@ EOF
     final_pdf_path = "/tmp/#{token}_all_images.pdf"
     system("convert #{file_paths_array.join(' ')} #{final_pdf_path}")
     # Encrypt and zip file
+    zip_file_path = "/tmp/#{token}_zipped.zip"
+    Zip::Archive.open(zip_file_path, Zip::CREATE) do |ar|
+      ar.add_file(final_pdf_path) # add file to zip archive
+    end
+    Zip::Archive.encrypt(zip_file_path, 'faxonfax')
+    puts zip_file_path
+    # Email file
+=begin
+    sendgrid_client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
+    mail = SendGrid::Mail.new(
+      to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
+      from: 'ted@cleanassist.org',
+      subject: 'New Clean CalFresh Verification Docs!',
+      text: <<EOF
+Hi there!
+
+Verification docs were just submitted for a CalFresh application!
+
+You can the docs in the attached .zip file.
+
+The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a key to access it, please get in touch with Jake Soloman at jacob@codeforamerica.org
+
+Thanks for your time!
+
+Suzanne, your friendly neighborhood CalFresh robot
+EOF
+    )
+    mail.add_attachment(zip_file_path)
+    @email_result_application = sendgrid_client.send(mail)
+    puts @email_result_application
+=end
     # ...
   end
 
