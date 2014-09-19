@@ -183,7 +183,7 @@ class CalfreshWeb < Sinatra::Base
       client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
       mail = SendGrid::Mail.new(
         to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
-        from: 'ted@cleanassist.org',
+        from: 'suzanne@cleanassist.org',
         subject: 'New Clean CalFresh application!',
         text: <<EOF
 Hi there!
@@ -286,7 +286,7 @@ EOF
     sendgrid_client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
     mail = SendGrid::Mail.new(
       to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
-      from: 'ted@cleanassist.org',
+      from: 'suzanne@cleanassist.org',
       subject: 'New Clean CalFresh Verification Docs!',
       text: <<EOF
 Hi there!
