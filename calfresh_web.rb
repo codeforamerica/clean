@@ -307,6 +307,7 @@ EOF
     @email_result_application = sendgrid_client.send(mail)
     puts @email_result_application
     # ...
+    redirect to("/complete"), 302
   end
 
   get '/first_id_doc' do
