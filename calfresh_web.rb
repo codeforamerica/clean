@@ -261,6 +261,9 @@ EOF
       end
       # Add full path for new file to array
       file_paths_array << temp_file_path
+      # Delete Redis data
+      redis.del("#{token}_#{index}_binary")
+      redis.del("#{token}_#{index}_filename")
     end
     # Combine all files into single PDF
     final_pdf_path = "/tmp/#{token}_all_images.pdf"
