@@ -114,7 +114,9 @@ Our primary metrics are ([raw data](https://docs.google.com/a/codeforamerica.org
 - # of approved applications (quantity)
 - % of submitted applications approved (quality)
 
-[![Metrics](https://docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/embed/oimg?id=1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0&oid=1275325088&zx=yib87acgmeyq)](https://docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/edit#gid=1258013118)
+[![Metrics](https://plot.ly/~lippytak/189.png)](http://keep-it-clean-metrics.herokuapp.com/)
+
+(# of submitted apps shown for context)
 
 ## Copyright and License
 
