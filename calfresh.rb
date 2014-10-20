@@ -32,7 +32,16 @@ module Calfresh
     addlhh_4_name: "Text39 PG 3",
     addlhh_4_date_of_birth: "Text41 PG 3",
     addlhh_4_sex: "Text42 PG 3",
-    addlhh_4_ssn: "Text45 PG 3"
+    addlhh_4_ssn: "Text45 PG 3",
+    interview_monday: 'Check Box47 PG 2',
+    interview_tuesday: 'Check Box48 PG 2',
+    interview_wednesday: 'Check Box49 PG 2',
+    interview_thursday: 'Check Box50 PG 2',
+    interview_friday: 'Check Box51 PG 2',
+    interview_early_morning: 'Check Box52 PG 2',
+    interview_mid_morning: 'Check Box53 PG 2',
+    interview_afternoon: 'Check Box54 PG 2',
+    interview_late_afternoon: 'Check Box55 PG 2'
   }
 
   class ApplicationWriter
@@ -53,10 +62,13 @@ module Calfresh
       end
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
-      @pdftk.fill_form('./calfresh_2pager.pdf', filled_in_form_path, input_for_pdf_writer)
+      @pdftk.fill_form('./calfresh_3pager.pdf', filled_in_form_path, input_for_pdf_writer)
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
-      convert_application_pdf_to_png_set(unique_key)
-      add_signature_to_application(unique_key)
+      system("convert /tmp/signature_#{unique_key}.png -background none -gravity southwest -extent 2500x2400 /tmp/signature_scaled_#{unique_key}.png")
+      system("convert /tmp/signature_scaled_#{unique_key}.png /tmp/sig_pdf_#{unique_key}.pdf")
+      system("pdftk #{filled_in_form_path} stamp /tmp/sig_pdf_#{unique_key}.pdf output /tmp/final_application_#{unique_key}.pdf")
+      #convert_application_pdf_to_png_set(unique_key)
+      #add_signature_to_application(unique_key)
       Application.new(unique_key)
     end
 
@@ -114,6 +126,12 @@ module Calfresh
 
     def initialize(unique_key)
       @unique_key = unique_key
+      #write_pdf_from_pngs!
+    end
+
+    def final_pdf_path
+      #"/tmp/final_application_pdf_#{unique_key}.pdf"
+      "/tmp/final_application_#{unique_key}.pdf"
     end
 
     def has_pngs?
@@ -137,8 +155,8 @@ module Calfresh
     def png_filenames
       filename_array = Array.new
       filename_array << "/tmp/application_#{@unique_key}-0.png"
-      filename_array << "calfresh_application_images/page-7.png"
       filename_array << "/tmp/application_#{@unique_key}-1.png"
+      filename_array << "/tmp/application_#{@unique_key}-2.png"
       (9..15).each do |page_number|
         filename_array << "calfresh_application_images/page-#{page_number}.png"
       end
@@ -147,6 +165,11 @@ module Calfresh
 
     def signed_png_path
       "/tmp/application_#{@unique_key}-0.png"
+    end
+
+    private
+    def write_pdf_from_pngs!
+      system("convert #{png_filenames.join(' ')} #{final_pdf_path}")
     end
   end
 

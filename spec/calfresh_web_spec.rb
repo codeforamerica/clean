@@ -141,11 +141,9 @@ describe CalfreshWeb do
         expect(last_request.session).to eq(desired_hash)
       end
 
-      #it 'redirects to interview page' do
-      it 'redirects to addl household members page' do
+      it 'redirects to interview page' do
         expect(last_response).to be_redirect
-        #expect(last_response.location).to include('/application/interview')
-        expect(last_response.location).to include('/application/household_question')
+        expect(last_response.location).to include('/application/interview')
       end
     end
 
@@ -305,14 +303,15 @@ describe CalfreshWeb do
   end
 
   describe 'POST /application/review_and_submit' do
-    let(:fake_app) { double("FakeApp", :has_pngs? => true, :png_file_set => 'pngfileset') }
+    let(:fake_app) { double("FakeApp", :has_pngs? => true, :final_pdf_path => '/tmp/fakefinal.pdf') }
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
-    let(:fake_fax_result) { double("FaxResult", :message => "success!") }
-    #let(:fake_faxer) { double("Faxer", :send_fax => "faxresult") }
+    let(:fake_sendgrid_client) { double("SendGrid::Client", :send => { "message" => "success" } ) }
+    let(:fake_sendgrid_mail) { double("SendGrid::Mail", :add_attachment => 'cool') }
 
     before do
       allow(Calfresh::ApplicationWriter).to receive(:new).and_return(fake_app_writer)
-      allow(Faxer).to receive(:send_fax).and_return(fake_fax_result)
+      allow(SendGrid::Client).to receive(:new).and_return(fake_sendgrid_client)
+      allow(SendGrid::Mail).to receive(:new).and_return(fake_sendgrid_mail)
       @data_hash = {
         date_of_birth: '06/09/1985'
       }
@@ -327,8 +326,77 @@ describe CalfreshWeb do
       expect(fake_app_writer).to have_received(:fill_out_form).with(expected_hash)
     end
 
-    it 'sends a fax' do
-      expect(Faxer).to have_received(:send_fax).with("12223334444", 'pngfileset')
+    it 'instantiates a sendgrid client with the correct credentials' do
+      expect(SendGrid::Client).to have_received(:new).with(
+        api_user: 'fakesendgridusername',
+        api_key: 'fakesendgridpassword'
+      )
+    end
+
+    it 'puts content into a new mail object' do
+      expect(SendGrid::Mail).to have_received(:new).with(
+        to: 'fakeemailaddress',
+        from: 'ted@cleanassist.org',
+        subject: 'New Clean CalFresh application!',
+        text: <<EOF
+Hi there!
+
+An application for Calfresh benefits was just submitted!
+
+You can find a completed CF-285 in the attached .zip file. You will probably receive another e-mail shortly containing photos of their verification documents.
+
+The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a key to access it, please get in touch with Jake Soloman at jacob@codeforamerica.org
+
+Thanks for your time!
+
+Suzanne, your friendly neighborhood CalFresh robot
+EOF
+      )
+    end
+
+    it 'adds application as attachment' do
+      expect(fake_sendgrid_mail).to have_received(:add_attachment).with('/tmp/fakefinal.pdf')
+    end
+
+    it 'sends an email' do
+      expect(fake_sendgrid_client).to have_received(:send).with(fake_sendgrid_mail)
+    end
+  end
+
+  describe 'POST /documents/USERTOKEN/DOCNUMBER/create' do
+    let(:fake_redis) { double("Redis", :set => nil, :expire => nil) }
+    let(:fake_verification_doc) { double("Calfresh::VerificationDoc", :original_file_path => '/tmp/fakepath') }
+
+    before do
+      allow(Redis).to receive(:new).and_return(fake_redis)
+      allow(IO).to receive(:binread).and_return("fakebinaryimage")
+      allow(Calfresh::VerificationDoc).to receive(:new).and_return(fake_verification_doc)
+      post '/documents/fakeusertoken/0/create', { "identification" => { :filename => "lol space.jpeg" } }
+    end
+
+    it 'instantiates a redis client' do
+      expect(Redis).to have_received(:new)
+    end
+
+    it 'saves binary to redis' do
+      expect(fake_redis).to have_received(:set).with("fakeusertoken_0_binary", "fakebinaryimage")
+    end
+
+    it 'expires the binary' do
+      expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_binary", 1800)
+    end
+
+    it 'saves filename to redis (and removes spaces from it)' do
+      expect(fake_redis).to have_received(:set).with("fakeusertoken_0_filename", "lolspace.jpeg")
+    end
+
+    it 'expires the filename' do
+      expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_filename", 1800)
+    end
+
+    it 'redirects with new number of docs' do
+      expect(last_response).to be_redirect
+      expect(last_response.location).to include('/documents/fakeusertoken/1')
     end
   end
 end

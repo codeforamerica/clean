@@ -303,9 +303,7 @@ body {
 }
 
 
-.form-button:hover {
-}
-
+.form-button:hover {}
 
 /* Left button in 2 and 3 button groups */
 /*.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
@@ -376,6 +374,59 @@ body {
 	background-image: none;
 	border-radius: 0;
 }
+
+/* F O R M   B U T T O N --- D I S A B L E E D / I N   P R O G R E S S */
+
+input.disabled {
+  color: #333;
+  background-color: #e1e0dc;
+/*  background-color: #f6f5f0;*/
+  border: 1px solid #d3d3d3;
+  cursor: auto;
+  text-shadow: white 0 1px 0;
+  -webkit-box-shadow: white 0 1px 0 0 inset;
+  -moz-box-shadow: white 0 1px 0 0 inset;
+  -ms-box-shadow: white 0 1px 0 0 inset;
+  -o-box-shadow: white 0 1px 0 0 inset;
+  box-shadow: white 0 1px 0 0 inset;
+}
+
+.in-progress {
+  text-shadow: none;
+  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background: linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  -pie-background: linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background-repeat: repeat;
+  -webkit-background-size: 40px 40px, 100% 100%;
+  -moz-background-size: 40px 40px, 100% 100%;
+  -ms-background-size: 40px 40px, 100% 100%;
+  -o-background-size: 40px 40px, 100% 100%;
+  background-size: 40px 40px, 100% 100%;
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  -moz-animation: progress-bar-stripes 2s linear infinite;
+  -ms-animation: progress-bar-stripes 2s linear infinite;
+  -o-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite;
+}
+
+@-webkit-keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+@-moz-keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+@keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
 /* F O R M   L I S T S */
 
 /* Sie by side lists, found on the interview.html */
