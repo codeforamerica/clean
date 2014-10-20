@@ -3,7 +3,7 @@
     <p class="program"> CALFRESH & MEDI-CAL</p>
   </div>
 </div>
-<form name="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
+<form name="review_and_submit" id="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
   <h3>Confirm and Submit</h3>
   <div class="form-group">
     <p><b>You'll need to read the following carefully, and then sign your name. It's important that you understand everything you agree to by signing and submitting this application for Calfresh.</b></p>
@@ -35,7 +35,7 @@
   <div class="form-group">
     <div class="checkbox">
       <p>
-        <input type="checkbox" name="confirmation" required data-parsley-required-message="Click the box above to confirm that you have read and are okay with how we are submitting your application (described above)." \><b>Check this box to confirm your intent to submit your CalFresh application.</b>
+        <input type="checkbox" name="confirmation" id="confirmation" required data-parsley-required-message="Click the box above to confirm that you have read and are okay with how we are submitting your application (described above)." \><b>Check this box to confirm your intent to submit your CalFresh application.</b>
             By clicking this box, you confirm your intent to submit this application to receive benefits from CalFresh. This web tool will take the information you have provided, and transcribe it onto an official CalFresh application form. That form, along with any documents you upload, will then automatically be faxed to the City of San Francisco Human Services Administration.
       </p>
       <label></label>
@@ -50,9 +50,17 @@
   $('.btn').button();
   $(function() {
      $("#submit_button").click(function() {
-      if ($( '#formId' ).parsley( 'isValid' )) {
+      if ($( '#review_and_submit' ).parsley().isValid()) {
+        $(this).attr("disabled", "disabled");
+        $(this).css({
+            color: '#333',
+            'background-color': '#e1e0dc',
+            border: '1px solid #d3d3d3',
+            cursor: 'auto'
+        });
         $(this).addClass("disabled in-progress");
         $(this).val('Submitting...')
+        $(this).blur();
       } else {}
      });
   });
