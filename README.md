@@ -110,7 +110,7 @@ heroku config:set LD_LIBRARY_PATH=/app/vendor/pdftk/lib
 ```
 
 ## Metrics on production deployment
-Our primary metrics are ([raw data](https://docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/edit#gid=1258013118)):
+Our primary metrics are:
 - # of approved applications (quantity)
 - % of submitted applications approved (quality)
 
