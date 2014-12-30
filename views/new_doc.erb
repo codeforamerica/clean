@@ -4,34 +4,34 @@
   </div>
 </div>
 <form name="first_id_doc" action="/documents/<%= @token %>/<%= @number_of_docs %>/create" method="post" enctype="multipart/form-data" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-  <h3>If you have one, upload a photo of your government ID.</h3>
+  <h3>Add a document to send</h3>
   <div class="form-group">
-    <p>Every Calfresh applicant needs to provide a government ID. Acceptable identification includes:
-      <ul>
-        <li>A driver's license or state identification card</li>
-        <li>A U.S. passport</li>
-        <li>Voter registration card</li>
-        <li>Birth certificate or social security card</li>
-      </ul>
-    </p>
-    <p>If you don't have a government ID on hand, that's ok. Skip this step for now, and try to locate your ID in advance of your interview.</p>
+    <p>To be approved for CalFresh, you will need to send in documentation of a few things:
+    <ul>
+      <li><strong>Identification (ID)</strong> for each person you cook and prepare food with (for example, a driver's license or passport)</li>
+      <li><strong>Income</strong> (for example, a bank statement)</li>
+      <li><strong>Expenses</strong> (for example, a rental lease and a utility bill)</li>
+    </ul>
+    <p>If you don't have a document, you can write down your information and sign your name below to state it's true.</p>
   </div>
   <div class="form-group file-group">
-    <label for="identification">Upload Document</label>
+    <label for="identification">Add Document</label>
+    <p>(If you're on a phone, click the button to take a picture!)</p>
     <input type="file" name="identification" autofocus="autofocus"></input>
   </div>
   <div class="page-footer" style="display:none">
-    <input class="btn next-step" type="submit" value="Add this document">
+    <input class="btn next-step" type="submit" value="Add This Document">
   </div>
 </form>
 
-
+<% if @number_of_docs.to_i > 0 %>
 <form name="send" action="/documents/<%= @token %>/<%= @number_of_docs %>/submit" method="post" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
   <div class="page-footer" id="done-partial">
     <h3 class="or" style="text-align:center">or</h5>
-    <input class="btn next-step" type="submit" value="I'm Done! Submit My Documents!">
+    <input class="btn next-step" type="submit" value="I'm Done! Submit My Documents">
   </div>
 </form>
+<% end %>
 
 <script>
   $('.btn').button();

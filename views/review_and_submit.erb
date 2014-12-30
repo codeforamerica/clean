@@ -46,3 +46,14 @@
       <input class="btn next-step" id="submit_button" type="submit" value="Submit Application">
   </div>
 </form>
+<script>
+  $('.btn').button();
+  $(function() {
+     $("#submit_button").click(function() {
+      if ($( '#formId' ).parsley( 'isValid' )) {
+        $(this).addClass("disabled in-progress");
+        $(this).val('Submitting...')
+      } else {}
+     });
+  });
+</script>
