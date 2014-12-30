@@ -5,7 +5,6 @@
     <!-- JQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!--[if lt IE 9]>
-      <script type="text/javascript" src="js/flashcanvas.js"></script>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -26,21 +25,8 @@
     <link rel="stylesheet" href="<%= url('css/parsley.css') %>">
   </head>
   <title>Apply for Calfresh & Medi-Cal</title>
-  <script src="<%= url('js/jSignature.min.js') %>"></script>
-  <script>
-    $(document).ready(function() {
-      $("#signature_area").jSignature()
-      // Magic modified from http://paulology.com/signature-capture/
-      var $sigdiv = $("#signature_area")
-      $('#submit_button').click(function(e) {
-        var datapair = $sigdiv.jSignature("getData", "image")
-        $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
-      });
-      $('#signature_clear_button').click(function(e) {
-        $sigdiv.jSignature('clear');
-      });
-    })
-  </script>
+
+  <%= yield_content :custom_head %>
 
   <body>
     <div id="main">

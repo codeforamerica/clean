@@ -1,3 +1,24 @@
+<% content_for :custom_head do %>
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/flashcanvas.js"></script>
+  <![endif]-->
+  <script src="<%= url('js/jSignature.min.js') %>"></script>
+  <script>
+    $(document).ready(function() {
+      $("#signature_area").jSignature()
+      // Magic modified from http://paulology.com/signature-capture/
+      var $sigdiv = $("#signature_area")
+      $('#submit_button').click(function(e) {
+        var datapair = $sigdiv.jSignature("getData", "image")
+        $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
+      });
+      $('#signature_clear_button').click(function(e) {
+        $sigdiv.jSignature('clear');
+      });
+    })
+  </script>
+<% end %>
+
 <div class="masthead">
   <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
     <p class="program"> CALFRESH & MEDI-CAL</p>
