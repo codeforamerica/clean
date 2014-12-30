@@ -1,3 +1,4 @@
 /old
 /.vagrant
+.env
 .DS_Store
