@@ -11,7 +11,7 @@ require './faxer'
 
 class CalfreshWeb < Sinatra::Base
   helpers Sinatra::ContentFor
-  
+
   if settings.environment == :production
     use Rack::Session::EncryptedCookie, :secret => ENV['SECRET_TOKEN']
     use Rack::SSL unless settings.environment
@@ -313,110 +313,6 @@ EOF
     puts @email_result_application
     # ...
     redirect to("/complete"), 302
-  end
-
-  get '/first_id_doc' do
-    erb :first_id_doc, layout: :layout
-  end
-
-  post '/first_id_doc' do
-    puts params
-    doc = Calfresh::VerificationDoc.new(params)
-    doc.pre_process!
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
-    puts fax_result_verification_doc.message
-    redirect to('/next_id_doc'), 303
-  end
-
-  get '/next_id_doc' do
-    erb :next_id_doc, layout: :verification_doc_layout
-  end
-
-  post '/next_id_doc' do
-    puts params
-    doc = Calfresh::VerificationDoc.new(params)
-    doc.pre_process!
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
-    puts fax_result_verification_doc.message
-    redirect to('/next_id_doc'), 303
-  end
-
-  get '/first_income_doc' do
-    erb :first_income_doc, layout: :verification_doc_layout
-  end
-
-  post '/first_income_doc' do
-    puts params
-    doc = Calfresh::VerificationDoc.new(params)
-    doc.pre_process!
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
-    puts fax_result_verification_doc.message
-    redirect to('/next_income_doc'), 303
-  end
-
-  get '/next_income_doc' do
-    erb :next_income_doc, layout: :verification_doc_layout
-  end
-
-  post '/next_income_doc' do
-    puts params
-    doc = Calfresh::VerificationDoc.new(params)
-    doc.pre_process!
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
-    puts fax_result_verification_doc.message
-    redirect to('/next_income_doc'), 303
-  end
-
-  get '/first_expense_doc' do
-    erb :first_expense_doc, layout: :verification_doc_layout
-  end
-
-  post '/first_expense_doc' do
-    puts params
-    doc = Calfresh::VerificationDoc.new(params)
-    doc.pre_process!
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
-    puts fax_result_verification_doc.message
-    redirect to('/next_expense_doc')
-  end
-
-  get '/next_expense_doc' do
-    erb :next_expense_doc, layout: :verification_doc_layout
-  end
-
-  post '/next_expense_doc' do
-    puts params
-    doc = Calfresh::VerificationDoc.new(params)
-    doc.pre_process!
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
-    puts fax_result_verification_doc.message
-    redirect to('/next_expense_doc')
-  end
-
-  get '/first_other_doc' do
-    erb :first_other_doc, layout: :verification_doc_layout
-  end
-
-  post '/first_other_doc' do
-    puts params
-    doc = Calfresh::VerificationDoc.new(params)
-    doc.pre_process!
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
-    puts fax_result_verification_doc.message
-    redirect to('/next_other_doc')
-  end
-
-  get '/next_other_doc' do
-    erb :next_other_doc, layout: :verification_doc_layout
-  end
-
-  post '/next_other_doc' do
-    puts params
-    doc = Calfresh::VerificationDoc.new(params)
-    doc.pre_process!
-    fax_result_verification_doc = Faxer.send_fax(ENV['FAX_DESTINATION_NUMBER'], doc.processed_file_set)
-    puts fax_result_verification_doc.message
-    redirect to('/next_other_doc')
   end
 
   get '/complete' do
