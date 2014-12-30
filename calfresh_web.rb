@@ -29,9 +29,12 @@ class CalfreshWeb < Sinatra::Base
   end
 
   get '/' do
+    session.clear
+    erb :start, layout: :layout
+  end
+
+  post '/application/start' do
     redirect to('/application/basic_info'), 303
-    #@language_options = %w(English Spanish Mandarin Cantonese Vietnamese Russian Tagalog Other)
-    #erb :index
   end
 
   get '/application/basic_info' do
