@@ -14,6 +14,5 @@ group :test, :development do
   gem 'rack-test'
   gem 'rspec'
   gem 'pry'
-  gem 'dotenv'
   gem 'foreman'
 end
