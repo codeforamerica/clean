@@ -14,7 +14,7 @@ class CalfreshWeb < Sinatra::Base
     use Rack::SSL unless settings.environment
   elsif settings.environment == :development
     # Breaking tests, but needed for dev use
-    #enable :sessions
+    enable :sessions
   end
 
   configure do
