@@ -235,13 +235,13 @@ EOF
 
   get '/document_question' do
     @user_token = SecureRandom.hex
-    erb :document_question, layout: :verification_doc_layout
+    erb :document_question, layout: :layout
   end
 
   get '/documents/:user_token/:number_of_docs' do
     @token = params[:user_token]
     @number_of_docs = params[:number_of_docs]
-    erb :new_doc, layout: :verification_doc_layout
+    erb :new_doc, layout: :layout
   end
 
   post '/documents/:user_token/:doc_number/create' do
@@ -319,7 +319,7 @@ EOF
   end
 
   get '/complete' do
-    erb :complete, layout: :verification_doc_layout
+    erb :complete, layout: :layout
   end
 
   post '/applications' do
