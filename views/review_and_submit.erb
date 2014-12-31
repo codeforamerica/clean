@@ -19,7 +19,7 @@
   </script>
 <% end %>
 
-<form name="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
+<form id="review_and_submit" name="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
   <h3>Confirm and Submit</h3>
   <div class="form-group">
     <p><b>Alright, you made it to the last page! Signing your name below means you have told the truth on this application and that you want to apply for CalFresh.</b></p>
@@ -51,17 +51,16 @@
   </div>
   <div class="form-context">After you submit, you'll have the chance to provide documents regarding you identification, income, expenses and other relevant information.</div>
   <div class="page-footer">
-      <input class="btn next-step" id="submit_button" type="submit" value="Submit Application">
+      <button id="submit_button" class="btn next-step" type="submit" value="Submit Application" data-loading-text="Sending in your application...">Submit Application</button>
   </div>
 </form>
 <script>
   $('.btn').button();
-  $(function() {
-     $("#submit_button").click(function() {
-      if ($( '#formId' ).parsley( 'isValid' )) {
-        $(this).addClass("disabled in-progress");
-        $(this).val('Submitting...')
-      } else {}
-     });
+
+  // Switch button to loading state if clicked when the form is valid
+  $( "#submit_button" ).click(function() {
+    if ($('#review_and_submit').parsley().isValid()) {
+      $('#submit_button').button('loading');  
+    }
   });
 </script>
