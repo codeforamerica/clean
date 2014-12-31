@@ -589,4 +589,11 @@ the content column, so we override bootstrap.*/
  	width: 100%;
  }
 
+/* P A R S L E Y   O V E R R I D E S */
 
+.parsley-errors-list.filled {
+	color: red;
+	background-color: rgba(255, 255, 255, 0);
+	font-size: 100%;
+	font-style: italic
+}
