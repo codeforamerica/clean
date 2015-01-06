@@ -17,7 +17,6 @@
 
 require 'rack/test'
 require 'pry'
-require 'dotenv'
 require File.expand_path('../../calfresh_web', __FILE__)
 require File.expand_path('../rack_spec_helpers', __FILE__)
 
@@ -28,7 +27,6 @@ end
 RSpec.configure do |config|
   config.include RackSpecHelpers
   config.before do
-    Dotenv.load
     self.app = CalfreshWeb
   end
 # The settings below are suggested to provide a good initial experience

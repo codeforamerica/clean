@@ -12,86 +12,30 @@ If you want to understand the genesis of the project, [click here](https://githu
 
 A user-friendly web form with the minimal fields necessary that generates a PDF application and faxes it in to HSA.
 
-## Setup
+## Local setup
 
-This app has a few dependencies:
+- [Install Ruby version 2.1.1](https://github.com/codeforamerica/howto/blob/master/Ruby.md)
+- Install system dependencies `pdftk` and `imagemagick` (use Homebrew on OSX or apt-get on Debian/Ubuntu)
+- Install Redis with `brew install redis`
+- Install Ruby dependencies with `bundle install`
 
-- Ruby 2.1.1
-- pdftk
-- imagemagick
-- gems (installed by running `bundle` inside the repo)
+Set the environment variable `REDISTOGO_URL` to `redis://localhost:6379` and start your local Redis server with `redis-server`
 
-
-For faxing capabilities, set the following environment variables:
-
-- PHAXIO_API_KEY
-- PHAXIO_API_SECRET
-- FAX_DESTINATION_NUMBER
-
-
-### Developing locally with Vagrant
-
-Because we've experienced problems running `pdftk` on Mac OSX, the recommended setup for developing locally is using a Vagrant virtual machine running Ubuntu.
-
-Here's how to get that set up:
-
-1 - Download and install VirtualBox ( https://www.virtualbox.org/wiki/Downloads ) and Vagrant ( https://www.vagrantup.com/downloads )
-
-2 - Clone this repo and go into the folder
-
-3 - Turn on the virtual machine and log in
+You can now run the app by running:
 
 ```
-vagrant up
-vagrant ssh
-```
-
-4 - Install system dependencies inside the virtual machine
-
-```
-sudo apt-get update
-sudo apt-get install pdftk
-sudo apt-get install imagemagick
-sudo apt-get install curl
-```
-
-5 - Install RVM and Ruby
-
-```
-\curl -sSL https://get.rvm.io | bash
-source /home/vagrant/.rvm/scripts/rvm
-```
-
-6 - Install Ruby 2.1 and gems
-
-```
-cd macbook-air-folder # if not already in /home/vagrant/macbook-air-folder
-rvm install 2.1.1
-bundle
-```
-
-Now you can run the app by running:
-
-```
-rackup
+bundle exec rackup
 ```
 
 and navigating in your browser to [http://localhost:1234](http://localhost:1234)
 
+For email capabilities we use Sendgrid, so for that set the following environment variables:
 
-To shut down the vagrant VM, go to your local repo folder and run:
+- `SENDGRID_USERNAME`
+- `SENDGRID_PASSWORD`
+- `EMAIL_ADDRESS_TO_SEND_TO`
 
-```
-vagrant halt
-```
-
-To restart the VM later, go into your local copy of the repo and run:
-
-```
-vagrant up
-vagrant ssh
-```
-
+We also password protect the output application in a ZIP file and you can set the password with the `ZIP_FILE_PASSWORD` environment variable.
 
 ## SSL
 
@@ -110,11 +54,13 @@ heroku config:set LD_LIBRARY_PATH=/app/vendor/pdftk/lib
 ```
 
 ## Metrics on production deployment
-Our primary metrics are ([raw data](https://docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/edit#gid=1258013118)):
+Our primary metrics are:
 - # of approved applications (quantity)
 - % of submitted applications approved (quality)
 
-[![Metrics](https://docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/embed/oimg?id=1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0&oid=1275325088&zx=yib87acgmeyq)](https://docs.google.com/a/codeforamerica.org/spreadsheets/d/1Erj1etuAX8ZKhYRwZ9nL9gkRBjf43Hatv7wQNyqljr0/edit#gid=1258013118)
+[![Metrics](https://plot.ly/~lippytak/189.png)](http://keep-it-clean-metrics.herokuapp.com/)
+
+(# of submitted apps shown for context)
 
 ## Copyright and License
 
