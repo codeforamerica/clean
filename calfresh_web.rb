@@ -200,7 +200,7 @@ You can find a completed CF-285 in the attached .zip file. You will probably rec
 
 The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a password to access it, please get in touch with Jake Solomon at jacob@codeforamerica.org
 
-When you finish clearing the case, please help us track the case by filling out a bit of info here: http://bit.ly/cleancases
+When you finish clearing the case, please help us track the case by filling out a bit of info here: http://c4a.me/cleancases
 
 Thanks for your time!
 
