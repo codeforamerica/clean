@@ -14,7 +14,7 @@ class CalfreshWeb < Sinatra::Base
 
   if settings.environment == :production
     use Rack::Session::EncryptedCookie, :secret => ENV['SECRET_TOKEN']
-    use Rack::SSL unless settings.environment
+    use Rack::SSL
   elsif settings.environment == :development
     # Breaking tests, but needed for dev use
     enable :sessions
