@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/' => 'application#index'
   get 'application/basic_info' => 'application#basic_info'
+  post 'application/basic_info' => 'application#basic_info_submit'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

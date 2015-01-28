@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
 
   def basic_info
   end
+
+  def basic_info_submit
+    session[:name] = params[:name]
+    session[:date_of_birth] = params[:date_of_birth]
+    redirect_to '/application/contact_info'
+  end
 end

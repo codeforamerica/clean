@@ -7,6 +7,10 @@ RSpec.describe ApplicationController, :type => :controller do
       expect(response).to be_redirect
       expect(response.location).to include('/application/basic_info')
     end
+
+    pending
+    it 'clears the session' do
+    end
   end
 
   describe 'get /application/basic_info' do
@@ -14,25 +18,30 @@ RSpec.describe ApplicationController, :type => :controller do
       get :basic_info
       expect(response.status).to eq(200)
     end
+
+    pending
+    it 'clears the session' do
+    end
   end
 
-=begin
   describe 'POST /application/basic_info' do
     before do
       @input_hash = { name: 'dave', date_of_birth: '06/01/75' }
-      post '/application/basic_info', @input_hash
+      post :basic_info_submit, @input_hash
     end
 
     it 'saves basic_info to the session' do
-      expect(last_request.session).to eq(@input_hash)
+      expect(@request.session[:name]).to eq('dave')
+      expect(@request.session[:date_of_birth]).to eq('06/01/75')
     end
 
     it 'redirects to contact_info' do
-      expect(last_response).to be_redirect
-      expect(last_response.location).to include('/application/contact_info')
+      expect(@response).to be_redirect
+      expect(@response.location).to include('/application/contact_info')
     end
   end
 
+=begin
   describe 'GET /application/contact_info' do
     it 'responds successfully' do
       get '/application/contact_info'
