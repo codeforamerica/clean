@@ -8,6 +8,18 @@ Rails.application.routes.draw do
   get '/' => 'application#index'
   get 'application/basic_info' => 'application#basic_info'
   post 'application/basic_info' => 'application#basic_info_submit'
+  get 'application/contact_info' => 'application#contact_info'
+  post 'application/contact_info_submit' => 'application#contact_info_submit'
+  get 'application/sex_and_ssn' => 'application#sex_and_ssn'
+  post 'application/sex_and_ssn' => 'application#sex_and_ssn_submit'
+  get 'application/medical' => 'application#medical'
+  post 'application/medical_submit' => 'application#medical_submit'
+  get 'application/interview' => 'application#interview'
+  post 'application/interview_submit' => 'application#interview_submit'
+  get 'application/household_question' => 'application#household_question'
+  get 'application/additional_household_member' => 'application#additional_household_member'
+  post 'application/additional_household_member_submit' => 'application#additional_household_member_submit'
+  get 'application/review_and_submit' => 'application#review_and_submit'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

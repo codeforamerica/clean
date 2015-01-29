@@ -41,11 +41,10 @@ RSpec.describe ApplicationController, :type => :controller do
     end
   end
 
-=begin
   describe 'GET /application/contact_info' do
     it 'responds successfully' do
-      get '/application/contact_info'
-      expect(last_response.status).to eq(200)
+      get :contact_info
+      expect(@response.status).to eq(200)
     end
   end
 
@@ -60,23 +59,25 @@ RSpec.describe ApplicationController, :type => :controller do
         home_state: 'CA',
         primary_language: "English"
       }
-      post '/application/contact_info', @input_hash
+      post :contact_info_submit, @input_hash
     end
 
     it 'saves contact info into the session' do
-      expect(last_request.session).to eq(@input_hash)
+      @input_hash.each_pair do |key, value|
+        expect(@request.session[key]).to eq(value)
+      end
     end
 
     it 'redirects to sex_and_ssn page' do
-      expect(last_response).to be_redirect
-      expect(last_response.location).to include('/application/sex_and_ssn')
+      expect(@response).to be_redirect
+      expect(@response.location).to include('/application/sex_and_ssn')
     end
   end
 
   describe 'GET /application/sex_and_ssn' do
     it 'responds successfully' do
-      get '/application/sex_and_ssn'
-      expect(last_response.status).to eq(200)
+      get :sex_and_ssn
+      expect(@response.status).to eq(200)
     end
   end
 
@@ -87,7 +88,7 @@ RSpec.describe ApplicationController, :type => :controller do
           "ssn" => '1112223333',
           "Male" => 'on'
         }
-        post '/application/sex_and_ssn', @input_hash
+        post :sex_and_ssn_submit, @input_hash
       end
 
       it 'saves contact info into the session' do
@@ -95,12 +96,14 @@ RSpec.describe ApplicationController, :type => :controller do
           ssn: '1112223333',
           sex: 'M'
         }
-        expect(last_request.session).to eq(desired_hash)
+        desired_hash.each_pair do |key, value|
+          expect(@request.session[key]).to eq(value)
+        end
       end
 
       it 'redirects to medi-cal page' do
-        expect(last_response).to be_redirect
-        expect(last_response.location).to include('/application/medical')
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/application/medical')
       end
     end
 
@@ -109,7 +112,7 @@ RSpec.describe ApplicationController, :type => :controller do
         @input_hash = {
           ssn: '1112223333',
         }
-        post '/application/sex_and_ssn', @input_hash
+        post :sex_and_ssn_submit, @input_hash
       end
 
       it 'saves contact info into the session' do
@@ -117,20 +120,22 @@ RSpec.describe ApplicationController, :type => :controller do
           ssn: '1112223333',
           sex: ''
         }
-        expect(last_request.session).to eq(desired_hash)
+        desired_hash.each_pair do |key, value|
+          expect(@request.session[key]).to eq(value)
+        end
       end
 
       it 'redirects to medi-cal page' do
-        expect(last_response).to be_redirect
-        expect(last_response.location).to include('/application/medical')
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/application/medical')
       end
     end
   end
 
   describe 'GET /application/medical' do
     it 'responds successfully' do
-      get '/application/medical'
-      expect(last_response.status).to eq(200)
+      get :medical
+      expect(@response.status).to eq(200)
     end
   end
 
@@ -140,19 +145,21 @@ RSpec.describe ApplicationController, :type => :controller do
         @input_hash = {
           yes: 'on'
         }
-        post '/application/medical', @input_hash
+        post :medical_submit, @input_hash
       end
 
       it 'marks medi_cal_interest as on in session' do
         desired_hash = {
           medi_cal_interest: 'on'
         }
-        expect(last_request.session).to eq(desired_hash)
+        desired_hash.each_pair do |key, value|
+          expect(@request.session[key]).to eq(value)
+        end
       end
 
       it 'redirects to interview page' do
-        expect(last_response).to be_redirect
-        expect(last_response.location).to include('/application/interview')
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/application/interview')
       end
     end
 
@@ -161,12 +168,11 @@ RSpec.describe ApplicationController, :type => :controller do
         @input_hash = {
           no: 'on'
         }
-        post '/application/medical', @input_hash
+        post :medical_submit, @input_hash
       end
 
       it 'saves nothing in session' do
-        desired_hash = {}
-        expect(last_request.session).to eq(desired_hash)
+        expect(@request.session).to be_empty
       end
     end
 
@@ -174,20 +180,19 @@ RSpec.describe ApplicationController, :type => :controller do
       before do
         @input_hash = {
         }
-        post '/application/medical', @input_hash
+        post :medical_submit, @input_hash
       end
 
       it 'saves nothing in session' do
-        desired_hash = {}
-        expect(last_request.session).to eq(desired_hash)
+        expect(@request.session).to be_empty
       end
     end
   end
 
   describe 'GET /application/interview' do
     it 'responds successfully' do
-      get '/application/interview'
-      expect(last_response.status).to eq(200)
+      get :interview
+      expect(@response.status).to eq(200)
     end
   end
 
@@ -198,7 +203,7 @@ RSpec.describe ApplicationController, :type => :controller do
           'early-morning' => 'on',
           'monday' => 'on'
         }
-        post '/application/interview', @input_hash
+        post :interview_submit, @input_hash
       end
 
       it 'saves the selections in session' do
@@ -206,12 +211,14 @@ RSpec.describe ApplicationController, :type => :controller do
           'interview_early_morning' => 'Yes',
           'interview_monday' => 'Yes'
         }
-        expect(last_request.session).to eq(desired_hash)
+        desired_hash.each_pair do |key, value|
+          expect(@request.session[key]).to eq(value)
+        end
       end
 
       it 'redirects to household_question page' do
-        expect(last_response).to be_redirect
-        expect(last_response.location).to include('/application/household_question')
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/application/household_question')
       end
     end
 
@@ -219,33 +226,31 @@ RSpec.describe ApplicationController, :type => :controller do
       before do
         @input_hash = {
         }
-        post '/application/interview', @input_hash
+        post :interview_submit, @input_hash
       end
 
       it 'puts nothing in session' do
-        desired_hash = {
-        }
-        expect(last_request.session).to eq(desired_hash)
+        expect(@request.session).to be_empty
       end
 
       it 'redirects to household_question page' do
-        expect(last_response).to be_redirect
-        expect(last_response.location).to include('/application/household_question')
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/application/household_question')
       end
     end
   end
 
   describe 'GET /application/household_question' do
     it 'responds successfully' do
-      get '/application/household_question'
-      expect(last_response.status).to eq(200)
+      get :household_question
+      expect(@response.status).to eq(200)
     end
   end
 
   describe 'GET /application/additional_household_member' do
     it 'responds successfully' do
-      get '/application/additional_household_member'
-      expect(last_response.status).to eq(200)
+      get :additional_household_member
+      expect(@response.status).to eq(200)
     end
   end
 
@@ -258,7 +263,7 @@ RSpec.describe ApplicationController, :type => :controller do
           "their_ssn" => "0001112222",
           "Male" => "on"
         }
-        post '/application/additional_household_member', @input_hash
+        post :additional_household_member_submit, @input_hash
       end
 
       it 'saves the info to session' do
@@ -270,13 +275,15 @@ RSpec.describe ApplicationController, :type => :controller do
             :ssn => "0001112222"
           }]
         }
-        expect(last_request.session).to eq(desired_hash)
+        desired_hash.each do |key, value|
+          expect(@request.session[key]).to eq(value)
+        end
       end
 
       # To be changed to next_addl_household_member in future
       it 'redirects back to household_question' do
-        expect(last_response).to be_redirect
-        expect(last_response.location).to include('/application/household_question')
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/application/household_question')
       end
     end
 
@@ -285,7 +292,7 @@ RSpec.describe ApplicationController, :type => :controller do
         @input_hash = {
           "their_date_of_birth" => "12/23/1985",
         }
-        post '/application/additional_household_member', @input_hash
+        post :additional_household_member_submit, @input_hash
       end
 
       it 'trims the year to 2 digits and saves in session' do
@@ -297,7 +304,9 @@ RSpec.describe ApplicationController, :type => :controller do
             :ssn => ""
           }]
         }
-        expect(last_request.session).to eq(desired_hash)
+        desired_hash.each do |key, value|
+          expect(@request.session[key]).to eq(value)
+        end
       end
     end
   end
@@ -306,11 +315,12 @@ RSpec.describe ApplicationController, :type => :controller do
 
   describe 'GET /application/review_and_submit' do
     it 'responds successfully' do
-      get '/application/review_and_submit'
-      expect(last_response.status).to eq(200)
+      get :review_and_submit
+      expect(@response.status).to eq(200)
     end
   end
 
+=begin
   describe 'POST /application/review_and_submit' do
     let(:fake_app) { double("FakeApp", :has_pngs? => true, :final_pdf_path => '/tmp/fakefinal.pdf') }
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
@@ -404,8 +414,8 @@ EOF
     end
 
     it 'redirects with new number of docs' do
-      expect(last_response).to be_redirect
-      expect(last_response.location).to include('/documents/fakeusertoken/1')
+      expect(@response).to be_redirect
+      expect(@response.location).to include('/documents/fakeusertoken/1')
     end
   end
 =end
