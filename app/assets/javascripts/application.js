@@ -10,6 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
+//= require vendor/jquery.min.js
+//= require vendor/bootstrap.min.js
+//= require vendor/jSignature.min

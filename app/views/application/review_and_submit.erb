@@ -1,8 +1,6 @@
-<% content_for :custom_head do %>
   <!--[if lt IE 9]>
     <script type="text/javascript" src="js/flashcanvas.js"></script>
   <![endif]-->
-  <script src="<%= url('js/jSignature.min.js') %>"></script>
   <script>
     $(document).ready(function() {
       $("#signature_area").jSignature()
@@ -17,7 +15,6 @@
       });
     })
   </script>
-<% end %>
 
 <form id="review_and_submit" name="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
   <h3>Confirm and Submit</h3>
