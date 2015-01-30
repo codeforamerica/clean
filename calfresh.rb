@@ -182,9 +182,9 @@ module Calfresh
         raw_doc_path = raw_doc[:tempfile].path
         filename = raw_doc[:filename]
         new_file_path = raw_doc_path + filename
-        new_file_path_no_spaces = new_file_path.gsub(" ", "")
-        system("cp #{raw_doc_path} #{new_file_path_no_spaces}")
-        @original_file_path = new_file_path_no_spaces
+        new_file_path_no_special_chars = new_file_path.gsub(/[^a-zA-Z0-9_.]+/, "")
+        system("cp #{raw_doc_path} #{new_file_path_no_special_chars}")
+        @original_file_path = new_file_path_no_special_chars
       end
     end
 

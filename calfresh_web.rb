@@ -251,7 +251,7 @@ EOF
     doc = Calfresh::VerificationDoc.new(params)
     image_binary = IO.binread(doc.original_file_path)
     key_base = "#{token}_#{doc_number}"
-    filename = params["identification"][:filename].gsub(" ","")
+    filename = params["identification"][:filename].gsub(/[^a-zA-Z0-9_.]+/,"")
     redis.set(key_base + "_binary", image_binary)
     redis.expire(key_base + "_binary", 1800)
     redis.set(key_base + "_filename", filename)
