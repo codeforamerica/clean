@@ -320,7 +320,6 @@ RSpec.describe ApplicationController, :type => :controller do
     end
   end
 
-=begin
   describe 'POST /application/review_and_submit' do
     let(:fake_app) { double("FakeApp", :has_pngs? => true, :final_pdf_path => '/tmp/fakefinal.pdf') }
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
@@ -334,7 +333,7 @@ RSpec.describe ApplicationController, :type => :controller do
       @data_hash = {
         date_of_birth: '06/09/1985'
       }
-      post '/application/review_and_submit', {}, { "rack.session" => @data_hash }
+      post :review_and_submit_submit, {}, @data_hash
     end
 
     it 'properly reformats the date of birth (and adds extraneous fields)' do
@@ -382,41 +381,19 @@ EOF
     end
   end
 
-  describe 'POST /documents/USERTOKEN/DOCNUMBER/create' do
-    let(:fake_redis) { double("Redis", :set => nil, :expire => nil) }
-    let(:fake_verification_doc) { double("Calfresh::VerificationDoc", :original_file_path => '/tmp/fakepath') }
-
-    before do
-      allow(Redis).to receive(:new).and_return(fake_redis)
-      allow(IO).to receive(:binread).and_return("fakebinaryimage")
-      allow(Calfresh::VerificationDoc).to receive(:new).and_return(fake_verification_doc)
-      post '/documents/fakeusertoken/0/create', { "identification" => { :filename => "lol space.jpeg" } }
-    end
-
-    it 'instantiates a redis client' do
-      expect(Redis).to have_received(:new)
-    end
-
-    it 'saves binary to redis' do
-      expect(fake_redis).to have_received(:set).with("fakeusertoken_0_binary", "fakebinaryimage")
-    end
-
-    it 'expires the binary' do
-      expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_binary", 1800)
-    end
-
-    it 'saves filename to redis (and removes spaces from it)' do
-      expect(fake_redis).to have_received(:set).with("fakeusertoken_0_filename", "lolspace.jpeg")
-    end
-
-    it 'expires the filename' do
-      expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_filename", 1800)
-    end
-
-    it 'redirects with new number of docs' do
-      expect(@response).to be_redirect
-      expect(@response.location).to include('/documents/fakeusertoken/1')
+  describe 'GET /application/document_question' do
+    it 'responds successfully' do
+      allow(SecureRandom).to receive(:hex).and_return("notsorandom")
+      get :document_question
+      expect(@assigns['user_token']).to eq("notsorandom")
+      expect(@response.status).to eq(200)
     end
   end
-=end
+
+  describe 'GET /complete' do
+    it 'responds successfully' do
+      get :complete
+      expect(@response.status).to eq(200)
+    end
+  end
 end

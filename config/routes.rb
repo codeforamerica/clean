@@ -20,6 +20,16 @@ Rails.application.routes.draw do
   get 'application/additional_household_member' => 'application#additional_household_member'
   post 'application/additional_household_member_submit' => 'application#additional_household_member_submit'
   get 'application/review_and_submit' => 'application#review_and_submit'
+  post 'application/review_and_submit' => 'application#review_and_submit_submit'
+  get 'application/confirmation' => 'application#confirmation'
+  get 'application/document_question' => 'application#document_question'
+
+  get 'complete' => 'application#complete'
+  get 'applications/:id' => 'application#show_application'
+
+  get 'documents/:user_token/:number_of_docs' => 'documents#new'
+  post 'documents/:user_token/:doc_number/create' => 'documents#create'
+  post 'documents/:user_token/:doc_number/submit' => 'documents#submit'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
