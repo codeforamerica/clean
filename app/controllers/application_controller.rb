@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
 
   def index
+    session.clear
   end
 
   def basic_info
+    session.clear
   end
 
   def basic_info_submit
