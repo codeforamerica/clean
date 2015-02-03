@@ -129,9 +129,8 @@ class ApplicationController < ActionController::Base
   end
 
   def review_and_submit_submit
-    puts params
     writer = Calfresh::ApplicationWriter.new
-    input_for_writer = session
+    input_for_writer = session.to_hash
     input_for_writer[:signature] = params["signature"]
     if session[:date_of_birth] != ""
       date_of_birth_array = session[:date_of_birth].split('/')

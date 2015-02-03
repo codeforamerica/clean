@@ -44,4 +44,24 @@ RSpec.describe DocumentsController, :type => :controller do
       expect(@response.location).to include('/documents/fakeusertoken/1')
     end
   end
+
+  describe 'POST /documents/USERTOKEN/DOCNUMBER/submit' do
+    let(:fake_redis) { double("Redis", :set => nil, :expire => nil) }
+
+    before do
+      allow(Redis).to receive(:new).and_return(fake_redis)
+      post :submit, { 'user_token' => 'fakeusertoken', 'doc_number' => '1' }
+    end
+
+    it 'instantiates a redis client' do
+      expect(Redis).to have_received(:new)
+    end
+
+    # More tests
+
+    it 'redirects with new number of docs' do
+      expect(@response).to be_redirect
+      expect(@response.location).to include('/documents/fakeusertoken/1')
+    end
+  end
 end

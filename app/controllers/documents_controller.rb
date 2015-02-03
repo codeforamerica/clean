@@ -11,7 +11,7 @@ class DocumentsController < ApplicationController
     doc = Calfresh::VerificationDoc.new(params)
     image_binary = IO.binread(doc.original_file_path)
     key_base = "#{token}_#{doc_number}"
-    filename = params["identification"][:filename].gsub(/[^a-zA-Z0-9_.]+/,"")
+    filename = params["identification"].original_filename.gsub(/[^a-zA-Z0-9_.]+/,"")
     redis.set(key_base + "_binary", image_binary)
     redis.expire(key_base + "_binary", 1800)
     redis.set(key_base + "_filename", filename)
@@ -43,14 +43,14 @@ class DocumentsController < ApplicationController
     end
     # Combine all files into single PDF
     final_pdf_path = "/tmp/#{token}_all_images.pdf"
-    system("convert #{file_paths_array.join(' ')} #{final_pdf_path}")
+    convert_command = "convert #{file_paths_array.join(' ')} #{final_pdf_path}"
+    system(convert_command)
     # Encrypt and zip file
     zip_file_path = "/tmp/#{token}_zipped.zip"
     Zip::Archive.open(zip_file_path, Zip::CREATE) do |ar|
       ar.add_file(final_pdf_path) # add file to zip archive
     end
     Zip::Archive.encrypt(zip_file_path, ENV['ZIP_FILE_PASSWORD'])
-    puts zip_file_path
     # Email file
     sendgrid_client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
     mail = SendGrid::Mail.new(

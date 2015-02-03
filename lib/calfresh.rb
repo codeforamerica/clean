@@ -62,7 +62,8 @@ module Calfresh
       end
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
-      @pdftk.fill_form('./calfresh_3pager.pdf', filled_in_form_path, input_for_pdf_writer)
+      empty_form_path = File.expand_path("../calfresh/calfresh_3pager.pdf", __FILE__)
+      @pdftk.fill_form(empty_form_path, filled_in_form_path, input_for_pdf_writer)
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
       system("convert /tmp/signature_#{unique_key}.png -background none -gravity southwest -extent 2500x2400 /tmp/signature_scaled_#{unique_key}.png")
       system("convert /tmp/signature_scaled_#{unique_key}.png /tmp/sig_pdf_#{unique_key}.pdf")
@@ -179,8 +180,8 @@ module Calfresh
     def initialize(doc_param)
       if doc_param.count > 0
         raw_doc = doc_param.first[1]
-        raw_doc_path = raw_doc[:tempfile].path
-        filename = raw_doc[:filename]
+        raw_doc_path = raw_doc.tempfile.path
+        filename = raw_doc.original_filename
         new_file_path = raw_doc_path + filename
         new_file_path_no_special_chars = new_file_path.gsub(/[^a-zA-Z0-9_.]+/, "")
         system("cp #{raw_doc_path} #{new_file_path_no_special_chars}")
