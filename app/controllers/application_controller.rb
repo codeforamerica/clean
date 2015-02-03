@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   #protect_from_forgery with: :exception
 
+  before_action :log_session
+
   def index
     session.clear
   end
@@ -202,5 +204,13 @@ EOF
 
   def show_application
     send_file Calfresh::Application.new(params[:id]).signed_png_path
+  end
+
+  private
+  def log_session
+    session_data = session.to_hash.select do |k,v|
+      ['_csrf_token', 'session_id'].include?(k) == false
+    end
+    puts session_data
   end
 end
