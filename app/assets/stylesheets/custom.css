@@ -313,7 +313,6 @@ body {
 /* Middle button in 3 button groups */
 /*.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
 	border-right: none;*/
-}
 
 /* Right button in 2 and 3 button groups */
 .btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
