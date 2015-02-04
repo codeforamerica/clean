@@ -158,8 +158,10 @@ module Calfresh
       filename_array << "/tmp/application_#{@unique_key}-0.png"
       filename_array << "/tmp/application_#{@unique_key}-1.png"
       filename_array << "/tmp/application_#{@unique_key}-2.png"
+      path_to_image_folder = File.expand_path("../calfresh/calfresh_application_images", __FILE__)
       (9..15).each do |page_number|
-        filename_array << "calfresh_application_images/page-#{page_number}.png"
+        filename = path_to_image_folder + "/page-#{page_number}.png"
+        filename_array << filename
       end
       filename_array
     end
