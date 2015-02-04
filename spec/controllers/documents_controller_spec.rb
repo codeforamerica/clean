@@ -16,7 +16,7 @@ RSpec.describe DocumentsController, :type => :controller do
       allow(Redis).to receive(:new).and_return(fake_redis)
       allow(IO).to receive(:binread).and_return("fakebinaryimage")
       allow(Calfresh::VerificationDoc).to receive(:new).and_return(fake_verification_doc)
-      post :create, { 'user_token' => 'fakeusertoken', 'doc_number' => '0', 'identification' => { :filename => 'lol space.jpeg' } }
+      post :create, { 'user_token' => 'fakeusertoken', 'doc_number' => '0', 'identification' => fixture_file_upload('files/spak.jpeg', 'image/jpeg') }
     end
 
     it 'instantiates a redis client' do
