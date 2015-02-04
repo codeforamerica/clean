@@ -31,8 +31,8 @@ RSpec.describe DocumentsController, :type => :controller do
       expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_binary", 1800)
     end
 
-    it 'saves filename to redis (and removes spaces from it)' do
-      expect(fake_redis).to have_received(:set).with("fakeusertoken_0_filename", "lolspace.jpeg")
+    it 'saves filename to redis' do
+      expect(fake_redis).to have_received(:set).with("fakeusertoken_0_filename", "spak.jpeg")
     end
 
     it 'expires the filename' do
