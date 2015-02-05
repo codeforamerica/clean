@@ -48,22 +48,27 @@ xr
 	margin-top: 8px;
 }
 
-h3 {
+h2 {
   font-family: "ff-tisa-web-pro", Georgia, serif;
   font-weight: 700;
+}
+
+h3 {
+  font-family: "ff-tisa-web-pro", Georgia, serif;
+  font-weight: 500;
   color: #2E394B;
   font-size: 21px;
   line-height: 1.4;
   margin-bottom: 0;
- }
+}
 
- h4 {
+h4 {
  	font-family: "ff-tisa-web-pro", Georgia, serif;
  	font-size: 14px;
  	font-weight: 700;
  	color: #2E394B;
  	margin-top: 0;
- }
+}
 
 .page-footer h4 {
 	margin-top: 10px;
@@ -71,13 +76,13 @@ h3 {
 
 .form {
   font-family: "ff-tisa-sans-web-pro", sans-serif;
- }
+}
 
- .next-step {
+.next-step {
  	font-family: "ff-tisa-sans-web-pro", sans-serif;
  	font-weight: 500;
  	font-size: 14px;
- }
+}
 
 /* G L O B A L S */
 
@@ -85,7 +90,6 @@ h3 {
 .circle {
 	border-radius: 50%;
 }
-
 
 body {
 	margin: 0;
@@ -509,6 +513,48 @@ the content column, so we override bootstrap.*/
 .jSignature {
 	min-height: 160px;
 }
+
+/* H O M E P A G E  /  C I R C L ES  /  I C O N S */
+
+.homepage-message {
+	margin: 1em 0;
+}
+
+.steps-to-enroll {
+	width: 100%;
+	text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+    margin: 1em 0;
+}
+
+.step-to-enroll {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.step-title {
+	font-size: 16px;
+}
+
+.step-explanation {
+	font-size: 16px;
+	margin: 1em 0;
+	text-align: left;
+}
+
+.step-to-enroll-icon {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-color: #2E394B;
+	font-size: 16px;
+	line-height: 50px;
+	text-align: center;
+	color: white;
+	margin: 1.5em 0;
+}
 /* M E D I A    Q U E R I E S */
 
 
@@ -557,25 +603,6 @@ the content column, so we override bootstrap.*/
 /* Styles */
 }
 
-
-/* K E Y F R A M E S   &    P A G E    T R A N S I T I O N S */
-
-@-webkit-keyframes fadeIn {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
-}
-@-moz-keyframes fadeIn {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
-}
-@-o-keyframes fadeIn {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
-}
-@keyframes fadeIn {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
-}
 
 /*
  * CSS Page Transitions
