@@ -1,4 +1,3 @@
-xr
 /* C A L F R E S H    A N D   S O   C L E A N */
 /* Calfres-and-so-clean is meant to be a dead simple form for SNAP applicant */
 /* These styles are overrides and modifications on top of Bootsrap 3 */
@@ -18,7 +17,10 @@ xr
 /* mid #BAD2DF*/
 /* light #DFE9EE */
 
-/* B O O T S T R A P   O V E R R I D E */
+
+/* M E D I A    Q U E R I E S */
+/* From Bootstrap*/
+
 
 
 /* F O N T S */
@@ -558,18 +560,25 @@ the content column, so we override bootstrap.*/
 /* M E D I A    Q U E R I E S */
 
 
-/* iPads (portrait and landscape) ----------- */
-@media screen and (min-width: 768px)  {}
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-/* Styles */
+/* Small devices (tablets, 768px and up) */
+/* Rename this back to @screen-sm-min when we move to SCSS*/
+@media (min-width: 768px) {
+	.step-explanation {
+		text-align: center;
+	}
 }
 
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width : 321px) {
-/* Styles */
+/* Medium devices (desktops, 992px and up) */
+/* Rename this back to @screen-md-min when we move to SCSS*/
+@media (min-width: 992px) {
 }
+
+/* Large devices (large desktops, 1200px and up) */
+/* Rename this back to @screen-lg-min when we move to SCSS*/
+@media (min-width: 1200px) { 
+}
+
+
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
@@ -587,26 +596,6 @@ the content column, so we override bootstrap.*/
 		height: 42px;
 	}
 }
-
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-/* Styles */
-}
-
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-/* Styles */
-}
-
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-/* Styles */
-}
-
-
-/*
- * CSS Page Transitions
- */
 
  /* B O O T S R A P   H A C K S */
 
