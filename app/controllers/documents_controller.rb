@@ -13,9 +13,9 @@ class DocumentsController < ApplicationController
     key_base = "#{token}_#{doc_number}"
     filename = params["identification"].original_filename.gsub(/[^a-zA-Z0-9_.]+/,"")
     redis.set(key_base + "_binary", image_binary)
-    redis.expire(key_base + "_binary", 1800)
+    redis.expire(key_base + "_binary", redis_expiration_time)
     redis.set(key_base + "_filename", filename)
-    redis.expire(key_base + "_filename", 1800)
+    redis.expire(key_base + "_filename", redis_expiration_time)
     new_number_of_docs = doc_number + 1
     redirect_to "/documents/#{params[:user_token]}/#{new_number_of_docs}"
   end
@@ -76,5 +76,10 @@ EOF
     puts @email_result_application
     # ...
     redirect_to "/complete"
+  end
+
+  private
+  def redis_expiration_time
+    3600
   end
 end

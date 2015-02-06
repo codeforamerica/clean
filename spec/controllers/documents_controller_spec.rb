@@ -28,7 +28,7 @@ RSpec.describe DocumentsController, :type => :controller do
     end
 
     it 'expires the binary' do
-      expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_binary", 1800)
+      expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_binary", 3600)
     end
 
     it 'saves filename to redis' do
@@ -36,7 +36,7 @@ RSpec.describe DocumentsController, :type => :controller do
     end
 
     it 'expires the filename' do
-      expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_filename", 1800)
+      expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_filename", 3600)
     end
 
     it 'redirects with new number of docs' do
