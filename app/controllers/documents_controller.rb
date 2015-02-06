@@ -5,6 +5,7 @@ class DocumentsController < ApplicationController
   end
 
   def create
+    puts params.to_hash
     token = params[:user_token]
     doc_number = params[:doc_number].to_i
     redis = Redis.new(:url => URI.parse(ENV['REDISTOGO_URL']))

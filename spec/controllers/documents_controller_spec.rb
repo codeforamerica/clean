@@ -16,7 +16,7 @@ RSpec.describe DocumentsController, :type => :controller do
       allow(Redis).to receive(:new).and_return(fake_redis)
       allow(IO).to receive(:binread).and_return("fakebinaryimage")
       allow(Calfresh::VerificationDoc).to receive(:new).and_return(fake_verification_doc)
-      post :create, { 'user_token' => 'fakeusertoken', 'doc_number' => '0', 'identification' => fixture_file_upload('files/spak.jpeg', 'image/jpeg') }
+      post :create, { 'user_token' => 'fakeusertoken', 'doc_number' => '0', 'identification' => fixture_file_upload('files/spak with space.jpeg', 'image/jpeg') }
     end
 
     it 'instantiates a redis client' do
@@ -31,8 +31,8 @@ RSpec.describe DocumentsController, :type => :controller do
       expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_binary", 3600)
     end
 
-    it 'saves filename to redis' do
-      expect(fake_redis).to have_received(:set).with("fakeusertoken_0_filename", "spak.jpeg")
+    it 'saves filename to redis (removing spaces)' do
+      expect(fake_redis).to have_received(:set).with("fakeusertoken_0_filename", "spakwithspace.jpeg")
     end
 
     it 'expires the filename' do
@@ -47,26 +47,25 @@ RSpec.describe DocumentsController, :type => :controller do
 
   describe 'POST /documents/USERTOKEN/DOCNUMBER/submit' do
     let(:fake_redis) { double("Redis", :set => nil, :expire => nil) }
+    let(:fake_sendgrid_client) { double("SendGrid::Client") }
+    let(:fake_sendgrid_mail) { double("SendGrid::Mail") }
+    let(:fake_file) { double("File") }
 
     before do
       allow(Redis).to receive(:new).and_return(fake_redis)
+      allow(SendGrid::Client).to receive(:new).and_return(fake_sendgrid_client)
+      allow(SendGrid::Mail).to receive(:new).and_return(fake_sendgrid_mail)
       # PENDING
       #post :submit, { 'user_token' => 'fakeusertoken', 'doc_number' => '1' }
     end
 
-    # PENDING
-    it 'instantiates a redis client' do
-      pending
-      expect(Redis).to have_received(:new)
-    end
+    context 'with two verification documents' do
+      it 'instantiates a redis client' do
+        pending
+        expect(Redis).to have_received(:new)
+      end
 
-    # More tests
-
-    # PENDING
-    it 'redirects with new number of docs' do
-      pending
-      expect(@response).to be_redirect
-      expect(@response.location).to include('/documents/fakeusertoken/1')
+      # More tests
     end
   end
 end
