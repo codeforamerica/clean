@@ -32,6 +32,11 @@ Rails.application.routes.draw do
   post 'documents/:user_token/:doc_number/create' => 'documents#create'
   post 'documents/:user_token/:doc_number/submit' => 'documents#submit'
 
+  # # Error pages
+  # match '/404' => 'errors#not_found'
+  # match '/422' => 'errors#server_error'
+  # match '/500' => 'errors#server_error'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
