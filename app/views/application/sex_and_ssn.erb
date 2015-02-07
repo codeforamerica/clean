@@ -1,0 +1,32 @@
+<form name="sex_and_ssn" action="/application/sex_and_ssn" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+    <h3>Personal information</h3>
+    <div class="form-control subheader">
+      <p>This information is required to uniquely identify you in our system.</p>
+    </div>
+	<div class="form-group">
+		<h5 class="form-context">Please provide:</h5>
+		<input type="number" class="form-control bottom" name="ssn" id="ssn" placeholder="Your social security number" autofocus="autofocus">
+	</div>
+	<div class="form-group">
+    <h5 class="form-context">Choose a sex:</h5>
+		<div class="btn-group btn-group-justified" data-toggle="buttons">
+		  <button class="btn btn-primary form-button-3" data-toggle="button">
+		    <input class="form-control" type="radio" name="Female" id="female">Female
+		  </button>
+		  <button class="btn btn-primary form-button-3" data-toggle="button">
+		    <input class="form-control" type="radio" name="Male" id="male">Male
+		  </button>
+		  <button class="btn btn-primary form-button-3" data-toggle="button">
+		    <input class="form-control" type="radio" name="NoAnswer" id="no-answer">No answer
+		  </button>
+		</div>
+	</div>
+  <div class="page-footer">
+  	<div class="footer-content">
+        <input class="btn next-step" type="submit" value="Next Step: Medi-Cal Eligibility">
+  	</div>
+  </div>
+</form>
+<script>
+  $('.btn').button()
+</script>

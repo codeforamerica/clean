@@ -14,17 +14,25 @@ A user-friendly web form with the minimal fields necessary that generates a PDF 
 
 ## Local setup
 
-- [Install Ruby version 2.1.1](https://github.com/codeforamerica/howto/blob/master/Ruby.md)
+- [Install Ruby version 2.1.5](https://github.com/codeforamerica/howto/blob/master/Ruby.md)
 - Install system dependencies `pdftk` and `imagemagick` (use Homebrew on OSX or apt-get on Debian/Ubuntu)
 - Install Redis with `brew install redis`
 - Install Ruby dependencies with `bundle install`
 
 Set the environment variable `REDISTOGO_URL` to `redis://localhost:6379` and start your local Redis server with `redis-server`
 
+This app uses the Postgres database, so make sure that is running locally when you start your app up. (We recommend using Postgres.app on OSX.) Set the POSTGRES_USERNAME and POSTGRES_PASSWORD environment variables for your local Postgres database.
+
+Then, create the databases for the app by running:
+
+```
+bundle exec rake db:create
+```
+
 You can now run the app by running:
 
 ```
-bundle exec rackup
+rails s
 ```
 
 and navigating in your browser to [http://localhost:1234](http://localhost:1234)
@@ -36,6 +44,12 @@ For email capabilities we use Sendgrid, so for that set the following environmen
 - `EMAIL_ADDRESS_TO_SEND_TO`
 
 We also password protect the output application in a ZIP file and you can set the password with the `ZIP_FILE_PASSWORD` environment variable.
+
+To run tests, run:
+
+```
+rake spec
+```
 
 ## SSL
 

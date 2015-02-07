@@ -1,0 +1,63 @@
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/flashcanvas.js"></script>
+  <![endif]-->
+  <script>
+    $(document).ready(function() {
+      $("#signature_area").jSignature()
+      // Magic modified from http://paulology.com/signature-capture/
+      var $sigdiv = $("#signature_area")
+      $('#submit_button').click(function(e) {
+        var datapair = $sigdiv.jSignature("getData", "image")
+        $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
+      });
+      $('#signature_clear_button').click(function(e) {
+        $sigdiv.jSignature('clear');
+      });
+    })
+  </script>
+
+<form id="review_and_submit" name="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
+  <h3>Confirm and Submit</h3>
+  <div class="form-group">
+    <p><b>Alright, you made it to the last page! Signing your name below means you have told the truth on this application and that you want to apply for CalFresh.</b></p>
+
+    <br>
+    <p>I understand that by signing this application under penalty of perjury (making false statements), that:</p>
+    <ul>
+      <li><p>I read, or had read to me, the information in this application and my answers to the questions in this application.</p></li>
+      <li><p>My answers to the questions are true and complete to the best of my knowledge.</p></li>
+      <li><p>Any answers I may give for my application process will be true and complete to the best of my knowledge.</p></li>
+      <li><p>I read or had read to me and I understand and agree to the <a href="https://github.com/codeforamerica/calfresh-and-so-clean/wiki/Important-Information-about-CalFresh#your-rights-and-responsibilities" target="_blank">Rights and Responsibilities</a> (<a href="https://github.com/codeforamerica/calfresh-and-so-clean/wiki/Important-Information-about-CalFresh#program-rules-and-penalties" target="_blank">Program Rules</a> Page 1) for the CalFresh Program.</p></li>
+      <li><p>I read, or had read to me, the CalFresh Program Rules and Penalties (Program Rules Pages 2 through 3).</p></li>
+      <li><p>I understand that giving false or misleading statements or misrepresenting, hiding or withholding facts to establish eligibility for CalFresh is fraud. Fraud can cause a criminal case to be filed against me and/or I may be barred for a period of time (or life) from getting CalFresh benefits.</p></li>
+      <li><p>I understand that Social Security Numbers or immigration status for household members applying for benefits may be shared with the appropriate government agencies as required by federal law.</p></li>
+    </ul>
+  </div>
+
+  <div class="form-group">
+    <br>
+    <div class="form-context">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</div>
+    <div id="signature_area" class="panel"></div>
+    <div id="signature_value_hidden"></div>
+    <div class="btn btn-primary form-button-link-solo" id="signature_clear_button">Clear Signature</div>
+  </div>
+  <div class="form-group">
+    <div class="checkbox">
+        <label><input type="checkbox" name="confirmation" required data-parsley-required-message="You need to check this box to confirm that you have read the important information above and that you want to submit your CalFresh application." \> <b>Yes, I have read the information on this page and want to submit my CalFresh application</b></label>
+    </div>
+  </div>
+  <div class="form-context">After you submit, you'll have the chance to provide documents regarding you identification, income, expenses and other relevant information.</div>
+  <div class="page-footer">
+      <button id="submit_button" class="btn next-step" type="submit" value="Submit Application" data-loading-text="Sending in your application...">Submit Application</button>
+  </div>
+</form>
+<script>
+  $('.btn').button();
+
+  // Switch button to loading state if clicked when the form is valid
+  $( "#submit_button" ).click(function() {
+    if ($('#review_and_submit').parsley().isValid()) {
+      $('#submit_button').button('loading');  
+    }
+  });
+</script>
