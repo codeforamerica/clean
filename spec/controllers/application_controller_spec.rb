@@ -322,28 +322,36 @@ RSpec.describe ApplicationController, :type => :controller do
   end
 
   describe 'POST /application/review_and_submit' do
+    around do |example|
+      ClimateControl.modify(ZIP_FILE_PASSWORD: 'fakezipfilepassword',
+                            SENDGRID_USERNAME: 'fakesendgridusername',
+                            SENDGRID_PASSWORD: 'fakesendgridpassword',
+                            EMAIL_ADDRESS_TO_SEND_TO: 'emailto@sendto.com') do
+        example.run
+      end
+    end
+
     let(:fake_app) { double("FakeApp", :has_pngs? => true, :final_pdf_path => '/tmp/fakefinal.pdf') }
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
     let(:fake_sendgrid_client) { double("SendGrid::Client", :send => { "message" => "success" } ) }
     let(:fake_sendgrid_mail) { double("SendGrid::Mail", :add_attachment => 'cool') }
+    let(:fake_zip_archive_for_block) { double("", :add_file => true) }
 
     before do
       allow(Calfresh::ApplicationWriter).to receive(:new).and_return(fake_app_writer)
+      allow(SecureRandom).to receive(:hex).and_return('fakehexvalue')
       allow(SendGrid::Client).to receive(:new).and_return(fake_sendgrid_client)
       allow(SendGrid::Mail).to receive(:new).and_return(fake_sendgrid_mail)
+      allow(Zip::Archive).to receive(:open).and_yield(fake_zip_archive_for_block)
+      allow(Zip::Archive).to receive(:encrypt)
       @data_hash = {
         date_of_birth: '06/09/1985'
       }
 
-      ###
-      ### UNCOMMENT BELOW WHEN MORE MOCKING DONE
-      ###
-      #post :review_and_submit_submit, {}, @data_hash
+      post :review_and_submit_submit, {}, @data_hash
     end
 
-    # Pending more mocking
     it 'properly reformats the date of birth (and adds extraneous fields)' do
-    pending
       expected_hash = @data_hash
       [:name_page3, :ssn_page3, :language_preference_reading, :language_preference_writing].each do |key|
         expected_hash[key] = nil
@@ -351,22 +359,27 @@ RSpec.describe ApplicationController, :type => :controller do
       expect(fake_app_writer).to have_received(:fill_out_form).with(expected_hash)
     end
 
-    # Pending more mocking
+    it 'zips the combined-image file' do
+      expect(Zip::Archive).to have_received(:open).with('/tmp/fakehexvalue.zip', Zip::CREATE)
+      expect(fake_zip_archive_for_block).to have_received(:add_file).with(fake_app.final_pdf_path)
+    end
+
+    it 'encrypts the zip file' do
+      expect(Zip::Archive).to have_received(:encrypt).with('/tmp/fakehexvalue.zip', 'fakezipfilepassword')
+    end
+
     it 'instantiates a sendgrid client with the correct credentials' do
-    pending
       expect(SendGrid::Client).to have_received(:new).with(
         api_user: 'fakesendgridusername',
         api_key: 'fakesendgridpassword'
       )
     end
 
-    # Pending more mocking
     it 'puts content into a new mail object' do
-    pending
       expect(SendGrid::Mail).to have_received(:new).with(
-        to: 'fakeemailaddress',
-        from: 'ted@cleanassist.org',
-        subject: 'New Clean CalFresh application!',
+        to: 'emailto@sendto.com',
+        from: 'suzanne@cleanassist.org',
+        subject: 'New Clean CalFresh Application!',
         text: <<EOF
 Hi there!
 
@@ -374,7 +387,9 @@ An application for Calfresh benefits was just submitted!
 
 You can find a completed CF-285 in the attached .zip file. You will probably receive another e-mail shortly containing photos of their verification documents.
 
-The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a key to access it, please get in touch with Jake Soloman at jacob@codeforamerica.org
+The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a password to access it, please get in touch with Jake Solomon at jacob@codeforamerica.org
+
+When you finish clearing the case, please help us track the case by filling out a bit of info here: http://c4a.me/cleancases
 
 Thanks for your time!
 
