@@ -52,6 +52,8 @@ group :development, :test do
   #gem 'spring'
 
   gem 'rspec-rails', '~> 3.0'
+
+  gem 'climate_control'
 end
 
 group :production do
