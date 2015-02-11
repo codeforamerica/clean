@@ -160,8 +160,9 @@ EOF
         expect(fake_sendgrid_client).to have_received(:send).with(fake_sendgrid_mail)
       end
 
-      pending
       it 'redirects to /complete' do
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/complete')
       end
     end
   end
