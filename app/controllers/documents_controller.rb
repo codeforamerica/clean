@@ -45,7 +45,7 @@ class DocumentsController < ApplicationController
     # Combine all files into single PDF
     final_pdf_path = "/tmp/#{token}_all_images.pdf"
     convert_command = "convert #{file_paths_array.join(' ')} #{final_pdf_path}"
-    system(convert_command)
+    Kernel.system(convert_command)
     # Encrypt and zip file
     zip_file_path = "/tmp/#{token}_zipped.zip"
     Zip::Archive.open(zip_file_path, Zip::CREATE) do |ar|
