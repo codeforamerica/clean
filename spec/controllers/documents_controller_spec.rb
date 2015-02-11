@@ -152,8 +152,6 @@ EOF
         )
       end
 
-      # More tests
-
       it 'adds attachment with correct path to the mail' do
         expect(fake_sendgrid_mail).to have_received(:add_attachment).with('/tmp/fakeusertoken_zipped.zip')
       end

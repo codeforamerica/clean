@@ -75,7 +75,6 @@ EOF
     mail.add_attachment(zip_file_path)
     @email_result_application = sendgrid_client.send(mail)
     puts @email_result_application
-    # ...
     redirect_to "/complete"
   end
 
