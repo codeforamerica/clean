@@ -1,0 +1,662 @@
+/*================================*/
+
+/* C L E A N    A S S I S T */
+
+/* Clean is a dead simple form for SNAP applicants */
+/* These styles are overrides and modifications on top of Bootsrap 3 */
+/* If you want to suggest an improvement to these styles, please visit: */
+/* https://github.com/codeforamerica/clean/issues */
+
+/*================================*/
+
+/* C O L O R S */
+
+/* Highly used colors */
+$dark-blue: #2E394B;
+$orange: #CF6354;
+$yellow: #f1ab00;
+$light-blue: #5C93D6;
+$bright-blue: #1D71F5;
+$dark-gray: #888;
+
+/* mrmrs colors */
+$green: #23cc40;
+
+/* Unused Colors *
+
+$other-gray-1: #929AA5;
+$other-gray-2: #BAC2CC;
+
+$other-blue-1: #00618D;
+$other-blue-2: #BAD2DF;
+$other-blue-3: #DFE9EE;
+
+/*================================*/
+
+/* M E D I A    Q U E R I E S */
+
+/* None at the moment. */
+
+/*================================*/
+
+/* F O N T S */
+
+/* Fonts in Use */
+
+$proxima: "proxima-nova",sans-serif;
+$proxima-alt: "proxima-nova-alt", sans-serif;
+
+
+/* Font applications */
+
+@mixin brand-type {
+	color: white;
+	font-family: $proxima;
+	font-size: 24px;
+	font-weight: 700;
+	letter-spacing: 0.0625em;
+}
+
+@mixin headline-type {
+	color: $dark-blue;
+	font-family: $proxima;
+	font-size: 48px;
+	font-weight: 700;
+}
+
+@mixin subheader-type {
+	color: $green;
+	font-family: $proxima;
+	font-weight: 300;
+	font-size: 36px;
+}
+
+@mixin form-label-type {
+	color: $dark-blue;
+	font-family: $proxima;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+@mixin form-input-type {
+	color: $dark-gray;
+	font-family: $proxima;
+	font-size: 24px;
+	font-weight: 300;
+}
+
+@mixin primary-button-type {
+	color: white;
+	font-family: $proxima;
+	font-size: 24px;
+	font-weight: 300;
+}
+
+/*================================*/
+
+/* G L O B A L S */
+
+
+/* High level DOM elements */
+
+body {
+	margin: 0;
+	background:  #fff;
+	width: 100%;
+	height: 100%;
+}
+
+#main {
+	background: #fff;
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+/* Masthead Elements */
+/* Masthead content sticks to the top of each view, and presents metadata about the application */
+
+.masthead {
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	padding: .2em 0;
+	/* Blue background color */
+	background-color: #2E394B;
+}
+
+.brand {
+	@include brand-type;
+	display: inline-block;
+	padding-right: 0.625em;
+	margin: .5em 0;
+}
+
+/* Form Elements  */
+
+/* Submit / Advance Button */
+
+.next-step {
+	@include primary-button-type;
+}
+
+/* Icons and Shapes */
+
+.circle {
+	/* in each context, redefine the equal height and width of the circle */
+	border-radius: 100%;
+}
+
+/*================================*/
+
+/* T H E  V I E W S */
+
+/* Homepage */
+/* Basic Info */
+/* */
+
+/*================================*/
+
+/* H O M E P A G E */
+/* index.html */
+
+.homepage-headline {
+	@include headline-type;
+	margin: 1em 0 0 0;
+
+}
+
+.homepage-subheader {
+	@include subheader-type;
+	line-height: 1.4em;
+	margin-bottom: 0;
+}
+
+
+.steps-to-enroll {
+	width: 100%;
+	text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+    margin: 1em 0;
+}
+
+.step-to-enroll {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.step-title {
+	@include form-label-type;
+}
+
+.step-explanation {
+	@include form-input-type;
+	margin: 1em 0;
+	text-align: left;
+}
+
+/* Make sure to refactor this into a generic font style*/
+.step-to-enroll-icon {
+	display: inline-block;
+	width: 75px;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	font-family: $proxima;
+	font-size: 24px;
+	font-weight: 700;
+	color: white;
+	background-color: $dark-blue;
+	margin: 1.5em 0;
+}
+
+
+
+/* F O R M   S T Y L E S */
+
+.form {
+}
+
+.page-content {
+	padding-bottom: 1em;
+}
+
+.form-group {
+	padding: 1em 0 0 0;
+}
+
+/* form-controls, by position in a stack. */
+/* There can only be one top and one bottom, but there can be many middles.*/
+
+.solo {
+	height: 3.5em;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.form-context {
+	width: auto;
+	display: block;
+	color: #6F6F6F;
+	font-weight: 700;
+	opacity: .9;
+}
+
+.header {
+	background-color: #929AA5;
+}
+
+.form-control {
+	font-size: 14px;
+}
+.form-control h4 {
+	color: #fff;
+}
+
+/* For now, subheader is exclusive. It shouldn't be mixed with top/middle/bottom */
+/* It takes properties from middle, assuming a header above and content below */
+/* The change is that the heigh is dynamic based on content */
+.subheader {
+	height: auto;
+	min-height: 3.5em;
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.subheader p {
+	margin: 10px 0px;
+	line-height: 1.6em;
+}
+
+.top {
+	height: 4em;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.middle {
+	height: auto;
+	min-height: 4em;
+	border-radius: 0;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.bottom {
+	height: auto;
+	min-height: 4em;
+	border-left: none;
+	border-right: none;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border-top: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.dropdown {
+	height: 4em;
+}
+
+.checkbox {
+	display: inline-block;
+}
+
+.times-of-day .checkbox {
+	padding-top: .5em;
+	padding-bottom: .5em;
+	padding-right: 20px;
+	padding-left: 0;
+}
+
+.times-of-day .checkbox input[type=checkbox] {
+	float: none;
+	margin-left: 0;
+	padding-right: 20px;
+}
+
+.days-of-week .checkbox {
+	padding-top: .5em;
+	padding-bottom: .5em;
+	padding-right: 20px;
+	padding-left: 0;
+}
+
+.days-of-week .checkbox input[type=checkbox] {
+	float: none;
+	margin-left: 0;
+	padding-right: 20px;
+}
+
+/* F O R M   B U T T O N / T O G G L E */
+
+.btn-primary {
+	height: 4em;
+	color: #555;
+	text-shadow: none;
+	background-color: white;
+/*	background-color: #5C93D6;*/
+	border-color: #ccc;
+	opacity: .85;
+}
+
+.btn-primary:hover {
+	color: #333;
+	background-color: #F3F3F3;
+	border-color: #ccc;
+}
+
+.btn-primary:focus {
+	color: #333;
+	background-color: #F3F3F3;
+	border-color: #ccc;
+}
+
+
+.btn-primary:active, .btn-primary.active {
+	color: #333;
+	background-color: #E6E6E6;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-color: #ccc;
+	opacity: .85;
+}
+
+/* This is a hack of Bootstrap's input/button madness */
+.btn-primary.form-button-3 {
+	min-height: 3.5em;
+	height: auto;
+	width: 33%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+}
+
+/* This is a hack of Bootstrap's input/button madness */
+.btn-primary.form-button-2 {
+	height: 3.5em;
+	width: 50%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+}
+
+.btn-primary.form-button-1 {
+	height: 3.5em;
+	width: 100%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+}
+
+
+.form-button:hover {}
+
+/* Left button in 2 and 3 button groups */
+/*.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+	border-right: none;
+}*/
+
+/* Middle button in 3 button groups */
+/*.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+	border-right: none;*/
+
+/* Right button in 2 and 3 button groups */
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+}
+
+.btn-primary.form-button-link-left {
+	height: 3em;
+	line-height: 2.428571;
+	width: 48%;
+	float: left;
+	border-right: 1px solid #ccc;
+	background-color: #F3F3F3;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+	line-height: 2;
+	margin: 10px 0;
+}
+
+.btn-primary.form-button-link-right {
+	height: 3em;
+	line-height: 2.428571;
+	width: 48%;
+	float: right;
+	border-right: 1px solid #ccc;
+	background-color: #F3F3F3;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+	line-height: 2;
+	margin: 10px 0;
+}
+
+.btn-primary.form-button-link-right:hover {
+	background-color: #E6E6E6;
+}
+.btn-primary.form-button-link-right:active {
+	background-color: #E6E6E6;
+}
+
+.btn-primary.form-button-link-left:hover {
+	background-color: #E6E6E6;
+}
+
+.btn-primary.form-button-link-right:hover {
+	background-color: #E6E6E6;
+}
+
+.form-button-link-solo {
+	color: #555;
+	height: 3.5em;
+	line-height: 2.6;
+	width: 100%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	border-radius: 0;
+}
+
+/* F O R M   B U T T O N --- D I S A B L E E D / I N   P R O G R E S S */
+
+input.disabled {
+  color: #333;
+  background-color: #e1e0dc;
+/*  background-color: #f6f5f0;*/
+  border: 1px solid #d3d3d3;
+  cursor: auto;
+  text-shadow: white 0 1px 0;
+  -webkit-box-shadow: white 0 1px 0 0 inset;
+  -moz-box-shadow: white 0 1px 0 0 inset;
+  -ms-box-shadow: white 0 1px 0 0 inset;
+  -o-box-shadow: white 0 1px 0 0 inset;
+  box-shadow: white 0 1px 0 0 inset;
+}
+
+.in-progress {
+  text-shadow: none;
+  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background: linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  -pie-background: linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
+  background-repeat: repeat;
+  -webkit-background-size: 40px 40px, 100% 100%;
+  -moz-background-size: 40px 40px, 100% 100%;
+  -ms-background-size: 40px 40px, 100% 100%;
+  -o-background-size: 40px 40px, 100% 100%;
+  background-size: 40px 40px, 100% 100%;
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  -moz-animation: progress-bar-stripes 2s linear infinite;
+  -ms-animation: progress-bar-stripes 2s linear infinite;
+  -o-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite;
+}
+
+@-webkit-keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+@-moz-keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+@keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+/* F O R M   L I S T S */
+
+/* Sie by side lists, found on the interview.html */
+/* We want two columns, taking up the entire width of
+the content column, so we override bootstrap.*/
+
+/* F I L E   U P L O A D */
+
+.file-group {
+	padding-bottom: 1em;
+	border-bottom: 1px solid #ccc;
+}
+
+.skip {
+	width: 100%;
+	height: 3em;
+	margin: 10px 0;
+	background-color: #F3F3F3;
+	border-radius: 0;
+	border: 1px solid #ccc;
+	line-height: 2;
+	color: #555;
+	margin-bottom: 42px;
+}
+
+.skip:hover {
+	background-color: #E6E6E6;
+}
+.skip:active {
+	background-color: #E6E6E6;
+}
+
+/* F O O T E R    S T Y L E S */
+
+.page-footer {
+	display: inline-block;
+	width: 100%;
+	padding: 0;
+	margin-bottom: 42px;
+}
+
+.next-step {
+	width: 100%;
+	height: 3em;
+	color: #fff;
+	background-color: #5C93D6;
+	border-radius: 0;
+	margin: 10px 0;
+}
+
+.next-step:hover {
+	color: #fff;
+	background-color: #1D71F5;
+	opacity: .85;
+}
+
+.next-step:focus {
+	color: #fff;
+	background-color: #1D71F5;
+	opacity: .85;
+}
+
+.page-footer .or {
+	text-align: center;
+}
+
+.footer-question {
+	padding-top: 1em;
+}
+
+/* S I G N A T U R E   F O R M */
+
+#signature_area {
+	min-height: 100px;
+	border: 1px solid #ccc;
+	margin-bottom: 0;
+	border-radius: 0;
+	border-bottom: 0;
+}
+
+.jSignature {
+	min-height: 160px;
+}
+
+
+/* M E D I A    Q U E R I E S */
+
+
+/* Small devices (tablets, 768px and up) */
+/* Rename this back to @screen-sm-min when we move to SCSS*/
+@media (min-width: 768px) {
+	.step-explanation {
+		text-align: center;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+/* Rename this back to @screen-md-min when we move to SCSS*/
+@media (min-width: 992px) {
+}
+
+/* Large devices (large desktops, 1200px and up) */
+/* Rename this back to @screen-lg-min when we move to SCSS*/
+@media (min-width: 1200px) { 
+}
+
+
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+	.form-button-2 {
+		height: 42px;
+	}
+	.form-button-3 {
+		height: 42px;
+	}
+}
+
+ /* B O O T S R A P   H A C K S */
+
+/* No width file pickers were breaking the layout on mobile */
+ input[type=file] {
+ 	width: 100%;
+ }
+
+/* P A R S L E Y   O V E R R I D E S */
+
+.parsley-errors-list.filled {
+	color: red;
+	background-color: rgba(255, 255, 255, 0);
+	font-size: 100%;
+	font-style: italic
+}
