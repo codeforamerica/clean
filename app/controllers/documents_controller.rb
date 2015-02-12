@@ -32,7 +32,9 @@ class DocumentsController < ApplicationController
       # Get filename from Redis
       filename = redis.get("#{token}_#{index}_filename")
       # Write file to /tmp with proper extension
-      temp_file_path = "/tmp/" + token + filename
+      #temp_file_path = "/tmp/" + token + filename
+      temp_file_name = SecureRandom.hex
+      temp_file_path = "/tmp/" + temp_file_name
       File.open(temp_file_path, 'wb') do |file|
         file.write(binary)
       end
