@@ -57,11 +57,10 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 	letter-spacing: 0.0625em;
 }
 
-@mixin headline-type {
+@mixin header-type {
 	color: $dark-blue;
 	font-family: $proxima;
 	font-size: 48px;
-	font-weight: 700;
 }
 
 @mixin subheader-type {
@@ -71,11 +70,16 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 	font-size: 36px;
 }
 
-@mixin form-label-type {
+@mixin page-context-type {
+	color: $dark-blue;
+	font-family: $proxima;
+	font-size: 48px;
+}
+
+@mixin form-type {
 	color: $dark-blue;
 	font-family: $proxima;
 	font-size: 24px;
-	font-weight: 700;
 }
 
 @mixin form-input-type {
@@ -90,6 +94,12 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 	font-family: $proxima;
 	font-size: 24px;
 	font-weight: 300;
+}
+
+@mixin form-error {
+	color: $orange;
+	font-family: $proxima;
+	font-size: 16px;
 }
 
 /*================================*/
@@ -163,7 +173,8 @@ body {
 /* index.html */
 
 .homepage-headline {
-	@include headline-type;
+	@include header-type;
+	font-weight: 700;
 	margin: 1em 0 0 0;
 
 }
@@ -190,7 +201,8 @@ body {
 }
 
 .step-title {
-	@include form-label-type;
+	@include form-type;
+	color: $dark-blue;
 }
 
 .step-explanation {
@@ -218,7 +230,8 @@ body {
 
 /* F O R M   S T Y L E S */
 
-.form {
+.page-header {
+	@include header-type;
 }
 
 .page-content {
@@ -238,24 +251,31 @@ body {
 	box-shadow: none;
 }
 
+
 .form-context {
+	@include form-type;
+	font-weight: 700;
 	width: auto;
 	display: block;
-	color: #6F6F6F;
-	font-weight: 700;
-	opacity: .9;
 }
 
-.header {
-	background-color: #929AA5;
-}
-
+/* form-control is the univeral class for all forms fields, regardless of type */
 .form-control {
-	font-size: 14px;
+	@include form-type;
+	color: $dark-gray;
 }
-.form-control h4 {
-	color: #fff;
+
+/* Form errors*/
+
+.parsley-errors-list.filled {
+	background-color: white;
 }
+
+.parsley-required {
+	@include form-error;
+}
+
+
 
 /* For now, subheader is exclusive. It shouldn't be mixed with top/middle/bottom */
 /* It takes properties from middle, assuming a header above and content below */
@@ -654,9 +674,8 @@ the content column, so we override bootstrap.*/
 
 /* P A R S L E Y   O V E R R I D E S */
 
-.parsley-errors-list.filled {
-	color: red;
-	background-color: rgba(255, 255, 255, 0);
+/*.parsley-errors-list.filled {
+	background-color: white;
 	font-size: 100%;
 	font-style: italic
-}
+}*/
