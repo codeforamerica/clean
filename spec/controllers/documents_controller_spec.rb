@@ -41,14 +41,6 @@ RSpec.describe DocumentsController, :type => :controller do
       expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_binary", 3600)
     end
 
-    it 'saves filename to redis (removing spaces)' do
-      expect(fake_redis).to have_received(:set).with("fakeusertoken_0_filename", "spakwithspace.jpeg")
-    end
-
-    it 'expires the filename' do
-      expect(fake_redis).to have_received(:expire).with("fakeusertoken_0_filename", 3600)
-    end
-
     it 'redirects with new number of docs' do
       expect(@response).to be_redirect
       expect(@response.location).to include('/documents/fakeusertoken/1')
@@ -66,12 +58,9 @@ RSpec.describe DocumentsController, :type => :controller do
       allow(Redis).to receive(:new).and_return(fake_redis)
       allow(fake_redis).to receive(:get).with("fakeusertoken_0_binary").and_return("fakebinary0")
       allow(fake_redis).to receive(:get).with("fakeusertoken_1_binary").and_return("fakebinary1")
-      allow(fake_redis).to receive(:get).with("fakeusertoken_0_filename").and_return("fakefilename0")
-      allow(fake_redis).to receive(:get).with("fakeusertoken_1_filename").and_return("fakefilename1")
       allow(fake_redis).to receive(:del).with("fakeusertoken_0_binary")
       allow(fake_redis).to receive(:del).with("fakeusertoken_1_binary")
-      allow(fake_redis).to receive(:del).with("fakeusertoken_0_filename")
-      allow(fake_redis).to receive(:del).with("fakeusertoken_1_filename")
+      allow(SecureRandom).to receive(:hex).and_return('firsthex', 'secondhex')
       allow(SendGrid::Client).to receive(:new).and_return(fake_sendgrid_client)
       allow(SendGrid::Mail).to receive(:new).and_return(fake_sendgrid_mail)
       allow(File).to receive(:open).and_yield(fake_file_for_block)
@@ -94,26 +83,22 @@ RSpec.describe DocumentsController, :type => :controller do
       it 'sends the correct :get arguments to the Redis client' do
         expect(fake_redis).to have_received(:get).with("fakeusertoken_0_binary")
         expect(fake_redis).to have_received(:get).with("fakeusertoken_1_binary")
-        expect(fake_redis).to have_received(:get).with("fakeusertoken_0_filename")
-        expect(fake_redis).to have_received(:get).with("fakeusertoken_1_filename")
       end
 
       it 'sends the correct :del arguments to the Redis client' do
         expect(fake_redis).to have_received(:del).with("fakeusertoken_0_binary")
         expect(fake_redis).to have_received(:del).with("fakeusertoken_1_binary")
-        expect(fake_redis).to have_received(:del).with("fakeusertoken_0_filename")
-        expect(fake_redis).to have_received(:del).with("fakeusertoken_1_filename")
       end
 
       it 'writes files with the correct name' do
-        expect(File).to have_received(:open).with('/tmp/fakeusertokenfakefilename0', 'wb')
+        expect(File).to have_received(:open).with('/tmp/firsthex', 'wb')
         expect(fake_file_for_block).to have_received(:write).with("fakebinary0")
-        expect(File).to have_received(:open).with('/tmp/fakeusertokenfakefilename1', 'wb')
+        expect(File).to have_received(:open).with('/tmp/secondhex', 'wb')
         expect(fake_file_for_block).to have_received(:write).with("fakebinary1")
       end
 
       it 'shells out to convert with the correct arguments' do
-        convert_statement = "convert /tmp/fakeusertokenfakefilename0 /tmp/fakeusertokenfakefilename1 /tmp/fakeusertoken_all_images.pdf"
+        convert_statement = "convert /tmp/firsthex /tmp/secondhex /tmp/fakeusertoken_all_images.pdf"
         expect(Kernel).to have_received(:system).with(convert_statement)
       end
 

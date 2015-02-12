@@ -12,11 +12,8 @@ class DocumentsController < ApplicationController
     doc = Calfresh::VerificationDoc.new(params)
     image_binary = IO.binread(doc.original_file_path)
     key_base = "#{token}_#{doc_number}"
-    filename = params["identification"].original_filename.gsub(/[^a-zA-Z0-9_.]+/,"")
     redis.set(key_base + "_binary", image_binary)
     redis.expire(key_base + "_binary", redis_expiration_time)
-    redis.set(key_base + "_filename", filename)
-    redis.expire(key_base + "_filename", redis_expiration_time)
     new_number_of_docs = doc_number + 1
     redirect_to "/documents/#{params[:user_token]}/#{new_number_of_docs}"
   end
@@ -29,10 +26,6 @@ class DocumentsController < ApplicationController
     (0..max_doc_index).to_a.each do |index|
       # Get binary from Redis
       binary = redis.get("#{token}_#{index}_binary")
-      # Get filename from Redis
-      filename = redis.get("#{token}_#{index}_filename")
-      # Write file to /tmp with proper extension
-      #temp_file_path = "/tmp/" + token + filename
       temp_file_name = SecureRandom.hex
       temp_file_path = "/tmp/" + temp_file_name
       File.open(temp_file_path, 'wb') do |file|
@@ -42,7 +35,6 @@ class DocumentsController < ApplicationController
       file_paths_array << temp_file_path
       # Delete Redis data
       redis.del("#{token}_#{index}_binary")
-      redis.del("#{token}_#{index}_filename")
     end
     # Combine all files into single PDF
     final_pdf_path = "/tmp/#{token}_all_images.pdf"
