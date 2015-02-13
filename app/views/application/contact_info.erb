@@ -1,12 +1,14 @@
 <form name="contact_info" action="/application/contact_info" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 m-page scene_element scene_element--fadeinup" data-parsley-validate>
   <h2 class="page-header">Contact information</h2>
   <div class="form-group">
-    <label for="phone-number"class="form-context">Phone number
-      <input id="phone-number" type="tel" class="form-control middle" name="home_phone_number" placeholder="Your phone number"autofocus="autofocus">
-    </label>
-    <input type="email" class="form-control middle" name="email" placeholder="Email address">
-    <input type="text" class="form-control middle" name="home_address" placeholder="Home street address" required required data-parsley-required-message="Address is required to apply" \>
-    <input type="number" class="form-control bottom" name="home_zip_code" placeholder="ZIP code" required required data-parsley-required-message="ZIP code is required to apply">
+    <label for="home_phone-number" class="form-context">Phone number</label>
+    <input id="home_phone_number" type="tel" class="form-control middle" name="home_phone_number" autofocus="autofocus">
+    <label for="email" class="form-context">Email</label>
+    <input id="email" type="email" class="form-control middle" name="email">
+    <label for="home_address" class="form-context">Home address</label>
+    <input id="home_address" type="text" class="form-control middle" name="home_address" required required data-parsley-required-message="Address is required to apply" \>
+    <label for="home_zip_code" class="form-context">ZIP code</label>
+    <input id="home_zip_code" type="number" class="form-control bottom" name="home_zip_code" required required data-parsley-required-message="ZIP code is required to apply">
     <input type="hidden" class="form-control" name="home_city" value="San Francisco">
     <input type="hidden" class="form-control" name="home_state" value="CA">
   </div>

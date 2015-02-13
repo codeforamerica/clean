@@ -18,7 +18,7 @@ $yellow: #f1ab00;
 $light-blue: #5C93D6;
 $bright-blue: #1D71F5;
 $dark-gray: #888;
-
+$background: #f8f8f8;
 /* mrmrs colors */
 $green: #23cc40;
 
@@ -73,7 +73,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 @mixin page-context-type {
 	color: $dark-blue;
 	font-family: $proxima;
-	font-size: 48px;
+	font-size: 24px;
 }
 
 @mixin form-type {
@@ -114,15 +114,7 @@ body {
 	background:  #fff;
 	width: 100%;
 	height: 100%;
-}
-
-#main {
-	background: #fff;
-	position: absolute;
-	bottom: 0;
-	top: 0;
-	left: 0;
-	right: 0;
+	background-color: $background;
 }
 
 /* Masthead Elements */
@@ -234,6 +226,10 @@ body {
 	@include header-type;
 }
 
+.page-context {
+	@include page-context-type;
+}
+
 .page-content {
 	padding-bottom: 1em;
 }
@@ -244,12 +240,6 @@ body {
 
 /* form-controls, by position in a stack. */
 /* There can only be one top and one bottom, but there can be many middles.*/
-
-.solo {
-	height: 3.5em;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
 
 
 .form-context {
@@ -275,7 +265,11 @@ body {
 	@include form-error;
 }
 
-
+.solo {
+	height: 3.5em;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
 
 /* For now, subheader is exclusive. It shouldn't be mixed with top/middle/bottom */
 /* It takes properties from middle, assuming a header above and content below */
@@ -296,36 +290,25 @@ body {
 }
 
 .top {
-	height: 4em;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+	height: 3em;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 .middle {
 	height: auto;
-	min-height: 4em;
-	border-radius: 0;
-	border-top: none;
-	border-left: none;
-	border-right: none;
+	min-height: 3em;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 .bottom {
 	height: auto;
-	min-height: 4em;
-	border-left: none;
-	border-right: none;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-	border-top: none;
+	min-height: 3em;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .dropdown {
-	height: 4em;
+	height: 3em;
 }
 
 .checkbox {
