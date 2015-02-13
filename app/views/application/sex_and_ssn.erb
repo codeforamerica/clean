@@ -2,26 +2,26 @@
     <h2 class="page-header">Personal information</h2>
     <p class="page-context">This information is required to uniquely identify you in our system.</p>
 	<div class="form-group">
-		<label id="ssn" class="form-context">Social Security Number</label>
+		<label id="ssn" class="form-label">Social Security Number</label>
 		<input type="number" class="form-control bottom" name="ssn" id="ssn" autofocus="autofocus">
 	</div>
 	<div class="form-group">
-    <h5 class="form-context">Choose a sex:</h5>
-		<div class="btn-group btn-group-justified" data-toggle="buttons">
-		  <button class="btn btn-primary form-button-3" data-toggle="button">
-		    <input class="form-control" type="radio" name="Female" id="female">Female
-		  </button>
-		  <button class="btn btn-primary form-button-3" data-toggle="button">
-		    <input class="form-control" type="radio" name="Male" id="male">Male
-		  </button>
-		  <button class="btn btn-primary form-button-3" data-toggle="button">
-		    <input class="form-control" type="radio" name="NoAnswer" id="no-answer">No answer
-		  </button>
-		</div>
+	    <label class="form-label">Choose a sex:</label>
+	    <div class="btn-group btn-group-justified" data-toggle="buttons">
+	    	<label class="btn form-button">
+	    		<input type="radio" name="Female" id="female" autocomplete="off" checked>Female
+	    	</label>
+	    	<label class="btn form-button">
+	    		<input type="radio" name="Male" id="male">Male
+	    	</label>
+	    	<label class="btn form-button">
+	    		<input type="radio" name="options" name="NoAnswer" id="no-answer">No answer
+	    	</label>
+	    </div>
 	</div>
   <div class="page-footer">
   	<div class="footer-content">
-        <input class="btn next-step" type="submit" value="Next Step: Medi-Cal Eligibility">
+        <input class="btn next-step" type="submit" value="Next Step">
   	</div>
   </div>
 </form>

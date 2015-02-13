@@ -52,15 +52,15 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 @mixin brand-type {
 	color: white;
 	font-family: $proxima;
-	font-size: 24px;
+	font-size: 21px;
 	font-weight: 700;
-	letter-spacing: 0.0625em;
+/*	letter-spacing: 0.0625em;*/
 }
 
 @mixin header-type {
 	color: $dark-blue;
 	font-family: $proxima;
-	font-size: 48px;
+	font-size: 42px;
 }
 
 @mixin subheader-type {
@@ -79,18 +79,11 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 @mixin form-type {
 	color: $dark-blue;
 	font-family: $proxima;
-	font-size: 24px;
+	font-size: 21px;
 }
 
 @mixin form-input-type {
 	color: $dark-gray;
-	font-family: $proxima;
-	font-size: 24px;
-	font-weight: 300;
-}
-
-@mixin primary-button-type {
-	color: white;
 	font-family: $proxima;
 	font-size: 24px;
 	font-weight: 300;
@@ -101,6 +94,15 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 	font-family: $proxima;
 	font-size: 16px;
 }
+
+@mixin primary-button-type {
+	color: white;
+	font-family: $proxima;
+	font-size: 21px;
+	font-weight: 300;
+}
+
+
 
 /*================================*/
 
@@ -242,17 +244,28 @@ body {
 /* There can only be one top and one bottom, but there can be many middles.*/
 
 
-.form-context {
+.form-label {
 	@include form-type;
 	font-weight: 700;
 	width: auto;
 	display: block;
 }
 
+
+.form-context {
+	@include form-type;
+	color: $dark-gray;
+	font-size: 14px;
+	margin-top: 0;
+}
+
 /* form-control is the univeral class for all forms fields, regardless of type */
 .form-control {
 	@include form-type;
 	color: $dark-gray;
+	height: 3em;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 
 /* Form errors*/
@@ -287,24 +300,6 @@ body {
 .subheader p {
 	margin: 10px 0px;
 	line-height: 1.6em;
-}
-
-.top {
-	height: 3em;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-.middle {
-	height: auto;
-	min-height: 3em;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-.bottom {
-	height: auto;
-	min-height: 3em;
-	-webkit-box-shadow: none;
-	box-shadow: none;
 }
 
 .dropdown {
@@ -343,12 +338,17 @@ body {
 
 /* F O R M   B U T T O N / T O G G L E */
 
+.form-button {
+	@include form-type;
+	background-color: white;
+	min-height: 3em;
+}
+
 .btn-primary {
 	height: 4em;
 	color: #555;
 	text-shadow: none;
 	background-color: white;
-/*	background-color: #5C93D6;*/
 	border-color: #ccc;
 	opacity: .85;
 }
@@ -365,7 +365,6 @@ body {
 	border-color: #ccc;
 }
 
-
 .btn-primary:active, .btn-primary.active {
 	color: #333;
 	background-color: #E6E6E6;
@@ -375,96 +374,6 @@ body {
 	opacity: .85;
 }
 
-/* This is a hack of Bootstrap's input/button madness */
-.btn-primary.form-button-3 {
-	min-height: 3.5em;
-	height: auto;
-	width: 33%;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	background-image: none;
-	border-radius: 0;
-}
-
-/* This is a hack of Bootstrap's input/button madness */
-.btn-primary.form-button-2 {
-	height: 3.5em;
-	width: 50%;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	background-image: none;
-	border-radius: 0;
-}
-
-.btn-primary.form-button-1 {
-	height: 3.5em;
-	width: 100%;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	background-image: none;
-	border-radius: 0;
-}
-
-
-.form-button:hover {}
-
-/* Left button in 2 and 3 button groups */
-/*.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
-	border-right: none;
-}*/
-
-/* Middle button in 3 button groups */
-/*.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
-	border-right: none;*/
-
-/* Right button in 2 and 3 button groups */
-.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
-}
-
-.btn-primary.form-button-link-left {
-	height: 3em;
-	line-height: 2.428571;
-	width: 48%;
-	float: left;
-	border-right: 1px solid #ccc;
-	background-color: #F3F3F3;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	background-image: none;
-	border-radius: 0;
-	line-height: 2;
-	margin: 10px 0;
-}
-
-.btn-primary.form-button-link-right {
-	height: 3em;
-	line-height: 2.428571;
-	width: 48%;
-	float: right;
-	border-right: 1px solid #ccc;
-	background-color: #F3F3F3;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	background-image: none;
-	border-radius: 0;
-	line-height: 2;
-	margin: 10px 0;
-}
-
-.btn-primary.form-button-link-right:hover {
-	background-color: #E6E6E6;
-}
-.btn-primary.form-button-link-right:active {
-	background-color: #E6E6E6;
-}
-
-.btn-primary.form-button-link-left:hover {
-	background-color: #E6E6E6;
-}
-
-.btn-primary.form-button-link-right:hover {
-	background-color: #E6E6E6;
-}
 
 .form-button-link-solo {
 	color: #555;
@@ -640,14 +549,7 @@ the content column, so we override bootstrap.*/
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
 /* Styles */
-	.form-button-2 {
-		height: 42px;
-	}
-	.form-button-3 {
-		height: 42px;
-	}
 }
-
  /* B O O T S R A P   H A C K S */
 
 /* No width file pickers were breaking the layout on mobile */
