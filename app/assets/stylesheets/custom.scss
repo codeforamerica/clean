@@ -390,9 +390,9 @@ input[type="radio"] {
 
 
 .form-button-link-solo {
+	@include form-type;
 	color: $dark-gray;
-	height: 3.5em;
-	line-height: 2.6;
+	height: 2em;
 	width: 100%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
