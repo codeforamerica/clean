@@ -1,19 +1,17 @@
 <form name="first_id_doc" action="/documents/<%= @token %>/<%= @number_of_docs %>/create" method="post" enctype="multipart/form-data" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-  <h3>Add a document to send</h3>
-  <div class="form-group">
-    <p>To be approved for CalFresh, you will need to send in documentation of a few things:
-    <ul>
-      <li><strong>Identification (ID)</strong> for each person you cook and prepare food with (for example, a driver's license or passport)</li>
-      <li><strong>Income</strong> (for example, a bank statement)</li>
-      <li><strong>Expenses</strong> (for example, a rental lease and a utility bill)</li>
-    </ul>
-    <p>If you don't have a document, you can write down your information and sign your name below to state it's true.</p>
-  </div>
-  <div class="form-group file-group">
-    <label for="identification">Add Document</label>
-    <p>(If you're on a phone, click the button to take a picture!)</p>
-    <input type="file" name="identification" autofocus="autofocus"></input>
-  </div>
+  <h2 class="page-header">Upload and send a document</h2>
+  <p class="page-context">Take photos of key documents, then upload and submit them one at a time.</p>
+  <p class="form-context">To be approved for CalFresh, you will need to send in documentation of a few things:
+  <ul class="list">
+    <li class="list-item"><strong>Identification (ID)</strong> for each person you cook and prepare food with (for example, a driver's license or passport)</li>
+    <li class="list-item"><strong>Income</strong> (for example, a bank statement)</li>
+    <li class="list-item"><strong>Expenses</strong> (for example, a rental lease and a utility bill)</li>
+  </ul>
+  <p class="form-context">If you don't have a document, you can write down your information and sign your name below to state it's true.</p>
+  <br>
+  <label for="identification" class="form-label">Upload a document</label>
+    <p class="form-context">(If you're on a phone, click the button to take a picture!)</p>
+    <input type="file" name="identification" autofocus="autofocus" class="form-context"></input>
   <div class="page-footer" style="display:none">
     <input class="btn next-step" type="submit" value="Add This Document">
   </div>
