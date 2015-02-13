@@ -22,7 +22,7 @@ $background: #f8f8f8;
 /* mrmrs colors */
 $green: #23cc40;
 
-/* Unused Colors *
+/* Other Colors*/
 
 $other-gray-1: #929AA5;
 $other-gray-2: #BAC2CC;
@@ -31,7 +31,7 @@ $other-blue-1: #00618D;
 $other-blue-2: #BAD2DF;
 $other-blue-3: #DFE9EE;
 
-/*================================*/
+/*================================
 
 /* M E D I A    Q U E R I E S */
 
@@ -340,8 +340,17 @@ body {
 
 .form-button {
 	@include form-type;
+	color: $dark-gray;
 	background-color: white;
-	min-height: 3em;
+	height: 3em;
+	border: 1px solid #CCCCCC;
+}
+
+.form-button.active {
+	color: #333;
+	background-color: $other-blue-2;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 
 .btn-primary {
