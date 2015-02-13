@@ -231,11 +231,13 @@ body {
 
 .page-context {
 	@include page-context-type;
+	padding: .5em 0;
 }
 
 .list {
 	@include form-type;
 	font-size: 16px;
+	color: $dark-gray;
 }
 
 .list-item {
@@ -264,7 +266,7 @@ body {
 .form-context {
 	@include form-type;
 	color: $dark-gray;
-	font-size: 14px;
+	font-size: 16px;
 	margin-top: 0;
 }
 
@@ -288,27 +290,9 @@ body {
 }
 
 .solo {
-	height: 3.5em;
+	height: 3	em;
 	-webkit-box-shadow: none;
 	box-shadow: none;
-}
-
-/* For now, subheader is exclusive. It shouldn't be mixed with top/middle/bottom */
-/* It takes properties from middle, assuming a header above and content below */
-/* The change is that the heigh is dynamic based on content */
-.subheader {
-	height: auto;
-	min-height: 3.5em;
-	border: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.subheader p {
-	margin: 10px 0px;
-	line-height: 1.6em;
 }
 
 .dropdown {
@@ -348,17 +332,28 @@ body {
 
 /* F O R M   B U T T O N / T O G G L E */
 
+input[type="radio"] {
+    visibility:hidden;
+    width: 0;
+}
+
+.form-button-col {
+	padding: .5em 0;
+	text-align: center;
+}
+
 .form-button {
 	@include form-type;
 	color: $dark-gray;
 	background-color: white;
-	height: 3em;
+	height: 2em;
 	border: 1px solid #CCCCCC;
+	width: 90%;
 }
 
 .form-button.active {
 	color: #333;
-	background-color: $other-blue-4;
+	background-color: #ccc;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
@@ -421,42 +416,6 @@ input.disabled {
   box-shadow: white 0 1px 0 0 inset;
 }
 
-.in-progress {
-  text-shadow: none;
-  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
-  background: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
-  background: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
-  background: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
-  background: linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
-  -pie-background: linear-gradient(-45deg, rgba(255, 255, 255, 0.6) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.6) 75%, transparent 75%, transparent);
-  background-repeat: repeat;
-  -webkit-background-size: 40px 40px, 100% 100%;
-  -moz-background-size: 40px 40px, 100% 100%;
-  -ms-background-size: 40px 40px, 100% 100%;
-  -o-background-size: 40px 40px, 100% 100%;
-  background-size: 40px 40px, 100% 100%;
-  -webkit-animation: progress-bar-stripes 2s linear infinite;
-  -moz-animation: progress-bar-stripes 2s linear infinite;
-  -ms-animation: progress-bar-stripes 2s linear infinite;
-  -o-animation: progress-bar-stripes 2s linear infinite;
-  animation: progress-bar-stripes 2s linear infinite;
-}
-
-@-webkit-keyframes progress-bar-stripes {
-  from { background-position: 0 0; }
-  to { background-position: 40px 0; }
-}
-
-@-moz-keyframes progress-bar-stripes {
-  from { background-position: 0 0; }
-  to { background-position: 40px 0; }
-}
-
-@keyframes progress-bar-stripes {
-  from { background-position: 0 0; }
-  to { background-position: 40px 0; }
-}
-
 /* F O R M   L I S T S */
 
 /* Sie by side lists, found on the interview.html */
@@ -494,7 +453,7 @@ the content column, so we override bootstrap.*/
 .page-footer {
 	display: inline-block;
 	width: 100%;
-	padding: 0;
+	padding: 1em 0 0 0;
 	margin-bottom: 42px;
 }
 

@@ -1,21 +1,24 @@
 <form name="confirmation" action="/application/confirmation" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-	<h3>You're application has been submitted!</h3>
-	<div class="form-group">
-		<h4>What you can do now</h4>
-		<p>Gather documents about your income, living expenses, and identification. You'll need to provide these to be approved for Calfresh. Valid documents include:
-		<ul>
-			<li>Driver's licenses and passports</li>
-			<li>Bank statements</li>
-			<li>Lease agreements</li>
-			<li>Utility bills</li>
-			<li>Written and signed statements</li>
-		</ul>
-		<p>You'll need to provide government ID for each person you cook and prepare food with, as well.</p>
-	</div>
-	<div class="page-footer">
-		<h4>Do you already have documents on hand?</h4>
-		<p>If you have already gathered documents about your income, expenses and identification, please upload photos of them now.<p>
-		<a href="/documents/<%= @user_token %>/0" class="btn btn-primary form-button-link-left" autofocus="autofocus">Yes</a>
-		<a href="/complete" class="btn btn-primary form-button-link-right">No</a>
+	<h2 class="page-header">You're application has been submitted!</h2>
+	<p class="page-context">There are two more steps before it can be approved&mdash;sending verification documents in, and having your interview with Human Services Agency staff.</p>
+	<p class="form-context">Gather documents about your income, living expenses, and identification. Valid documents include:
+	<ul class="list">
+		<li class="list-item">Driver's licenses and passports</li>
+		<li class="list-item">Bank statements</li>
+		<li class="list-item">Lease agreements</li>
+		<li class="list-item">Utility bills</li>
+		<li class="list-item">Written and signed statements</li>
+	</ul>
+	<p class="form-context">You'll need to provide government ID for each person you cook and prepare food with, as well.</p>
+	<br>
+	<p class="page-context"><b>Do you already have documents on hand?</b></p>
+	<p class="page-context">If you have already gathered documents about your income, expenses and identification, please upload photos of them now.<p>
+	<div class="row form-group" style="padding-bottom:2em;">
+		<div class="col-lg-6 form-button-col">
+			<a href="/documents/<%= @user_token %>/0" class="btn form-button" autofocus="autofocus">Yes</a>
+		</div>
+		<div class="col-lg-6 form-button-col">
+			<a href="/complete" class="btn form-button">No</a>
+		</div>
 	</div>
 </form>

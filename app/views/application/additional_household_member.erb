@@ -9,15 +9,19 @@
     <label for="their_ssn" class="form-label">Their social security number</label>
     <input type="tel" class="form-control" name="their_ssn" id="their_ssn" placeholder="Social security number">
   </div>
-  <div class="form-group">
+  <div class="form-group" data-toggle="buttons">
     <label class="form-label">Choose a sex</label>
-    <div class="btn-group btn-group-justified" data-toggle="buttons">
+    <div class="col-lg-4 form-button-col">
       <label class="btn form-button">
         <input type="radio" name="Female" id="female">Female
       </label>
+    </div>
+    <div class="col-lg-4 form-button-col">
       <label class="btn form-button">
         <input type="radio" name="Male" id="male">Male
       </label>
+    </div>
+    <div class="col-lg-4 form-button-col">
       <label class="btn form-button">
         <input type="radio" name="options" name="NoAnswer" id="no-answer">No answer
       </label>

@@ -5,20 +5,24 @@
 		<label id="ssn" class="form-label">Social Security Number</label>
 		<input type="tel" class="form-control bottom" name="ssn" id="ssn" autofocus="autofocus">
 	</div>
-	<div class="form-group">
-	    <label class="form-label">Choose a sex</label>
-	    <div class="btn-group btn-group-justified" data-toggle="buttons">
-	    	<label class="btn form-button">
-	    		<input type="radio" name="Female" id="female" autocomplete="off" checked>Female
-	    	</label>
-	    	<label class="btn form-button">
-	    		<input type="radio" name="Male" id="male">Male
-	    	</label>
-	    	<label class="btn form-button">
-	    		<input type="radio" name="options" name="NoAnswer" id="no-answer">No answer
-	    	</label>
-	    </div>
-	</div>
+  <div class="form-group" data-toggle="buttons">
+    <label class="form-label">Choose a sex</label>
+    <div class="col-lg-4 form-button-col">
+      <label class="btn form-button">
+        <input type="radio" name="Female" id="female">Female
+      </label>
+    </div>
+    <div class="col-lg-4 form-button-col">
+      <label class="btn form-button">
+        <input type="radio" name="Male" id="male">Male
+      </label>
+    </div>
+    <div class="col-lg-4 form-button-col">
+      <label class="btn form-button">
+        <input type="radio" name="options" name="NoAnswer" id="no-answer">No answer
+      </label>
+    </div>
+  </div>
   <div class="page-footer">
   	<div class="footer-content">
         <input class="btn next-step" type="submit" value="Next Step">
