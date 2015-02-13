@@ -30,6 +30,7 @@ $other-gray-2: #BAC2CC;
 $other-blue-1: #00618D;
 $other-blue-2: #BAD2DF;
 $other-blue-3: #DFE9EE;
+$other-blue-4: #99bce5;
 
 /*================================
 
@@ -73,7 +74,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 @mixin page-context-type {
 	color: $dark-blue;
 	font-family: $proxima;
-	font-size: 24px;
+	font-size: 21px;
 }
 
 @mixin form-type {
@@ -85,7 +86,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 @mixin form-input-type {
 	color: $dark-gray;
 	font-family: $proxima;
-	font-size: 24px;
+	font-size: 21px;
 	font-weight: 300;
 }
 
@@ -232,6 +233,14 @@ body {
 	@include page-context-type;
 }
 
+.list {
+	@include form-type;
+	font-size: 16px;
+}
+
+.list-item {
+	margin-bottom: .5em;
+}
 .page-content {
 	padding-bottom: 1em;
 }
@@ -307,6 +316,7 @@ body {
 }
 
 .checkbox {
+	@include form-input-type;
 	display: inline-block;
 }
 
@@ -348,7 +358,7 @@ body {
 
 .form-button.active {
 	color: #333;
-	background-color: $other-blue-2;
+	background-color: $other-blue-4;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
@@ -385,7 +395,7 @@ body {
 
 
 .form-button-link-solo {
-	color: #555;
+	color: $dark-gray;
 	height: 3.5em;
 	line-height: 2.6;
 	width: 100%;
@@ -520,7 +530,7 @@ the content column, so we override bootstrap.*/
 /* S I G N A T U R E   F O R M */
 
 #signature_area {
-	min-height: 100px;
+	min-height: 150px;
 	border: 1px solid #ccc;
 	margin-bottom: 0;
 	border-radius: 0;
@@ -528,7 +538,7 @@ the content column, so we override bootstrap.*/
 }
 
 .jSignature {
-	min-height: 160px;
+	min-height: 200px;
 }
 
 
