@@ -191,6 +191,9 @@ EOF
     redirect_to '/application/document_instructions'
   end
 
+  def document_instructions
+  end
+
   def confirmation
     @user_token = SecureRandom.hex
   end
