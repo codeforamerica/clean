@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post 'application/review_and_submit' => 'application#review_and_submit_submit'
   get 'application/confirmation' => 'application#confirmation'
   get 'application/document_question' => 'application#document_question'
+  get 'application/document_instructions' => 'application#document_instructions'
 
   get 'complete' => 'application#complete'
   get 'applications/:id' => 'application#show_application'

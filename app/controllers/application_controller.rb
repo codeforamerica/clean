@@ -188,7 +188,7 @@ EOF
       #redirect to('/')
     end
 =end
-    redirect_to '/application/confirmation'
+    redirect_to '/application/document_instructions'
   end
 
   def confirmation
