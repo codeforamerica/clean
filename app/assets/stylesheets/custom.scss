@@ -51,7 +51,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 /* Font applications */
 
 @mixin brand-type {
-	color: white;
+	color: #f8f8f8;
 	font-family: $proxima;
 	font-size: 21px;
 /*	letter-spacing: 0.0625em;*/
@@ -252,7 +252,7 @@ body {
 }
 
 .form-group {
-	padding: 1em 0 0 0;
+	padding: .5em 0;
 }
 
 /* form-controls, by position in a stack. */
@@ -501,7 +501,7 @@ the content column, so we override bootstrap.*/
 	color: #f8f8f8;
 	background-color: #5C93D6;
 	border-radius: 0;
-	margin: 10px 0;
+	margin: 1em 0;
 }
 
 .next-step:hover {
