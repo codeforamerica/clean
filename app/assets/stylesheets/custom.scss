@@ -471,7 +471,6 @@ the content column, so we override bootstrap.*/
 	line-height: 3em;
 	color: #fff;
 	background-color: #5C93D6;
-	border-radius: 0;
 	margin: 10px 0;
 	padding-top:0
 }
@@ -501,7 +500,6 @@ the content column, so we override bootstrap.*/
 	height: 3em;
 	color: #f8f8f8;
 	background-color: #5C93D6;
-	border-radius: 0;
 	margin: 1em 0;
 }
 
@@ -548,6 +546,10 @@ the content column, so we override bootstrap.*/
 @media (min-width: 768px) {
 	.step-explanation {
 		text-align: center;
+	}
+	.next-step {
+		margin: 1em 25% 2em 25%;
+		width: 50%;
 	}
 	.alt-next-step {
 		width: 50%;
