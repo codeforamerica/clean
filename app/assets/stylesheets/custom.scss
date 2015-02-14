@@ -396,12 +396,13 @@ input[type="radio"] {
 .form-button-link-solo {
 	@include form-type;
 	color: $dark-gray;
-	height: 2em;
+	line-height: 2.5em;
+	height: 3em;
 	width: 100%;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	background-image: none;
-	border-radius: 0;
+	margin-bottom: 2em;
 }
 
 /* F O R M   B U T T O N --- D I S A B L E E D / I N   P R O G R E S S */
