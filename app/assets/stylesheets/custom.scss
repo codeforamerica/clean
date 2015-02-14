@@ -64,7 +64,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 }
 
 @mixin subheader-type {
-	color: $green;
+	color: $dark-blue;
 	font-family: $proxima;
 	font-weight: 300;
 	font-size: 36px;
@@ -166,6 +166,10 @@ body {
 /* H O M E P A G E */
 /* index.html */
 
+.homepage-message {
+	text-align: center;
+}
+
 .homepage-headline {
 	@include header-type;
 	font-weight: 700;
@@ -197,6 +201,7 @@ body {
 .step-title {
 	@include form-type;
 	color: $dark-blue;
+	font-weight: 700;
 }
 
 .step-explanation {
@@ -449,17 +454,51 @@ the content column, so we override bootstrap.*/
 
 /* F O O T E R    S T Y L E S */
 
-.page-footer {
+.alt-page-footer {
+	display: inline-block;
+	width: 100%;
+	padding: 1em 0 0 0;
+	text-align: center;
+}
+
+.alt-next-step {
+    font-family: $proxima;
+	font-size: 21px;
+	line-height: 2.5em;
+	color: #fff;
+	width: 50%;
+	line-height: 3em;
+	color: #fff;
+	background-color: #5C93D6;
+	border-radius: 0;
+	margin: 10px 0;
+	padding-top:0
+}
+
+.alt-next-step:hover {
+	color: #fff;
+	background-color: #1D71F5;
+	opacity: .85;
+}
+
+.alt-next-step:focus {
+	color: #fff;
+	background-color: #1D71F5;
+	opacity: .85;
+}
+
+.alt-page-footer {
 	display: inline-block;
 	width: 100%;
 	padding: 1em 0 0 0;
 	margin-bottom: 42px;
+	text-align: center;
 }
 
 .next-step {
 	width: 100%;
 	height: 3em;
-	color: #fff;
+	color: #f8f8f8;
 	background-color: #5C93D6;
 	border-radius: 0;
 	margin: 10px 0;
