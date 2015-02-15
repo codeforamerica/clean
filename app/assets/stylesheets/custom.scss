@@ -106,9 +106,6 @@ body {
 	background-color: $background;
 }
 
-/* Masthead Elements */
-/* Masthead content sticks to the top of each view, and presents metadata about the application */
-
 .masthead {
 	display: inline-block;
 	width: 100%;
@@ -125,14 +122,6 @@ body {
 	margin: .5em 0;
 }
 
-/* Form Elements  */
-
-/* Submit / Advance Button */
-
-.next-step {
-	@include primary-button-type;
-}
-
 /* Icons and Shapes */
 
 .circle {
@@ -140,13 +129,6 @@ body {
 	border-radius: 100%;
 }
 
-/*================================*/
-
-/* T H E  V I E W S */
-
-/* Homepage */
-/* Basic Info */
-/* */
 
 /*================================*/
 
@@ -326,6 +308,9 @@ input[type="radio"] {
 	text-align: center;
 }
 
+/* There are two variations of form buttons, those that a) represent input and b) those that are navigational. */
+/* They have different color schemes, but identical layouts. */
+
 .form-button {
 	@include form-type;
 	color: $gray-medium;
@@ -344,6 +329,23 @@ input[type="radio"] {
 	box-shadow: none;
 }
 
+a.form-button {
+	color: $off-white;
+	background-color: $blue-light;
+	border: none;
+}
+
+a.form-button:hover {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
+
+a.form-button:focus {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
 
 .form-button-link-solo {
 	@include form-type;
@@ -417,6 +419,7 @@ input.disabled {
 /* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
 
 .next-step {
+	@include primary-button-type;
 	width: 100%;
 	height: 3em;
 	color: $off-white;
@@ -475,9 +478,6 @@ input.disabled {
 	}
 	.next-step {
 		margin: 1em 25% 2em 25%;
-		width: 50%;
-	}
-	.alt-next-step {
 		width: 50%;
 	}
 }
