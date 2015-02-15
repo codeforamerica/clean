@@ -114,7 +114,6 @@ body {
 	width: 100%;
 	height: auto;
 	padding: .2em 0;
-	text-align: center;
 	background-color: white;
 	border-bottom: 1px solid $blue-dark;
 }
@@ -219,7 +218,7 @@ body {
 
 .page-header {
 	@include header-type;
-	text-align: center;
+/*	text-align: center;*/
 }
 
 .page-context {
