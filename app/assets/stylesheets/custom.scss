@@ -114,8 +114,9 @@ body {
 	width: 100%;
 	height: auto;
 	padding: .2em 0;
-	/* Blue background color */
-	background-color: #2E394B;
+	text-align: center;
+	background-color: white;
+	border-bottom: 1px solid $blue-dark;
 }
 
 .brand {
@@ -159,14 +160,14 @@ body {
 
 .homepage-headline {
 	@include header-type;
-	font-weight: 700;
-	margin: 1em 0 0 0;
+	margin: 1em 0;
 
 }
 
 .homepage-subheader {
 	@include subheader-type;
 	line-height: 1.4em;
+	font-weight: 700;
 	margin-bottom: 0;
 }
 
@@ -187,12 +188,12 @@ body {
 
 .step-title {
 	@include form-type;
-	color: $dark-blue;
+	color: $blue-dark;
 	font-weight: 700;
 }
 
 .step-explanation {
-	@include form-input-type;
+	@include page-context-type;
 	margin: 1em 0;
 	text-align: left;
 }
@@ -218,6 +219,7 @@ body {
 
 .page-header {
 	@include header-type;
+	text-align: center;
 }
 
 .page-context {
