@@ -227,9 +227,7 @@ body {
 }
 
 .list {
-	@include form-type;
-	font-size: 16px;
-	color: $gray-dark;
+	@include page-context-type;
 }
 
 .list-item {
@@ -273,23 +271,17 @@ body {
 
 /* Form errors*/
 
-.parsley-errors-list.filled {
-	background-color: white;
-}
-
 .parsley-required {
 	@include form-error;
 }
 
-.solo {
-	height: 3	em;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
+/* Dropdown form element, used for languages */
 
 .dropdown {
 	height: 3em;
 }
+
+/* Lots of checkbox styles to make sure its extra-usable. */
 
 .checkbox {
 	@include form-input-type;
@@ -322,7 +314,7 @@ body {
 	padding-right: 20px;
 }
 
-/* F O R M   B U T T O N / T O G G L E */
+/* F O R M   B U T T O N  and B R A N C H   N A V  B T N S  */
 
 input[type="radio"] {
     visibility:hidden;
@@ -381,7 +373,7 @@ input[type="radio"] {
 	border-color: $gray-medium;
 }
 
-/* F O R M   B U T T O N --- D I S A B L E E D / I N   P R O G R E S S */
+/* F O R M   B U T T O N --- D I S A B L E E D  */
 
 input.disabled {
   color: $gray-medium;
@@ -395,12 +387,6 @@ input.disabled {
   -o-box-shadow: white 0 1px 0 0 inset;
   box-shadow: white 0 1px 0 0 inset;
 }
-
-/* F O R M   L I S T S */
-
-/* Sie by side lists, found on the interview.html */
-/* We want two columns, taking up the entire width of
-the content column, so we override bootstrap.*/
 
 /* F I L E   U P L O A D */
 
@@ -428,7 +414,7 @@ the content column, so we override bootstrap.*/
 	background-color: $gray-light;
 }
 
-/* F O O T E R    S T Y L E S */
+/* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
 
 .next-step {
 	width: 100%;
@@ -512,17 +498,10 @@ the content column, so we override bootstrap.*/
 @media only screen and (max-width : 320px) {
 /* Styles */
 }
+
  /* B O O T S R A P   H A C K S */
 
 /* No width file pickers were breaking the layout on mobile */
  input[type=file] {
  	width: 100%;
  }
-
-/* P A R S L E Y   O V E R R I D E S */
-
-/*.parsley-errors-list.filled {
-	background-color: white;
-	font-size: 100%;
-	font-style: italic
-}*/

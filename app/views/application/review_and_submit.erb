@@ -40,11 +40,13 @@
     <div class="btn btn-primary form-button-link-solo" id="signature_clear_button">Clear Signature</div>
   </div>
   <div class="form-group">
+  <p class="form-label">Check to agree</p>
     <div class="checkbox">
-        <label><input type="checkbox" name="confirmation" required data-parsley-required-message="You need to check this box to confirm that you have read the important information above and that you want to submit your CalFresh application." \>Yes, I have read the information on this page and want to submit my CalFresh application</label>
+        <label class="page-context">
+          <input type="checkbox" name="confirmation" required data-parsley-required-message="You need to check this box to confirm that you have read the important information above and that you want to submit your CalFresh application.">Yes, I have read the information on this page and want to submit my CalFresh application</label>
     </div>
   </div>
-  <p class="form-label">After you submit, you'll have the chance to provide documents regarding you identification, income, expenses and other relevant information.</p>
+  <p class="form-context">After you submit, you'll have the chance to provide documents regarding you identification, income, expenses and other relevant information.</p>
   <div class="page-footer">
       <button id="submit_button" class="btn next-step" type="submit" value="Submit Application" data-loading-text="Sending in your application...">Submit Application</button>
   </div>
