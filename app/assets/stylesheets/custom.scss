@@ -12,31 +12,21 @@
 /* C O L O R S */
 
 /* Highly used colors */
-$dark-blue: #2E394B;
+
+$off-white: #f8f8f8;
+$gray-light: #dfdfdf;
+$gray-medium-light: #c8c8c8;
+$gray-medium: #555;
+$gray-dark: #888;
+$blue-light: #5C93D6;
+$blue-bright: #1D71F5;
+$blue-dark: #2E394B;
 $orange: #CF6354;
 $yellow: #f1ab00;
-$light-blue: #5C93D6;
-$bright-blue: #1D71F5;
-$dark-gray: #888;
-$background: #f8f8f8;
-/* mrmrs colors */
-$green: #23cc40;
 
-/* Other Colors*/
 
-$other-gray-1: #929AA5;
-$other-gray-2: #BAC2CC;
+$background: $off-white;
 
-$other-blue-1: #00618D;
-$other-blue-2: #BAD2DF;
-$other-blue-3: #DFE9EE;
-$other-blue-4: #99bce5;
-
-/*================================
-
-/* M E D I A    Q U E R I E S */
-
-/* None at the moment. */
 
 /*================================*/
 
@@ -51,39 +41,37 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 /* Font applications */
 
 @mixin brand-type {
-	color: #f8f8f8;
+	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 21px;
-/*	letter-spacing: 0.0625em;*/
 }
 
 @mixin header-type {
-	color: $dark-blue;
+	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 42px;
 }
 
 @mixin subheader-type {
-	color: $dark-blue;
+	color: $blue-dark;
 	font-family: $proxima;
-	font-weight: 300;
 	font-size: 32px;
 }
 
 @mixin page-context-type {
-	color: $dark-blue;
+	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 21px;
 }
 
 @mixin form-type {
-	color: $dark-blue;
+	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 21px;
 }
 
 @mixin form-input-type {
-	color: $dark-gray;
+	color: $gray-dark;
 	font-family: $proxima;
 	font-size: 21px;
 	font-weight: 300;
@@ -113,7 +101,6 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 
 body {
 	margin: 0;
-	background:  #fff;
 	width: 100%;
 	height: 100%;
 	background-color: $background;
@@ -221,7 +208,7 @@ body {
 	font-size: 24px;
 	font-weight: 700;
 	color: white;
-	background-color: $dark-blue;
+	background-color: $blue-dark;
 	margin: 1.5em 0;
 }
 
@@ -241,7 +228,7 @@ body {
 .list {
 	@include form-type;
 	font-size: 16px;
-	color: $dark-gray;
+	color: $gray-dark;
 }
 
 .list-item {
@@ -269,7 +256,7 @@ body {
 
 .form-context {
 	@include form-type;
-	color: $dark-gray;
+	color: $gray-dark;
 	font-size: 16px;
 	margin-top: 0;
 }
@@ -277,7 +264,7 @@ body {
 /* form-control is the univeral class for all forms fields, regardless of type */
 .form-control {
 	@include form-type;
-	color: $dark-gray;
+	color: $gray-dark;
 	height: 3em;
 	-webkit-box-shadow: none;
 	box-shadow: none;
@@ -348,55 +335,31 @@ input[type="radio"] {
 
 .form-button {
 	@include form-type;
-	color: $dark-gray;
+	color: $gray-medium;
 	background-color: white;
-	height: 2em;
-	border: 1px solid #CCCCCC;
-	width: 90%;
+	height: 3em;
+	line-height: 2.5em;
+	border: 1px solid $gray-light;
+	width: 95%;
 }
 
 .form-button.active {
-	color: #333;
-	background-color: #ccc;
+	color: $gray-medium;
+	background-color: $gray-light;
+	border-color: $gray-medium-light;
 	-webkit-box-shadow: none;
 	box-shadow: none;
-}
-
-.btn-primary {
-	height: 4em;
-	color: #555;
-	text-shadow: none;
-	background-color: white;
-	border-color: #ccc;
-	opacity: .85;
-}
-
-.btn-primary:hover {
-	color: #333;
-	background-color: #F3F3F3;
-	border-color: #ccc;
-}
-
-.btn-primary:focus {
-	color: #333;
-	background-color: #F3F3F3;
-	border-color: #ccc;
-}
-
-.btn-primary:active, .btn-primary.active {
-	color: #333;
-	background-color: #E6E6E6;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	border-color: #ccc;
-	opacity: .85;
 }
 
 
 .form-button-link-solo {
 	@include form-type;
-	color: $dark-gray;
 	line-height: 2.5em;
+	color: $gray-medium;
+	text-shadow: none;
+	background-color: white;
+	border-color: $gray-medium;
+	opacity: .85;
 	height: 3em;
 	width: 100%;
 	-webkit-box-shadow: none;
@@ -405,13 +368,24 @@ input[type="radio"] {
 	margin-bottom: 2em;
 }
 
+.form-button-link-solo:hover {
+	color: $gray-medium;
+	background-color: $off-white;
+	border-color: $gray-medium;
+}
+
+.form-button-link-solo:focus {
+	color: $gray-medium;
+	background-color: $gray-light;
+	border-color: $gray-medium;
+}
+
 /* F O R M   B U T T O N --- D I S A B L E E D / I N   P R O G R E S S */
 
 input.disabled {
-  color: #333;
-  background-color: #e1e0dc;
-/*  background-color: #f6f5f0;*/
-  border: 1px solid #d3d3d3;
+  color: $gray-medium;
+  background-color: $gray-light;
+  border: 1px solid $gray-medium;
   cursor: auto;
   text-shadow: white 0 1px 0;
   -webkit-box-shadow: white 0 1px 0 0 inset;
@@ -431,87 +405,47 @@ the content column, so we override bootstrap.*/
 
 .file-group {
 	padding-bottom: 1em;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid $gray-medium;
 }
 
 .skip {
 	width: 100%;
 	height: 3em;
-	margin: 10px 0;
-	background-color: #F3F3F3;
+	margin: 1em 0;
+	background-color: $off-white;
 	border-radius: 0;
-	border: 1px solid #ccc;
+	border: 1px solid $gray-medium;
 	line-height: 2;
-	color: #555;
-	margin-bottom: 42px;
+	color: $gray-medium;
+	margin-bottom: 3em;
 }
 
 .skip:hover {
-	background-color: #E6E6E6;
+	background-color: $gray-light;
 }
 .skip:active {
-	background-color: #E6E6E6;
+	background-color: $gray-light;
 }
 
 /* F O O T E R    S T Y L E S */
 
-.alt-page-footer {
-	display: inline-block;
-	width: 100%;
-	padding: 1em 0 0 0;
-	text-align: center;
-}
-
-.alt-next-step {
-    font-family: $proxima;
-	font-size: 21px;
-	line-height: 2.5em;
-	color: #fff;
-	width: 100%;
-	line-height: 3em;
-	color: #fff;
-	background-color: #5C93D6;
-	margin: 10px 0;
-	padding-top:0
-}
-
-.alt-next-step:hover {
-	color: #fff;
-	background-color: #1D71F5;
-	opacity: .85;
-}
-
-.alt-next-step:focus {
-	color: #fff;
-	background-color: #1D71F5;
-	opacity: .85;
-}
-
-.alt-page-footer {
-	display: inline-block;
-	width: 100%;
-	padding: 1em 0 0 0;
-	margin-bottom: 42px;
-	text-align: center;
-}
-
 .next-step {
 	width: 100%;
 	height: 3em;
-	color: #f8f8f8;
-	background-color: #5C93D6;
+	color: $off-white;
+	background-color: $blue-light;
 	margin: 1em 0;
 }
 
 .next-step:hover {
-	color: #fff;
-	background-color: #1D71F5;
+	color: white;
+	background-color: $blue-bright;
 	opacity: .85;
 }
 
 .next-step:focus {
-	color: #fff;
-	background-color: #1D71F5;
+	color: white;
+	background-color: $blue-bright;
 	opacity: .85;
 }
 
@@ -526,11 +460,16 @@ the content column, so we override bootstrap.*/
 /* S I G N A T U R E   F O R M */
 
 #signature_area {
-	min-height: 150px;
-	border: 1px solid #ccc;
+	min-height: 6em;
+	border: 1px solid $gray-medium;
 	margin-bottom: 0;
 	border-radius: 0;
 	border-bottom: 0;
+}
+
+#signature_clear_button {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
 .jSignature {
