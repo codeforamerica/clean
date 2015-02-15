@@ -311,6 +311,7 @@ input[type="radio"] {
 /* There are two variations of form buttons, those that a) represent input and b) those that are navigational. */
 /* They have different color schemes, but identical layouts. */
 
+/* Default is input */
 .form-button {
 	@include form-type;
 	color: $gray-medium;
@@ -329,6 +330,7 @@ input[type="radio"] {
 	box-shadow: none;
 }
 
+/* Navigational */
 a.form-button {
 	color: $off-white;
 	background-color: $blue-light;
@@ -347,6 +349,8 @@ a.form-button:focus {
 	opacity: .85;
 }
 
+
+/* Special cases, like starting over, and clearing signatures. */
 .form-button-link-solo {
 	@include form-type;
 	line-height: 2.5em;
