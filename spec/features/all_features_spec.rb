@@ -16,17 +16,20 @@ feature 'User leaves required fields empty' do
       fill_in('name', with: '')
       fill_in('date_of_birth', with: '')
       click_on('Next Step')
+      #  This test is not complete and remains pending.
   end
 end
 
 
 feature 'User goes through full application (up to review and submit)' do
+  #  This test is pending DG's 
   pending
   scenario 'it all works!' do
     visit '/application/basic_info?'
       fill_in 'name', with: 'Hot Snakes'
       fill_in 'date_of_birth', with: "01/01/2000"
       click_button 'Next Step'
+      #  I don't like having tests dependent on copywriting, and I don't think they add value, except while writing.
       expect(page).to have_content('Contact information')
       fill_in 'home_phone_number', with: "5555555555"
       fill_in 'email', with: "hotsnakes@gmail.com"
@@ -47,5 +50,15 @@ feature 'User goes through full application (up to review and submit)' do
       check('late-afternoon')
       click_on('Next Step')
       expect(page).to have_content("Do you buy and cook food with anyone?")
+      click_link('Yes')
+      expect(page).to have_content("Household member information")
+      fill_in 'their_name', with: 'Hot Snakes'
+      fill_in 'their_date_of_birth', with: "01/01/2000"
+      fill_in 'their_ssn', with: "000000000"
+      choose('male')
+      click_on('Next Step')
+      expect(page).to have_content("Do you buy and cook food with anyone?")
+      click_link('No')
+      expect(page).to have_content("Confirm and submit")
   end
 end
