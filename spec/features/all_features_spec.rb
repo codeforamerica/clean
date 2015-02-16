@@ -34,5 +34,18 @@ feature 'User goes through full application (up to review and submit)' do
       fill_in 'home_zip_code', with: "94122"
       click_on('Next Step')
       expect(page).to have_content('Personal information')
+      fill_in 'ssn', with: "000000000"
+      choose('no-answer')
+      click_on('Next Step')
+      expect(page).to have_content("Would you like to apply for Medi-Cal?")
+      choose('no')
+      click_on('Next Step')
+      expect(page).to have_content("When do you prefer your interview?")
+      check('monday')
+      check('friday')
+      check('mid-morning')
+      check('late-afternoon')
+      click_on('Next Step')
+      expect(page).to have_content("Do you buy and cook food with anyone?")
   end
 end
