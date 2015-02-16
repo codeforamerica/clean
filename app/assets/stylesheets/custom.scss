@@ -379,8 +379,6 @@ a.form-button:focus {
 	border-color: $gray-medium;
 }
 
-/* F O R M   B U T T O N --- D I S A B L E E D  */
-
 input.disabled {
   color: $gray-medium;
   background-color: $gray-light;
@@ -393,6 +391,7 @@ input.disabled {
   -o-box-shadow: white 0 1px 0 0 inset;
   box-shadow: white 0 1px 0 0 inset;
 }
+
 
 /* F I L E   U P L O A D */
 
@@ -495,8 +494,6 @@ input.disabled {
 /* Rename this back to @screen-lg-min when we move to SCSS*/
 @media (min-width: 1200px) { 
 }
-
-
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
