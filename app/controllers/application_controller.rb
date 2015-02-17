@@ -51,16 +51,6 @@ class ApplicationController < ActionController::Base
     end
     session[:ssn] = params[:ssn]
     session[:sex] = sex
-    redirect_to '/application/medical'
-  end
-
-  def medical
-  end
-
-  def medical_submit
-    if params[:yes] == "on"
-      session[:medi_cal_interest] = "on"
-    end
     redirect_to '/application/interview'
   end
 

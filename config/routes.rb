@@ -13,8 +13,6 @@ Rails.application.routes.draw do
   post 'application/contact_info' => 'application#contact_info_submit'
   get 'application/sex_and_ssn' => 'application#sex_and_ssn'
   post 'application/sex_and_ssn' => 'application#sex_and_ssn_submit'
-  get 'application/medical' => 'application#medical'
-  post 'application/medical' => 'application#medical_submit'
   get 'application/interview' => 'application#interview'
   post 'application/interview' => 'application#interview_submit'
   get 'application/household_question' => 'application#household_question'
