@@ -396,6 +396,8 @@ EOF
     end
   end
 
+# Commented out below while document upload removed
+=begin
   describe 'GET /application/document_question' do
     it 'responds successfully' do
       allow(SecureRandom).to receive(:hex).and_return("notsorandom")
@@ -404,6 +406,7 @@ EOF
       expect(@response.status).to eq(200)
     end
   end
+=end
 
   describe 'GET /complete' do
     it 'responds successfully' do
