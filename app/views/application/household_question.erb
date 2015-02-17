@@ -1,13 +1,16 @@
 <form name="household_question" action="/application/household_question" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-  <h3>Do you buy and cook food with anyone?</h3>
-  <div class="form-group">
-    <div class="form-control subheader">
-      <p>Calfresh supports nutrition for individuals and families. We need to know if you buy and cook food with anyone else. This includes roommates, adult family members, and children.</p>
+  <h2 class="page-header">Do you buy and cook food with anyone?</h2>
+  <p class="page-context">Calfresh supports nutrition for individuals and families. We need to know if you buy and cook food with anyone else. This includes roommates, adult family members, and children.</p>
+  <br>
+  <div class="page-footer">
+  <div class="row form-group">
+    <div class="col-lg-6 form-button-col">
+        <a href="/application/additional_household_member" class="btn form-button" autofocus="autofocus">Yes</a>
     </div>
-    <div class="page-footer">
-        <a href="/application/additional_household_member" class="btn btn-primary form-button-link-left" autofocus="autofocus">Yes</a>
-        <a href="/application/review_and_submit" class="btn btn-primary form-button-link-right">No</a>
+    <div class="col-lg-6 form-button-col">
+        <a href="/application/review_and_submit" class="btn form-button">No</a>
     </div>
+  </div>
 </form>
 <script>
   $('.btn').button()

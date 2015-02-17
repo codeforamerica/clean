@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+=begin
 RSpec.describe DocumentsController, :type => :controller do
   around do |example|
     ClimateControl.modify(REDISTOGO_URL: 'fakeredisurl',
@@ -152,3 +153,4 @@ EOF
     end
   end
 end
+=end

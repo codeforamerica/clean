@@ -1,0 +1,508 @@
+/*================================*/
+
+/* C L E A N    A S S I S T */
+
+/* Clean is a dead simple form for SNAP applicants */
+/* These styles are overrides and modifications on top of Bootsrap 3 */
+/* If you want to suggest an improvement to these styles, please visit: */
+/* https://github.com/codeforamerica/clean/issues */
+
+/*================================*/
+
+/* C O L O R S */
+
+/* Highly used colors */
+
+$off-white: #f8f8f8;
+$gray-light: #dfdfdf;
+$gray-medium-light: #c8c8c8;
+$gray-medium: #555;
+$gray-dark: #888;
+$blue-light: #5C93D6;
+$blue-bright: #1D71F5;
+$blue-dark: #2E394B;
+$orange: #CF6354;
+$yellow: #f1ab00;
+
+
+$background: $off-white;
+
+
+/*================================*/
+
+/* F O N T S */
+
+/* Fonts in Use */
+
+$proxima: "proxima-nova",sans-serif;
+$proxima-alt: "proxima-nova-alt", sans-serif;
+
+
+/* Font applications */
+
+@mixin brand-type {
+	color: $blue-dark;
+	font-family: $proxima;
+	font-size: 21px;
+}
+
+@mixin header-type {
+	color: $blue-dark;
+	font-family: $proxima;
+	font-size: 42px;
+}
+
+@mixin subheader-type {
+	color: $blue-dark;
+	font-family: $proxima;
+	font-size: 32px;
+}
+
+@mixin page-context-type {
+	color: $blue-dark;
+	font-family: $proxima;
+	font-size: 21px;
+}
+
+@mixin form-type {
+	color: $blue-dark;
+	font-family: $proxima;
+	font-size: 21px;
+}
+
+@mixin form-input-type {
+	color: $gray-dark;
+	font-family: $proxima;
+	font-size: 21px;
+	font-weight: 300;
+}
+
+@mixin form-error {
+	color: $orange;
+	font-family: $proxima;
+	font-size: 16px;
+}
+
+@mixin primary-button-type {
+	color: white;
+	font-family: $proxima;
+	font-size: 21px;
+	font-weight: 300;
+}
+
+
+
+/*================================*/
+
+/* G L O B A L S */
+
+
+/* High level DOM elements */
+
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background-color: $background;
+}
+
+.masthead {
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	padding: .2em 0;
+	background-color: white;
+	border-bottom: 1px solid $gray-light;
+}
+
+.brand {
+	@include brand-type;
+	display: inline-block;
+	padding-right: 0.625em;
+	margin: .5em 0;
+}
+
+/* Icons and Shapes */
+
+.circle {
+	/* in each context, redefine the equal height and width of the circle */
+	border-radius: 100%;
+}
+
+
+/*================================*/
+
+/* H O M E P A G E */
+/* index.html */
+
+.homepage-message {
+	text-align: center;
+}
+
+.homepage-headline {
+	@include header-type;
+	margin: 1em 0;
+
+}
+
+.homepage-subheader {
+	@include subheader-type;
+	line-height: 1.4em;
+	font-weight: 700;
+	margin-bottom: 0;
+}
+
+
+.steps-to-enroll {
+	width: 100%;
+	text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+    margin: 1em 0;
+}
+
+.step-to-enroll {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.step-title {
+	@include form-type;
+	color: $blue-dark;
+	font-weight: 700;
+}
+
+.step-explanation {
+	@include page-context-type;
+	margin: 1em 0;
+	text-align: left;
+}
+
+/* Make sure to refactor this into a generic font style*/
+.step-to-enroll-icon {
+	display: inline-block;
+	width: 75px;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	font-family: $proxima;
+	font-size: 24px;
+	font-weight: 700;
+	color: white;
+	background-color: $blue-dark;
+	margin: 1.5em 0;
+}
+
+
+
+/* F O R M   S T Y L E S */
+
+.page-header {
+	@include header-type;
+/*	text-align: center;*/
+}
+
+.page-context {
+	@include page-context-type;
+	padding: .5em 0;
+}
+
+.list {
+	@include page-context-type;
+}
+
+.list-item {
+	margin-bottom: .5em;
+}
+.page-content {
+	padding-bottom: 1em;
+}
+
+.form-group {
+	padding: .5em 0;
+}
+
+/* form-controls, by position in a stack. */
+/* There can only be one top and one bottom, but there can be many middles.*/
+
+
+.form-label {
+	@include form-type;
+	font-weight: 700;
+	width: auto;
+	display: block;
+}
+
+
+.form-context {
+	@include form-type;
+	color: $gray-dark;
+	font-size: 16px;
+	margin-top: 0;
+}
+
+/* form-control is the univeral class for all forms fields, regardless of type */
+.form-control {
+	@include form-type;
+	color: $gray-dark;
+	height: 3em;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+/* Form errors*/
+
+.parsley-required {
+	@include form-error;
+}
+
+/* Dropdown form element, used for languages */
+
+.dropdown {
+	height: 3em;
+}
+
+/* Lots of checkbox styles to make sure its extra-usable. */
+
+.checkbox {
+	@include form-input-type;
+	display: inline-block;
+}
+
+.times-of-day .checkbox {
+	padding-top: .5em;
+	padding-bottom: .5em;
+	padding-right: 20px;
+	padding-left: 0;
+}
+
+.times-of-day .checkbox input[type=checkbox] {
+	float: none;
+	margin-left: 0;
+	padding-right: 20px;
+}
+
+.days-of-week .checkbox {
+	padding-top: .5em;
+	padding-bottom: .5em;
+	padding-right: 20px;
+	padding-left: 0;
+}
+
+.days-of-week .checkbox input[type=checkbox] {
+	float: none;
+	margin-left: 0;
+	padding-right: 20px;
+}
+
+/* F O R M   B U T T O N  and B R A N C H   N A V  B T N S  */
+
+input[type="radio"] {
+    visibility:hidden;
+    width: 0;
+}
+
+.form-button-col {
+	padding: .5em 0;
+	text-align: center;
+}
+
+/* There are two variations of form buttons, those that a) represent input and b) those that are navigational. */
+/* They have different color schemes, but identical layouts. */
+
+/* Default is input */
+.form-button {
+	@include form-type;
+	color: $gray-medium;
+	background-color: white;
+	height: 3em;
+	line-height: 2.5em;
+	border: 1px solid $gray-light;
+	width: 95%;
+}
+
+.form-button.active {
+	color: $gray-medium;
+	background-color: $gray-light;
+	border-color: $gray-medium-light;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+/* Navigational */
+a.form-button {
+	color: $off-white;
+	background-color: $blue-light;
+	border: none;
+}
+
+a.form-button:hover {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
+
+a.form-button:focus {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
+
+
+/* Special cases, like starting over, and clearing signatures. */
+.form-button-link-solo {
+	@include form-type;
+	line-height: 2.5em;
+	color: $gray-medium;
+	text-shadow: none;
+	background-color: white;
+	border-color: $gray-medium;
+	opacity: .85;
+	height: 3em;
+	width: 100%;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	margin-bottom: 2em;
+}
+
+.form-button-link-solo:hover {
+	color: $gray-medium;
+	background-color: $off-white;
+	border-color: $gray-medium;
+}
+
+.form-button-link-solo:focus {
+	color: $gray-medium;
+	background-color: $gray-light;
+	border-color: $gray-medium;
+}
+
+input.disabled {
+  color: $gray-medium;
+  background-color: $gray-light;
+  border: 1px solid $gray-medium;
+  cursor: auto;
+  text-shadow: white 0 1px 0;
+  -webkit-box-shadow: white 0 1px 0 0 inset;
+  -moz-box-shadow: white 0 1px 0 0 inset;
+  -ms-box-shadow: white 0 1px 0 0 inset;
+  -o-box-shadow: white 0 1px 0 0 inset;
+  box-shadow: white 0 1px 0 0 inset;
+}
+
+
+/* F I L E   U P L O A D */
+
+.file-group {
+	padding-bottom: 1em;
+	border-bottom: 1px solid $gray-medium;
+}
+
+.skip {
+	width: 100%;
+	height: 3em;
+	margin: 1em 0;
+	background-color: $off-white;
+	border-radius: 0;
+	border: 1px solid $gray-medium;
+	line-height: 2;
+	color: $gray-medium;
+	margin-bottom: 3em;
+}
+
+.skip:hover {
+	background-color: $gray-light;
+}
+.skip:active {
+	background-color: $gray-light;
+}
+
+/* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
+
+.next-step {
+	@include primary-button-type;
+	width: 100%;
+	height: 3em;
+	color: $off-white;
+	background-color: $blue-light;
+	margin: 1em 0;
+}
+
+.next-step:hover {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
+
+.next-step:focus {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
+
+.page-footer .or {
+	text-align: center;
+}
+
+.footer-question {
+	padding-top: 1em;
+}
+
+/* S I G N A T U R E   F O R M */
+
+#signature_area {
+	min-height: 6em;
+	border: 1px solid $gray-medium;
+	margin-bottom: 0;
+	border-radius: 0;
+	border-bottom: 0;
+}
+
+#signature_clear_button {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.jSignature {
+	min-height: 200px;
+}
+
+
+/* M E D I A    Q U E R I E S */
+
+
+/* Small devices (tablets, 768px and up) */
+/* Rename this back to @screen-sm-min when we move to SCSS*/
+@media (min-width: 768px) {
+	.step-explanation {
+		text-align: center;
+	}
+	.next-step {
+		margin: 1em 25% 2em 25%;
+		width: 50%;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+/* Rename this back to @screen-md-min when we move to SCSS*/
+@media (min-width: 992px) {
+}
+
+/* Large devices (large desktops, 1200px and up) */
+/* Rename this back to @screen-lg-min when we move to SCSS*/
+@media (min-width: 1200px) { 
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+}
+
+ /* B O O T S R A P   H A C K S */
+
+/* No width file pickers were breaking the layout on mobile */
+ input[type=file] {
+ 	width: 100%;
+ }
