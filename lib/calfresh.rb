@@ -62,7 +62,7 @@ module Calfresh
       end
       unique_key = SecureRandom.hex
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
-      empty_form_path = File.expand_path("../calfresh/calfresh_3pager.pdf", __FILE__)
+      empty_form_path = File.expand_path("../calfresh/calfresh_application_only_field_pages.pdf", __FILE__)
       @pdftk.fill_form(empty_form_path, filled_in_form_path, input_for_pdf_writer)
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
       system("convert /tmp/signature_#{unique_key}.png -background none -gravity southwest -extent 2500x2400 /tmp/signature_scaled_#{unique_key}.png")

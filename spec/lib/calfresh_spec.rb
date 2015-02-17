@@ -20,8 +20,7 @@ describe Calfresh do
 
     describe '#fill_out_form' do
         let(:mandatory_pdf_form_inputs) { { "Text32 PG 1" => fake_date.strftime, "Check Box1 PG 3" => "Yes" } }
-        let(:path_for_3_pager_pdf) { File.expand_path("../../../lib/calfresh/calfresh_3pager.pdf", __FILE__) }
-
+        let(:path_for_10page_application_pdf) { File.expand_path("../../../lib/calfresh/calfresh_application_only_field_pages.pdf", __FILE__) }
 
       context 'given 1 additional household member' do
         let(:fake_input) { {
@@ -36,7 +35,7 @@ describe Calfresh do
         it 'sends correct input' do
           desired_hash_subset = { "Text12 PG 3" => "Joe Blow", "Text14 PG 3" => "12/23/85", "Text15 PG 3" => "M", "Text18 PG 3" => "0001112222" }
           hash_for_fill_form = mandatory_pdf_form_inputs.merge(desired_hash_subset)
-          expect(fake_pdftk).to receive(:fill_form).with(path_for_3_pager_pdf, "/tmp/application_fakehex.pdf", hash_for_fill_form)
+          expect(fake_pdftk).to receive(:fill_form).with(path_for_10page_application_pdf, "/tmp/application_fakehex.pdf", hash_for_fill_form)
           writer.fill_out_form(fake_input)
         end
       end
@@ -90,7 +89,7 @@ describe Calfresh do
             "Text45 PG 3" => "4444444444"
           }
           hash_for_fill_form = mandatory_pdf_form_inputs.merge(desired_hash_subset)
-          expect(fake_pdftk).to receive(:fill_form).with(path_for_3_pager_pdf, "/tmp/application_fakehex.pdf", hash_for_fill_form)
+          expect(fake_pdftk).to receive(:fill_form).with(path_for_10page_application_pdf, "/tmp/application_fakehex.pdf", hash_for_fill_form)
           writer.fill_out_form(fake_input)
         end
       end
@@ -115,7 +114,7 @@ describe Calfresh do
             desired_hash_subset["Check Box#{number} PG 2"] = 'Yes'
           end
           hash_for_fill_form = mandatory_pdf_form_inputs.merge(desired_hash_subset)
-          expect(fake_pdftk).to receive(:fill_form).with(path_for_3_pager_pdf, "/tmp/application_fakehex.pdf", hash_for_fill_form)
+          expect(fake_pdftk).to receive(:fill_form).with(path_for_10page_application_pdf, "/tmp/application_fakehex.pdf", hash_for_fill_form)
           writer.fill_out_form(fake_input)
         end
       end
