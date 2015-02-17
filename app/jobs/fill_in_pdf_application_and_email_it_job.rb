@@ -33,8 +33,7 @@ EOF
     Zip::Archive.encrypt(zip_file_path, ENV['ZIP_FILE_PASSWORD'])
     puts zip_file_path
     mail.add_attachment(zip_file_path)
-    #email_result_application = client.send(mail)
-    email_result_application = "job would have produced this"
+    email_result_application = client.send(mail)
     puts email_result_application
     puts "Hey! The job was run at: #{Time.now.to_s}"
   end
