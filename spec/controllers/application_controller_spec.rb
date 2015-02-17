@@ -409,13 +409,11 @@ EOF
 
       # Pending more mocking
       it 'adds application as attachment' do
-      pending
-        expect(fake_sendgrid_mail).to have_received(:add_attachment).with('/tmp/fakefinal.pdf')
+        expect(fake_sendgrid_mail).to have_received(:add_attachment).with('/tmp/fakehexvalue.zip')
       end
 
       # Pending more mocking
       it 'sends an email' do
-      pending
         expect(fake_sendgrid_client).to have_received(:send).with(fake_sendgrid_mail)
       end
     end
