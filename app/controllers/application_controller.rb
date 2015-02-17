@@ -141,7 +141,10 @@ class ApplicationController < ActionController::Base
       birth_year = date_of_birth_array[2]
       if birth_year.length == 4
         input_for_writer[:date_of_birth] = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
+      else
+        input_for_writer[:date_of_birth] = session[:date_of_birth]
       end
+      input_for_writer.delete('date_of_birth')
     end
     input_for_writer[:name_page3] = session[:name]
     input_for_writer[:ssn_page3] = session[:ssn]
