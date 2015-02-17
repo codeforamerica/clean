@@ -38,4 +38,16 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Mock out the SendGrid client in development until we use ActiveMailer
+  class FakeSendGridClient
+    def initialize(*args)
+    end
+
+    def send(mail_object)
+      return "{ message: 'FakeSendGridClient's fake success message' }"
+    end
+  end
+
+  SendGrid::Client = FakeSendGridClient
 end
