@@ -1,5 +1,7 @@
 # CalFresh and So Clean
 
+[![Build Status](https://travis-ci.org/codeforamerica/clean.svg?branch=make-all-tests-pass)](https://travis-ci.org/codeforamerica/clean)
+
 Making applying to the CalFresh program not suck.
 
 ## How it sucks now
