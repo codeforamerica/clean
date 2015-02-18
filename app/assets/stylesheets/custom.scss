@@ -458,6 +458,7 @@ input.disabled {
 	margin-bottom: 0;
 	border-radius: 0;
 	border-bottom: 0;
+	-ms-touch-action: none;
 }
 
 #signature_clear_button {
