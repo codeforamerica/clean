@@ -104,7 +104,7 @@ RSpec.describe ApplicationController, :type => :controller do
 
       it 'redirects to medi-cal page' do
         expect(@response).to be_redirect
-        expect(@response.location).to include('/application/medical')
+        expect(@response.location).to include('/application/interview')
       end
     end
 
@@ -126,66 +126,9 @@ RSpec.describe ApplicationController, :type => :controller do
         end
       end
 
-      it 'redirects to medi-cal page' do
-        expect(@response).to be_redirect
-        expect(@response.location).to include('/application/medical')
-      end
-    end
-  end
-
-  describe 'GET /application/medical' do
-    it 'responds successfully' do
-      get :medical
-      expect(@response.status).to eq(200)
-    end
-  end
-
-  describe 'POST /application/medical' do
-    context 'with medi-cal yes selected' do
-      before do
-        @input_hash = {
-          yes: 'on'
-        }
-        post :medical_submit, @input_hash
-      end
-
-      it 'marks medi_cal_interest as on in session' do
-        desired_hash = {
-          medi_cal_interest: 'on'
-        }
-        desired_hash.each_pair do |key, value|
-          expect(@request.session[key]).to eq(value)
-        end
-      end
-
-      it 'redirects to interview page' do
+      it 'redirects to the interview page' do
         expect(@response).to be_redirect
         expect(@response.location).to include('/application/interview')
-      end
-    end
-
-    context 'with medi-cal no selected' do
-      before do
-        @input_hash = {
-          no: 'on'
-        }
-        post :medical_submit, @input_hash
-      end
-
-      it 'saves nothing in session' do
-        expect(@request.session).to be_empty
-      end
-    end
-
-    context 'with nothing on medi-cal page selected' do
-      before do
-        @input_hash = {
-        }
-        post :medical_submit, @input_hash
-      end
-
-      it 'saves nothing in session' do
-        expect(@request.session).to be_empty
       end
     end
   end

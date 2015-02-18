@@ -37,9 +37,6 @@ feature 'User goes through full application (up to review and submit)' do
       fill_in 'ssn', with: "000000000"
       choose('no-answer')
       click_on('Next Step')
-      expect(page.current_path).to eq('/application/medical')
-      choose('no')
-      click_on('Next Step')
       expect(page.current_path).to eq('/application/interview')
       check('monday')
       check('friday')
