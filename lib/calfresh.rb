@@ -1,4 +1,5 @@
 require 'pdf_forms'
+require 'prawn'
 require 'securerandom'
 
 module Calfresh
@@ -65,13 +66,17 @@ module Calfresh
       empty_form_path = File.expand_path("../calfresh/calfresh_3pager.pdf", __FILE__)
       @pdftk.fill_form(empty_form_path, filled_in_form_path, input_for_pdf_writer)
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
-      system("convert /tmp/signature_#{unique_key}.png -background none -gravity southwest -extent 2500x2400 /tmp/signature_scaled_#{unique_key}.png")
+      signature_scaled_png_path = "/tmp/signature_scaled_#{unique_key}.png"
+      system("convert /tmp/signature_#{unique_key}.png -background none -gravity southwest -extent 2500x2400 #{signature_scaled_png_path}")
       system("convert /tmp/signature_scaled_#{unique_key}.png /tmp/sig_pdf_#{unique_key}.pdf")
       stamped_app_without_cover_letter_path = "/tmp/final_application_no_cover_letter_#{unique_key}.pdf"
       system("pdftk #{filled_in_form_path} stamp /tmp/sig_pdf_#{unique_key}.pdf output #{stamped_app_without_cover_letter_path}")
       final_app_path = "/tmp/final_application_#{unique_key}.pdf"
       cover_letter_path = File.expand_path("../calfresh/clean_cover_letter_v3.pdf", __FILE__)
       system("pdftk #{cover_letter_path} #{stamped_app_without_cover_letter_path} cat output #{final_app_path}")
+      info_release_form = InfoReleaseForm.new(client_information: input, signature_png_path: signature_scaled_png_path)
+      #convert_application_pdf_to_png_set(unique_key)
+      #add_signature_to_application(unique_key)
       Application.new(unique_key)
     end
 
@@ -175,6 +180,38 @@ module Calfresh
     private
     def write_pdf_from_pngs!
       system("convert #{png_filenames.join(' ')} #{final_pdf_path}")
+    end
+  end
+
+  class InfoReleaseForm
+    def initialize(params)
+      pdf = Prawn::Document.new
+      pdf.text(<<EOF
+Subject: Authorization for release of information
+To: San Francisco Human Services Agency
+
+I, #{params[:client_information][:name]}, authorize you to release the following information regarding my CalFresh application or active case to Code for America:
+
+- Case number
+- Current and past application status
+- Dates and reasons for all changes to the application status
+- Current and past benefit allotment
+- Reasons my case was pended or denied
+- Description of all verification documents that were submitted
+
+Code for America will use this information to make sure my case is processed properly.
+EOF
+)
+      pdf.image(params[:signature_png_path])
+      pdf.text(<<EOF
+Date of birth: #{params[:client_information][:date_of_birth]}
+
+Code for America
+155 9th Street, San Francisco 94103
+(415) 625-9633
+www.codeforamerica.org
+EOF
+)
     end
   end
 
