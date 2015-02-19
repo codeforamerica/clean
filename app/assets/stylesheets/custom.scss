@@ -274,6 +274,7 @@ body {
 	box-shadow: none;
 }
 
+
 /* Form errors*/
 
 .parsley-required {
@@ -512,6 +513,10 @@ input.disabled {
 /* Medium devices (desktops, 992px and up) */
 /* Rename this back to @screen-md-min when we move to SCSS*/
 @media (min-width: 992px) {
+/* form control short, for things like ZIP code*/
+	.short {
+		width: 50%
+	}
 }
 
 /* Large devices (large desktops, 1200px and up) */

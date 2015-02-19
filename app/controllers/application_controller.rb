@@ -15,7 +15,10 @@ class ApplicationController < ActionController::Base
 
   def basic_info_submit
     session[:name] = params[:name]
-    session[:date_of_birth] = params[:date_of_birth]
+    session[:home_address] = params[:home_address]
+    session[:home_zip_code] = params[:home_zip_code]
+    session[:home_city] = params[:home_city]
+    session[:home_state] = params[:home_state]
     redirect_to '/application/contact_info'
   end
 
@@ -26,10 +29,6 @@ class ApplicationController < ActionController::Base
   def contact_info_submit
     session[:home_phone_number] = params[:home_phone_number]
     session[:email] = params[:email]
-    session[:home_address] = params[:home_address]
-    session[:home_zip_code] = params[:home_zip_code]
-    session[:home_city] = params[:home_city]
-    session[:home_state] = params[:home_state]
     session[:primary_language] = params[:primary_language]
     redirect_to '/application/sex_and_ssn'
   end
@@ -49,6 +48,7 @@ class ApplicationController < ActionController::Base
       else
         ""
     end
+    session[:date_of_birth] = params[:date_of_birth]
     session[:ssn] = params[:ssn]
     session[:sex] = sex
     redirect_to '/application/interview'
