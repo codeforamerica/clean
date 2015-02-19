@@ -9,6 +9,14 @@
 
 /*================================*/
 
+/* Z INDICES */
+
+$zIndex-1:   100;
+$zIndex-2:   200;
+$zIndex-3:   300;
+
+/*================================*/
+
 /* C O L O R S */
 
 /* Highly used colors */
@@ -111,7 +119,7 @@ body {
 	width: 100%;
 	height: 100%;
 	display: inline-block;
-	margin-top: -4px;
+	margin-top: -.3em;
 }
 
 .masthead {
@@ -121,6 +129,7 @@ body {
 	padding: .2em 0;
 	background-color: white;
 	border-bottom: 1px solid $gray-light;
+	z-index: $zIndex-2;
 }
 
 .brand {
