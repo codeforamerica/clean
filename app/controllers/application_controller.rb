@@ -51,22 +51,6 @@ class ApplicationController < ActionController::Base
     session[:date_of_birth] = params[:date_of_birth]
     session[:ssn] = params[:ssn]
     session[:sex] = sex
-    redirect_to '/application/interview'
-  end
-
-  def interview
-  end
-
-  def interview_submit
-    selected_times = params.select do |key, value|
-      value == "on"
-    end.keys
-    underscored_selections = selected_times.map do  |t|
-      t.gsub("-","_")
-    end
-    underscored_selections.each do |selection|
-      session["interview_#{selection}"] = 'Yes'
-    end
     redirect_to '/application/household_question'
   end
 
@@ -120,6 +104,22 @@ class ApplicationController < ActionController::Base
   end
 
   def additional_household_question
+  end
+
+  def interview
+  end
+
+  def interview_submit
+    selected_times = params.select do |key, value|
+      value == "on"
+    end.keys
+    underscored_selections = selected_times.map do  |t|
+      t.gsub("-","_")
+    end
+    underscored_selections.each do |selection|
+      session["interview_#{selection}"] = 'Yes'
+    end
+    redirect_to '/application/review_and_submit'
   end
 
   def review_and_submit
