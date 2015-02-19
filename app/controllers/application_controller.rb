@@ -116,7 +116,10 @@ class ApplicationController < ActionController::Base
       sex: sex
     }
     session[:additional_household_members] << hash_for_person
-    redirect_to '/application/household_question'
+    redirect_to '/application/additional_household_question'
+  end
+
+  def additional_household_question
   end
 
   def review_and_submit
