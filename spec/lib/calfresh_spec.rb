@@ -10,7 +10,7 @@ describe Calfresh do
     let(:writer) { Calfresh::ApplicationWriter.new }
     let(:fake_pdftk) { double("PdfForms", :fill_form => "yay!") }
     let(:fake_date) { double("Date", :strftime => "08/28/2014" ) }
-    let(:fake_prawn_document) { double("Prawn::Document", :text => true, :image => true ) }
+    let(:fake_prawn_document) { double("Prawn::Document", :text => true, :image => true, :render_file => true) }
 
     before do
       allow(PdfForms).to receive(:new).and_return(fake_pdftk)
@@ -201,6 +201,10 @@ EOF
 
         it 'draws the signature image' do
           expect(fake_prawn_document).to have_received(:image).with('/tmp/signature_scaled_fakehex.png')
+        end
+
+        it 'writes the info release form to the correct path' do
+          expect(fake_prawn_document).to have_received(:render_file).with("/tmp/info_release_form_fakehex.pdf")
         end
       end
     end
