@@ -1,6 +1,7 @@
 <form name="additional_household_member" action="/application/additional_household_member" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
-  <h2 class="page-header">Household member information</h2>
-  <p class="page-context">We need you to provide personal information for each individual you cook and prepare food with. If you don't have all of the information below, that's ok. Provide what you know, and Human Services Agency staff will ask you for additional information during your interview.</p>
+  <h2 class="page-header">Tell us about one of the other people in your household</h2>
+  <p class="page-context">We need you to provide personal information for each adult or child in your family, or roommates that you cook and share food with.</p>
+  <p class="page-context">If you don't have all of the information below, that's ok. Provide what you know, and Human Services Agency staff will ask you for additional information during your interview.</p>
   <div class="form-group">
     <label for="their-name" class="form-label">Their full name</label>
     <!-- ID and name do not match :/ their_name and their-name -->
@@ -13,17 +14,17 @@
   </div>
   <div class="form-group" data-toggle="buttons">
     <label class="form-label">Choose a sex</label>
-    <div class="col-lg-4 form-button-col">
+    <div class="col-md-4 form-button-col">
       <button class="btn form-button">
         <input type="radio" name="Female" id="female">Female
       </button>
     </div>
-    <div class="col-lg-4 form-button-col">
+    <div class="col-md-4 form-button-col">
       <button class="btn form-button">
         <input type="radio" name="Male" id="male">Male
       </button>
     </div>
-    <div class="col-lg-4 form-button-col">
+    <div class="col-md-4 form-button-col">
       <button class="btn form-button">
         <!-- Name and ID don't match :/ NoAnswer and no-answer -->
         <input type="radio" name="options" name="NoAnswer" id="no-answer">No answer
