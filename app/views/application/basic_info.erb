@@ -3,8 +3,10 @@
 	<div class="form-group">
     <label for="name" class="form-label">Your full name</label>
 		<input type="text" class="form-control" name="name" id="name" required required data-parsley-required-message="Provide your full name to get started!" autofocus="autofocus">
+  </div>
+  <div class="form-group">
     <label for="home_address" class="form-label">Your street address</label>
-    <p class="form-context">HSA needs to confirm that you live in San Francisco, and know where to mail you important information.</p>
+    <p class="form-context">Confirm that you live in San Francisco, and let HSA know where to mail you important information about your benefits.</p>
     <input id="home_address" type="text" class="form-control" name="home_address" required required data-parsley-required-message="Confirm that you live in San Francisco by providing your street address." \>
     <label for="home_zip_code" class="form-label">ZIP code</label>
     <input id="home_zip_code" type="tel" class="form-control short" name="home_zip_code" required required data-parsley-required-message="We need your ZIP code too!">
@@ -12,7 +14,9 @@
     <input type="hidden" class="form-control" name="home_state" value="CA">
 	</div>
   <div class="page-footer">
-    <input class="btn next-step" type="submit" value="Next Step">
+    <div class="page-footer-content col-md-4 col-md-offset-8">
+      <input class="btn next-step" type="submit" value="Next Step">
+    </div>
   </div>
 </form>
 
