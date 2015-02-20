@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'application/info_sharing' => 'application#info_sharing'
   post 'application/info_sharing' => 'application#info_sharing_submit'
   get 'application/rights_and_regs' => 'application#rights_and_regs'
+  post 'application/rights_and_regs' => 'application#rights_and_regs_submit'
   get 'application/review_and_submit' => 'application#review_and_submit'
   post 'application/review_and_submit' => 'application#review_and_submit_submit'
   get 'application/confirmation' => 'application#confirmation'
