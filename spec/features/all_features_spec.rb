@@ -13,11 +13,9 @@ feature 'User leaves required fields empty', :js => true do
     visit '/application/basic_info?'
       expect(page.current_path).to eq('/application/basic_info')
       fill_in('name', with: '')
-      fill_in('date_of_birth', with: '')
       click_on('Next Step')
       expect(page.current_path).to eq('/application/basic_info')
-      expect(page).to have_content('Name is required to apply')
-      expect(page).to have_content('Please provide your date of birth in the format described')
+      expect(page).to have_content('Provide your full name to get started!')
   end
 end
 
@@ -25,24 +23,19 @@ feature 'User goes through full application (up to review and submit)' do
   scenario 'with basic interactions' do
     visit '/application/basic_info?'
       fill_in 'name', with: 'Hot Snakes'
-      fill_in 'date_of_birth', with: "01/01/2000"
+      fill_in 'home_address', with: "2015 Market Street"
+      fill_in 'home_zip_code', with: "94122"
       click_button 'Next Step'
       expect(page.current_path).to eq('/application/contact_info')
       fill_in 'home_phone_number', with: "5555555555"
       fill_in 'email', with: "hotsnakes@gmail.com"
-      fill_in 'home_address', with: "2015 Market Street"
-      fill_in 'home_zip_code', with: "94122"
       click_on('Next Step')
       expect(page.current_path).to eq('/application/sex_and_ssn')
+      fill_in 'date_of_birth', with: "01/01/2000"
       fill_in 'ssn', with: "000000000"
       choose('no-answer')
       click_on('Next Step')
-      expect(page.current_path).to eq('/application/interview')
-      check('monday')
-      check('friday')
-      check('mid-morning')
-      check('late-afternoon')
-      click_on('Next Step')
+
       expect(page.current_path).to eq('/application/household_question')
       click_link('Yes')
       expect(page.current_path).to eq('/application/additional_household_member')
@@ -51,9 +44,14 @@ feature 'User goes through full application (up to review and submit)' do
       fill_in 'their_ssn', with: "000000000"
       choose('male')
       click_on('Next Step')
-      expect(page).to have_content("Do you buy and cook food with anyone?")
-      expect(page.current_path).to eq('/application/household_question')
+      expect(page.current_path).to eq('/application/additional_household_question')
       click_link('No')
+      expect(page.current_path).to eq('/application/interview')
+      check('monday')
+      check('friday')
+      check('mid-morning')
+      check('late-afternoon')
+      click_on('Next Step')
       expect(page.current_path).to eq('/application/review_and_submit')
   end
 end
