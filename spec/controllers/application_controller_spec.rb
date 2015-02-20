@@ -235,7 +235,7 @@ RSpec.describe ApplicationController, :type => :controller do
         end
       end
 
-      it 'redirects to confirmation / review_and_submit page' do
+      it 'redirects to info_sharing / privacy page' do
         expect(@response).to be_redirect
         expect(@response.location).to include('/application/info_sharing')
       end
