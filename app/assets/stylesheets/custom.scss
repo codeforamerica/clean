@@ -9,6 +9,14 @@
 
 /*================================*/
 
+/* Z INDICES */
+
+$zIndex-1:   100;
+$zIndex-2:   200;
+$zIndex-3:   300;
+
+/*================================*/
+
 /* C O L O R S */
 
 /* Highly used colors */
@@ -103,7 +111,16 @@ body {
 	margin: 0;
 	width: 100%;
 	height: 100%;
+	background-color: $blue-dark;
+}
+
+.main {
 	background-color: $background;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	margin-top: -.4em;
+	border-top: 1px solid $gray-light;
 }
 
 .masthead {
@@ -113,6 +130,7 @@ body {
 	padding: .2em 0;
 	background-color: white;
 	border-bottom: 1px solid $gray-light;
+	z-index: $zIndex-2;
 }
 
 .brand {
@@ -122,11 +140,27 @@ body {
 	margin: .5em 0;
 }
 
+.form {
+	margin-bottom: 2em;
+}
+
 /* Icons and Shapes */
 
 .circle {
 	/* in each context, redefine the equal height and width of the circle */
 	border-radius: 100%;
+}
+
+.footer {
+	width: 100%;
+	height: auto;
+	display: inline-block;
+	padding: 2em 0;
+}
+
+.footer-content {
+    @include page-context-type;
+	color: white;
 }
 
 
@@ -223,6 +257,11 @@ body {
 	padding: .5em 0;
 }
 
+.btn-form-group {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
 /* form-controls, by position in a stack. */
 /* There can only be one top and one bottom, but there can be many middles.*/
 
@@ -250,6 +289,7 @@ body {
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
+
 
 /* Form errors*/
 
@@ -319,7 +359,7 @@ input[type="radio"] {
 	height: 3em;
 	line-height: 2.5em;
 	border: 1px solid $gray-light;
-	width: 95%;
+	width: 85%;
 }
 
 .form-button.active {
@@ -442,8 +482,18 @@ input.disabled {
 	opacity: .85;
 }
 
+.page-footer {
+    border-top: 1px solid #eee;
+    margin-top: 1em;
+}
+
 .page-footer .or {
 	text-align: center;
+}
+
+.page-footer-content {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .footer-question {
@@ -480,15 +530,21 @@ input.disabled {
 	.step-explanation {
 		text-align: center;
 	}
-	.next-step {
-		margin: 1em 25% 2em 25%;
+	.start-btn {
 		width: 50%;
+		margin: 2em 0;
+	}
+	.footer {
 	}
 }
 
 /* Medium devices (desktops, 992px and up) */
 /* Rename this back to @screen-md-min when we move to SCSS*/
 @media (min-width: 992px) {
+/* form control short, for things like ZIP code*/
+	.short {
+		width: 33%
+	}
 }
 
 /* Large devices (large desktops, 1200px and up) */

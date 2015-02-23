@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'application/household_question' => 'application#household_question'
   get 'application/additional_household_member' => 'application#additional_household_member'
   post 'application/additional_household_member' => 'application#additional_household_member_submit'
+  get 'application/additional_household_question' => 'application#additional_household_question'
   get 'application/review_and_submit' => 'application#review_and_submit'
   post 'application/review_and_submit' => 'application#review_and_submit_submit'
   get 'application/confirmation' => 'application#confirmation'

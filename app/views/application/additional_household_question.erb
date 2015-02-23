@@ -1,0 +1,19 @@
+<form name="household_question" action="/application/additional_household_question" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+  <h2 class="page-header">Do you need to document anyone else?</h2>
+  <br>
+  <div class="row form-group">
+    <div class="col-md-6 form-button-col" style="text-align: center;">
+        <p class="form-context" style="padding: 1em 1em .5em 1em;">Yes, I have another family or household member to document.</p>
+        <br>
+        <a href="/application/additional_household_member" class="btn form-button" autofocus="autofocus">Yes</a>
+    </div>
+    <div class="col-md-6 form-button-col">
+        <p class="form-context" style="padding: 1em 1em .5em 1em;">No, I have documented all others I live with. Let's move on!</p>
+        <br>
+        <a href="/application/interview" class="btn form-button">No</a>
+    </div>
+  </div>
+</form>
+<script>
+  $('.btn').button()
+</script>

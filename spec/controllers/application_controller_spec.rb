@@ -27,13 +27,18 @@ RSpec.describe ApplicationController, :type => :controller do
 
   describe 'POST /application/basic_info' do
     before do
-      @input_hash = { name: 'dave', date_of_birth: '06/01/75' }
+      @input_hash = {
+        name: 'dave',
+        home_address: '1234 Fake St',
+        home_zip_code: '94113',
+        home_city: 'San Francisco',
+        home_state: 'CA',
+      }
       post :basic_info_submit, @input_hash
     end
 
     it 'saves basic_info to the session' do
       expect(@request.session[:name]).to eq('dave')
-      expect(@request.session[:date_of_birth]).to eq('06/01/75')
     end
 
     it 'redirects to contact_info' do
@@ -54,10 +59,6 @@ RSpec.describe ApplicationController, :type => :controller do
       @input_hash = {
         home_phone_number: '1112223333',
         email: 'joe@example.com',
-        home_address: '1234 Fake St',
-        home_zip_code: '94113',
-        home_city: 'San Francisco',
-        home_state: 'CA',
         primary_language: "English"
       }
       post :contact_info_submit, @input_hash
@@ -86,6 +87,7 @@ RSpec.describe ApplicationController, :type => :controller do
     context 'with ssn and sex selected' do
       before do
         @input_hash = {
+          date_of_birth: '06/01/75',
           "ssn" => '1112223333',
           "Male" => 'on'
         }
@@ -94,6 +96,7 @@ RSpec.describe ApplicationController, :type => :controller do
 
       it 'saves contact info into the session' do
         desired_hash = {
+          date_of_birth: '06/01/75',
           ssn: '1112223333',
           sex: 'M'
         }
@@ -102,9 +105,9 @@ RSpec.describe ApplicationController, :type => :controller do
         end
       end
 
-      it 'redirects to medi-cal page' do
+      it 'redirects to household question page' do
         expect(@response).to be_redirect
-        expect(@response.location).to include('/application/interview')
+        expect(@response.location).to include('/application/household_question')
       end
     end
 
@@ -126,9 +129,9 @@ RSpec.describe ApplicationController, :type => :controller do
         end
       end
 
-      it 'redirects to the interview page' do
+      it 'redirects to the household question page' do
         expect(@response).to be_redirect
-        expect(@response.location).to include('/application/interview')
+        expect(@response.location).to include('/application/household_question')
       end
     end
   end
@@ -160,9 +163,9 @@ RSpec.describe ApplicationController, :type => :controller do
         end
       end
 
-      it 'redirects to household_question page' do
+      it 'redirects to confirmation / review_and_submit page' do
         expect(@response).to be_redirect
-        expect(@response.location).to include('/application/household_question')
+        expect(@response.location).to include('/application/review_and_submit')
       end
     end
 
@@ -177,9 +180,9 @@ RSpec.describe ApplicationController, :type => :controller do
         expect(@request.session).to be_empty
       end
 
-      it 'redirects to household_question page' do
+      it 'redirects to confirmation / review_and_submit page page' do
         expect(@response).to be_redirect
-        expect(@response.location).to include('/application/household_question')
+        expect(@response.location).to include('/application/review_and_submit')
       end
     end
   end
@@ -224,10 +227,11 @@ RSpec.describe ApplicationController, :type => :controller do
         end
       end
 
-      # To be changed to next_addl_household_member in future
-      it 'redirects back to household_question' do
+      # To be changed to next_addl_household_member in future - DONE
+      # We should add a new test for routing additional_hh_q => interview, hh info
+      it 'redirects to additional_household_question' do
         expect(@response).to be_redirect
-        expect(@response.location).to include('/application/household_question')
+        expect(@response.location).to include('/application/additional_household_question')
       end
     end
 

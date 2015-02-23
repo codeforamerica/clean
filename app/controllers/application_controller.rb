@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   #protect_from_forgery with: :exception
@@ -15,7 +15,10 @@ class ApplicationController < ActionController::Base
 
   def basic_info_submit
     session[:name] = params[:name]
-    session[:date_of_birth] = params[:date_of_birth]
+    session[:home_address] = params[:home_address]
+    session[:home_zip_code] = params[:home_zip_code]
+    session[:home_city] = params[:home_city]
+    session[:home_state] = params[:home_state]
     redirect_to '/application/contact_info'
   end
 
@@ -26,10 +29,6 @@ class ApplicationController < ActionController::Base
   def contact_info_submit
     session[:home_phone_number] = params[:home_phone_number]
     session[:email] = params[:email]
-    session[:home_address] = params[:home_address]
-    session[:home_zip_code] = params[:home_zip_code]
-    session[:home_city] = params[:home_city]
-    session[:home_state] = params[:home_state]
     session[:primary_language] = params[:primary_language]
     redirect_to '/application/sex_and_ssn'
   end
@@ -49,24 +48,9 @@ class ApplicationController < ActionController::Base
       else
         ""
     end
+    session[:date_of_birth] = params[:date_of_birth]
     session[:ssn] = params[:ssn]
     session[:sex] = sex
-    redirect_to '/application/interview'
-  end
-
-  def interview
-  end
-
-  def interview_submit
-    selected_times = params.select do |key, value|
-      value == "on"
-    end.keys
-    underscored_selections = selected_times.map do  |t|
-      t.gsub("-","_")
-    end
-    underscored_selections.each do |selection|
-      session["interview_#{selection}"] = 'Yes'
-    end
     redirect_to '/application/household_question'
   end
 
@@ -116,7 +100,26 @@ class ApplicationController < ActionController::Base
       sex: sex
     }
     session[:additional_household_members] << hash_for_person
-    redirect_to '/application/household_question'
+    redirect_to '/application/additional_household_question'
+  end
+
+  def additional_household_question
+  end
+
+  def interview
+  end
+
+  def interview_submit
+    selected_times = params.select do |key, value|
+      value == "on"
+    end.keys
+    underscored_selections = selected_times.map do  |t|
+      t.gsub("-","_")
+    end
+    underscored_selections.each do |selection|
+      session["interview_#{selection}"] = 'Yes'
+    end
+    redirect_to '/application/review_and_submit'
   end
 
   def review_and_submit
