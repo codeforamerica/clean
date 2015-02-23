@@ -71,12 +71,12 @@ module Calfresh
       system("convert /tmp/signature_scaled_#{unique_key}.png /tmp/sig_pdf_#{unique_key}.pdf")
       stamped_app_without_cover_letter_path = "/tmp/final_application_no_cover_letter_#{unique_key}.pdf"
       system("pdftk #{filled_in_form_path} stamp /tmp/sig_pdf_#{unique_key}.pdf output #{stamped_app_without_cover_letter_path}")
-      final_app_path = "/tmp/final_application_#{unique_key}.pdf"
+      path_for_app_without_info_release_form = "/tmp/final_application_without_info_release_#{unique_key}.pdf"
       cover_letter_path = File.expand_path("../calfresh/clean_cover_letter_v3.pdf", __FILE__)
-      system("pdftk #{cover_letter_path} #{stamped_app_without_cover_letter_path} cat output #{final_app_path}")
-      info_release_form = InfoReleaseForm.new(client_information: input, signature_png_path: signature_scaled_png_path)
+      system("pdftk #{cover_letter_path} #{stamped_app_without_cover_letter_path} cat output #{path_for_app_without_info_release_form}")
       path_for_info_release_form = "/tmp/info_release_form_#{unique_key}.pdf"
       info_release_form = InfoReleaseForm.new(client_information: input, signature_png_path: signature_scaled_png_path, path_for_pdf: path_for_info_release_form)
+      Kernel.system("pdftk #{path_for_app_without_info_release_form} #{path_for_info_release_form} cat output /tmp/final_application_#{unique_key}.pdf")
       #convert_application_pdf_to_png_set(unique_key)
       #add_signature_to_application(unique_key)
       Application.new(unique_key)

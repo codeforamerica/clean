@@ -17,6 +17,7 @@ describe Calfresh do
       allow(SecureRandom).to receive(:hex).and_return("fakehex")
       allow(Date).to receive(:today).and_return(fake_date)
       allow_any_instance_of(Calfresh::ApplicationWriter).to receive(:system)
+      allow(Kernel).to receive(:system)
       allow(Prawn::Document).to receive(:new).and_return(fake_prawn_document)
     end
 
@@ -205,6 +206,12 @@ EOF
 
         it 'writes the info release form to the correct path' do
           expect(fake_prawn_document).to have_received(:render_file).with("/tmp/info_release_form_fakehex.pdf")
+        end
+
+        it 'adds the info release pdf to the final application' do
+          # TODO - properly mock the system call here
+
+          expect(Kernel).to have_received(:system).with("pdftk /tmp/final_application_without_info_release_fakehex.pdf /tmp/info_release_form_fakehex.pdf cat output /tmp/final_application_fakehex.pdf")
         end
       end
     end
