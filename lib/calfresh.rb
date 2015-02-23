@@ -204,7 +204,7 @@ I, #{params[:client_information][:name]}, authorize you to release the following
 Code for America will use this information to make sure my case is processed properly.
 EOF
 )
-      pdf.image(params[:signature_png_path])
+      pdf.image(params[:signature_png_path], scale: 0.3)
       pdf.text(<<EOF
 Date of birth: #{params[:client_information][:date_of_birth]}
 

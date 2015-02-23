@@ -200,8 +200,8 @@ EOF
 )
         end
 
-        it 'draws the signature image' do
-          expect(fake_prawn_document).to have_received(:image).with('/tmp/signature_fakehex.png')
+        it 'draws the signature image resized to 30%' do
+          expect(fake_prawn_document).to have_received(:image).with('/tmp/signature_fakehex.png', scale: 0.3)
         end
 
         it 'writes the info release form to the correct path' do
