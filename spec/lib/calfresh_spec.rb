@@ -19,9 +19,8 @@ describe Calfresh do
     end
 
     describe '#fill_out_form' do
-        let(:mandatory_pdf_form_inputs) { { "Text32 PG 1" => fake_date.strftime, "Check Box1 PG 3" => "Yes" } }
-        let(:path_for_3_pager_pdf) { File.expand_path("../../../lib/calfresh/calfresh_3pager.pdf", __FILE__) }
-
+      let(:mandatory_pdf_form_inputs) { { "Text32 PG 1" => fake_date.strftime, "Check Box1 PG 3" => "Yes" } }
+      let(:path_for_3_pager_pdf) { File.expand_path("../../../lib/calfresh/calfresh_3pager.pdf", __FILE__) }
 
       context 'given 1 additional household member' do
         let(:fake_input) { {
@@ -117,6 +116,44 @@ describe Calfresh do
           hash_for_fill_form = mandatory_pdf_form_inputs.merge(desired_hash_subset)
           expect(fake_pdftk).to receive(:fill_form).with(path_for_3_pager_pdf, "/tmp/application_fakehex.pdf", hash_for_fill_form)
           writer.fill_out_form(fake_input)
+        end
+      end
+
+      describe 'system calls' do
+        let(:fake_input) {
+          {
+            signature: 'fakesignatureblob'
+          }
+        }
+
+        before do
+          writer.fill_out_form(fake_input)
+        end
+
+        it 'converts the base 64 signature' do
+          command = "echo fakesignatureblob | base64 --decode > /tmp/signature_fakehex.png"
+          expect(writer).to have_received(:system).with(command)
+        end
+
+        it 'scales the signature with imagemagick' do
+          command = "convert /tmp/signature_fakehex.png -background none -gravity southwest -extent 2500x2400 /tmp/signature_scaled_fakehex.png"
+          expect(writer).to have_received(:system).with(command)
+        end
+
+        it 'converts the scaled signature from png to pdf' do
+          command = "convert /tmp/signature_scaled_fakehex.png /tmp/sig_pdf_fakehex.pdf"
+          expect(writer).to have_received(:system).with(command)
+        end
+
+        it 'stamps the application with the signature pdf' do
+          command = "pdftk /tmp/application_fakehex.pdf stamp /tmp/sig_pdf_fakehex.pdf output /tmp/final_application_no_cover_letter_fakehex.pdf"
+          expect(writer).to have_received(:system).with(command)
+        end
+
+        it 'adds the cover letter to the application PDF' do
+          cover_letter_path_from_spec = File.expand_path("../../../lib/calfresh/clean_cover_letter_v3.pdf", __FILE__)
+          command = "pdftk #{cover_letter_path_from_spec} /tmp/final_application_no_cover_letter_fakehex.pdf cat output /tmp/final_application_fakehex.pdf"
+          expect(writer).to have_received(:system).with(command)
         end
       end
     end

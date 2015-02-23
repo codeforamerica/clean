@@ -67,9 +67,11 @@ module Calfresh
       write_signature_png_to_tmp(base64_signature_blob, unique_key)
       system("convert /tmp/signature_#{unique_key}.png -background none -gravity southwest -extent 2500x2400 /tmp/signature_scaled_#{unique_key}.png")
       system("convert /tmp/signature_scaled_#{unique_key}.png /tmp/sig_pdf_#{unique_key}.pdf")
-      system("pdftk #{filled_in_form_path} stamp /tmp/sig_pdf_#{unique_key}.pdf output /tmp/final_application_#{unique_key}.pdf")
-      #convert_application_pdf_to_png_set(unique_key)
-      #add_signature_to_application(unique_key)
+      stamped_app_without_cover_letter_path = "/tmp/final_application_no_cover_letter_#{unique_key}.pdf"
+      system("pdftk #{filled_in_form_path} stamp /tmp/sig_pdf_#{unique_key}.pdf output #{stamped_app_without_cover_letter_path}")
+      final_app_path = "/tmp/final_application_#{unique_key}.pdf"
+      cover_letter_path = File.expand_path("../calfresh/clean_cover_letter_v3.pdf", __FILE__)
+      system("pdftk #{cover_letter_path} #{stamped_app_without_cover_letter_path} cat output #{final_app_path}")
       Application.new(unique_key)
     end
 
