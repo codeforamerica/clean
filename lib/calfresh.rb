@@ -187,12 +187,13 @@ module Calfresh
 
   class InfoReleaseForm
     def initialize(params)
+      name = params[:client_information][:name]
       pdf = Prawn::Document.new
       pdf.text(<<EOF
 Subject: Authorization for release of information
 To: San Francisco Human Services Agency
 
-I, #{params[:client_information][:name]}, authorize you to release the following information regarding my CalFresh application or active case to Code for America:
+I, #{name}, authorize you to release the following information regarding my CalFresh application or active case to Code for America:
 
 - Case number
 - Current and past application status
@@ -206,6 +207,7 @@ EOF
 )
       pdf.image(params[:signature_png_path], scale: 0.3)
       pdf.text(<<EOF
+Name: #{name}
 Date of birth: #{params[:client_information][:date_of_birth]}
 
 Code for America

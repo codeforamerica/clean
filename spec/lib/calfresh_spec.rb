@@ -190,6 +190,7 @@ Code for America will use this information to make sure my case is processed pro
 EOF
 )
           expect(fake_prawn_document).to have_received(:text).with(<<EOF
+Name: #{test_input[:name]}
 Date of birth: #{test_input[:date_of_birth]}
 
 Code for America
