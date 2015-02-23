@@ -201,7 +201,7 @@ EOF
         end
 
         it 'draws the signature image' do
-          expect(fake_prawn_document).to have_received(:image).with('/tmp/signature_scaled_fakehex.png')
+          expect(fake_prawn_document).to have_received(:image).with('/tmp/signature_fakehex.png')
         end
 
         it 'writes the info release form to the correct path' do

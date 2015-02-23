@@ -75,7 +75,7 @@ module Calfresh
       cover_letter_path = File.expand_path("../calfresh/clean_cover_letter_v3.pdf", __FILE__)
       system("pdftk #{cover_letter_path} #{stamped_app_without_cover_letter_path} cat output #{path_for_app_without_info_release_form}")
       path_for_info_release_form = "/tmp/info_release_form_#{unique_key}.pdf"
-      info_release_form = InfoReleaseForm.new(client_information: input, signature_png_path: signature_scaled_png_path, path_for_pdf: path_for_info_release_form)
+      info_release_form = InfoReleaseForm.new(client_information: validated_field_input, signature_png_path: "/tmp/signature_#{unique_key}.png", path_for_pdf: path_for_info_release_form)
       Kernel.system("pdftk #{path_for_app_without_info_release_form} #{path_for_info_release_form} cat output /tmp/final_application_#{unique_key}.pdf")
       #convert_application_pdf_to_png_set(unique_key)
       #add_signature_to_application(unique_key)
