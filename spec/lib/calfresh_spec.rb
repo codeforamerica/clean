@@ -10,7 +10,7 @@ describe Calfresh do
     let(:writer) { Calfresh::ApplicationWriter.new }
     let(:fake_pdftk) { double("PdfForms", :fill_form => "yay!") }
     let(:fake_date) { double("Date", :strftime => "08/28/2014" ) }
-    let(:fake_prawn_document) { double("Prawn::Document", :text => true, :image => true, :render_file => true) }
+    let(:fake_prawn_document) { double("Prawn::Document", :text => true, :image => true, :render_file => true, :font => true, :move_down => true) }
 
     before do
       allow(PdfForms).to receive(:new).and_return(fake_pdftk)
@@ -172,11 +172,8 @@ describe Calfresh do
           writer.fill_out_form(test_input)
         end
 
-        it 'sends correct input to the Prawn document' do
+        it 'sends correct core body input to the Prawn document' do
           expect(fake_prawn_document).to have_received(:text).with(<<EOF
-Subject: Authorization for release of information
-To: San Francisco Human Services Agency
-
 I, #{test_input[:name]}, authorize you to release the following information regarding my CalFresh application or active case to Code for America:
 
 - Case number
@@ -207,6 +204,10 @@ EOF
 
         it 'writes the info release form to the correct path' do
           expect(fake_prawn_document).to have_received(:render_file).with("/tmp/info_release_form_fakehex.pdf")
+        end
+
+        it 'sets the font to Helvetica' do
+          expect(fake_prawn_document).to have_received(:font).with('Helvetica')
         end
 
         it 'adds the info release pdf to the final application' do

@@ -189,10 +189,13 @@ module Calfresh
     def initialize(params)
       name = params[:client_information][:name]
       pdf = Prawn::Document.new
+      pdf.font 'Helvetica'
+      pdf.font('Helvetica', style: :bold) do
+        pdf.text 'Subject: Authorization for release of information'
+        pdf.text 'To: San Francisco Human Services Agency'
+      end
+      pdf.move_down 10
       pdf.text(<<EOF
-Subject: Authorization for release of information
-To: San Francisco Human Services Agency
-
 I, #{name}, authorize you to release the following information regarding my CalFresh application or active case to Code for America:
 
 - Case number
