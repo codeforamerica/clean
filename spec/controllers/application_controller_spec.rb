@@ -136,57 +136,6 @@ RSpec.describe ApplicationController, :type => :controller do
     end
   end
 
-  describe 'GET /application/interview' do
-    it 'responds successfully' do
-      get :interview
-      expect(@response.status).to eq(200)
-    end
-  end
-
-  describe 'POST /application/interview' do
-    context 'with one time of day and one day selected' do
-      before do
-        @input_hash = {
-          'early-morning' => 'on',
-          'monday' => 'on'
-        }
-        post :interview_submit, @input_hash
-      end
-
-      it 'saves the selections in session' do
-        desired_hash = {
-          'interview_early_morning' => 'Yes',
-          'interview_monday' => 'Yes'
-        }
-        desired_hash.each_pair do |key, value|
-          expect(@request.session[key]).to eq(value)
-        end
-      end
-
-      it 'redirects to confirmation / review_and_submit page' do
-        expect(@response).to be_redirect
-        expect(@response.location).to include('/application/review_and_submit')
-      end
-    end
-
-    context 'with no selections' do
-      before do
-        @input_hash = {
-        }
-        post :interview_submit, @input_hash
-      end
-
-      it 'puts nothing in session' do
-        expect(@request.session).to be_empty
-      end
-
-      it 'redirects to confirmation / review_and_submit page page' do
-        expect(@response).to be_redirect
-        expect(@response.location).to include('/application/review_and_submit')
-      end
-    end
-  end
-
   describe 'GET /application/household_question' do
     it 'responds successfully' do
       get :household_question
@@ -256,6 +205,92 @@ RSpec.describe ApplicationController, :type => :controller do
           expect(@request.session[key]).to eq(value)
         end
       end
+    end
+  end
+
+  describe 'GET /application/interview' do
+    it 'responds successfully' do
+      get :interview
+      expect(@response.status).to eq(200)
+    end
+  end
+
+  describe 'POST /application/interview' do
+    context 'with one time of day and one day selected' do
+      before do
+        @input_hash = {
+          'early-morning' => 'on',
+          'monday' => 'on'
+        }
+        post :interview_submit, @input_hash
+      end
+
+      it 'saves the selections in session' do
+        desired_hash = {
+          'interview_early_morning' => 'Yes',
+          'interview_monday' => 'Yes'
+        }
+        desired_hash.each_pair do |key, value|
+          expect(@request.session[key]).to eq(value)
+        end
+      end
+
+      it 'redirects to info_sharing / privacy page' do
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/application/info_sharing')
+      end
+    end
+
+    context 'with no selections' do
+      before do
+        @input_hash = {
+        }
+        post :interview_submit, @input_hash
+      end
+
+      it 'puts nothing in session' do
+        expect(@request.session).to be_empty
+      end
+
+      it 'redirects to info_sharing / privacy page' do
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/application/info_sharing')
+      end
+    end
+  end
+
+  describe 'GET /application/info_sharing' do
+    it 'responds successfully' do
+      get :info_sharing
+      expect(@response.status).to eq(200)
+    end
+  end
+
+  describe 'POST /application/info_sharing' do
+    it 'redirects to rights_and_regs' do
+      post :info_sharing_submit
+      expect(@response).to be_redirect
+      expect(@response.location).to include('/application/rights_and_regs')
+    end
+
+    pending
+    it 'does something with the data' do
+      post :info_sharing_submit # TODO - POST params to go here
+    end
+  end
+
+  describe 'GET /application/rights_and_regs' do
+    it 'responds successfully' do
+      get :rights_and_regs
+      expect(@response.status).to eq(200)
+    end
+  end
+
+  describe 'POST /application/rights_and_regs' do
+    it 'redirects to review_and_submit' do
+      post :rights_and_regs_submit
+      expect(@response).to be_redirect
+      expect(@response.location).to include('/application/review_and_submit')
     end
   end
 
