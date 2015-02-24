@@ -19,6 +19,7 @@
 <form id="review_and_submit" name="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
   <h2 class="page-header">Your signature</h2>
   <div class="form-group">
+    <p id="orientation-warning" class="form-context" style="color:#CF6354">Rotate your device to make signing easier.</p>
     <p class="form-context">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</v>
     <div id="signature_area" class="panel"></div>
     <div id="signature_value_hidden"></div>
@@ -39,3 +40,12 @@
     }
   });
 </script>
+<style type="text/css">
+    #orientation-warning { display: none; }
+    @media only screen and (orientation:portrait){
+        #orientation-warning { display:block; }
+    }
+    @media only screen and (orientation:landscape){
+        #orientation-warning { display:none; }
+    }
+</style>
