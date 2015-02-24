@@ -273,9 +273,23 @@ RSpec.describe ApplicationController, :type => :controller do
       expect(@response.location).to include('/application/rights_and_regs')
     end
 
-    pending
-    it 'does something with the data' do
-      post :info_sharing_submit # TODO - POST params to go here
+    context 'with all options selected' do
+      it 'stores all of the content method preference into session' do
+        all_options_selected_params_hash = { :contact_by_phone_call => 'on', :contact_by_text_message => 'on', :contact_by_email => 'on' }
+        post :info_sharing_submit, all_options_selected_params_hash
+        [:contact_by_phone_call, :contact_by_text_message, :contact_by_email].each do |preference_name|
+          expect(@request.session[preference_name]).to eq(true)
+        end
+      end
+    end
+
+    context 'with no options selected' do
+      it 'stores nothing in the session' do
+        post :info_sharing_submit, {}
+        [:contact_by_phone_call, :contact_by_text_message, :contact_by_email].each do |preference_name|
+          expect(@request.session[preference_name]).to eq(false)
+        end
+      end
     end
   end
 
