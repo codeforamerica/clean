@@ -126,6 +126,7 @@
   end
 
   def info_sharing_submit
+    # TODO - store data somehow (in session for now)
     redirect_to '/application/rights_and_regs'
   end
 

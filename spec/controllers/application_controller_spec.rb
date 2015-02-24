@@ -268,8 +268,14 @@ RSpec.describe ApplicationController, :type => :controller do
 
   describe 'POST /application/info_sharing' do
     it 'redirects to rights_and_regs' do
+      post :info_sharing_submit
       expect(@response).to be_redirect
       expect(@response.location).to include('/application/rights_and_regs')
+    end
+
+    pending
+    it 'does something with the data' do
+      post :info_sharing_submit # TODO - POST params to go here
     end
   end
 
@@ -282,6 +288,7 @@ RSpec.describe ApplicationController, :type => :controller do
 
   describe 'POST /application/rights_and_regs' do
     it 'redirects to review_and_submit' do
+      post :rights_and_regs_submit
       expect(@response).to be_redirect
       expect(@response.location).to include('/application/review_and_submit')
     end

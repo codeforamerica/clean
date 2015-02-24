@@ -52,6 +52,10 @@ feature 'User goes through full application (up to review and submit)' do
       check('mid-morning')
       check('late-afternoon')
       click_on('Next Step')
+      expect(page.current_path).to eq('/application/info_sharing')
+      click_on("I agree")
+      expect(page.current_path).to eq('/application/rights_and_regs')
+      click_on("I understand")
       expect(page.current_path).to eq('/application/review_and_submit')
   end
 end
