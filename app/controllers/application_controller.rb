@@ -119,6 +119,27 @@
     underscored_selections.each do |selection|
       session["interview_#{selection}"] = 'Yes'
     end
+    redirect_to '/application/info_sharing'
+  end
+
+  def info_sharing
+  end
+
+  def info_sharing_submit
+    [:contact_by_phone_call, :contact_by_text_message, :contact_by_email].each do |preference_name|
+      if params[preference_name] == 'on'
+        session[preference_name] = true
+      else
+        session[preference_name] = false
+      end
+    end
+    redirect_to '/application/rights_and_regs'
+  end
+
+  def rights_and_regs
+  end
+
+  def rights_and_regs_submit
     redirect_to '/application/review_and_submit'
   end
 

@@ -10,12 +10,15 @@ describe Calfresh do
     let(:writer) { Calfresh::ApplicationWriter.new }
     let(:fake_pdftk) { double("PdfForms", :fill_form => "yay!") }
     let(:fake_date) { double("Date", :strftime => "08/28/2014" ) }
+    let(:fake_prawn_document) { double("Prawn::Document", :text => true, :image => true, :render_file => true, :font => true, :move_down => true) }
 
     before do
       allow(PdfForms).to receive(:new).and_return(fake_pdftk)
       allow(SecureRandom).to receive(:hex).and_return("fakehex")
       allow(Date).to receive(:today).and_return(fake_date)
       allow_any_instance_of(Calfresh::ApplicationWriter).to receive(:system)
+      allow(Kernel).to receive(:system)
+      allow(Prawn::Document).to receive(:new).and_return(fake_prawn_document)
     end
 
     describe '#fill_out_form' do
@@ -152,10 +155,68 @@ describe Calfresh do
 
         it 'adds the cover letter to the application PDF' do
           cover_letter_path_from_spec = File.expand_path("../../../lib/calfresh/clean_cover_letter_v3.pdf", __FILE__)
-          command = "pdftk #{cover_letter_path_from_spec} /tmp/final_application_no_cover_letter_fakehex.pdf cat output /tmp/final_application_fakehex.pdf"
+          command = "pdftk #{cover_letter_path_from_spec} /tmp/final_application_no_cover_letter_fakehex.pdf cat output /tmp/final_application_without_info_release_fakehex.pdf"
           expect(writer).to have_received(:system).with(command)
         end
       end
+
+      describe 'creation of info release form' do
+        let(:test_input) {
+          {
+            name: 'John Reis',
+            date_of_birth: '01/02/53'
+          }
+        }
+
+        before do
+          writer.fill_out_form(test_input)
+        end
+
+        it 'sends correct core body input to the Prawn document' do
+          expect(fake_prawn_document).to have_received(:text).with(<<EOF
+I, #{test_input[:name]}, authorize you to release the following information regarding my CalFresh application or active case to Code for America:
+
+- Case number
+- Current and past application status
+- Dates and reasons for all changes to the application status
+- Current and past benefit allotment
+- Reasons my case was pended or denied
+- Description of all verification documents that were submitted
+
+Code for America will use this information to make sure my case is processed properly.
+EOF
+)
+          expect(fake_prawn_document).to have_received(:text).with(<<EOF
+Name: #{test_input[:name]}
+Date of birth: #{test_input[:date_of_birth]}
+
+Code for America
+155 9th Street, San Francisco 94103
+(415) 625-9633
+www.codeforamerica.org
+EOF
+)
+        end
+
+        it 'draws the signature image resized to 30%' do
+          expect(fake_prawn_document).to have_received(:image).with('/tmp/signature_fakehex.png', scale: 0.3)
+        end
+
+        it 'writes the info release form to the correct path' do
+          expect(fake_prawn_document).to have_received(:render_file).with("/tmp/info_release_form_fakehex.pdf")
+        end
+
+        it 'sets the font to Helvetica' do
+          expect(fake_prawn_document).to have_received(:font).with('Helvetica')
+        end
+
+        it 'adds the info release pdf to the final application' do
+          # TODO - properly mock the system call here
+
+          expect(writer).to have_received(:system).with("pdftk /tmp/final_application_without_info_release_fakehex.pdf /tmp/info_release_form_fakehex.pdf cat output /tmp/final_application_fakehex.pdf")
+        end
+      end
     end
+    # TODO — write test for nil input for date of birth
   end
 end
