@@ -20,6 +20,19 @@ feature 'User leaves required fields empty', :js => true do
 end
 
 feature 'User goes through full application (up to review and submit)' do
+  given(:fake_app) { double("FakeApp", :has_pngs? => true, :final_pdf_path => '/tmp/fakefinal.pdf') }
+  given(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
+  given(:fake_sendgrid_client) { double("SendGrid::Client", :send => { "message" => "success" } ) }
+  given(:fake_sendgrid_mail) { double("SendGrid::Mail", :add_attachment => 'cool') }
+  given(:fake_zip_archive_for_block) { double("", :add_file => true) }
+
+  allow(Calfresh::ApplicationWriter).to receive(:new).and_return(fake_app_writer)
+  allow(SecureRandom).to receive(:hex).and_return('fakehexvalue')
+  allow(SendGrid::Client).to receive(:new).and_return(fake_sendgrid_client)
+  allow(SendGrid::Mail).to receive(:new).and_return(fake_sendgrid_mail)
+  allow(Zip::Archive).to receive(:open).and_yield(fake_zip_archive_for_block)
+  allow(Zip::Archive).to receive(:encrypt)
+
   scenario 'with basic interactions' do
     visit '/application/basic_info?'
       fill_in 'name', with: 'Hot Snakes'
@@ -57,5 +70,8 @@ feature 'User goes through full application (up to review and submit)' do
       expect(page.current_path).to eq('/application/rights_and_regs')
       click_on("I understand")
       expect(page.current_path).to eq('/application/review_and_submit')
+      click_on("Submit Application")
+      # TODO - Check the mock objects received the correct input
+      expect(page.current_path).to eq('/application/document_instructions')
   end
 end
