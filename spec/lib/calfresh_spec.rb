@@ -154,7 +154,7 @@ describe Calfresh do
         end
 
         it 'adds the cover letter to the application PDF' do
-          cover_letter_path_from_spec = File.expand_path("../../../lib/calfresh/clean_cover_letter_v3.pdf", __FILE__)
+          cover_letter_path_from_spec = File.expand_path("../../../lib/calfresh/clean_cover_letter_v4.pdf", __FILE__)
           command = "pdftk #{cover_letter_path_from_spec} /tmp/final_application_no_cover_letter_fakehex.pdf cat output /tmp/final_application_without_info_release_fakehex.pdf"
           expect(writer).to have_received(:system).with(command)
         end
