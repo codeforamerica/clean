@@ -1,29 +1,6 @@
-  <!--[if lt IE 9]>
-    <script type="text/javascript" src="js/flashcanvas.js"></script>
-  <![endif]-->
-  <script>
-    $(document).ready(function() {
-      $("#signature_area").jSignature()
-      // Magic modified from http://paulology.com/signature-capture/
-      var $sigdiv = $("#signature_area")
-      $('#submit_button').click(function(e) {
-        var datapair = $sigdiv.jSignature("getData", "image")
-        $("#signature_value_hidden").append("<input type=\"hidden\" name=\"signature\" value=\"" + datapair[1] + "\">")
-      });
-      $('#signature_clear_button').click(function(e) {
-        $sigdiv.jSignature('clear');
-      });
-    })
-  </script>
-
 <form id="review_and_submit" name="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
   <h2 class="page-header">Your signature</h2>
   <div class="form-group">
-    <p id="orientation-warning" class="form-context" style="color:#CF6354">Rotate your device to make signing easier.</p>
-    <p class="form-context">Sign on the line. You can sign with your mouse or your finger if you're using a touch screen.</v>
-    <div id="signature_area" class="panel"></div>
-    <div id="signature_value_hidden"></div>
-    <div class="btn btn-primary form-button-link-solo" id="signature_clear_button">Clear Signature</div>
   </div>
   <p class="form-context">After you submit, you'll have the chance to provide documents regarding you identification, income, expenses and other relevant information.</p>
   <div class="page-footer">
@@ -40,12 +17,3 @@
     }
   });
 </script>
-<style type="text/css">
-    #orientation-warning { display: none; }
-    @media only screen and (orientation:portrait){
-        #orientation-warning { display:block; }
-    }
-    @media only screen and (orientation:landscape){
-        #orientation-warning { display:none; }
-    }
-</style>

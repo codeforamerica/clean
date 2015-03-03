@@ -47,7 +47,6 @@ module Calfresh
     end
 
     def fill_out_form(input)
-      base64_signature_blob = input[:signature]
       symbolized_key_input = symbolize_keys(input)
       symbolized_key_input_with_addlhhs = process_addl_hh_members(symbolized_key_input)
       validated_field_input = filter_input_for_valid_fields(symbolized_key_input_with_addlhhs)
@@ -58,23 +57,24 @@ module Calfresh
         input_for_pdf_writer['Check Box24 PG 1'] = "Yes"
       end
       unique_key = SecureRandom.hex
+      
+      # Fill in CF-285 to file: filled_in_form_path
+      # TO DO: Add e-sig to CF-285
       filled_in_form_path = "/tmp/application_#{unique_key}.pdf"
       empty_form_path = File.expand_path("../calfresh/calfresh_3pager.pdf", __FILE__)
       @pdftk.fill_form(empty_form_path, filled_in_form_path, input_for_pdf_writer)
-      write_signature_png_to_tmp(base64_signature_blob, unique_key)
-      signature_scaled_png_path = "/tmp/signature_scaled_#{unique_key}.png"
-      system("convert /tmp/signature_#{unique_key}.png -background none -gravity southwest -extent 2500x2400 #{signature_scaled_png_path}")
-      system("convert /tmp/signature_scaled_#{unique_key}.png /tmp/sig_pdf_#{unique_key}.pdf")
-      stamped_app_without_cover_letter_path = "/tmp/final_application_no_cover_letter_#{unique_key}.pdf"
-      system("pdftk #{filled_in_form_path} stamp /tmp/sig_pdf_#{unique_key}.pdf output #{stamped_app_without_cover_letter_path}")
+
+      # Add cover page to file: path_for_app_without_info_release_form
       path_for_app_without_info_release_form = "/tmp/final_application_without_info_release_#{unique_key}.pdf"
       cover_letter_path = File.expand_path("../calfresh/clean_cover_letter_v4.pdf", __FILE__)
-      system("pdftk #{cover_letter_path} #{stamped_app_without_cover_letter_path} cat output #{path_for_app_without_info_release_form}")
+      system("pdftk #{cover_letter_path} #{filled_in_form_path} cat output #{path_for_app_without_info_release_form}")
+
+      # Add ROI form
+      # TO DO: Add e-sig to ROI form
       path_for_info_release_form = "/tmp/info_release_form_#{unique_key}.pdf"
-      info_release_form = InfoReleaseForm.new(client_information: validated_field_input, signature_png_path: "/tmp/signature_#{unique_key}.png", path_for_pdf: path_for_info_release_form)
+      info_release_form = InfoReleaseForm.new(client_information: validated_field_input, path_for_pdf: path_for_info_release_form)
       system("pdftk #{path_for_app_without_info_release_form} #{path_for_info_release_form} cat output /tmp/final_application_#{unique_key}.pdf")
-      #convert_application_pdf_to_png_set(unique_key)
-      #add_signature_to_application(unique_key)
+      
       Application.new(unique_key)
     end
 
@@ -108,16 +108,8 @@ module Calfresh
       new_hash
     end
 
-    def write_signature_png_to_tmp(signature_blob, unique_key)
-      system("echo #{signature_blob} | base64 --decode > /tmp/signature_#{unique_key}.png")
-    end
-
     def convert_application_pdf_to_png_set(unique_key)
       system("convert -alpha deactivate -density 300 -depth 8 -quality 85 /tmp/application_#{unique_key}.pdf /tmp/application_#{unique_key}.png")
-    end
-
-    def add_signature_to_application(unique_key)
-      system("composite -geometry +31+2700 /tmp/signature_#{unique_key}.png /tmp/application_#{unique_key}-0.png /tmp/application_#{unique_key}-0.png")
     end
 
     def symbolize_keys(hash)
@@ -171,10 +163,6 @@ module Calfresh
       filename_array
     end
 
-    def signed_png_path
-      "/tmp/application_#{@unique_key}-0.png"
-    end
-
     private
     def write_pdf_from_pngs!
       system("convert #{png_filenames.join(' ')} #{final_pdf_path}")
@@ -204,7 +192,6 @@ I, #{name}, authorize you to release the following information regarding my CalF
 Code for America will use this information to make sure my case is processed properly.
 EOF
 )
-      pdf.image(params[:signature_png_path], scale: 0.3)
       pdf.text(<<EOF
 Name: #{name}
 Date of birth: #{params[:client_information][:date_of_birth]}
