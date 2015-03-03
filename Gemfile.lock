@@ -56,6 +56,7 @@ GEM
     capybara-webkit (1.4.1)
       capybara (>= 2.3.0, < 2.5.0)
       json
+    chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     coderay (1.1.0)
@@ -211,6 +212,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-webkit
+  chronic
   climate_control
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
