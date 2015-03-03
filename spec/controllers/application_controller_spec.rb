@@ -342,6 +342,105 @@ RSpec.describe ApplicationController, :type => :controller do
       allow(Zip::Archive).to receive(:encrypt)
     end
 
+    context 'with good data to be saved to DB' do
+      before do
+        @my_session_hash = {
+          name: 'John Reis',
+          date_of_birth: '02/01/67',
+          home_phone_number: '415-111-2222',
+          email: 'joe@asd.com',
+          home_address: '1234 Fake Street',
+          home_zip_code: '94113',
+          home_city: 'San Francisco',
+          home_state: 'CA',
+          primary_language: 'English',
+          ssn: '111223333',
+          sex: 'M',
+          additional_household_members: [{
+            name: 'Rick Froberg',
+            date_of_birth: '02/23/77',
+            ssn: '999887777',
+            sex: 'M'
+          }],
+          interview_early_morning: 'Yes',
+          interview_mid_morning: 'Yes',
+          interview_afternoon: 'Yes',
+          interview_late_afternoon: 'Yes',
+          interview_monday: 'Yes',
+          interview_tuesday: 'Yes',
+          interview_wednesday: 'Yes',
+          interview_thursday: 'Yes',
+          interview_friday: 'Yes',
+          contact_by_email: false,
+          contact_by_text_message: true,
+          contact_by_phone_call: true
+        }
+
+        post :review_and_submit_submit, { signature: 'blah' }, @my_session_hash
+
+        @case = Case.find_by_name("John Reis")
+      end
+
+      it 'creates a new case' do
+        expect(Case.count).to eq(1)
+      end
+
+      it 'saves with the correct name and gender' do
+        expect(@case.sex).to eq('M')
+      end
+
+      it 'saves the phone number' do
+        expect(@case.home_phone_number).to eq('415-111-2222')
+      end
+
+      it 'saves the date of birth' do
+        expect(@case.date_of_birth).to_not be_nil
+      end
+
+      it 'saves all the selected interview times' do
+        expect(@case.interview_monday).to eq(true)
+        expect(@case.interview_tuesday).to eq(true)
+        expect(@case.interview_wednesday).to eq(true)
+        expect(@case.interview_thursday).to eq(true)
+        expect(@case.interview_friday).to eq(true)
+        expect(@case.interview_early_morning).to eq(true)
+        expect(@case.interview_mid_morning).to eq(true)
+        expect(@case.interview_afternoon).to eq(true)
+        expect(@case.interview_late_afternoon).to eq(true)
+      end
+
+      it 'does saves all but the SSN for household members' do
+        hhm = @case.additional_household_members[0]
+        desired_hash = {
+            'name' => 'Rick Froberg',
+            'date_of_birth' => '02/23/77',
+            'sex' => 'M'
+        }
+        expect(hhm).to eq(desired_hash)
+      end
+    end
+
+    context 'with minimal data to be saved to the DB' do
+      it 'saves the data to the models' do
+        @my_session_hash = {
+          name: 'Gar Wood',
+          date_of_birth: '03/04/67',
+          home_address: '1234 Fake Street',
+          home_zip_code: '94113',
+          home_city: 'San Francisco',
+          home_state: 'CA',
+          contact_by_email: false,
+          contact_by_text_message: false,
+          contact_by_phone_call: false
+        }
+        post :review_and_submit_submit, { signature: 'blah' }, @my_session_hash
+        expect(Case.count).to eq(1)
+        c = Case.find_by_name('Gar Wood')
+        expect(c.name).to eq('Gar Wood')
+        expect(c.interview_monday).to eq(nil)
+      end
+    end
+
     context 'with a four-digit year (which needs reformatting)' do
       before do
         @session_hash = {

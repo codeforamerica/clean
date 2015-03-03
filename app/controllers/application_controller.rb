@@ -1,4 +1,4 @@
- class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   #protect_from_forgery with: :exception
@@ -165,7 +165,6 @@
     input_for_writer[:language_preference_reading] = session[:primary_language]
     input_for_writer[:language_preference_writing] = session[:primary_language]
     @application = writer.fill_out_form(input_for_writer)
-    #if @application.has_pngs?
       client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
       mail = SendGrid::Mail.new(
         to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
@@ -197,14 +196,9 @@ EOF
       mail.add_attachment(zip_file_path)
       @email_result_application = client.send(mail)
       puts @email_result_application
-      #erb :after_fax
-    #end
-=begin
-    else
-      puts "No PNGs! WTF!?!"
-      #redirect to('/')
-    end
-=end
+      data_to_save = Case.process_data_for_storage(session.to_hash)
+      c = Case.new(data_to_save)
+      c.save
     redirect_to '/application/document_instructions'
   end
 
