@@ -1,31 +1,56 @@
 <form name="confirmation" action="/application/confirmation" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-	<h2 class="page-header">You're application has been submitted!</h2>
-	<p class="page-context">There are two more steps before it can be approved&mdash;sending verification documents in, and having your interview with Human Services Agency staff.</p>
-	<p class="page-context"><b>Already have documents on hand?</b></p>
-	<p class="page-context">If you have already gathered documents about your income, expenses and identification, please upload photos of them now.<p>
-	<div class="row form-group">
-		<div class="col-lg-6 form-button-col">
-			<p class="form-context">Yes, I have documents ready to send. Let's get started!</p>
-			<br>
-			<a href="/documents/<%= @user_token %>/0" class="btn form-button" autofocus="autofocus">Start uploading</a>
+	<div class="print-hidden">
+		<h2 class="page-header">You're application has been submitted!</h2>
+		<p class="page-context">There are two more steps before it can be approved&mdash;sending verification documents in, and having your interview with Human Services Agency staff.</p>
+		<p class="page-context"><b>Already have documents on hand?</b></p>
+		<p class="page-context">If you have already gathered documents about your income, expenses and identification, please upload photos of them now.<p>
+		<div class="row form-group">
+			<div class="col-lg-6 form-button-col">
+				<p class="form-context">Yes, I have documents ready to send. Let's get started!</p>
+				<br>
+				<a href="/documents/<%= @user_token %>/0" class="btn form-button" autofocus="autofocus">Start uploading</a>
+			</div>
+			<div class="col-lg-6 form-button-col">
+				<p class="form-context">No, I'll need to gather my documents and submit another time.</p>
+				<br>
+				<a href="/complete" class="btn form-button">Call it a day</a>
+			</div>
 		</div>
-		<div class="col-lg-6 form-button-col">
-			<p class="form-context">No, I'll need to gather my documents and submit another time.</p>
-			<br>
-			<a href="/complete" class="btn form-button">Call it a day</a>
+		<br>
+		<div class="form-group">
+			<p id="test" class="form-label">Not sure what kind of documents you need?</p>
+			<p class="page-context">Documents you'll need include those show your income, living expenses, and personal identification. Valid documents include:
+			<ul class="list">
+				<li class="list-item">Driver's licenses and passports</li>
+				<li class="list-item">Bank statements</li>
+				<li class="list-item">Lease agreements</li>
+				<li class="list-item">Utility bills</li>
+				<li class="list-item">Written and signed statements</li>
+			</ul>
+			<p class="page-context">You'll need to provide government ID for each person you cook and prepare food with, as well.</p>
 		</div>
 	</div>
-	<br>
-	<div class="form-group">
-		<p class="form-label">Not sure what kind of documents you need?</p>
-		<p class="page-context">Documents you'll need include those show your income, living expenses, and personal identification. Valid documents include:
+	<div class="print-visible">
+		<br>
+		<p class="page-subheader">Success! Hold on to this reciept.</p>
+		<h2 class="page-header">You submitted an application for CalFresh in San Francisco</h2>
+		<p class="form-label">You should receive a phone call from the San Francisco Human Services Agency soon&mdash;about 3 to 5 days.</p>
+		<br>
+		<p class="form-label">In the meantime, here's what you can do to prepare:</p>
 		<ul class="list">
-			<li class="list-item">Driver's licenses and passports</li>
-			<li class="list-item">Bank statements</li>
-			<li class="list-item">Lease agreements</li>
-			<li class="list-item">Utility bills</li>
-			<li class="list-item">Written and signed statements</li>
+			<li>Hold on to any verification documents you submitted with this application. It can be helpful to have them available when HSA calls.</li>
+			<li>If you think you need to provide documents beyond what you submitted today, try to collect them before your call with HSA. Documents you'll need include those show your income, living expenses, and personal identification. Valid documents include:</li>
+				<ul class="list">
+					<li>Driver's licenses and passports</li>
+					<li>Bank statements</li>
+					<li>Lease agreements</li>
+					<li>Utility bills</li>
+					<li>Government issued ID for each person you included in your application.</li>
+				</ul>
 		</ul>
-		<p class="page-context">You'll need to provide government ID for each person you cook and prepare food with, as well.</p>
+		<p class="form-label">If you don't hear from HSA within a week, call (415) 558-1001 and say you need a phone interview for your CalFresh application.</p>
+		<h2 class="page-header"></h2>
+		<p class="form-label">Notes</p>
+		</div>
 	</div>
 </form>
