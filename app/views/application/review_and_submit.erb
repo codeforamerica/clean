@@ -1,7 +1,15 @@
 <form id="review_and_submit" name="review_and_submit" action="/application/review_and_submit" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
-  <h2 class="page-header">Your signature</h2>
+  <h2 class="page-header">Your electronic signature</h2>
   <div class="form-group">
+    <label for="name" class="form-label">Type your full name to sign this application</label>
+    <input type="text" class="form-control" name="signature" id="signature" required required data-parsley-required-message="Please type your name here to sign your application" autofocus="autofocus">
   </div>
+  <div class="checkbox">
+    <label class="form-label">
+      <input type="checkbox" name="signature_agree" id="signature_agree" required required data-parsley-required-message="Please check this box to agree and submit this application"> I agree that I have been honest on this application and that I intend to apply for CalFresh
+    </label>
+  </div>
+
   <p class="form-context">After you submit, you'll have the chance to provide documents regarding you identification, income, expenses and other relevant information.</p>
   <div class="page-footer">
       <button id="submit_button" class="btn next-step" type="submit" value="Submit Application" data-loading-text="Sending in your application...">Submit Application</button>
