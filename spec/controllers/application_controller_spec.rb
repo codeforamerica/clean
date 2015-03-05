@@ -376,7 +376,7 @@ RSpec.describe ApplicationController, :type => :controller do
           contact_by_phone_call: true
         }
 
-        post :review_and_submit_submit, { signature: 'blah' }, @my_session_hash
+        post :review_and_submit_submit, { signature: 'John M. Reis', signature_agree: 'Yes' }, @my_session_hash
 
         @case = Case.find_by_name("John Reis")
       end
@@ -418,6 +418,14 @@ RSpec.describe ApplicationController, :type => :controller do
         }
         expect(hhm).to eq(desired_hash)
       end
+
+      it 'saves the signature' do
+        expect(@case.signature).to eq('John M. Reis')
+      end
+
+      it 'saves the signature agreement checkbox' do
+        expect(@case.signature_agree).to eq(true)
+      end
     end
 
     context 'with minimal data to be saved to the DB' do
@@ -447,7 +455,7 @@ RSpec.describe ApplicationController, :type => :controller do
           date_of_birth: '06/09/1985'
         }
         @params_hash = {
-          signature: 'fakesignatureblob'
+          signature: 'fakesig'
         }
 
         post :review_and_submit_submit, @params_hash, @session_hash
@@ -456,10 +464,10 @@ RSpec.describe ApplicationController, :type => :controller do
       it 'properly reformats the date of birth (and adds extraneous fields)' do
         expected_hash = Hash.new
         expected_hash[:date_of_birth] = '06/09/85'
-        [:name_page3, :ssn_page3, :language_preference_reading, :language_preference_writing].each do |key|
+        [:name_page3, :ssn_page3, :language_preference_reading, :language_preference_writing, :signature_agree].each do |key|
           expected_hash[key] = nil
         end
-        expected_hash[:signature] = 'fakesignatureblob'
+        expected_hash[:signature] = 'fakesig'
         expect(fake_app_writer).to have_received(:fill_out_form).with(expected_hash)
       end
 
@@ -528,7 +536,7 @@ EOF
       it 'properly reformats the date of birth (and adds extraneous fields)' do
         expected_hash = Hash.new
         expected_hash[:date_of_birth] = '06/09/85'
-        [:name_page3, :ssn_page3, :language_preference_reading, :language_preference_writing].each do |key|
+        [:name_page3, :ssn_page3, :language_preference_reading, :language_preference_writing, :signature_agree].each do |key|
           expected_hash[key] = nil
         end
         expected_hash[:signature] = 'fakesignatureblob'
