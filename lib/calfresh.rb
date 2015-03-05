@@ -1,7 +1,3 @@
-require 'pdf_forms'
-require 'prawn'
-require 'securerandom'
-
 module Calfresh
   FORM_FIELDS = { name: 'Text1 PG 1', \
     name_page3: 'Text3 PG 3', \
@@ -56,7 +52,7 @@ module Calfresh
       symbolized_key_input_with_addlhhs = process_addl_hh_members(symbolized_key_input)
       validated_field_input = filter_input_for_valid_fields(symbolized_key_input_with_addlhhs)
       input_for_pdf_writer = map_input_to_pdf_field_names(validated_field_input)
-      input_for_pdf_writer[FORM_FIELDS[:date]] = Date.today.strftime("%m/%d/%Y")
+      input_for_pdf_writer[FORM_FIELDS[:date]] = Time.zone.today.strftime("%m/%d/%Y")
       input_for_pdf_writer['Check Box1 PG 3'] = "Yes"
       if symbolized_key_input[:medi_cal_interest] == "on"
         input_for_pdf_writer['Check Box24 PG 1'] = "Yes"

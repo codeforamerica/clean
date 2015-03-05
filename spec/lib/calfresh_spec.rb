@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'rails_helper'
 require File.expand_path("../../../lib/calfresh", __FILE__)
 
 describe Calfresh do
@@ -9,20 +10,20 @@ describe Calfresh do
   describe Calfresh::ApplicationWriter do
     let(:writer) { Calfresh::ApplicationWriter.new }
     let(:fake_pdftk) { double("PdfForms", :fill_form => "yay!") }
-    let(:fake_date) { double("Date", :strftime => "08/28/2014" ) }
+    let(:fake_formatted_date) { "08/28/2014" }
     let(:fake_prawn_document) { double("Prawn::Document", :text => true, :image => true, :render_file => true, :font => true, :move_down => true) }
 
     before do
       allow(PdfForms).to receive(:new).and_return(fake_pdftk)
       allow(SecureRandom).to receive(:hex).and_return("fakehex")
-      allow(Date).to receive(:today).and_return(fake_date)
+      allow(Time).to receive_message_chain(:zone, :today, :strftime).and_return(fake_formatted_date)
       allow_any_instance_of(Calfresh::ApplicationWriter).to receive(:system)
       allow(Kernel).to receive(:system)
       allow(Prawn::Document).to receive(:new).and_return(fake_prawn_document)
     end
 
     describe '#fill_out_form' do
-      let(:mandatory_pdf_form_inputs) { { "Text32 PG 1" => fake_date.strftime, "Check Box1 PG 3" => "Yes" } }
+      let(:mandatory_pdf_form_inputs) { { "Text32 PG 1" => fake_formatted_date, "Check Box1 PG 3" => "Yes" } }
       let(:path_for_3_pager_pdf) { File.expand_path("../../../lib/calfresh/calfresh_3pager.pdf", __FILE__) }
 
       context 'given 1 additional household member' do
