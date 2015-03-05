@@ -173,6 +173,8 @@ module Calfresh
   class InfoReleaseForm
     def initialize(params)
       name = params[:client_information][:name]
+      signature = params[:client_information][:signature]
+      date_today = Date.today.strftime("%m/%d/%Y")
       pdf = Prawn::Document.new
       pdf.font 'Helvetica'
       pdf.font('Helvetica', style: :bold) do
@@ -191,12 +193,11 @@ I, #{name}, authorize you to release the following information regarding my CalF
 - Description of all verification documents that were submitted
 
 Code for America will use this information to make sure my case is processed properly.
-EOF
-)
-      pdf.text(<<EOF
-Name: #{name}
-Date of birth: #{params[:client_information][:date_of_birth]}
 
+Electronic signature: #{signature}
+Date: #{date_today}
+
+___________________________________
 Code for America
 155 9th Street, San Francisco 94103
 (415) 625-9633

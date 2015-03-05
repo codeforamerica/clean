@@ -146,7 +146,7 @@ describe Calfresh do
         let(:test_input) {
           {
             name: 'John Reis',
-            date_of_birth: '01/02/53'
+            signature: 'John Signature',
           }
         }
 
@@ -166,12 +166,11 @@ I, #{test_input[:name]}, authorize you to release the following information rega
 - Description of all verification documents that were submitted
 
 Code for America will use this information to make sure my case is processed properly.
-EOF
-)
-          expect(fake_prawn_document).to have_received(:text).with(<<EOF
-Name: #{test_input[:name]}
-Date of birth: #{test_input[:date_of_birth]}
 
+Electronic signature: #{test_input[:signature]}
+Date: #{fake_date.strftime}
+
+___________________________________
 Code for America
 155 9th Street, San Francisco 94103
 (415) 625-9633
