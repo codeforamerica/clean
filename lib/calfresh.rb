@@ -67,7 +67,7 @@ module Calfresh
 
       # Add cover page to file: path_for_app_without_info_release_form
       path_for_app_without_info_release_form = "/tmp/final_application_without_info_release_#{unique_key}.pdf"
-      cover_letter_path = File.expand_path("../calfresh/clean_cover_letter_v4.pdf", __FILE__)
+      cover_letter_path = File.expand_path("../calfresh/cover_letter_v5.pdf", __FILE__)
       system("pdftk #{cover_letter_path} #{filled_in_form_path} cat output #{path_for_app_without_info_release_form}")
 
       # Add ROI form
