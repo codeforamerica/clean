@@ -38,7 +38,8 @@ module Calfresh
     interview_early_morning: 'Check Box52 PG 2',
     interview_mid_morning: 'Check Box53 PG 2',
     interview_afternoon: 'Check Box54 PG 2',
-    interview_late_afternoon: 'Check Box55 PG 2'
+    interview_late_afternoon: 'Check Box55 PG 2',
+    signature: 'signature'
   }
 
   class ApplicationWriter
