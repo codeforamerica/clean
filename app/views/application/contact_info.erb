@@ -7,7 +7,7 @@
       <input id="home_phone_number" type="tel" class="form-control" name="home_phone_number" autofocus="autofocus">
       <label for="email" class="form-label">Email</label>
       <input id="email" type="email" class="form-control" name="email">
-      <h3 class="form-label">Your preferred language</h3>
+      <label for="primary_language" class="form-label">Your preferred language</label>
       <select class="form-control solo" name="primary_language">
         <% @language_options.each do |language| %>
           <option value="<%= language %>"><%= language %></option>

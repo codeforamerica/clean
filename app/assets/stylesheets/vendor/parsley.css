@@ -33,6 +33,13 @@ textarea.parsley-error {
 
 .parsley-errors-list.filled {
   opacity: 1;
-  font-size: 120%;
-  background-color: #F2DEDE;
+}
+
+.parsley-required {
+  padding: .25em 0;
+}
+
+.parsley-custom-error-message {
+  color: #B94A48;
+  padding: .25em 0;
 }
