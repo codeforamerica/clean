@@ -199,7 +199,7 @@ EOF
       data_to_save = Case.process_data_for_storage(session.to_hash)
       c = Case.new(data_to_save)
       c.save
-    redirect_to '/application/document_instructions'
+    redirect_to '/application/confirmation'
   end
 
   def document_instructions
