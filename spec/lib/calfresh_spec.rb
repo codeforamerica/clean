@@ -175,7 +175,7 @@ describe Calfresh do
 
         it 'sends correct core body input to the Prawn document' do
           expect(fake_prawn_document).to have_received(:text).with(<<EOF
-I, #{test_input[:name]}, authorize you to release the following information regarding my CalFresh application or active case to Code for America:
+I, #{name}, authorize you to release the following information regarding my CalFresh application or active case to Code for America for :
 
 - Case number
 - Current and past application status
@@ -184,17 +184,25 @@ I, #{test_input[:name]}, authorize you to release the following information rega
 - Reasons my case was pended or denied
 - Description of all verification documents that were submitted
 
-Code for America will use this information to make sure my case is processed properly.
+Code for America will use this information to make sure my case is processed properly. This release is valid for one year from the date of application submission.
 EOF
 )
-          expect(fake_prawn_document).to have_received(:text).with(<<EOF
-Name: #{test_input[:name]}
-Date of birth: #{test_input[:date_of_birth]}
+      pdf.image(params[:signature_png_path], scale: 0.3)
+      pdf.text(<<EOF
+Name: #{name}
+Date of birth: #{params[:client_information][:date_of_birth]}
 
 Code for America
 155 9th Street, San Francisco 94103
 (415) 625-9633
 www.codeforamerica.org
+EOF
+)
+
+Leo O'Farrell
+CalFresh Program Director
+leo.o'farrell@sfgov.org
+
 EOF
 )
         end
