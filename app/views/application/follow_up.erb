@@ -1,0 +1,33 @@
+<form id="follow_up" name="follow_up" action="/application/follow_up" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" data-parsley-validate>
+  <h2 class="page-header">How should we follow up with you?</h2>
+  <p class="page-context">In our work to ensure your application is processed properly, we may need to get in touch. How would you prefer we contact you about your case status?</p>
+  <div class="form-group">
+    <div class="times-of-day middle">
+      <div class="checkbox">
+        <label class="page-context">
+          <input type="checkbox" name="contact_by_phone_call" autofocus="autofocus"> Phone Call
+        </label>
+      </div>
+      <div class="checkbox">
+        <label class="page-context">
+          <input type="checkbox" name="contact_by_text_message"> Text Message
+        </label>
+      </div>
+      <div class="checkbox">
+        <label class="page-context">
+          <input type="checkbox" name="contact_by_email"> Email
+        </label>
+      </div>
+      <div class="checkbox">
+        <label class="page-context">
+          <input type="checkbox" name="contact_by_voicemail"> Voicemail
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="page-footer-content col-md-4 col-md-offset-8">
+      <input class="btn next-step" name="confirmation" type="submit" value="Next Step">
+    </div>
+  </div>
+</form>

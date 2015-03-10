@@ -192,7 +192,7 @@ module Calfresh
       end
       pdf.move_down 10
       pdf.text(<<EOF
-I, #{name}, authorize you to release the following information regarding my CalFresh application or active case to Code for America:
+I, #{name}, authorize you to release the following information regarding my CalFresh application or active case to Code for America for :
 
 - Case number
 - Current and past application status
@@ -201,7 +201,7 @@ I, #{name}, authorize you to release the following information regarding my CalF
 - Reasons my case was pended or denied
 - Description of all verification documents that were submitted
 
-Code for America will use this information to make sure my case is processed properly.
+Code for America will use this information to make sure my case is processed properly. This release is valid for one year from the date of application submission.
 EOF
 )
       pdf.image(params[:signature_png_path], scale: 0.3)
