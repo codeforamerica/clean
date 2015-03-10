@@ -283,10 +283,10 @@ RSpec.describe ApplicationController, :type => :controller do
 
   describe 'POST /application/follow_up' do
     context 'with all options selected' do
-      it 'stores all of the content method preference into session' do
-        all_options_selected_params_hash = { :contact_by_phone_call => 'on', :contact_by_text_message => 'on', :contact_by_email => 'on' }
-        post :info_sharing_submit, all_options_selected_params_hash
-        [:contact_by_phone_call, :contact_by_text_message, :contact_by_email].each do |preference_name|
+      it 'stores all of the contact method preference into session' do
+        all_options_selected_params_hash = { :contact_by_phone_call => 'on', :contact_by_text_message => 'on', :contact_by_email => 'on', :contact_by_voicemail => 'on', }
+        post :follow_up_submit, all_options_selected_params_hash
+        [:contact_by_phone_call, :contact_by_text_message, :contact_by_email, :contact_by_voicemail].each do |preference_name|
           expect(@request.session[preference_name]).to eq(true)
         end
       end
@@ -294,8 +294,8 @@ RSpec.describe ApplicationController, :type => :controller do
 
     context 'with no options selected' do
       it 'stores nothing in the session' do
-        post :info_sharing_submit, {}
-        [:contact_by_phone_call, :contact_by_text_message, :contact_by_email].each do |preference_name|
+        post :follow_up_submit, {}
+        [:contact_by_phone_call, :contact_by_text_message, :contact_by_email, :contact_by_voicemail].each do |preference_name|
           expect(@request.session[preference_name]).to eq(false)
         end
       end
@@ -304,7 +304,7 @@ RSpec.describe ApplicationController, :type => :controller do
     it 'redirects to rights_and_regs' do
       post :follow_up_submit
       expect(@response).to be_redirect
-      expect(@response.location) to include('/application/rights_and_regs')
+      expect(@response.location).to include('/application/rights_and_regs')
     end
   end
 
