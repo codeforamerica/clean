@@ -215,6 +215,13 @@ Code for America
 www.codeforamerica.org
 EOF
 )
+
+Leo O'Farrell
+CalFresh Program Director
+leo.o'farrell@sfgov.org
+
+EOF
+)
       pdf.render_file(params[:path_for_pdf])
     end
   end
