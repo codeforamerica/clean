@@ -267,12 +267,21 @@ RSpec.describe ApplicationController, :type => :controller do
   end
 
   describe 'POST /application/info_sharing' do
-    it 'redirects to rights_and_regs' do
+    it 'redirects to follow_up' do
       post :info_sharing_submit
       expect(@response).to be_redirect
-      expect(@response.location).to include('/application/rights_and_regs')
+      expect(@response.location).to include('/application/follow_up')
     end
+  end
 
+  describe 'GET /application/follow_up' do
+    it 'responds successfully' do
+      get :follow_up
+      expect(@response.status).to eq(200)
+    end
+  end
+
+  describe 'POST /application/follow_up' do
     context 'with all options selected' do
       it 'stores all of the content method preference into session' do
         all_options_selected_params_hash = { :contact_by_phone_call => 'on', :contact_by_text_message => 'on', :contact_by_email => 'on' }
@@ -291,7 +300,14 @@ RSpec.describe ApplicationController, :type => :controller do
         end
       end
     end
+
+    it 'redirects to rights_and_regs' do
+      post :follow_up_submit
+      expect(@response).to be_redirect
+      expect(@response.location) to include('/application/rights_and_regs')
+    end
   end
+
 
   describe 'GET /application/rights_and_regs' do
     it 'responds successfully' do
