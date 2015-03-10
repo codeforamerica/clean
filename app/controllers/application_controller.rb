@@ -126,7 +126,14 @@ class ApplicationController < ActionController::Base
   end
 
   def info_sharing_submit
-    [:contact_by_phone_call, :contact_by_text_message, :contact_by_email].each do |preference_name|
+    redirect_to '/application/follow_up'
+  end
+
+  def follow_up
+  end
+
+  def follow_up_submit
+    [:contact_by_phone_call, :contact_by_text_message, :contact_by_email, :contact_by_voicemail].each do |preference_name|
       if params[preference_name] == 'on'
         session[preference_name] = true
       else
