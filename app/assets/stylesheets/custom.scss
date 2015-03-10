@@ -179,7 +179,7 @@ body {
 
 }
 
-.homepage-subheader {
+.page-subheader {
 	@include subheader-type;
 	line-height: 1.4em;
 	font-weight: 700;
@@ -525,6 +525,9 @@ input.disabled {
 	min-height: 200px;
 }
 
+.print-visible {
+	display: none;
+}
 
 /* M E D I A    Q U E R I E S */
 
@@ -560,6 +563,42 @@ input.disabled {
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
 /* Styles */
+}
+
+/* P R I N T    S T Y L E S */
+/* For now, these are used exclusively for the confirmation / complete page. */
+
+@media print {
+  body {
+    width: 100%;
+  }
+  .masthead {
+  	display: none;
+  }
+  .footer {
+  	display: none;
+  }
+  .print-hidden {
+  	display: none;
+  }
+  .print-visible {
+  	display: inline-block;
+  	.page-subheader {
+  		font-size: 21px;
+  	}
+  	.page-header {
+  		font-size: 32px;
+  	}
+  	.form-label {
+  		font-size: 16px;
+  	}
+  	.list {
+  		font-size: 16px;
+  	}
+  	.page-context {
+  		font-size: 16px;
+  	}
+  }
 }
 
  /* B O O T S R A P   H A C K S */
