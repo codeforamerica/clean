@@ -126,7 +126,7 @@ describe Calfresh do
       describe 'system calls' do
         let(:fake_input) {
           {
-            signature: 'fakesignatureblob'
+            fake: 'fake'
           }
         }
 
@@ -134,29 +134,9 @@ describe Calfresh do
           writer.fill_out_form(fake_input)
         end
 
-        it 'converts the base 64 signature' do
-          command = "echo fakesignatureblob | base64 --decode > /tmp/signature_fakehex.png"
-          expect(writer).to have_received(:system).with(command)
-        end
-
-        it 'scales the signature with imagemagick' do
-          command = "convert /tmp/signature_fakehex.png -background none -gravity southwest -extent 2500x2400 /tmp/signature_scaled_fakehex.png"
-          expect(writer).to have_received(:system).with(command)
-        end
-
-        it 'converts the scaled signature from png to pdf' do
-          command = "convert /tmp/signature_scaled_fakehex.png /tmp/sig_pdf_fakehex.pdf"
-          expect(writer).to have_received(:system).with(command)
-        end
-
-        it 'stamps the application with the signature pdf' do
-          command = "pdftk /tmp/application_fakehex.pdf stamp /tmp/sig_pdf_fakehex.pdf output /tmp/final_application_no_cover_letter_fakehex.pdf"
-          expect(writer).to have_received(:system).with(command)
-        end
-
         it 'adds the cover letter to the application PDF' do
-          cover_letter_path_from_spec = File.expand_path("../../../lib/calfresh/clean_cover_letter_v4.pdf", __FILE__)
-          command = "pdftk #{cover_letter_path_from_spec} /tmp/final_application_no_cover_letter_fakehex.pdf cat output /tmp/final_application_without_info_release_fakehex.pdf"
+          cover_letter_path_from_spec = File.expand_path("../../../lib/calfresh/cover_letter_v5.pdf", __FILE__)
+          command = "pdftk #{cover_letter_path_from_spec} /tmp/application_fakehex.pdf cat output /tmp/final_application_without_info_release_fakehex.pdf"
           expect(writer).to have_received(:system).with(command)
         end
       end
@@ -165,7 +145,7 @@ describe Calfresh do
         let(:test_input) {
           {
             name: 'John Reis',
-            date_of_birth: '01/02/53'
+            signature: 'John Signature',
           }
         }
 
@@ -185,22 +165,17 @@ I, #{test_input[:name]}, authorize you to release the following information rega
 - Description of all verification documents that were submitted
 
 Code for America will use this information to make sure my case is processed properly.
-EOF
-)
-          expect(fake_prawn_document).to have_received(:text).with(<<EOF
-Name: #{test_input[:name]}
-Date of birth: #{test_input[:date_of_birth]}
 
+Electronic signature: #{test_input[:signature]}
+Date: #{fake_formatted_date}
+
+___________________________________
 Code for America
 155 9th Street, San Francisco 94103
 (415) 625-9633
 www.codeforamerica.org
 EOF
 )
-        end
-
-        it 'draws the signature image resized to 30%' do
-          expect(fake_prawn_document).to have_received(:image).with('/tmp/signature_fakehex.png', scale: 0.3)
         end
 
         it 'writes the info release form to the correct path' do

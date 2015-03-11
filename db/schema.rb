@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303004215) do
+ActiveRecord::Schema.define(version: 20150304165910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20150303004215) do
     t.boolean  "interview_wednesday"
     t.boolean  "interview_thursday"
     t.boolean  "interview_friday"
+    t.string   "signature"
+    t.boolean  "signature_agree"
   end
 
 end

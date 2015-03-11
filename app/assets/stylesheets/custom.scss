@@ -395,7 +395,7 @@ a.form-button:focus {
 }
 
 
-/* Special cases, like starting over, and clearing signatures. */
+/* Special cases like starting over. */
 .form-button-link-solo {
 	@include form-type;
 	line-height: 2.5em;
@@ -504,27 +504,6 @@ input.disabled {
 .footer-question {
 	padding-top: 1em;
 }
-
-/* S I G N A T U R E   F O R M */
-
-#signature_area {
-	min-height: 6em;
-	border: 1px solid $gray-medium;
-	margin-bottom: 0;
-	border-radius: 0;
-	border-bottom: 0;
-	-ms-touch-action: none;
-}
-
-#signature_clear_button {
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-}
-
-.jSignature {
-	min-height: 200px;
-}
-
 
 /* M E D I A    Q U E R I E S */
 

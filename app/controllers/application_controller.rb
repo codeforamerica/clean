@@ -149,7 +149,9 @@ class ApplicationController < ActionController::Base
   def review_and_submit_submit
     writer = Calfresh::ApplicationWriter.new
     input_for_writer = session.to_hash
-    input_for_writer[:signature] = params["signature"]
+    input_for_writer[:signature] = params[:signature]
+    input_for_writer[:signature_agree] = params[:signature_agree]
+
     if session[:date_of_birth] != ""
       date_of_birth_array = session[:date_of_birth].split('/')
       birth_year = date_of_birth_array[2]
@@ -196,7 +198,11 @@ EOF
       mail.add_attachment(zip_file_path)
       @email_result_application = client.send(mail)
       puts @email_result_application
-      data_to_save = Case.process_data_for_storage(session.to_hash)
+      
+      case_data = session.to_hash
+      case_data["signature"] = params[:signature]
+      case_data["signature_agree"] = params[:signature_agree]
+      data_to_save = Case.process_data_for_storage(case_data)
       c = Case.new(data_to_save)
       c.save
     redirect_to '/application/document_instructions'
