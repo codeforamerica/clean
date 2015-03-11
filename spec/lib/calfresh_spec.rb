@@ -24,7 +24,6 @@ describe Calfresh do
 
     describe '#fill_out_form' do
       let(:mandatory_pdf_form_inputs) { { "Text32 PG 1" => fake_formatted_date, "Check Box1 PG 3" => "Yes" } }
-      let(:mandatory_pdf_form_inputs) { { "Text32 PG 1" => fake_date.strftime, "Check Box1 PG 3" => "Yes" } }
       let(:path_for_3_pager_pdf) { File.expand_path("../../../lib/calfresh/calfresh_3pager.pdf", __FILE__) }
 
       context 'given 1 additional household member' do
@@ -168,7 +167,7 @@ I, #{test_input[:name]}, authorize you to release the following information rega
 Code for America will use this information to make sure my case is processed properly.
 
 Electronic signature: #{test_input[:signature]}
-Date: #{fake_date.strftime}
+Date: #{fake_formatted_date}
 
 ___________________________________
 Code for America

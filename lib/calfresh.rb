@@ -174,7 +174,7 @@ module Calfresh
     def initialize(params)
       name = params[:client_information][:name]
       signature = params[:client_information][:signature]
-      date_today = Date.today.strftime("%m/%d/%Y")
+      date_today = Time.zone.today.strftime("%m/%d/%Y")
       pdf = Prawn::Document.new
       pdf.font 'Helvetica'
       pdf.font('Helvetica', style: :bold) do
