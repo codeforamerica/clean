@@ -4,6 +4,17 @@ class DocumentsController < ApplicationController
     @number_of_docs = params[:number_of_docs]
   end
 
+  def new_ajax
+    render json: {}
+  end
+
+  def new_v2
+    render :new_v2, layout: false
+  end
+
+  def new_from_example
+  end
+
   def create
     puts params.to_hash
     token = params[:user_token]
