@@ -29,6 +29,13 @@ Rails.application.routes.draw do
   #get 'application/document_question' => 'application#document_question'
   get 'application/document_instructions' => 'application#document_instructions'
 
+  #post 'documents/new' => 'documents#new_ajax'
+  #get 'documents/new_v2' => 'documents#new_v2'
+  #get 'documents/new_v3' => 'documents#new_v3'
+  get 'documents/new_from_example' => 'documents#new_from_example'
+
+  resources :uploads
+
   get 'complete' => 'application#complete'
   #get 'applications/:id' => 'application#show_application'
 
