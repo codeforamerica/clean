@@ -10,8 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require vendor/jquery.min.js
+//= require jquery
+//= require jquery_ujs
+//= require jquery-fileupload
 //= require vendor/bootstrap.min.js
 //= require custom/parsley-override.js
-//= require vendor/parsley.min
 //= require vendor/parsley.min

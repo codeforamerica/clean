@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304165910) do
+ActiveRecord::Schema.define(version: 20150313173045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20150304165910) do
     t.string   "name"
     t.date     "date_of_birth"
     t.string   "email"
-    t.string   "home_phone_number"
     t.string   "home_address"
     t.string   "home_zip_code"
     t.string   "home_city"
@@ -44,6 +43,15 @@ ActiveRecord::Schema.define(version: 20150304165910) do
     t.boolean  "interview_friday"
     t.string   "signature"
     t.boolean  "signature_agree"
+  end
+
+  create_table "uploads", force: :cascade do |t|
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
