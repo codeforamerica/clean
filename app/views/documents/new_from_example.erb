@@ -9,7 +9,7 @@
         <span class="btn btn-success fileinput-button">
           <i class="icon-plus icon-white"></i>
           <span>Add files...</span>
-          <input type="hidden" name="upload[application_key]" value="lolfakeapplicationkey" />
+          <input type="hidden" name="upload[application_key]" value="<%= @document_set_id %>" />
           <%= f.file_field :upload %>
         </span>
 <!--
@@ -127,22 +127,5 @@
   $(function () {
       // Initialize the jQuery File Upload widget:
       $('#fileupload').fileupload();
-      //
-      // Load existing files:
-      $.getJSON($('#fileupload').prop('action'), function (files) {
-        var fu = $('#fileupload').data('blueimpFileupload'),
-          template;
-        console.log(fu);
-        fu._adjustMaxNumberOfFiles(-files.length);
-        console.log(files);
-        template = fu._renderDownload(files)
-          .appendTo($('#fileupload .files'));
-        // Force reflow:
-        fu._reflow = fu._transition && template.length &&
-          template[0].offsetWidth;
-        template.addClass('in');
-        $('#loading').remove();
-      });
-
   });
 </script>
