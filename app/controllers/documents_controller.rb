@@ -13,6 +13,8 @@ class DocumentsController < ApplicationController
   end
 
   def new_from_example
+    @document_set_id = SecureRandom.hex
+    session[:document_set_id] = @document_set_id
   end
 
   def create
