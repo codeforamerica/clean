@@ -107,6 +107,11 @@ class ApplicationController < ActionController::Base
   def additional_household_question
   end
 
+  def documents
+    @document_set_id = SecureRandom.hex
+    session[:document_set_id] = @document_set_id
+  end
+
   def interview
   end
 
