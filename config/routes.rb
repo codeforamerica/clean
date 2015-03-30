@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   #post 'documents/new' => 'documents#new_ajax'
   #get 'documents/new_v2' => 'documents#new_v2'
   #get 'documents/new_v3' => 'documents#new_v3'
-  get 'documents/new_from_example' => 'documents#new_from_example'
+  get 'application/documents' => 'application#documents'
 
   resources :uploads
 
