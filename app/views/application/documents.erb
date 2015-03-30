@@ -1,7 +1,7 @@
 
 
   <%= form_for Upload.new, :html => { :multipart => true, :id => "fileupload", :class => 'form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 m-page scene_element scene_element--fadeinup'  } do |f| %>
-    <h2 class="page-header">Upload file</h2>
+    <h2 class="page-header">Upload verification documents</h2>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
     <div class="row fileupload-buttonbar">
       <div class="span7">
@@ -126,6 +126,8 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
       // Initialize the jQuery File Upload widget:
-      $('#fileupload').fileupload();
+      $('#fileupload').fileupload({
+        autoUpload: true
+      });
   });
 </script>
