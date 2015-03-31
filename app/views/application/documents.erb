@@ -73,7 +73,7 @@
     <td class="i"><span>{%=i%}</span></td>
     {% } else if (o.files.valid && !i) { %}
     <td>
-      <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
+      <div class="progress" id="progressbar"></div>
     </td>
     <td class="start">{% if (!o.options.autoUpload) { %}
       <button class="btn btn-primary">
@@ -128,6 +128,12 @@
       // Initialize the jQuery File Upload widget:
       $('#fileupload').fileupload({
         autoUpload: true
+      });
+      $('#fileupload').bind('fileuploadprogress', function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10) - 5;
+        $("#progressbar").progressbar({
+          value: progress
+        });
       });
   });
 </script>
