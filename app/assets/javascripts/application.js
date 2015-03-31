@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui/progressbar
 //= require jquery_ujs
 //= require jquery-fileupload
 //= require vendor/bootstrap.min.js

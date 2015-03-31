@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails', '0.4.1'
+gem 'jquery-ui-rails'
 gem 'paperclip'
 gem 'twitter-bootstrap-rails'
 
