@@ -16,4 +16,5 @@
  *= require vendor/parsley
  *= require_self
  *= require jquery.fileupload-ui
+ *= require jquery-ui/progressbar
  */
