@@ -107,8 +107,8 @@ class ApplicationController < ActionController::Base
   end
 
   def documents
-    @document_set_id = SecureRandom.hex
-    session[:document_set_id] = @document_set_id
+    @document_set_key = SecureRandom.hex
+    session[:document_set_key] = @document_set_key
   end
 
   def interview
