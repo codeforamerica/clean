@@ -34,7 +34,7 @@ class UploadsController < ApplicationController
   # POST /uploads
   # POST /uploads.json
   def create
-    @upload = Upload.new(params[:upload].permit(:upload_file_name, :upload_content_type, :upload_file_size, :upload))
+    @upload = Upload.new(params[:upload].permit(:upload_file_name, :upload_content_type, :upload_file_size, :upload, :document_set_key))
 
     respond_to do |format|
       if @upload.save

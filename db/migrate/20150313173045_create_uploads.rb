@@ -4,6 +4,7 @@ class CreateUploads < ActiveRecord::Migration
       t.string   "upload_file_name"
       t.string   "upload_content_type"
       t.integer  "upload_file_size"
+      t.string "document_set_key"
       t.datetime "upload_updated_at"
       t.timestamps
     end
