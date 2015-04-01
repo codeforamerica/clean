@@ -1,5 +1,4 @@
 
-
   <%= form_for Upload.new, :html => { :multipart => true, :id => "fileupload", :class => 'form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 m-page scene_element scene_element--fadeinup'  } do |f| %>
     <h2 class="page-header">Upload verification documents</h2>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -9,7 +8,7 @@
         <span class="btn btn-success fileinput-button">
           <i class="icon-plus icon-white"></i>
           <span>Add files...</span>
-          <input type="hidden" name="upload[application_key]" value="<%= @document_set_id %>" />
+          <input type="hidden" name="upload[document_set_key]" value="<%= @document_set_key %>" />
           <%= f.file_field :upload %>
         </span>
 <!--
