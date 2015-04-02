@@ -195,6 +195,24 @@ EOF
       )
       random_value = SecureRandom.hex
       zip_file_path = "/tmp/#{random_value}.zip"
+      doc_key = session[:document_set_key]
+      uploaded_documents = Upload.where(document_set_key: doc_key)
+      if upload_documents.count > 0
+        # Do processing to combine application
+        temp_files = Array.new
+        uploaded_documents.each do |doc|
+          tf = Tempfile.new(doc_key)
+          tf.binmode
+          doc.upload.copy_to_local_file(:original, tf.path)
+          tf.close
+          temp_files << tf
+        end
+        document_paths = temp_files.map { |tempfile| tempfile.path }
+        path_for_pdf_to_zip = "/tmp/app_with_docs_#{doc_key}.pdf"
+        system("convert #{@application.final_pdf_path} #{document_paths.join(' ')} #{path_for_pdf_to_zip}")
+      else
+        path_for_pdf_to_zip = @application.final_pdf_path
+      end
       Zip::Archive.open(zip_file_path, Zip::CREATE) do |ar|
         ar.add_file(@application.final_pdf_path) # add file to zip archive
       end
