@@ -187,7 +187,7 @@ EOF
       zip_file_path = "/tmp/#{random_value}.zip"
       doc_key = session[:document_set_key]
       uploaded_documents = Upload.where(document_set_key: doc_key)
-      if upload_documents.count > 0
+      if uploaded_documents.count > 0
         # Do processing to combine application
         temp_files = Array.new
         uploaded_documents.each do |doc|
@@ -198,8 +198,10 @@ EOF
           temp_files << tf
         end
         document_paths = temp_files.map { |tempfile| tempfile.path }
+        path_for_docs_pdf = "/tmp/docs_with_doc_key_#{doc_key}.pdf"
+        system("convert #{document_paths.join(' ')} #{path_for_docs_pdf}")
         path_for_pdf_to_zip = "/tmp/app_with_docs_#{doc_key}.pdf"
-        system("convert #{@application.final_pdf_path} #{document_paths.join(' ')} #{path_for_pdf_to_zip}")
+        system("pdftk #{@application.final_pdf_path} #{path_for_docs_pdf} cat output #{path_for_pdf_to_zip}")
       else
         path_for_pdf_to_zip = @application.final_pdf_path
       end
@@ -211,7 +213,7 @@ EOF
       mail.add_attachment(zip_file_path)
       @email_result_application = client.send(mail)
       puts @email_result_application
-      
+
       case_data = session.to_hash
       case_data["signature"] = params[:signature]
       case_data["signature_agree"] = params[:signature_agree]
