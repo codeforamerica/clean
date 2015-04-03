@@ -2,7 +2,7 @@
   <%= form_for Upload.new, :html => { :multipart => true, :id => "fileupload", :class => 'form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 m-page scene_element scene_element--fadeinup'  } do |f| %>
     <h2 class="page-header">Upload verification documents</h2>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <div class="row fileupload-buttonbar">
+    <div class="fileupload-buttonbar">
       <div class="span7">
         <!-- The fileinput-button span is used to style the file input field as button -->
         <span class="btn btn-success fileinput-button">
@@ -11,28 +11,6 @@
           <input type="hidden" name="upload[document_set_key]" value="<%= @document_set_key %>" />
           <%= f.file_field :upload %>
         </span>
-<!--
-        <button type="submit" class="btn btn-primary start">
-          <i class="icon-upload icon-white"></i>
-          <span>Start upload</span>
-        </button>
-        <button type="reset" class="btn btn-warning cancel">
-          <i class="icon-ban-circle icon-white"></i>
-          <span>Cancel upload</span>
-        </button>
-        <button type="button" class="btn btn-danger delete">
-          <i class="icon-trash icon-white"></i>
-          <span>Delete</span>
-        </button>
-        <input type="checkbox" class="toggle">
-      </div>
-
-      <div class="span5">
-        <div class="progress progress-success progress-striped active fade">
-          <div class="bar" style="width:0%;"></div>
-        </div>
-      </div>
--->
     </div>
     <!-- The loading indicator is shown during image processing -->
     <div class="fileupload-loading"></div>
@@ -40,17 +18,20 @@
 
     <br>
 
-    <!-- The table listing the files available for upload/download -->
-    <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-    </table>
-  <% end %>
-
-
-  <div class="page-footer">
-    <div class="page-footer-content col-md-4 col-md-offset-8">
-      <a href="/application/interview" class="btn next-step" type="submit" value="Next Step">
+    <div class="form-group">
+      <!-- The table listing the files available for upload/download -->
+      <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+      </table>
     </div>
-  </div>
+
+    <div class="page-footer">
+      <div class="page-footer-content col-md-4 col-md-offset-8">
+        <a href="/application/interview" class="btn form-button">
+          Next Step
+        </a>
+      </div>
+    </div>
+  <% end %>
 
 
 <script>
@@ -69,7 +50,6 @@
 <script id="template-upload" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <tr class="template-upload fade">
-    <td class="preview"><span class="fade"></span></td>
     <td class="name"><span>{%=file.name%}</span></td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     {% if (file.error) { %}
@@ -89,12 +69,6 @@
     {% } else { %}
     <td colspan="2" id="blah"></td>
     {% } %}
-    <td class="cancel">{% if (!i) { %}
-      <button class="btn btn-warning">
-        <i class="icon-ban-circle icon-white"></i>
-        <span>{%=locale.fileupload.cancel%}</span>
-      </button>
-      {% } %}</td>
   </tr>
   {% } %}
 </script>
@@ -117,13 +91,6 @@
         <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
         <td colspan="2"></td>
         {% } %}
-      <td class="delete">
-        <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
-          <i class="icon-trash icon-white"></i>
-          <span>{%=locale.fileupload.destroy%}</span>
-        </button>
-        <input type="checkbox" name="delete" value="1">
-      </td>
     </tr>
     {% } %}
 </script>
