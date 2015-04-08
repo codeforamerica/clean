@@ -201,11 +201,7 @@ EOF
         # Do processing to combine application
         temp_files = Array.new
         uploaded_documents.each do |doc|
-          tf = Tempfile.new(doc_key)
-          tf.binmode
-          doc.upload.copy_to_local_file(:original, tf.path)
-          tf.close
-          temp_files << tf
+          temp_files << doc.to_local_temp_file
         end
         document_paths = temp_files.map { |tempfile| tempfile.path }
         path_for_docs_pdf = "/tmp/docs_with_doc_key_#{doc_key}.pdf"
@@ -216,7 +212,7 @@ EOF
         path_for_pdf_to_zip = @application.final_pdf_path
       end
       Zip::Archive.open(zip_file_path, Zip::CREATE) do |ar|
-        ar.add_file(@application.final_pdf_path) # add file to zip archive
+        ar.add_file(path_for_pdf_to_zip) # add file to zip archive
       end
       Zip::Archive.encrypt(zip_file_path, ENV['ZIP_FILE_PASSWORD'])
       puts zip_file_path

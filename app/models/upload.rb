@@ -14,4 +14,11 @@ class Upload < ActiveRecord::Base
     }
   end
 
+  def to_local_temp_file
+    tf = Tempfile.new(SecureRandom.hex)
+    tf.binmode
+    upload.copy_to_local_file(:original, tf.path)
+    tf.close
+    tf
+  end
 end
