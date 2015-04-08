@@ -106,6 +106,11 @@ class ApplicationController < ActionController::Base
   def additional_household_question
   end
 
+  def documents
+    @document_set_key = SecureRandom.hex
+    session[:document_set_key] = @document_set_key
+  end
+
   def interview
   end
 
@@ -190,6 +195,26 @@ EOF
       )
       random_value = SecureRandom.hex
       zip_file_path = "/tmp/#{random_value}.zip"
+      doc_key = session[:document_set_key]
+      uploaded_documents = Upload.where(document_set_key: doc_key)
+      if uploaded_documents.count > 0
+        # Do processing to combine application
+        temp_files = Array.new
+        uploaded_documents.each do |doc|
+          tf = Tempfile.new(doc_key)
+          tf.binmode
+          doc.upload.copy_to_local_file(:original, tf.path)
+          tf.close
+          temp_files << tf
+        end
+        document_paths = temp_files.map { |tempfile| tempfile.path }
+        path_for_docs_pdf = "/tmp/docs_with_doc_key_#{doc_key}.pdf"
+        system("convert #{document_paths.join(' ')} #{path_for_docs_pdf}")
+        path_for_pdf_to_zip = "/tmp/app_with_docs_#{doc_key}.pdf"
+        system("pdftk #{@application.final_pdf_path} #{path_for_docs_pdf} cat output #{path_for_pdf_to_zip}")
+      else
+        path_for_pdf_to_zip = @application.final_pdf_path
+      end
       Zip::Archive.open(zip_file_path, Zip::CREATE) do |ar|
         ar.add_file(@application.final_pdf_path) # add file to zip archive
       end
@@ -198,7 +223,7 @@ EOF
       mail.add_attachment(zip_file_path)
       @email_result_application = client.send(mail)
       puts @email_result_application
-      
+
       case_data = session.to_hash
       case_data["signature"] = params[:signature]
       case_data["signature_agree"] = params[:signature_agree]
