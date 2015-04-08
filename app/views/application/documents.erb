@@ -2,25 +2,22 @@
   <%= form_for Upload.new, :html => { :multipart => true, :id => "fileupload", :class => 'form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 m-page scene_element scene_element--fadeinup'  } do |f| %>
     <h2 class="page-header">Upload verification documents</h2>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <div class="fileupload-buttonbar">
-      <div class="span7">
+    <div class="form-group fileupload-buttonbar">
+      <div class="span7 col-md-4 form-button-col">
         <!-- The fileinput-button span is used to style the file input field as button -->
-        <span class="btn btn-success fileinput-button">
+        <span class="btn fileinput-button form-button">
           <i class="icon-plus icon-white"></i>
           <span>Add files...</span>
           <input type="hidden" name="upload[document_set_key]" value="<%= @document_set_key %>" />
-          <%= f.file_field :upload %>
+            <%= f.file_field :upload %>
         </span>
-    </div>
-    <!-- The loading indicator is shown during image processing -->
-    <div class="fileupload-loading"></div>
-    </div>
-
-    <br>
-
-    <div class="form-group">
-      <!-- The table listing the files available for upload/download -->
-      <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+      </div>
+        <!-- The loading indicator is shown during image processing -->
+      <div class="fileupload-loading">
+          <!-- indicator goes here -->
+      </div>
+        <!-- The table listing the files available for upload/download -->
+      <table class="form-table table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
       </table>
     </div>
 

@@ -464,6 +464,21 @@ input.disabled {
 	background-color: $gray-light;
 }
 
+/* NEW FILE UPLOAD */
+
+.fileupload-buttonbar .form-button {
+	background-color: #30C49B;
+	color: white;
+}
+
+.form-table a {
+	@include form-type;
+}
+
+.form-table span {
+	@include form-type;
+}
+
 /* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
 
 .next-step {
