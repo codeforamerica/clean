@@ -3,7 +3,8 @@
     <h2 class="page-header">Upload verification documents</h2>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
     <div class="form-group fileupload-buttonbar">
-      <div class="span7 col-md-4 form-button-col">
+      <p class="page-context">Share documents that show your residency, income, expenses. Upload as many as you like. If you don't have any documents on hand, don't worry&mdash;you can submit them later. </p>
+      <div class="span7 col-md-4 col-sm-12 form-button-col">
         <!-- The fileinput-button span is used to style the file input field as button -->
         <span class="btn fileinput-button form-button">
           <i class="icon-plus icon-white"></i>
@@ -70,7 +71,7 @@
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade">
+    <tr class="template-download fade form-table-row">
       {% if (file.error) { %}
         <td></td>
         <td class="name"><span>{%=file.name%}</span></td>
