@@ -203,11 +203,9 @@ EOF
         uploaded_documents.each do |doc|
           temp_files << doc.to_local_temp_file
         end
-        document_paths = temp_files.map { |tempfile| tempfile.path }
-        path_for_docs_pdf = "/tmp/docs_with_doc_key_#{doc_key}.pdf"
-        system("convert #{document_paths.join(' ')} #{path_for_docs_pdf}")
+        single_pdf_doc_for_verifications = DocumentProcessor.combine_documents_into_single_pdf(temp_files)
         path_for_pdf_to_zip = "/tmp/app_with_docs_#{doc_key}.pdf"
-        system("pdftk #{@application.final_pdf_path} #{path_for_docs_pdf} cat output #{path_for_pdf_to_zip}")
+        system("pdftk #{@application.final_pdf_path} #{single_pdf_doc_for_verifications.path} cat output #{path_for_pdf_to_zip}")
       else
         path_for_pdf_to_zip = @application.final_pdf_path
       end
