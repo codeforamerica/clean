@@ -1,5 +1,6 @@
 class Case < ActiveRecord::Base
   has_attached_file :pdf
+  validates_attachment_content_type :pdf, :content_type => "application/pdf"
 
   def self.process_data_for_storage(input_hash)
     data_to_save = input_hash.select do |k,v|
