@@ -2,9 +2,13 @@ class Case < ActiveRecord::Base
   has_attached_file :pdf
   validates_attachment_content_type :pdf, :content_type => "application/pdf"
 
+  def temporary_pdf_download_link
+    pdf.expiring_url(60)
+  end
+
   def self.process_data_for_storage(input_hash)
     data_to_save = input_hash.select do |k,v|
-      %w(name date_of_birth home_phone_number email home_address home_zip_code home_city home_state primary_language sex additional_household_members contact_by_email contact_by_text_message contact_by_phone_call interview_early_morning interview_mid_morning interview_afternoon interview_late_afternoon interview_monday interview_tuesday interview_wednesday interview_thursday interview_friday signature signature_agree).include?(k)
+      %w(name date_of_birth home_phone_number email home_address home_zip_code home_city home_state primary_language sex additional_household_members contact_by_email contact_by_text_message contact_by_phone_call interview_early_morning interview_mid_morning interview_afternoon interview_late_afternoon interview_monday interview_tuesday interview_wednesday interview_thursday interview_friday signature signature_agree public_id).include?(k)
     end
     data_to_save['date_of_birth'] = Chronic.parse(data_to_save['date_of_birth'])
     if data_to_save['additional_household_members']
