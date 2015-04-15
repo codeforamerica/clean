@@ -40,6 +40,11 @@ GEM
       builder
       multi_json
     arel (6.0.0)
+    aws-sdk (1.64.0)
+      aws-sdk-v1 (= 1.64.0)
+    aws-sdk-v1 (1.64.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -225,6 +230,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
+  aws-sdk (< 2.0)
   byebug
   capybara
   capybara-webkit
