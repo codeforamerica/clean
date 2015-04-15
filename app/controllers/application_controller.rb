@@ -180,13 +180,15 @@ class ApplicationController < ActionController::Base
       case_data = session.to_hash
       case_data["signature"] = params[:signature]
       case_data["signature_agree"] = params[:signature_agree]
+      case_data["public_id"] = session["document_set_key"]
       data_to_save = Case.process_data_for_storage(case_data)
       c = Case.new(data_to_save)
       File.open(path_for_pdf_to_save) do |f|
         c.pdf = f
       end
       c.save
-      pdf_url = c.pdf.url
+      pdf_url = case_download_url(c.public_id)
+      puts pdf_url
       client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
       mail = SendGrid::Mail.new(
         to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
