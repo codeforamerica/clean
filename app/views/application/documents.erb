@@ -2,31 +2,29 @@
   <%= form_for Upload.new, :html => { :multipart => true, :id => "fileupload", :class => 'form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 m-page scene_element scene_element--fadeinup'  } do |f| %>
     <h2 class="page-header">Upload verification documents</h2>
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <div class="fileupload-buttonbar">
-      <div class="span7">
+    <div class="form-group fileupload-buttonbar">
+      <p class="page-context">Share documents that show your residency, income, expenses. Upload as many as you like. If you don't have any documents on hand, don't worry&mdash;you can submit them later. </p>
+      <div class="span7 col-md-4 col-sm-12 form-button-col">
         <!-- The fileinput-button span is used to style the file input field as button -->
-        <span class="btn btn-success fileinput-button">
+        <span class="btn fileinput-button form-button">
           <i class="icon-plus icon-white"></i>
           <span>Add files...</span>
           <input type="hidden" name="upload[document_set_key]" value="<%= @document_set_key %>" />
-          <%= f.file_field :upload %>
+            <%= f.file_field :upload %>
         </span>
-    </div>
-    <!-- The loading indicator is shown during image processing -->
-    <div class="fileupload-loading"></div>
-    </div>
-
-    <br>
-
-    <div class="form-group">
-      <!-- The table listing the files available for upload/download -->
-      <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+      </div>
+        <!-- The loading indicator is shown during image processing -->
+      <div class="fileupload-loading">
+          <!-- indicator goes here -->
+      </div>
+        <!-- The table listing the files available for upload/download -->
+      <table class="form-table table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
       </table>
     </div>
 
     <div class="page-footer">
       <div class="page-footer-content col-md-4 col-md-offset-8">
-        <a href="/application/interview" class="btn form-button">
+        <a href="/application/interview" class="btn form-button next-step">
           Next Step
         </a>
       </div>
@@ -51,7 +49,6 @@
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <tr class="template-upload fade">
     <td class="name"><span>{%=file.name%}</span></td>
-    <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     {% if (file.error) { %}
     <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
     <td class="isitvalid"><span>{%=o.files.valid%}</span></td>
@@ -67,7 +64,6 @@
       </button>
       {% } %}</td>
     {% } else { %}
-    <td colspan="2" id="blah"></td>
     {% } %}
   </tr>
   {% } %}
@@ -75,21 +71,17 @@
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade">
+    <tr class="template-download fade form-table-row">
       {% if (file.error) { %}
         <td></td>
         <td class="name"><span>{%=file.name%}</span></td>
-        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        <td class="size"><span> &#x2713 </span></td>
         <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
         {% } else { %}
-        <td class="preview">{% if (file.thumbnail_url) { %}
-          <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
-          {% } %}</td>
         <td class="name">
           <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
         </td>
-        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-        <td colspan="2"></td>
+        <td class="size"><span> &#x2713 </span></td>
         {% } %}
     </tr>
     {% } %}
