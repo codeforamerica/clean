@@ -19,7 +19,7 @@ module DocumentProcessor
     end.reject { |element| element == nil }
     pdf_paths = pdf_file_array.map { |file| file.path }
     path_for_docs_pdf = "/tmp/doc_set_#{random_string_for_temp_files}.pdf"
-    system("convert #{pdf_paths.join(' ')} #{path_for_docs_pdf}")
+    system("pdftk #{pdf_paths.join(' ')} cat output #{path_for_docs_pdf}")
     final_pdf = File.open(path_for_docs_pdf)
     final_pdf
   end
