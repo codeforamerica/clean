@@ -172,6 +172,33 @@ class ApplicationController < ActionController::Base
     input_for_writer[:language_preference_reading] = session[:primary_language]
     input_for_writer[:language_preference_writing] = session[:primary_language]
     @application = writer.fill_out_form(input_for_writer)
+      doc_key = session[:document_set_key]
+      uploaded_documents = Upload.where(document_set_key: doc_key)
+      if uploaded_documents.count > 0
+        # Do processing to combine application
+        temp_files = Array.new
+        uploaded_documents.each do |doc|
+          temp_files << doc.to_local_temp_file
+        end
+        single_pdf_doc_for_verifications = DocumentProcessor.combine_documents_into_single_pdf(temp_files)
+        path_for_pdf_to_save = "/tmp/app_with_docs_#{doc_key}.pdf"
+        system("pdftk #{@application.final_pdf_path} #{single_pdf_doc_for_verifications.path} cat output #{path_for_pdf_to_save}")
+      else
+        path_for_pdf_to_save = @application.final_pdf_path
+      end
+
+      case_data = session.to_hash
+      case_data["signature"] = params[:signature]
+      case_data["signature_agree"] = params[:signature_agree]
+      case_data["public_id"] = session["document_set_key"]
+      data_to_save = Case.process_data_for_storage(case_data)
+      c = Case.new(data_to_save)
+      File.open(path_for_pdf_to_save) do |f|
+        c.pdf = f
+      end
+      c.save
+      pdf_url = case_download_url(c.public_id)
+      puts pdf_url
       client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
       mail = SendGrid::Mail.new(
         to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
@@ -180,11 +207,17 @@ class ApplicationController < ActionController::Base
         text: <<EOF
 Hi there!
 
-An application for Calfresh benefits was just submitted!
+An application for CalFresh benefits was just submitted!
 
-You can find a completed CF-285 in the attached .zip file. You will probably receive another e-mail shortly containing photos of their verification documents.
+The below link contains a PDF file with:
 
-The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a password to access it, please get in touch with Jake Solomon at jacob@codeforamerica.org
+- A completed CF-285
+- An information release authorization
+- Verification documents
+
+Application PDF: <a href="#{pdf_url}">#{pdf_url}</a>
+
+The link requires a username and password to protect client privacy - if you don't have a password to access it, please get in touch with Jake Solomon at jacob@codeforamerica.org
 
 When you finish clearing the case, please help us track the case by filling out a bit of info here: http://c4a.me/cleancases
 
@@ -193,43 +226,8 @@ Thanks for your time!
 Suzanne, your friendly neighborhood CalFresh robot
 EOF
       )
-      random_value = SecureRandom.hex
-      zip_file_path = "/tmp/#{random_value}.zip"
-      doc_key = session[:document_set_key]
-      uploaded_documents = Upload.where(document_set_key: doc_key)
-      if uploaded_documents.count > 0
-        # Do processing to combine application
-        temp_files = Array.new
-        uploaded_documents.each do |doc|
-          tf = Tempfile.new(doc_key)
-          tf.binmode
-          doc.upload.copy_to_local_file(:original, tf.path)
-          tf.close
-          temp_files << tf
-        end
-        document_paths = temp_files.map { |tempfile| tempfile.path }
-        path_for_docs_pdf = "/tmp/docs_with_doc_key_#{doc_key}.pdf"
-        system("convert #{document_paths.join(' ')} #{path_for_docs_pdf}")
-        path_for_pdf_to_zip = "/tmp/app_with_docs_#{doc_key}.pdf"
-        system("pdftk #{@application.final_pdf_path} #{path_for_docs_pdf} cat output #{path_for_pdf_to_zip}")
-      else
-        path_for_pdf_to_zip = @application.final_pdf_path
-      end
-      Zip::Archive.open(zip_file_path, Zip::CREATE) do |ar|
-        ar.add_file(@application.final_pdf_path) # add file to zip archive
-      end
-      Zip::Archive.encrypt(zip_file_path, ENV['ZIP_FILE_PASSWORD'])
-      puts zip_file_path
-      mail.add_attachment(zip_file_path)
       @email_result_application = client.send(mail)
       puts @email_result_application
-
-      case_data = session.to_hash
-      case_data["signature"] = params[:signature]
-      case_data["signature_agree"] = params[:signature_agree]
-      data_to_save = Case.process_data_for_storage(case_data)
-      c = Case.new(data_to_save)
-      c.save
     redirect_to '/application/document_instructions'
   end
 

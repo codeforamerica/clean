@@ -22,6 +22,7 @@ $zIndex-3:   300;
 /* Highly used colors */
 
 $off-white: #f8f8f8;
+$gray-lightest: #eeeeee;
 $gray-light: #dfdfdf;
 $gray-medium-light: #c8c8c8;
 $gray-medium: #555;
@@ -87,6 +88,12 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 
 @mixin form-error {
 	color: $orange;
+	font-family: $proxima;
+	font-size: 16px;
+}
+
+@mixin form-document {
+	color: $gray-dark;
 	font-family: $proxima;
 	font-size: 16px;
 }
@@ -464,6 +471,34 @@ input.disabled {
 	background-color: $gray-light;
 }
 
+/* NEW FILE UPLOAD */
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+	border-top: 1px solid $gray-lightest;
+}
+
+.fileupload-buttonbar .form-button {
+	background-color: #30C49B;
+	color: white;
+}
+
+.btn.fileinput-button.form-button {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.form-table a {
+	@include form-document;
+}
+
+.form-table span {
+	@include form-document;
+}
+
+.form-table .size span {
+	color: #009169;
+}
+
 /* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
 
 .next-step {
@@ -488,7 +523,7 @@ input.disabled {
 }
 
 .page-footer {
-    border-top: 1px solid #eee;
+    border-top: 1px solid $gray-lightest;
     margin-top: 1em;
 }
 

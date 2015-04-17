@@ -40,6 +40,11 @@ GEM
       builder
       multi_json
     arel (6.0.0)
+    aws-sdk (1.64.0)
+      aws-sdk-v1 (= 1.64.0)
+    aws-sdk-v1 (1.64.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -59,7 +64,7 @@ GEM
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.1)
+    cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -97,17 +102,17 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.4.3)
+    mini_magick (4.2.1)
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
     netrc (0.10.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    paperclip (3.4.1)
+    paperclip (4.2.1)
       activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
+      cocaine (~> 0.5.3)
       mime-types
     pdf-core (0.4.0)
     pdf-forms (0.6.0)
@@ -225,6 +230,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake
+  aws-sdk (< 2.0)
   byebug
   capybara
   capybara-webkit
@@ -235,7 +241,8 @@ DEPENDENCIES
   jquery-fileupload-rails (= 0.4.1)
   jquery-rails
   jquery-ui-rails
-  paperclip
+  mini_magick
+  paperclip (~> 4.2)
   pdf-forms
   pg
   prawn
