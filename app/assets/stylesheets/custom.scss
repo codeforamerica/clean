@@ -95,7 +95,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 @mixin form-document {
 	color: $gray-dark;
 	font-family: $proxima;
-	font-size: 16px;
+	font-size: 21px;
 }
 
 @mixin primary-button-type {
@@ -475,6 +475,10 @@ input.disabled {
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
 	border-top: 1px solid $gray-lightest;
+}
+
+.table>tbody>tr>td {
+	line-height: 2;
 }
 
 .fileupload-buttonbar .form-button {
