@@ -34,5 +34,7 @@ module CalfreshAndSoClean
     config.autoload_paths << Rails.root.join('lib')
 
     config.time_zone = "Pacific Time (US & Canada)"
+
+    config.assets.paths << "#{Rails}/vendor/assets/fonts"
   end
 end
