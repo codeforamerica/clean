@@ -20,7 +20,7 @@ gem 'jquery-fileupload-rails', '0.4.1'
 gem 'jquery-ui-rails'
 gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '< 2.0'
-gem 'twitter-bootstrap-rails'
+#gem 'twitter-bootstrap-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'

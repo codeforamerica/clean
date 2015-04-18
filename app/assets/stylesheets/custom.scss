@@ -95,7 +95,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 @mixin form-document {
 	color: $gray-dark;
 	font-family: $proxima;
-	font-size: 16px;
+	font-size: 21px;
 }
 
 @mixin primary-button-type {
@@ -477,6 +477,10 @@ input.disabled {
 	border-top: 1px solid $gray-lightest;
 }
 
+.table>tbody>tr>td {
+	line-height: 2;
+}
+
 .fileupload-buttonbar .form-button {
 	background-color: #30C49B;
 	color: white;
@@ -495,9 +499,10 @@ input.disabled {
 	@include form-document;
 }
 
-.form-table .size span {
+.form-table .size img {
 	color: #009169;
 }
+
 
 /* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
 
