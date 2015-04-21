@@ -84,9 +84,9 @@ RSpec.describe ApplicationController, :type => :controller do
   end
 
   describe 'POST /application/sex_and_ssn' do
-    context 'with ssn and sex selected' do
+    context 'with expectable input (2-digit year in DOB, ssn, and sex selected)' do
       before do
-        @input_hash = {
+       @input_hash = {
           date_of_birth: '06/01/75',
           "ssn" => '1112223333',
           "Male" => 'on'
@@ -132,6 +132,29 @@ RSpec.describe ApplicationController, :type => :controller do
       it 'redirects to the household question page' do
         expect(@response).to be_redirect
         expect(@response.location).to include('/application/household_question')
+      end
+    end
+
+    describe 'funky date formats' do
+      context 'DOB with dashes' do
+        it 'reformats to slashes and two-digit year' do
+          post :sex_and_ssn_submit, { date_of_birth: '3-4-85' }
+          expect(@request.session[:date_of_birth]).to eq('03/04/85')
+        end
+      end
+
+      context '4-digit year' do
+        it 'reformats to two-digit year' do
+          post :sex_and_ssn_submit, { date_of_birth: '03/04/1985' }
+          expect(@request.session[:date_of_birth]).to eq('03/04/85')
+        end
+      end
+
+      context 'no DOB entered (validated on front end, so shouldnt happen, but check anyway)' do
+        it 'reformats to two-digit year' do
+          post :sex_and_ssn_submit, {}
+          expect(@request.session[:date_of_birth]).to eq('')
+        end
       end
     end
   end
@@ -449,10 +472,10 @@ RSpec.describe ApplicationController, :type => :controller do
       end
     end
 
-    context 'with a four-digit year (which needs reformatting)' do
+    context 'with a properly-formatted year' do
       before do
         @session_hash = {
-          date_of_birth: '06/09/1985'
+          date_of_birth: '06/09/85'
         }
         @params_hash = {
           signature: 'fakesig'
@@ -461,7 +484,7 @@ RSpec.describe ApplicationController, :type => :controller do
         post :review_and_submit_submit, @params_hash, @session_hash
       end
 
-      it 'properly reformats the date of birth (and adds extraneous fields)' do
+      it 'sends the DOB and adds extraneous fields' do
         expected_hash = Hash.new
         expected_hash[:date_of_birth] = '06/09/85'
         [:name_page3, :ssn_page3, :language_preference_reading, :language_preference_writing, :signature_agree].each do |key|
@@ -523,24 +546,15 @@ EOF
 
     context 'with a two-digit year (no reformatting needed)' do
       before do
-        @session_hash = {
-          date_of_birth: '06/09/85'
-        }
-        @params_hash = {
-          signature: 'fakesignatureblob'
-        }
-
+        @params_hash = { signature: 'fakesignatureblob' }
+        @session_hash = { date_of_birth: '06/09/85' }
         post :review_and_submit_submit, @params_hash, @session_hash
       end
 
-      it 'properly reformats the date of birth (and adds extraneous fields)' do
-        expected_hash = Hash.new
-        expected_hash[:date_of_birth] = '06/09/85'
-        [:name_page3, :ssn_page3, :language_preference_reading, :language_preference_writing, :signature_agree].each do |key|
-          expected_hash[key] = nil
-        end
-        expected_hash[:signature] = 'fakesignatureblob'
-        expect(fake_app_writer).to have_received(:fill_out_form).with(expected_hash)
+      it 'sends a hash and adds extraneous fields' do
+        expect(fake_app_writer).to have_received(:fill_out_form).with(#expected_hash)
+          hash_including(:name_page3 => nil, :ssn_page3 => nil, :language_preference_reading => nil, :language_preference_writing => nil, :signature_agree => nil, :signature => 'fakesignatureblob', :date_of_birth => '06/09/85')
+        )
       end
     end
   end
