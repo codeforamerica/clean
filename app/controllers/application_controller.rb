@@ -48,7 +48,12 @@ class ApplicationController < ActionController::Base
       else
         ""
     end
-    session[:date_of_birth] = params[:date_of_birth]
+    parsed_date = Chronic.parse(params[:date_of_birth])
+    if parsed_date != nil
+      session[:date_of_birth] = parsed_date.strftime('%m/%d/%y')
+    else
+      session[:date_of_birth] = ''
+    end
     session[:ssn] = params[:ssn]
     session[:sex] = sex
     redirect_to '/application/household_question'
@@ -72,15 +77,11 @@ class ApplicationController < ActionController::Base
       else
         ""
     end
-    clean_date_of_birth = ""
-    if params["their_date_of_birth"] != ""
-      date_of_birth_array = params["their_date_of_birth"].split('/')
-      birth_year = date_of_birth_array[2]
-      if birth_year.length == 4
-        clean_date_of_birth = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
-      else
-        clean_date_of_birth = params["their_date_of_birth"]
-      end
+    parsed_date = Chronic.parse(params[:their_date_of_birth])
+    if parsed_date != nil
+      clean_date_of_birth = parsed_date.strftime('%m/%d/%y')
+    else
+      clean_date_of_birth = ''
     end
     session[:additional_household_members] ||= []
     name = if params["their_name"] == nil
@@ -148,20 +149,9 @@ class ApplicationController < ActionController::Base
 
   def review_and_submit_submit
     writer = Calfresh::ApplicationWriter.new
-    input_for_writer = session.to_hash
+    input_for_writer = session.to_hash.symbolize_keys
     input_for_writer[:signature] = params[:signature]
     input_for_writer[:signature_agree] = params[:signature_agree]
-
-    if session[:date_of_birth] != ""
-      date_of_birth_array = session[:date_of_birth].split('/')
-      birth_year = date_of_birth_array[2]
-      if birth_year.length == 4
-        input_for_writer[:date_of_birth] = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
-      else
-        input_for_writer[:date_of_birth] = session[:date_of_birth]
-      end
-      input_for_writer.delete('date_of_birth')
-    end
     input_for_writer[:name_page3] = session[:name]
     input_for_writer[:ssn_page3] = session[:ssn]
     input_for_writer[:language_preference_reading] = session[:primary_language]
