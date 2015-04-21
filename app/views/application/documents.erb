@@ -8,7 +8,9 @@
         <!-- The fileinput-button span is used to style the file input field as button -->
         <span class="btn fileinput-button form-button">
           <i class="icon-plus icon-white"></i>
-          <span>Add files...</span>
+          <!-- testing -->
+          <span class="glyphicon glyphicon-picture"></span>
+          <span> Add files...</span>
           <input type="hidden" name="upload[document_set_key]" value="<%= @document_set_key %>" />
             <%= f.file_field :upload %>
         </span>
@@ -30,7 +32,6 @@
       </div>
     </div>
   <% end %>
-
 
 <script>
   var fileUploadErrors = {
@@ -75,13 +76,13 @@
       {% if (file.error) { %}
         <td></td>
         <td class="name"><span>{%=file.name%}</span></td>
-        <td class="size"><span> &#x2713 </span></td>
+        <td class="size"><span class="glyphicon glyphicon-picture"></span></td>
         <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
         {% } else { %}
         <td class="name">
-          <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+          <p title="{%=file.name%}">{%=file.name%}</p>
         </td>
-        <td class="size"><span> &#x2713 </span></td>
+        <td class="size"><%= image_tag("checkmark.svg")%></td>
         {% } %}
     </tr>
     {% } %}
