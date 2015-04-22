@@ -471,25 +471,25 @@ input.disabled {
 	background-color: $gray-light;
 }
 
-/* NEW FILE UPLOAD */
+/* BOTH ORIGINAL AND OVERRIDE STYLES FOR OUR DOCUMENT UPLOAD FLOW */
+/* Overrides: jquery.fileupload-ui, jquery.fileupload/progressbar */
 
-.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
-	border-top: 1px solid $gray-lightest;
+
+.file-element {
+	padding: .5em 0;
 }
 
-.table>tbody>tr>td {
-	line-height: 2;
+.name {
+	display: inline-block;
+	p {
+		@include form-document;
+	}
 }
 
-.fileupload-buttonbar .form-button {
-	background-color: #30C49B;
-	color: white;
-	border: none;
-}
-
-.btn.fileinput-button.form-button {
-	margin-top: 1em;
-	margin-bottom: 1em;
+.form-table {
+	display: inline-block;
+	width: 100%;
+	padding: 15px;
 }
 
 .form-table a {
@@ -500,9 +500,24 @@ input.disabled {
 	@include form-document;
 }
 
-.form-table .size img {
-	color: #009169;
+.form-table .checkmark {
+	display: inline-block;
 }
+
+.form-table .checkmark img {
+	height: 2em;
+	float: right;
+}
+
+
+/* File Upload Button*/
+.form-group .fileinput-button {
+	background-color: #30C49B;
+	color: white;
+	border: none;
+	margin: 1em 0;
+}
+
 
 
 /* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
