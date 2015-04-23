@@ -23,7 +23,7 @@
             <!-- indicator goes here -->
         </div>
           <!-- The table listing the files available for upload/download -->
-        <div class="form-table">
+        <div id="file-list" class="form-table">
           <div class="files" data-toggle="modal-gallery" data-target="#modal-gallery">
               <!-- list of files goes here -->
           </div>
@@ -39,6 +39,14 @@
       </div>
     </div>
   <% end %>
+
+<script>
+
+$("#file-list").on("click", "#badfile", function() {
+    console.log("click event")
+    $(this).remove();
+  });
+</script>
 
 <script>
   var fileUploadErrors = {
@@ -91,11 +99,15 @@
   {% for (var i=0, file; file=o.files[i]; i++) { %}
     <div class="template-download">
       {% if (file.error) { %}
-        <div></div>
-        <div class="name col-xs-8 file-element">
-          <p>{%=file.name%}</p>
+        <div id="badfile">
+          <div class="name col-xs-8 file-element">
+            <p>{%=file.name%}</p>
+          </div>
+          <div id="error-icon" class="errormark col-xs-4 file-element"><%= image_tag("errormark.svg")%></div>
+          <div class="error col-xs-12 file-element">
+            <p>Sorry! We can't process that file. Try uploading a PDF, JPEG, or other image file.</p>
+          </div>
         </div>
-        <div class="error col-xs-4 file-element" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</div>
         {% } else { %}
         <div class="name col-xs-8 file-element">
           <p title="{%=file.name%}">{%=file.name%}</p>
@@ -120,3 +132,6 @@
       });
   });
 </script>
+
+
+
