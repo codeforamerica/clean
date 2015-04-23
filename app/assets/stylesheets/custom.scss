@@ -482,9 +482,15 @@ input.disabled {
 .name {
 	display: inline-block;
 	p {
-		word-wrap: break-word;
+		word-break: break-all;
 		@include form-document;
 	}
+}
+
+.error p {
+	@include form-error;
+	padding: 0;
+	word-wrap: break-all;
 }
 
 .form-table {
