@@ -516,6 +516,17 @@ input.disabled {
 	float: right;
 }
 
+/* jquery events */
+.form-table .errormark {
+	display: inline-block;
+	cursor: pointer;
+}
+
+.form-table .errormark img {
+	height: 2em;
+	float: right;
+	cursor: pointer;
+}
 
 /* File Upload Button*/
 .form-group .fileinput-button {
