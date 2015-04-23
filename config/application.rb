@@ -36,5 +36,7 @@ module CalfreshAndSoClean
     config.time_zone = "Pacific Time (US & Canada)"
 
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
