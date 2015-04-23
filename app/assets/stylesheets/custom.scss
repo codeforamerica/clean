@@ -544,6 +544,11 @@ input.disabled {
 	opacity: .85;
 }
 
+.next-step.disabled {
+	color: $gray-light;
+	background-color: $gray-medium-light;
+}
+
 .page-footer {
     border-top: 1px solid $gray-lightest;
     margin-top: 1em;

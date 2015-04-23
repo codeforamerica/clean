@@ -121,10 +121,12 @@
       $('#fileupload').bind('fileuploadstart', function (e) {
         $('#next-step-button').bind('click', false);
         // Change button to look disabled
+        $( "#next-step-button" ).addClass( "disabled" );
       });
       $('#fileupload').bind('fileuploadstop', function (e) {
         $('#next-step-button').unbind('click', false);
         // Change button to look enabled again
+        $( "#next-step-button" ).removeClass( "disabled" );
       });
   });
 </script>
