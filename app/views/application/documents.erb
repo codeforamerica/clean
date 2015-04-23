@@ -33,7 +33,7 @@
 
     <div class="page-footer">
       <div class="page-footer-content col-md-4 col-md-offset-8">
-        <a href="/application/interview" class="btn form-button next-step">
+        <a href="/application/interview" class="btn form-button next-step" id="next-step-button">
           Next Step
         </a>
       </div>
@@ -117,6 +117,14 @@
         $("#progressbar").progressbar({
           value: progress
         });
+      });
+      $('#fileupload').bind('fileuploadstart', function (e) {
+        $('#next-step-button').bind('click', false);
+        // Change button to look disabled
+      });
+      $('#fileupload').bind('fileuploadstop', function (e) {
+        $('#next-step-button').unbind('click', false);
+        // Change button to look enabled again
       });
   });
 </script>
