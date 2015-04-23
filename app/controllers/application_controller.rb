@@ -205,7 +205,7 @@ The below link contains a PDF file with:
 - An information release authorization
 - Verification documents
 
-Application PDF: <a href="#{pdf_url}">#{pdf_url}</a>
+Application PDF: #{pdf_url}
 
 The link requires a username and password to protect client privacy - if you don't have a password to access it, please get in touch with Jake Solomon at jacob@codeforamerica.org
 
