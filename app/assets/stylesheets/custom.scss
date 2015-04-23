@@ -482,6 +482,7 @@ input.disabled {
 .name {
 	display: inline-block;
 	p {
+		word-wrap: break-word;
 		@include form-document;
 	}
 }
