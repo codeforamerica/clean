@@ -475,8 +475,16 @@ input.disabled {
 /* Overrides: jquery.fileupload-ui, jquery.fileupload/progressbar */
 
 
+.files #progressbar {
+  width: 100%;
+}
+
 .file-element {
 	padding: .5em 0;
+}
+
+.template-upload .name p {
+	width: 100%;
 }
 
 .name {
