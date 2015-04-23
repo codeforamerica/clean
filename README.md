@@ -23,6 +23,10 @@ A user-friendly web form with the minimal fields necessary that generates a PDF 
 
 Set the environment variable `REDISTOGO_URL` to `redis://localhost:6379` and start your local Redis server with `redis-server`
 
+Set the envrionment variable `REDIS_PROVIDER` (for Sidekiq) to point to the above Redis env var, for example:
+
+`export REDIS_PROVIDER=REDISTOGO_URL`
+
 This app uses the Postgres database, so make sure that is running locally when you start your app up. (We recommend using Postgres.app on OSX.) Set the POSTGRES_USERNAME and POSTGRES_PASSWORD environment variables for your local Postgres database.
 
 Then, create the databases for the app by running:
@@ -67,6 +71,13 @@ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-mult
 git push heroku master
 heroku config:set PATH=/app/bin:/app/vendor/bundle/bin:/app/vendor/bundle/ruby/2.1.0/bin:/usr/local/bin:/usr/bin:/bin:/app/vendor/pdftk/bin
 heroku config:set LD_LIBRARY_PATH=/app/vendor/pdftk/lib
+```
+
+You will also need to add the RedisToGo add-on, and configure how Sidekiq accesses it:
+
+```
+heroku addons:add redistogo
+heroku config:set REDIS_PROVIDER=REDISTOGO_URL
 ```
 
 ## Metrics on production deployment

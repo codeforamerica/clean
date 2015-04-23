@@ -133,64 +133,23 @@ class ApplicationController < ActionController::Base
   end
 
   def review_and_submit_submit
-    writer = Calfresh::ApplicationWriter.new
-    input_for_writer = session.to_hash
-    input_for_writer[:signature] = params["signature"]
+    input_for_calfresh_application = session.to_hash
+    input_for_calfresh_application[:signature] = params["signature"]
     if session[:date_of_birth] != ""
       date_of_birth_array = session[:date_of_birth].split('/')
       birth_year = date_of_birth_array[2]
       if birth_year.length == 4
-        input_for_writer[:date_of_birth] = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
+        input_for_calfresh_application[:date_of_birth] = date_of_birth_array[0..1].join('/') + "/#{birth_year[-2..-1]}"
       else
-        input_for_writer[:date_of_birth] = session[:date_of_birth]
+        input_for_calfresh_application[:date_of_birth] = session[:date_of_birth]
       end
-      input_for_writer.delete('date_of_birth')
+      input_for_calfresh_application.delete('date_of_birth')
     end
-    input_for_writer[:name_page3] = session[:name]
-    input_for_writer[:ssn_page3] = session[:ssn]
-    input_for_writer[:language_preference_reading] = session[:primary_language]
-    input_for_writer[:language_preference_writing] = session[:primary_language]
-    @application = writer.fill_out_form(input_for_writer)
-    #if @application.has_pngs?
-      client = SendGrid::Client.new(api_user: ENV['SENDGRID_USERNAME'], api_key: ENV['SENDGRID_PASSWORD'])
-      mail = SendGrid::Mail.new(
-        to: ENV['EMAIL_ADDRESS_TO_SEND_TO'],
-        from: 'suzanne@cleanassist.org',
-        subject: 'New Clean CalFresh Application!',
-        text: <<EOF
-Hi there!
-
-An application for Calfresh benefits was just submitted!
-
-You can find a completed CF-285 in the attached .zip file. You will probably receive another e-mail shortly containing photos of their verification documents.
-
-The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a password to access it, please get in touch with Jake Solomon at jacob@codeforamerica.org
-
-When you finish clearing the case, please help us track the case by filling out a bit of info here: http://c4a.me/cleancases
-
-Thanks for your time!
-
-Suzanne, your friendly neighborhood CalFresh robot
-EOF
-      )
-      random_value = SecureRandom.hex
-      zip_file_path = "/tmp/#{random_value}.zip"
-      Zip::Archive.open(zip_file_path, Zip::CREATE) do |ar|
-        ar.add_file(@application.final_pdf_path) # add file to zip archive
-      end
-      Zip::Archive.encrypt(zip_file_path, ENV['ZIP_FILE_PASSWORD'])
-      puts zip_file_path
-      mail.add_attachment(zip_file_path)
-      @email_result_application = client.send(mail)
-      puts @email_result_application
-      #erb :after_fax
-    #end
-=begin
-    else
-      puts "No PNGs! WTF!?!"
-      #redirect to('/')
-    end
-=end
+    input_for_calfresh_application[:name_page3] = session[:name]
+    input_for_calfresh_application[:ssn_page3] = session[:ssn]
+    input_for_calfresh_application[:language_preference_reading] = session[:primary_language]
+    input_for_calfresh_application[:language_preference_writing] = session[:primary_language]
+    FillInPdfApplicationAndEmailItJob.perform_later(input_for_calfresh_application)
     redirect_to '/application/document_instructions'
   end
 
