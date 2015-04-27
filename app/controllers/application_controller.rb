@@ -218,7 +218,7 @@ EOF
       )
       @email_result_application = client.send(mail)
       puts @email_result_application
-    redirect_to '/application/document_instructions'
+    redirect_to '/application/confirmation'
   end
 
   def document_instructions

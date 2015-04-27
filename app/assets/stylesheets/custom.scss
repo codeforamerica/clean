@@ -191,6 +191,7 @@ body {
 	line-height: 1.4em;
 	font-weight: 700;
 	margin-bottom: 0;
+	text-align: center;
 }
 
 
@@ -626,6 +627,40 @@ input.disabled {
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
 /* Styles */
+}
+
+@media print {
+	.page-header {
+		font-size: 32px;
+	}
+	.page-context {
+		font-size: 14px;
+	}
+	.homepage-subheader {
+		text-align: left;
+		font-size: 24px;
+	}
+	.step-title {
+		font-size: 18px;
+	}
+	.step-explanation {
+		font-size: 14px;
+	}
+	.masthead {
+		display: none;
+	}
+	.circle {
+		display: none;
+	}
+	.step-title {
+		padding-top: 1em;
+	}
+	.page-footer {
+		display: none;
+	}
+	.footer {
+		display: none;
+	}
 }
 
  /* B O O T S R A P   H A C K S */
