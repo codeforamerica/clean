@@ -84,6 +84,8 @@ feature 'User goes through full application (up to review and submit)' do
       click_on('Next Step')
       expect(page.current_path).to eq('/application/additional_household_question')
       click_link('No')
+      expect(page.current_path).to eq('/application/documents')
+      click_link("Next Step")
       expect(page.current_path).to eq('/application/interview')
       check('monday')
       check('friday')
