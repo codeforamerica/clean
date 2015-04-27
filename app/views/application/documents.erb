@@ -40,9 +40,19 @@
     </div>
   <% end %>
 
-<script>
 
-$("#file-list").on("click", "#badfile", function() {
+<script>
+//  Fix for IE/RT. Found: https://github.com/tors/jquery-fileupload-rails/issues/33
+  if (navigator.userAgent.indexOf("MSIE 10") > 0) {
+    $("#upload_upload").bind('mousedown',function(event) {
+      $(this).trigger('click')
+    });
+  }
+</script>
+
+
+<script>
+  $("#file-list").on("click", "#badfile", function() {
     console.log("click event")
     $(this).remove();
   });
