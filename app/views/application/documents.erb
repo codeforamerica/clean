@@ -105,7 +105,11 @@ $("#file-list").on("click", "#badfile", function() {
           </div>
           <div id="error-icon" class="errormark col-xs-4 file-element"><%= image_tag("errormark.svg")%></div>
           <div class="error col-xs-12 file-element">
-            <p>Sorry! We can't process that file. Try uploading a PDF, JPEG, or other image file.</p>
+            {% if (file.error === 'Unprocessable Entity ') { %}
+              <p>Sorry! We can't process that file. Try uploading a PDF, JPEG, or other image file.</p>
+            {% } else { %}
+              <p>Sorry! Something went wrong. Try uploading this file again.</p>
+            {% } %}
           </div>
         </div>
         {% } else { %}
