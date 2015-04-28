@@ -1,0 +1,159 @@
+
+  <%= form_for Upload.new, :html => { :multipart => true, :id => "fileupload", :class => 'form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 m-page scene_element scene_element--fadeinup'  } do |f| %>
+    <h2 class="page-header">Upload verification documents</h2>
+    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+    <div class="form-group">
+      <p class="page-context">Share documents that show your residency, income, expenses. Upload as many as you like. If you don't have any documents on hand, don't worry&mdash;you can submit them later. </p>
+      <div class="row">
+        <div class="span7 col-md-4 col-sm-12">
+          <!-- The fileinput-button span is used to style the file input field as button -->
+          <span class="btn fileinput-button form-button">
+            <i class="icon-plus icon-white"></i>
+            <span> Add files...</span>
+            <input type="hidden" name="upload[document_set_key]" value="<%= @document_set_key %>" />
+              <%= f.file_field :upload %>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+          <!-- The loading indicator is shown during image processing -->
+        <div class="fileupload-loading form-table">
+            <!-- indicator goes here -->
+        </div>
+          <!-- The table listing the files available for upload/download -->
+        <div id="file-list" class="form-table">
+          <div class="files" data-toggle="modal-gallery" data-target="#modal-gallery">
+              <!-- list of files goes here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="page-footer-content col-md-4 col-md-offset-8">
+        <a href="/application/interview" class="btn form-button next-step" id="next-step-button">
+          Next Step
+        </a>
+      </div>
+    </div>
+  <% end %>
+
+
+<script>
+//  Fix for IE/RT. Found: https://github.com/tors/jquery-fileupload-rails/issues/33
+  if (navigator.userAgent.indexOf("MSIE 10") > 0) {
+    $("#upload_upload").bind('mousedown',function(event) {
+      $(this).trigger('click')
+    });
+  }
+</script>
+
+
+<script>
+  $("#file-list").on("click", "#badfile", function() {
+    console.log("click event")
+    $(this).remove();
+  });
+</script>
+
+<script>
+  var fileUploadErrors = {
+  maxFileSize: 'File is too big',
+  minFileSize: 'File is too small',
+  acceptFileTypes: 'Filetype not allowed',
+  maxNumberOfFiles: 'Max number of files exceeded',
+  uploadedBytes: 'Uploaded bytes exceed file size',
+  emptyResult: 'Empty file upload result'
+  };
+  var temp;
+</script>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+  {% for (var i=0, file; file=o.files[i]; i++) { %}
+  <div class="template-upload fade">
+    <div class="name col-xs-12 file-element">
+      <p>{%=file.name%}</p>
+    </div>
+
+    {% if (file.error) { %}
+    <div class="error col-xs-12 file-element">
+      <span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}
+    </div>
+    <div class="isitvalid"><span>{%=o.files.valid%}</span></div>
+    <div class="i"><span>{%=i%}</span></div>
+    {% } else if (o.files.valid && !i) { %}
+
+    <div class="col-xs-12 file-element">
+      <div class="progress" id="progressbar"></div>
+    </div>
+
+    <div class="start">
+      {% if (!o.options.autoUpload) { %}
+      <button class="btn btn-primary">
+        <i class="icon-upload icon-white"></i>
+        <span>{%=locale.fileupload.start%}</span>
+      </button>
+      {% } %}
+      </div>
+
+    {% } else { %}
+    {% } %}
+  </div>
+  {% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+  {% for (var i=0, file; file=o.files[i]; i++) { %}
+    <div class="template-download">
+      {% if (file.error) { %}
+        <div id="badfile">
+          <div class="name col-xs-8 file-element">
+            <p>{%=file.name%}</p>
+          </div>
+          <div id="error-icon" class="errormark col-xs-4 file-element"><%= image_tag("errormark.svg")%></div>
+          <div class="error col-xs-12 file-element">
+            {% if (file.error === 'Unprocessable Entity ') { %}
+              <p>Sorry! We can't process that file. Try uploading a PDF, JPEG, or other image file.</p>
+            {% } else { %}
+              <p>Sorry! Something went wrong. Try uploading this file again.</p>
+            {% } %}
+          </div>
+        </div>
+        {% } else { %}
+        <div class="name col-xs-8 file-element">
+          <p title="{%=file.name%}">{%=file.name%}</p>
+        </div>
+        <div class="checkmark col-xs-4 file-element"><%= image_tag("checkmark.svg")%></div>
+        {% } %}
+    </div>
+    {% } %}
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+      // Initialize the jQuery File Upload widget:
+      $('#fileupload').fileupload({
+        autoUpload: true
+      });
+      $('#fileupload').bind('fileuploadprogress', function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10) - 5;
+        $("#progressbar").progressbar({
+          value: progress
+        });
+      });
+      $('#fileupload').bind('fileuploadstart', function (e) {
+        $('#next-step-button').bind('click', false);
+        // Change button to look disabled
+        $( "#next-step-button" ).addClass( "disabled" );
+      });
+      $('#fileupload').bind('fileuploadstop', function (e) {
+        $('#next-step-button').unbind('click', false);
+        // Change button to look enabled again
+        $( "#next-step-button" ).removeClass( "disabled" );
+      });
+  });
+</script>
+
+
+

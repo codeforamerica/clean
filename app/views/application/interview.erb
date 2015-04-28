@@ -2,10 +2,15 @@
   <h3 class="page-header">When should the HSA call you to review your application?</h3>
   <p class="page-context">Before you are approved for CalFresh, you'll need to speak with HSA staff. During the interview, they will review your application and ask for details about your income and expenses. The call usually takes about 15 minutes. Staff will do their best to contact you at the phone number you provided, during the days and times you choose below.</p>
   <div class="form-group">
+    <label class="page-context">
+      <input type="checkbox" name="select-all" id="select-all" autofocus="autofocus"> Any time is fine
+    </label>
+  </div>
+  <div class="form-group">
     <div class="times-of-day middle">
       <div class="checkbox time-of-day">
         <label class="page-context">
-          <input type="checkbox" name="early-morning" autofocus="autofocus"> Early morning
+          <input type="checkbox" name="early-morning"> Early morning
         </label>
       </div>
       <div class="checkbox time-of-day">
@@ -57,3 +62,18 @@
     </div>
   </div>
 </form>
+<script>
+$('#select-all').click(function(event) {
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;
+        });
+    }
+  else {
+    $(':checkbox').each(function() {
+          this.checked = false;
+      });
+  }
+});
+</script>
