@@ -17,3 +17,4 @@
 //= require vendor/bootstrap.min.js
 //= require custom/parsley-override.js
 //= require vendor/parsley.min
+//= require vendor/fastclick.js
