@@ -354,15 +354,13 @@ RSpec.describe ApplicationController, :type => :controller do
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
     let(:fake_sendgrid_client) { double("SendGrid::Client", :send => { "message" => "success" } ) }
     let(:fake_sendgrid_mail) { double("SendGrid::Mail", :add_attachment => 'cool') }
-    let(:fake_zip_archive_for_block) { double("", :add_file => true) }
 
     before do
       allow(Calfresh::ApplicationWriter).to receive(:new).and_return(fake_app_writer)
       allow(SecureRandom).to receive(:hex).and_return('fakehexvalue')
       allow(SendGrid::Client).to receive(:new).and_return(fake_sendgrid_client)
       allow(SendGrid::Mail).to receive(:new).and_return(fake_sendgrid_mail)
-      allow(Zip::Archive).to receive(:open).and_yield(fake_zip_archive_for_block)
-      allow(Zip::Archive).to receive(:encrypt)
+      allow(File).to receive(:open)
     end
 
     context 'with good data to be saved to DB' do
@@ -396,7 +394,8 @@ RSpec.describe ApplicationController, :type => :controller do
           interview_friday: 'Yes',
           contact_by_email: false,
           contact_by_text_message: true,
-          contact_by_phone_call: true
+          contact_by_phone_call: true,
+          document_set_key: 'fakedocsetkey'
         }
 
         post :review_and_submit_submit, { signature: 'John M. Reis', signature_agree: 'Yes' }, @my_session_hash
@@ -462,7 +461,8 @@ RSpec.describe ApplicationController, :type => :controller do
           home_state: 'CA',
           contact_by_email: false,
           contact_by_text_message: false,
-          contact_by_phone_call: false
+          contact_by_phone_call: false,
+          document_set_key: 'fakedocsetkey'
         }
         post :review_and_submit_submit, { signature: 'blah' }, @my_session_hash
         expect(Case.count).to eq(1)
@@ -475,7 +475,8 @@ RSpec.describe ApplicationController, :type => :controller do
     context 'with a properly-formatted year' do
       before do
         @session_hash = {
-          date_of_birth: '06/09/85'
+          date_of_birth: '06/09/85',
+          document_set_key: 'fakedocsetkey'
         }
         @params_hash = {
           signature: 'fakesig'
@@ -487,20 +488,12 @@ RSpec.describe ApplicationController, :type => :controller do
       it 'sends the DOB and adds extraneous fields' do
         expected_hash = Hash.new
         expected_hash[:date_of_birth] = '06/09/85'
+        expected_hash[:document_set_key] = 'fakedocsetkey'
         [:name_page3, :ssn_page3, :language_preference_reading, :language_preference_writing, :signature_agree].each do |key|
           expected_hash[key] = nil
         end
         expected_hash[:signature] = 'fakesig'
         expect(fake_app_writer).to have_received(:fill_out_form).with(expected_hash)
-      end
-
-      it 'zips the combined-image file' do
-        expect(Zip::Archive).to have_received(:open).with('/tmp/fakehexvalue.zip', Zip::CREATE)
-        expect(fake_zip_archive_for_block).to have_received(:add_file).with(fake_app.final_pdf_path)
-      end
-
-      it 'encrypts the zip file' do
-        expect(Zip::Archive).to have_received(:encrypt).with('/tmp/fakehexvalue.zip', 'fakezipfilepassword')
       end
 
       it 'instantiates a sendgrid client with the correct credentials' do
@@ -510,7 +503,8 @@ RSpec.describe ApplicationController, :type => :controller do
         )
       end
 
-      it 'puts content into a new mail object' do
+      it 'puts content intoo a new mail object' do
+        case_url = 'http://test.host/cases/fakedocsetkey/download-pdf'
         expect(SendGrid::Mail).to have_received(:new).with(
           to: 'emailto@sendto.com',
           from: 'suzanne@cleanassist.org',
@@ -518,11 +512,17 @@ RSpec.describe ApplicationController, :type => :controller do
           text: <<EOF
 Hi there!
 
-An application for Calfresh benefits was just submitted!
+An application for CalFresh benefits was just submitted!
 
-You can find a completed CF-285 in the attached .zip file. You will probably receive another e-mail shortly containing photos of their verification documents.
+The below link contains a PDF file with:
 
-The .zip file attached is encrypted because it contains sensitive personal information. If you don't have a password to access it, please get in touch with Jake Solomon at jacob@codeforamerica.org
+- A completed CF-285
+- An information release authorization
+- Verification documents
+
+Application PDF: #{case_url}
+
+The link requires a username and password to protect client privacy - if you don't have a password to access it, please get in touch with Jake Solomon at jacob@codeforamerica.org
 
 When you finish clearing the case, please help us track the case by filling out a bit of info here: http://c4a.me/cleancases
 
@@ -533,12 +533,6 @@ EOF
         )
       end
 
-      # Pending more mocking
-      it 'adds application as attachment' do
-        expect(fake_sendgrid_mail).to have_received(:add_attachment).with('/tmp/fakehexvalue.zip')
-      end
-
-      # Pending more mocking
       it 'sends an email' do
         expect(fake_sendgrid_client).to have_received(:send).with(fake_sendgrid_mail)
       end
@@ -547,7 +541,10 @@ EOF
     context 'with a two-digit year (no reformatting needed)' do
       before do
         @params_hash = { signature: 'fakesignatureblob' }
-        @session_hash = { date_of_birth: '06/09/85' }
+        @session_hash = {
+          date_of_birth: '06/09/85',
+          document_set_key: 'fakedocsetkey'
+        }
         post :review_and_submit_submit, @params_hash, @session_hash
       end
 
@@ -558,18 +555,6 @@ EOF
       end
     end
   end
-
-# Commented out below while document upload removed
-=begin
-  describe 'GET /application/document_question' do
-    it 'responds successfully' do
-      allow(SecureRandom).to receive(:hex).and_return("notsorandom")
-      get :document_question
-      expect(@assigns['user_token']).to eq("notsorandom")
-      expect(@response.status).to eq(200)
-    end
-  end
-=end
 
   describe 'GET /complete' do
     it 'responds successfully' do

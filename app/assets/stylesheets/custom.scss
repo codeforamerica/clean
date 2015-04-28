@@ -22,6 +22,7 @@ $zIndex-3:   300;
 /* Highly used colors */
 
 $off-white: #f8f8f8;
+$gray-lightest: #eeeeee;
 $gray-light: #dfdfdf;
 $gray-medium-light: #c8c8c8;
 $gray-medium: #555;
@@ -89,6 +90,12 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 	color: $orange;
 	font-family: $proxima;
 	font-size: 16px;
+}
+
+@mixin form-document {
+	color: $gray-dark;
+	font-family: $proxima;
+	font-size: 21px;
 }
 
 @mixin primary-button-type {
@@ -184,6 +191,7 @@ body {
 	line-height: 1.4em;
 	font-weight: 700;
 	margin-bottom: 0;
+	text-align: center;
 }
 
 
@@ -464,6 +472,81 @@ input.disabled {
 	background-color: $gray-light;
 }
 
+/* BOTH ORIGINAL AND OVERRIDE STYLES FOR OUR DOCUMENT UPLOAD FLOW */
+/* Overrides: jquery.fileupload-ui, jquery.fileupload/progressbar */
+
+
+.files #progressbar {
+  width: 100%;
+}
+
+.file-element {
+	padding: .5em 0;
+}
+
+.template-upload .name p {
+	width: 100%;
+}
+
+.name {
+	display: inline-block;
+	p {
+		word-break: break-all;
+		@include form-document;
+	}
+}
+
+.error p {
+	@include form-error;
+	padding: 0;
+	word-wrap: break-all;
+}
+
+.form-table {
+	display: inline-block;
+	width: 100%;
+	padding: 15px;
+}
+
+.form-table a {
+	@include form-document;
+}
+
+.form-table span {
+	@include form-document;
+}
+
+.form-table .checkmark {
+	display: inline-block;
+}
+
+.form-table .checkmark img {
+	height: 2em;
+	float: right;
+}
+
+/* jquery events */
+.form-table .errormark {
+	display: inline-block;
+	cursor: pointer;
+}
+
+.form-table .errormark img {
+	height: 2em;
+	float: right;
+	cursor: pointer;
+}
+
+/* File Upload Button*/
+.form-group .fileinput-button {
+	background-color: #30C49B;
+	color: white;
+	border: none;
+	margin: 1em 0;
+}
+
+
+
 /* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
 
 .next-step {
@@ -487,8 +570,13 @@ input.disabled {
 	opacity: .85;
 }
 
+.next-step.disabled {
+	color: $gray-light;
+	background-color: $gray-medium-light;
+}
+
 .page-footer {
-    border-top: 1px solid #eee;
+    border-top: 1px solid $gray-lightest;
     margin-top: 1em;
 }
 
@@ -539,6 +627,40 @@ input.disabled {
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
 /* Styles */
+}
+
+@media print {
+	.page-header {
+		font-size: 32px;
+	}
+	.page-context {
+		font-size: 14px;
+	}
+	.homepage-subheader {
+		text-align: left;
+		font-size: 24px;
+	}
+	.step-title {
+		font-size: 18px;
+	}
+	.step-explanation {
+		font-size: 14px;
+	}
+	.masthead {
+		display: none;
+	}
+	.circle {
+		display: none;
+	}
+	.step-title {
+		padding-top: 1em;
+	}
+	.page-footer {
+		display: none;
+	}
+	.footer {
+		display: none;
+	}
 }
 
  /* B O O T S R A P   H A C K S */
