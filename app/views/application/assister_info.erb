@@ -6,12 +6,12 @@
       <% @assister_orgs.each do |assister_org| %>
         <option value="<%= assister_org %>"><%= assister_org %></option>
       <% end %>
-      <option value=""></option>
-      <option value="not_listed">Not listed - add me!</option>
+      <br>
+      <option value="not_listed">My organization isn't listed&mdash;I'll add it.</option>
     </select>
   </div>
   <div class="form-group" id="new_assister_info" style="display:none;">
-    <p class="form-context">Tell us a little bit about your organization.</p>
+    <p class="page-context">Tell us a little bit about your organization.</p>
       <label for="assister_org_name" class="form-label">Organization Name</label>
       <input id="assister_org_name" type="text" class="form-control" name="assister_org_name" autofocus="autofocus">
       <label for="assister_individual_name" class="form-label">Your Name</label>
