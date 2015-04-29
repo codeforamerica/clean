@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'application/basic_info' => 'application#basic_info'
   post 'application/basic_info' => 'application#basic_info_submit'
   get 'application/assister_info' => 'application#assister_info'
-  post 'application/assister_info' => 'application#assister_info_submit'
+post 'application/assister_info' => 'application#assister_info_submit'
   get 'application/contact_info' => 'application#contact_info'
   post 'application/contact_info' => 'application#contact_info_submit'
   get 'application/sex_and_ssn' => 'application#sex_and_ssn'

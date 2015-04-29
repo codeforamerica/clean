@@ -9,6 +9,16 @@ class ApplicationController < ActionController::Base
     session.clear
   end
 
+  def assister_info
+    # stub: assister_options should come from DB
+      @assister_orgs = %w(JustMe FoodBank CBO#2 CB#3)
+  end
+
+  def assister_info_submit
+    session[:assister_org] = params[:assister_org]
+    redirect_to '/application/basic_info'
+  end
+
   def basic_info
     session.clear
   end
