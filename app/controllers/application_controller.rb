@@ -232,9 +232,6 @@ EOF
     @user_token = SecureRandom.hex
   end
 
-  def complete
-  end
-
   def show_application
     send_file Calfresh::Application.new(params[:id]).signed_png_path
   end
