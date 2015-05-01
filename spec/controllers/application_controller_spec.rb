@@ -555,11 +555,4 @@ EOF
       end
     end
   end
-
-  describe 'GET /complete' do
-    it 'responds successfully' do
-      get :complete
-      expect(@response.status).to eq(200)
-    end
-  end
 end
