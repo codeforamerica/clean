@@ -109,10 +109,6 @@ module Calfresh
       new_hash
     end
 
-    def convert_application_pdf_to_png_set(unique_key)
-      system("convert -alpha deactivate -density 300 -depth 8 -quality 85 /tmp/application_#{unique_key}.pdf /tmp/application_#{unique_key}.png")
-    end
-
     def symbolize_keys(hash)
       symbolized_hash = Hash.new
       hash.each { |key,value| symbolized_hash[key.to_sym] = value }
@@ -125,48 +121,10 @@ module Calfresh
 
     def initialize(unique_key)
       @unique_key = unique_key
-      #write_pdf_from_pngs!
     end
 
     def final_pdf_path
-      #"/tmp/final_application_pdf_#{unique_key}.pdf"
       "/tmp/final_application_#{unique_key}.pdf"
-    end
-
-    def has_pngs?
-      files_exist = true
-      png_filenames.each do |filename|
-        if File.exists?(filename) == false
-          files_exist = false
-        end
-      end
-      files_exist
-    end
-
-    def png_file_set
-      file_array = Array.new
-      png_filenames.each do |filename|
-        file_array << File.new(filename)
-      end
-      file_array
-    end
-
-    def png_filenames
-      filename_array = Array.new
-      filename_array << "/tmp/application_#{@unique_key}-0.png"
-      filename_array << "/tmp/application_#{@unique_key}-1.png"
-      filename_array << "/tmp/application_#{@unique_key}-2.png"
-      path_to_image_folder = File.expand_path("../calfresh/calfresh_application_images", __FILE__)
-      (9..15).each do |page_number|
-        filename = path_to_image_folder + "/page-#{page_number}.png"
-        filename_array << filename
-      end
-      filename_array
-    end
-
-    private
-    def write_pdf_from_pngs!
-      system("convert #{png_filenames.join(' ')} #{final_pdf_path}")
     end
   end
 
