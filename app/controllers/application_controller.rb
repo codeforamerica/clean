@@ -225,7 +225,6 @@ EOF
   end
 
   def confirmation
-    @user_token = SecureRandom.hex
   end
 
   private
