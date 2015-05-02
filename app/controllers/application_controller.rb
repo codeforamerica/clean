@@ -228,10 +228,6 @@ EOF
     @user_token = SecureRandom.hex
   end
 
-  def document_question
-    @user_token = SecureRandom.hex
-  end
-
   private
   def log_session
     session_data = session.to_hash.select do |k,v|
