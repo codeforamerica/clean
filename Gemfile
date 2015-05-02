@@ -29,7 +29,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'pdf-forms'
 gem 'sendgrid-ruby'
-gem 'redis'
 gem 'zipruby'
 
 gem 'airbrake'
