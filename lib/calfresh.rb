@@ -109,10 +109,6 @@ module Calfresh
       new_hash
     end
 
-    def convert_application_pdf_to_png_set(unique_key)
-      system("convert -alpha deactivate -density 300 -depth 8 -quality 85 /tmp/application_#{unique_key}.pdf /tmp/application_#{unique_key}.png")
-    end
-
     def symbolize_keys(hash)
       symbolized_hash = Hash.new
       hash.each { |key,value| symbolized_hash[key.to_sym] = value }
@@ -125,48 +121,10 @@ module Calfresh
 
     def initialize(unique_key)
       @unique_key = unique_key
-      #write_pdf_from_pngs!
     end
 
     def final_pdf_path
-      #"/tmp/final_application_pdf_#{unique_key}.pdf"
       "/tmp/final_application_#{unique_key}.pdf"
-    end
-
-    def has_pngs?
-      files_exist = true
-      png_filenames.each do |filename|
-        if File.exists?(filename) == false
-          files_exist = false
-        end
-      end
-      files_exist
-    end
-
-    def png_file_set
-      file_array = Array.new
-      png_filenames.each do |filename|
-        file_array << File.new(filename)
-      end
-      file_array
-    end
-
-    def png_filenames
-      filename_array = Array.new
-      filename_array << "/tmp/application_#{@unique_key}-0.png"
-      filename_array << "/tmp/application_#{@unique_key}-1.png"
-      filename_array << "/tmp/application_#{@unique_key}-2.png"
-      path_to_image_folder = File.expand_path("../calfresh/calfresh_application_images", __FILE__)
-      (9..15).each do |page_number|
-        filename = path_to_image_folder + "/page-#{page_number}.png"
-        filename_array << filename
-      end
-      filename_array
-    end
-
-    private
-    def write_pdf_from_pngs!
-      system("convert #{png_filenames.join(' ')} #{final_pdf_path}")
     end
   end
 
@@ -205,64 +163,6 @@ www.codeforamerica.org
 EOF
 )
       pdf.render_file(params[:path_for_pdf])
-    end
-  end
-
-  class VerificationDoc
-    attr_reader :original_file_path, :grayscaled_file_path, :sketched_file_path
-
-    def initialize(doc_param)
-      if doc_param.count > 0
-        raw_doc = doc_param.first[1]
-        raw_doc_path = raw_doc.tempfile.path
-        filename = raw_doc.original_filename
-        new_file_path = raw_doc_path + filename
-        new_file_path_no_special_chars = new_file_path.gsub(/[^a-zA-Z0-9_.]+/, "")
-        system("cp #{raw_doc_path} #{new_file_path_no_special_chars}")
-        @original_file_path = new_file_path_no_special_chars
-      end
-    end
-
-    def pre_process!
-      f = File.new(original_file_path)
-      extension = File.extname(f)
-      name_without_extension = File.basename(f, extension)
-      directory_path = File.dirname(f)
-      @grayscaled_file_path = directory_path + '/' + name_without_extension + "_grayscaled" + extension
-      @sketched_file_path = directory_path + '/' + name_without_extension + "_sketched" + extension
-      system("convert #{original_file_path} -geometry 1200x1200 -type Grayscale -brightness-contrast 25x25 #{grayscaled_file_path}")
-      system("convert #{original_file_path} in.jpg -geometry 1200x1200 -brightness-contrast 25x25 -type Grayscale -bias 50% -morphology Convolve DoG:0x4 -negate -threshold 47% -gaussian-blur 1 #{sketched_file_path}")
-    end
-
-    def processed_file_set
-      [File.new(grayscaled_file_path), File.new(sketched_file_path)]
-    end
-  end
-
-  class VerificationDocSet
-    attr_reader :filepaths_with_extensions
-
-    def initialize(params)
-      raw_docs = filter_hash_for_doc_keys(params)
-      raw_doc_paths = raw_docs.map { |doc_name, doc_hash| doc_hash[:tempfile].path }
-      @filepaths_with_extensions = raw_doc_paths.map do |raw_doc_path|
-        file_call_result = `file -ib #{raw_doc_path}`
-        extension = /\/(.+);/.match(file_call_result).captures.first
-        new_file_path = raw_doc_path + "." + extension
-        system("cp #{raw_doc_path} #{new_file_path}")
-        new_file_path
-      end
-    end
-
-    def file_array
-      filepaths_with_extensions.map { |path| File.new(path) }
-    end
-
-    private
-    def filter_hash_for_doc_keys(hash)
-      hash.select do |key, value|
-        ['identification', 'income', 'rent', 'utilities'].include?(key)
-      end
     end
   end
 end

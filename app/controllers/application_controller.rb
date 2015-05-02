@@ -221,19 +221,7 @@ EOF
     redirect_to '/application/confirmation'
   end
 
-  def document_instructions
-  end
-
   def confirmation
-    @user_token = SecureRandom.hex
-  end
-
-  def document_question
-    @user_token = SecureRandom.hex
-  end
-
-  def show_application
-    send_file Calfresh::Application.new(params[:id]).signed_png_path
   end
 
   private

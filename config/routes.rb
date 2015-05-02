@@ -2,9 +2,6 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
   get '/' => 'application#index'
 
   get 'application/basic_info' => 'application#basic_info'
@@ -26,24 +23,11 @@ Rails.application.routes.draw do
   get 'application/review_and_submit' => 'application#review_and_submit'
   post 'application/review_and_submit' => 'application#review_and_submit_submit'
   get 'application/confirmation' => 'application#confirmation'
-  #get 'application/document_question' => 'application#document_question'
-  get 'application/document_instructions' => 'application#document_instructions'
-
-  #post 'documents/new' => 'documents#new_ajax'
-  #get 'documents/new_v2' => 'documents#new_v2'
-  #get 'documents/new_v3' => 'documents#new_v3'
   get 'application/documents' => 'application#documents'
 
   resources :uploads
 
   get 'cases/:public_id/download-pdf', to: 'cases#download_pdf', as: 'case_download'
-
-  get 'complete' => 'application#complete'
-  #get 'applications/:id' => 'application#show_application'
-
-  #get 'documents/:user_token/:number_of_docs' => 'documents#new'
-  #post 'documents/:user_token/:doc_number/create' => 'documents#create'
-  #post 'documents/:user_token/:doc_number/submit' => 'documents#submit'
 
   # # Error pages
   # match '/404' => 'errors#not_found'

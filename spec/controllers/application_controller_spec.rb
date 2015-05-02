@@ -350,7 +350,7 @@ RSpec.describe ApplicationController, :type => :controller do
       end
     end
 
-    let(:fake_app) { double("FakeApp", :has_pngs? => true, :final_pdf_path => '/tmp/fakefinal.pdf') }
+    let(:fake_app) { double("FakeApp", :final_pdf_path => '/tmp/fakefinal.pdf') }
     let(:fake_app_writer) { double("AppWriter", :fill_out_form => fake_app) }
     let(:fake_sendgrid_client) { double("SendGrid::Client", :send => { "message" => "success" } ) }
     let(:fake_sendgrid_mail) { double("SendGrid::Mail", :add_attachment => 'cool') }
