@@ -232,10 +232,6 @@ EOF
     @user_token = SecureRandom.hex
   end
 
-  def show_application
-    send_file Calfresh::Application.new(params[:id]).signed_png_path
-  end
-
   private
   def log_session
     session_data = session.to_hash.select do |k,v|

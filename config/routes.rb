@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   get 'cases/:public_id/download-pdf', to: 'cases#download_pdf', as: 'case_download'
 
   get 'complete' => 'application#complete'
-  #get 'applications/:id' => 'application#show_application'
 
   # # Error pages
   # match '/404' => 'errors#not_found'
