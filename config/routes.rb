@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   get 'application/review_and_submit' => 'application#review_and_submit'
   post 'application/review_and_submit' => 'application#review_and_submit_submit'
   get 'application/confirmation' => 'application#confirmation'
-  get 'application/document_instructions' => 'application#document_instructions'
   get 'application/documents' => 'application#documents'
 
   resources :uploads

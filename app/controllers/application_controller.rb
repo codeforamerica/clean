@@ -221,9 +221,6 @@ EOF
     redirect_to '/application/confirmation'
   end
 
-  def document_instructions
-  end
-
   def confirmation
   end
 
