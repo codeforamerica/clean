@@ -28,10 +28,6 @@ Rails.application.routes.draw do
   get 'application/confirmation' => 'application#confirmation'
   #get 'application/document_question' => 'application#document_question'
   get 'application/document_instructions' => 'application#document_instructions'
-
-  #post 'documents/new' => 'documents#new_ajax'
-  #get 'documents/new_v2' => 'documents#new_v2'
-  #get 'documents/new_v3' => 'documents#new_v3'
   get 'application/documents' => 'application#documents'
 
   resources :uploads
@@ -40,10 +36,6 @@ Rails.application.routes.draw do
 
   get 'complete' => 'application#complete'
   #get 'applications/:id' => 'application#show_application'
-
-  #get 'documents/:user_token/:number_of_docs' => 'documents#new'
-  #post 'documents/:user_token/:doc_number/create' => 'documents#create'
-  #post 'documents/:user_token/:doc_number/submit' => 'documents#submit'
 
   # # Error pages
   # match '/404' => 'errors#not_found'
