@@ -35,6 +35,8 @@ $orange: #CF6354;
 $yellow: #f1ab00;
 
 
+/* Contextual Color Variables */
+
 $background: $off-white;
 
 
@@ -47,40 +49,46 @@ $background: $off-white;
 $proxima: "proxima-nova",sans-serif;
 $proxima-alt: "proxima-nova-alt", sans-serif;
 
-
 /* Font applications */
 
+
 @mixin brand-type {
+	/* Used in the Masthead*/
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 21px;
 }
 
 @mixin header-type {
+	/* Page Headers */
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 42px;
 }
 
 @mixin subheader-type {
+	/* Page subheader, rarely used*/
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 32px;
 }
 
 @mixin page-context-type {
+	/* For copy explaining what each page is soliciting*/
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 21px;
 }
 
 @mixin form-type {
+	/* The default for form elements. Used for copy in form fields and form buttons*/
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 21px;
 }
 
 @mixin form-input-type {
+	/* For the actual input into forms*/
 	color: $gray-dark;
 	font-family: $proxima;
 	font-size: 21px;
@@ -88,6 +96,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 }
 
 @mixin form-error {
+	/* Our error messages are smaller but brighter. */
 	color: $orange;
 	font-family: $proxima;
 	font-size: 16px;
