@@ -512,36 +512,35 @@ input.disabled {
 	word-wrap: break-all;
 }
 
-.form-table {
+.form-document-list {
 	display: inline-block;
 	width: 100%;
 	padding: 15px;
 }
 
-.form-table a {
+.form-document-list a {
 	@include form-document;
 }
 
-.form-table span {
+.form-document-list span {
 	@include form-document;
 }
 
-.form-table .checkmark {
+.form-document-list .checkmark {
 	display: inline-block;
 }
 
-.form-table .checkmark img {
+.form-document-list .checkmark img {
 	height: 2em;
 	float: right;
 }
 
-/* jquery events */
-.form-table .errormark {
+.form-document-list .errormark {
 	display: inline-block;
 	cursor: pointer;
 }
 
-.form-table .errormark img {
+.form-document-list .errormark img {
 	height: 2em;
 	float: right;
 	cursor: pointer;
