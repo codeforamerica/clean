@@ -30,6 +30,7 @@ $gray-dark: #888;
 $blue-light: #5C93D6;
 $blue-bright: #1D71F5;
 $blue-dark: #2E394B;
+$green-light:#30C49B;
 $orange: #CF6354;
 $yellow: #f1ab00;
 
@@ -539,7 +540,7 @@ input.disabled {
 
 /* File Upload Button*/
 .form-group .fileinput-button {
-	background-color: #30C49B;
+	background-color: $green-light;
 	color: white;
 	border: none;
 	margin: 1em 0;
@@ -614,6 +615,14 @@ input.disabled {
 	min-height: 200px;
 }
 
+/* TOGGLE STYLES FOR PRINT */
+
+.print-hidden {
+	display: inline-block;
+}
+.print-visible {
+	display: none;
+}
 
 /* M E D I A    Q U E R I E S */
 
@@ -684,27 +693,26 @@ input.disabled {
 		display: none;
 	}
 	.print-hidden {
-  		display: none;
-  	}
-  	.print-visible {
-  		display: inline-block;
-  	}
-  	.page-subheader {
-  		font-size: 21px;
-  	}
-  	.page-header {
-  		font-size: 32px;
-  	}
-  	.form-label {
-  		font-size: 16px;
-  	}
-  	.list {
-  		font-size: 16px;
-  	}
-  	.page-context {
-  		font-size: 16px;
-  	}
-  }
+		display: none;
+	}
+	.print-visible {
+		display: inline-block;
+	}
+	.page-subheader {
+		font-size: 21px;
+	}
+	.page-header {
+		font-size: 32px;
+	}
+	.form-label {
+		font-size: 16px;
+	}
+	.list {
+		font-size: 16px;
+	}
+	.page-context {
+		font-size: 16px;
+	}
 }
 
  /* B O O T S R A P   H A C K S */
