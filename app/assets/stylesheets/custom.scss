@@ -122,8 +122,6 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 /* G L O B A L S */
 
 
-/* High level DOM elements */
-
 body {
 	margin: 0;
 	width: 100%;
@@ -131,14 +129,10 @@ body {
 	background-color: $blue-dark;
 }
 
-.main {
-	background-color: $background;
-	width: 100%;
-	height: 100%;
-	display: inline-block;
-	margin-top: -.4em;
-	border-top: 1px solid $gray-light;
-}
+/* PAGE NAVIGATION PARTIALS */
+/* Top of the page, across views. Changes based on layout and view. */
+
+/* _masthead partial */
 
 .masthead {
 	display: inline-block;
@@ -156,6 +150,38 @@ body {
 	padding-right: 0.625em;
 	margin: .5em 0;
 }
+
+/* _congratulations partial */
+
+.congratulations {
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	padding: .2em 0;
+	background-color: $green-light;
+/*	border-bottom: 1px solid $gray-light;*/
+	z-index: $zIndex-2;
+}
+
+.congrats-message {
+	@include brand-type;
+	color: white;
+	padding-right: 0.625em;
+	margin: .5em 0;
+}
+
+
+
+.main {
+	background-color: $background;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	margin-top: -.4em;
+	border-top: 1px solid $gray-light;
+}
+
+
 
 .form {
 	margin-bottom: 2em;
