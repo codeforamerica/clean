@@ -229,6 +229,7 @@ EOF
   end
 
   def confirmation
+    render :layout => "confirmation"
   end
 
   private
