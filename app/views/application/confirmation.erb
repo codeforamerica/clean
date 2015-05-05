@@ -1,5 +1,7 @@
 <form name="confirmation" action="/application/confirmation" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-	<h2 class="page-header">You have applied for CalFresh</h2>
+
+	<h2 class="page-header">You've applied for CalFresh</h2>
+	<p class="form-context">This application was submitted to San Francisco HSA on <span class="date"></span>.</p>
 	<p class="page-context">There are a a few more steps before you can receive and use your benefits. Stay in touch with your assister&mdash;they can help you through the rest of the process.</p>
 	<p class="homepage-subheader" style="text-align:center">Here's whats next</p>
 	  <div class="row steps-to-enroll" style="margin-top: 0; padding-top: 0;">
@@ -54,3 +56,22 @@
 		</div>
 	</div>
 </form>
+
+<script>
+$(function() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    }
+    if(mm<10){
+        mm='0'+mm
+    }
+    var today = dd+'/'+mm+'/'+yyyy;
+    $( "span.date" ).html( today );
+    console.log(today);
+});
+</script>

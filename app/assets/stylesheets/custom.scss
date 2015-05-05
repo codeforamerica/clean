@@ -151,7 +151,7 @@ body {
 	margin: .5em 0;
 }
 
-/* _congratulations partial */
+/* _congrats partials (congrats_web & congrats_mobile) */
 
 .congratulations {
 	display: inline-block;
@@ -170,29 +170,15 @@ body {
 	margin: .5em 0;
 }
 
-
-
-.main {
-	background-color: $background;
-	width: 100%;
-	height: 100%;
-	display: inline-block;
-	margin-top: -.4em;
-	border-top: 1px solid $gray-light;
+.congrats-message a {
+	color: white;
+	text-decoration: underline;
 }
 
+.date {}
 
 
-.form {
-	margin-bottom: 2em;
-}
-
-/* Icons and Shapes */
-
-.circle {
-	/* in each context, redefine the equal height and width of the circle */
-	border-radius: 100%;
-}
+/* _footer partial */
 
 .footer {
 	width: 100%;
@@ -205,6 +191,31 @@ body {
     @include page-context-type;
 	color: white;
 }
+
+
+/* G L O B A L S */
+
+
+.main {
+	background-color: $background;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	margin-top: -.4em;
+	border-top: 1px solid $gray-light;
+}
+
+.form {
+	margin-bottom: 2em;
+}
+
+/* Icons and Shapes */
+
+.circle {
+	/* in each context, redefine the equal height and width of the circle */
+	border-radius: 100%;
+}
+
 
 
 /*================================*/

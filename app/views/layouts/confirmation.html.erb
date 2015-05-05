@@ -38,11 +38,6 @@
  <div class="main">
     <%= yield %>
   </div>
-  <div class="footer">
-    <div class="col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-      <p class="footer-content"><b>Need Help? Get in touch.</b></p>
-      <p class="footer-content">Call or text (415) 319-6501</p>
-      <p class="footer-content">Email <a href="mailto:help@cleanassist.org">help@cleanassist.org</a></p>
-  </div>
+  <%= render :partial => "footer" %>
 </body>
 </html>
