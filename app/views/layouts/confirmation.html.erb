@@ -34,8 +34,8 @@
   </script>
 </head>
 <body>
-  <%= render :partial => "congratulations" %>
-  <div class="main">
+  <%= render(request.user_agent =~ /Mobile|webOS/? 'congrats_mobile' : 'congrats_web') %>
+ <div class="main">
     <%= yield %>
   </div>
   <div class="footer">
