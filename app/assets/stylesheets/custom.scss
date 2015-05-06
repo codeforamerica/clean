@@ -141,6 +141,13 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 	font-weight: 300;
 }
 
+@mixin print-type {
+	color: black;
+	font-family: $proxima;
+	font-size: 14px;
+	font-weight: 300;
+}
+
 
 
 /*================================*/
@@ -769,17 +776,54 @@ input.disabled {
 	margin: 2em 0 0 0;
 }
 
-.assister-info {
-	margin-top: 2em;
+/* Assister info */
+
+.follow-up-panel {
+	background-color: $background;
+	border-color: $gray-lightest;
+}
+
+.follow-up-panel .panel-heading {
+	background-color: $gray-lightest;
+}
+
+.follow-up-panel .panel-heading .panel-title {
+	color: $blue-dark;
+	font-weight: 700;
+}
+
+.follow-up-panel  .instruction {
+	height: 8em;
+	padding: 1em 0;
+}
+
+.follow-up-panel .instruction p {
+	margin: 0;
+	color: $gray-dark;
+}
+.follow-up-panel .instruction h2 {
+	@include page-context-type;
+	font-weight: 700;
+	color: $blue-dark;
+	margin: 0;
+}
+
+
+.panel.instructions-panel, .panel.follow-up-panel {
+	/*a Bootstrap Panel—just ditching the shadow*/
+	box-shadow: none
 }
 
 /* Print Page Button*/
 a.form-button.print-button {
+	width: 100%;
 	background-color: $green-light;
 	color: white;
 	border: none;
 	margin: 1em 0;
 }
+
+
 
 
 /*================================*/
@@ -831,7 +875,7 @@ a.form-button.print-button {
 		font-size: 32px;
 	}
 	.page-context {
-		font-size: 14px;
+		@include print-type;
 	}
 	.homepage-subheader {
 		text-align: left;
