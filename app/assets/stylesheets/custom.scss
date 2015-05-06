@@ -769,6 +769,19 @@ input.disabled {
 	margin: 2em 0 0 0;
 }
 
+.assister-info {
+	margin-top: 2em;
+}
+
+/* Print Page Button*/
+a.form-button.print-button {
+	background-color: $green-light;
+	color: white;
+	border: none;
+	margin: 1em 0;
+}
+
+
 /*================================*/
 
 /* M E D I A    Q U E R I E S */
