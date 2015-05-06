@@ -11,6 +11,7 @@
 
 
 /*================================*/
+
 /* TOC */
 /* 1. Z-INDICES */
 /* 2. COLORS */
@@ -22,7 +23,6 @@
 /* 8. Page Styles: Document Upload; */
 /* 10. Page Styles: Signature Page; */
 /* 11. Page Styles: Confirmation Page; */
-
 
 /*================================*/
 
@@ -723,11 +723,50 @@ input.disabled {
 
 .instructions {
 	/* we should have a generic section class, rather than this specific implementation.*/
-	padding: 1em 0;
+	background-color: $gray-lightest;
 }
 
-.instructions-image img {
-	padding: 1em 0;
+.instruction {
+	text-align: center;
+	/* don't show instruction visuals on mobile */
+	display: none;
+}
+
+.instruction p {
+	color: white;
+}
+
+.instruction-image img {
+	padding: 1em 0 0 0;
+}
+
+.instruction-textbox {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	margin-top: .65em;
+}
+
+.instruction-done {
+	border-bottom: 2px solid $green-light;
+}
+
+.instruction-done p {
+	color: $green-light;
+	font-weight: 700;
+}
+
+.instruction-next {
+	border-bottom: 2px solid $orange;
+}
+
+.instruction-next p {
+	color: $orange;
+	font-weight: 700;
+}
+
+.instructions-body {
+	margin: 1em 0;
 }
 
 /*================================*/
@@ -745,6 +784,9 @@ input.disabled {
 	.start-btn {
 		width: 50%;
 		margin: 2em 0;
+	}
+	.instruction {
+		display: block;
 	}
 }
 

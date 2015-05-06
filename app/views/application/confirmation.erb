@@ -1,49 +1,61 @@
 <form name="confirmation" action="/application/confirmation" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-
-	<h2 class="page-header">You've applied for CalFresh</h2>
+	<h2 class="page-header">You've applied for CalFresh :)</h2>
 	<p class="form-context">This application was submitted to San Francisco HSA on <span class="date"></span>.</p>
-	<div class="row instructions">
-		<div class="col-xs-12 col-sm-4">
-			<div class="instructions-image">
-				<%= image_tag("square-placeholder.png")%>
+	<p class="form-label">What's Next</p>
+	<div class="row instructions panel">
+		<div class="panel-body">
+			<div class="col-xs-4 instruction">
+				<div class="instruction-image">
+					<%= image_tag("square-placeholder.png")%>
+					<div class="instruction-textbox instruction-done">
+						<p class="form-context">Done!</p>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="col-xs-12 col-sm-4">
-			<div class="instructions-image">
-				<%= image_tag("square-placeholder.png")%>
+			<div class="col-xs-4 instruction">
+				<div class="instruction-image">
+					<%= image_tag("square-placeholder.png")%>
+					<div class="instruction-textbox instruction-next">
+						<p class="form-context">Up Next</p>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="col-xs-12 col-sm-4">
-			<div class="instructions-image">
-				<%= image_tag("square-placeholder.png")%>
+			<div class="col-xs-4 instruction">
+				<div class="instruction-image">
+					<%= image_tag("square-placeholder.png")%>
+					<div class="instruction-textbox instruction-next">
+						<p class="form-context">Up Next</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 instruction-body">
+			    <p class="page-context">
+					There are a a few more steps before you can receive and use your benefits. Stay in touch with your assister&mdash;they can help you through the rest of the process.
+			    </p>
 			</div>
 		</div>
 	</div>
-	<p class="page-context">There are a a few more steps before you can receive and use your benefits. Stay in touch with your assister&mdash;they can help you through the rest of the process.</p>
-	<p class="homepage-subheader" style="text-align:center">Here's whats next</p>
-	  <div class="row steps-to-enroll" style="margin-top: 0; padding-top: 0;">
-	    <div class="col-md-4">
-	      <div class="step-to-enroll">
-	        <div class="circle step-to-enroll-icon">1</div>
-	        <h4 class="step-title">Phone Call with HSA Staff</h4>
-	        <p class="step-explanation">Expect a phone call from San Francisco HSA. During the call, you will review your application.</p>
-	      </div>
-	    </div>
-	    <div class="col-md-4">
-	      <div class="step-to-enroll">
-	        <div class="circle step-to-enroll-icon">2</div>
-	        <h4 class="step-title">Submit any Other Documents</h4>
-	        <p class="step-explanation">You may need to submit other documents regarding residency, income and expenses</p>
-	      </div>
-	    </div>
-	    <div class="col-md-4">
-	      <div class="step-to-enroll">
-	        <div class="circle step-to-enroll-icon">3</div>
-	        <h4 class="step-title">Get Approved and Receive Benefits</h4>
-	        <p class="step-explanation">After providing the necessary information, you'll receive monthly benefits to help pay for food and groceries.</p>
-	      </div>
-	    </div>
-	  </div>
+	<p class="form-label">Keep in Touch with Your Assister</p>
+	<div class="row">
+		<div class="col-xs-4 instruction">
+			<%= image_tag("square-placeholder.png")%>
+		</div>
+		<div class="col-xs-4 instruction">
+			<%= image_tag("square-placeholder.png")%>
+		</div>
+		<div class="col-xs-4 instruction">
+			<%= image_tag("square-placeholder.png")%>
+		</div>
+		<div class="col-xs-12 col-sm-8">
+			<p class="page-context">Your assister can help you throughout this process. They should follow up with you occasionally over the next few weeks, and help you solve any problems you may encounter.</p>
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			<div style="width: 100%; height: auto; background-color:gray">
+				button to print.
+			</div>
+		</div>
+	</div>
+
 	<div class="page-footer">
 		<a href="/" class="btn btn-primary form-button-link-solo">Start a new application</a>
 	</div>
