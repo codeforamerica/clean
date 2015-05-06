@@ -3,13 +3,34 @@
 /* C L E A N    A S S I S T */
 
 /* Clean is a dead simple form for SNAP applicants */
-/* These styles are overrides and modifications on top of Bootsrap 3 */
+/* These styles are overrides and modifications on top of Bootsrap 3. */
+/* This stylesheet is mobile first (mobile unless specified via media query)*/
+
 /* If you want to suggest an improvement to these styles, please visit: */
 /* https://github.com/codeforamerica/clean/issues */
+
+
+/*================================*/
+/* TOC */
+/* 1. Z-INDICES */
+/* 2. COLORS */
+/* 3. FONTS & TYPE */
+/* 4. GLOBAL STYLES */
+/* 5. NAV STYLES (_partials) */
+/* 6. FORM STYLES (across app) */
+/* 7. Page Styles: Homepage; */
+/* 8. Page Styles: Document Upload; */
+/* 10. Page Styles: Signature Page; */
+/* 11. Page Styles: Confirmation Page; */
+
+
+/*================================*/
 
 /*================================*/
 
 /* Z INDICES */
+
+/*================================*/
 
 $zIndex-1:   100;
 $zIndex-2:   200;
@@ -18,6 +39,8 @@ $zIndex-3:   300;
 /*================================*/
 
 /* C O L O R S */
+
+/*================================*/
 
 /* Highly used colors */
 
@@ -44,7 +67,10 @@ $background: $off-white;
 
 /* F O N T S */
 
+/*================================*/
+
 /* Fonts in Use */
+
 
 $proxima: "proxima-nova",sans-serif;
 $proxima-alt: "proxima-nova-alt", sans-serif;
@@ -121,6 +147,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 
 /* G L O B A L S */
 
+/*================================*/
 
 body {
 	margin: 0;
@@ -129,8 +156,50 @@ body {
 	background-color: $blue-dark;
 }
 
-/* PAGE NAVIGATION PARTIALS */
+/* responive images by default */
+img {
+	display:block;
+	height: auto;
+	max-width: 100%;
+}
+
+.main {
+	background-color: $background;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	margin-top: -.4em;
+	border-top: 1px solid $gray-light;
+}
+
+.form {
+	margin-bottom: 2em;
+}
+
+/* Icons and Shapes */
+
+.circle {
+	/* in each context, redefine the equal height and width of the circle */
+	border-radius: 100%;
+}
+
+/* UNIVERSAL TOGGLE STYLES FOR PRINT */
+
+.print-hidden {
+	display: inline-block;
+}
+.print-visible {
+	display: none;
+}
+
+
+/*================================*/
+
+/* N A V I G A T I O N   P A R T I A L S */
+
 /* Top of the page, across views. Changes based on layout and view. */
+
+/*================================*/
 
 /* _masthead partial */
 
@@ -175,9 +244,6 @@ body {
 	text-decoration: underline;
 }
 
-.date {}
-
-
 /* _footer partial */
 
 .footer {
@@ -193,99 +259,13 @@ body {
 }
 
 
-/* G L O B A L S */
-
-
-.main {
-	background-color: $background;
-	width: 100%;
-	height: 100%;
-	display: inline-block;
-	margin-top: -.4em;
-	border-top: 1px solid $gray-light;
-}
-
-.form {
-	margin-bottom: 2em;
-}
-
-/* Icons and Shapes */
-
-.circle {
-	/* in each context, redefine the equal height and width of the circle */
-	border-radius: 100%;
-}
-
-
-
 /*================================*/
 
-/* H O M E P A G E */
-/* index.html */
-
-.homepage-message {
-	text-align: center;
-}
-
-.homepage-headline {
-	@include header-type;
-	margin: 1em 0;
-
-}
-
-.page-subheader {
-	@include subheader-type;
-	line-height: 1.4em;
-	font-weight: 700;
-	margin-bottom: 0;
-	text-align: center;
-}
-
-
-.steps-to-enroll {
-	width: 100%;
-	text-align: justify;
-    -ms-text-justify: distribute-all-lines;
-    text-justify: distribute-all-lines;
-    margin: 1em 0;
-}
-
-.step-to-enroll {
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-}
-
-.step-title {
-	@include form-type;
-	color: $blue-dark;
-	font-weight: 700;
-}
-
-.step-explanation {
-	@include page-context-type;
-	margin: 1em 0;
-	text-align: left;
-}
-
-/* Make sure to refactor this into a generic font style*/
-.step-to-enroll-icon {
-	display: inline-block;
-	width: 75px;
-	height: 75px;
-	line-height: 75px;
-	text-align: center;
-	font-family: $proxima;
-	font-size: 24px;
-	font-weight: 700;
-	color: white;
-	background-color: $blue-dark;
-	margin: 1.5em 0;
-}
-
-
-
 /* F O R M   S T Y L E S */
+
+/* These styles are applied across the app, which is just one big mega-form */
+
+/*================================*/
 
 .page-header {
 	@include header-type;
@@ -316,10 +296,6 @@ body {
 	padding-left: 1em;
 	padding-right: 1em;
 }
-
-/* form-controls, by position in a stack. */
-/* There can only be one top and one bottom, but there can be many middles.*/
-
 
 .form-label {
 	@include form-type;
@@ -396,7 +372,7 @@ body {
 	padding-right: 20px;
 }
 
-/* F O R M   B U T T O N  and B R A N C H   N A V  B T N S  */
+/* F O R M   B U T T O N  and  N A V  B T N S  */
 
 input[type="radio"] {
     visibility:hidden;
@@ -449,7 +425,6 @@ a.form-button:focus {
 	opacity: .85;
 }
 
-
 /* Special cases like starting over. */
 .form-button-link-solo {
 	@include form-type;
@@ -493,7 +468,127 @@ input.disabled {
 }
 
 
-/* F I L E   U P L O A D */
+/* P R I M A R Y   A C T I O N   B T N   S T Y L E S */
+
+.next-step {
+	@include primary-button-type;
+	width: 100%;
+	height: 3em;
+	color: $off-white;
+	background-color: $blue-light;
+	margin: 1em 0;
+}
+
+.next-step:hover {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
+
+.next-step:focus {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
+
+.next-step.disabled {
+	color: $gray-light;
+	background-color: $gray-medium-light;
+}
+
+.page-footer {
+    border-top: 1px solid $gray-lightest;
+    margin-top: 1em;
+}
+
+.page-footer .or {
+	text-align: center;
+}
+
+.page-footer-content {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.footer-question {
+	padding-top: 1em;
+}
+
+
+/*================================*/
+
+/* H O M E P A G E */
+/* index.html */
+
+/*================================*/
+
+.homepage-message {
+	text-align: center;
+}
+
+.homepage-headline {
+	@include header-type;
+	margin: 1em 0;
+
+}
+
+.page-subheader {
+	@include subheader-type;
+	line-height: 1.4em;
+	font-weight: 700;
+	margin-bottom: 0;
+	text-align: center;
+}
+
+
+.steps-to-enroll {
+	width: 100%;
+	text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+    margin: 1em 0;
+}
+
+.step-to-enroll {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.step-title {
+	@include form-type;
+	color: $blue-dark;
+	font-weight: 700;
+}
+
+.step-explanation {
+	@include page-context-type;
+	margin: 1em 0;
+	text-align: left;
+}
+
+/* Make sure to refactor this into a generic font style*/
+.step-to-enroll-icon {
+	display: inline-block;
+	width: 75px;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	font-family: $proxima;
+	font-size: 24px;
+	font-weight: 700;
+	color: white;
+	background-color: $blue-dark;
+	margin: 1.5em 0;
+}
+
+/*================================*/
+
+/* D O C U M E N T  U P L O A D */
+/* application/documents.erb */
+
+/*================================*/
+
 
 .file-group {
 	padding-bottom: 1em;
@@ -592,55 +687,13 @@ input.disabled {
 }
 
 
+/*================================*/
 
-/* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
+/* S I G N A T U R E   F O R M / P A G E */
+/* /review_and_submit.erb */
 
-.next-step {
-	@include primary-button-type;
-	width: 100%;
-	height: 3em;
-	color: $off-white;
-	background-color: $blue-light;
-	margin: 1em 0;
-}
+/*================================*/
 
-.next-step:hover {
-	color: white;
-	background-color: $blue-bright;
-	opacity: .85;
-}
-
-.next-step:focus {
-	color: white;
-	background-color: $blue-bright;
-	opacity: .85;
-}
-
-.next-step.disabled {
-	color: $gray-light;
-	background-color: $gray-medium-light;
-}
-
-.page-footer {
-    border-top: 1px solid $gray-lightest;
-    margin-top: 1em;
-}
-
-.page-footer .or {
-	text-align: center;
-}
-
-.page-footer-content {
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.footer-question {
-	padding-top: 1em;
-}
-
-
-/* S I G N A T U R E   F O R M */
 
 #signature_area {
 	min-height: 6em;
@@ -660,17 +713,28 @@ input.disabled {
 	min-height: 200px;
 }
 
-/* TOGGLE STYLES FOR PRINT */
+/*================================*/
 
-.print-hidden {
-	display: inline-block;
+/* C O N F I R M A T I O N   P A G E / R E C I E P T */
+/* /application/confirmation.erb */
+
+/*================================*/
+
+
+.instructions {
+	/* we should have a generic section class, rather than this specific implementation.*/
+	padding: 1em 0;
 }
-.print-visible {
-	display: none;
+
+.instructions-image img {
+	padding: 1em 0;
 }
+
+/*================================*/
 
 /* M E D I A    Q U E R I E S */
 
+/*================================*/
 
 /* Small devices (tablets, 768px and up) */
 /* Rename this back to @screen-sm-min when we move to SCSS*/
@@ -681,8 +745,6 @@ input.disabled {
 	.start-btn {
 		width: 50%;
 		margin: 2em 0;
-	}
-	.footer {
 	}
 }
 
@@ -700,9 +762,13 @@ input.disabled {
 @media (min-width: 1200px) {
 }
 
+/* Bigger Smartphones & Smaller Tablets (portrait) ----------- */
+@media only screen and (max-width : 767px) {
+
+}
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
-/* Styles */
+
 }
 
 @media print {
@@ -760,7 +826,11 @@ input.disabled {
 	}
 }
 
- /* B O O T S R A P   H A C K S */
+/*================================*/
+
+/* B O O T S R A P   H A C K S */
+
+/*================================*/
 
 /* No width file pickers were breaking the layout on mobile */
  input[type=file] {
