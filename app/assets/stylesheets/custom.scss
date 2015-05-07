@@ -547,6 +547,10 @@ input.disabled {
 	text-align: center;
 }
 
+.print-visible .page-subheader {
+	text-align: left;
+}
+
 
 .steps-to-enroll {
 	width: 100%;
@@ -781,6 +785,8 @@ input.disabled {
 .follow-up-panel {
 	background-color: $background;
 	border-color: $gray-lightest;
+	margin-top: 2em;
+	margin-bottom: 2em;
 }
 
 .follow-up-panel .panel-heading {
