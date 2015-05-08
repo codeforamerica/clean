@@ -743,14 +743,10 @@ input.disabled {
 	display: none;
 }
 
-.instruction p {
-	color: white;
-}
-
 .instruction-image img {
 	width: 50%;
 	margin: 0 auto;
-	padding: 2em 0;
+	padding: 2em 0 1em 0;
 }
 
 .instruction-textbox {
@@ -761,20 +757,23 @@ input.disabled {
 }
 
 .instruction-done {
-	border-bottom: 2px solid $green-light;
-}
+/*	border-bottom: 2px solid $green-light;
+*/}
 
-.instruction-done p {
+.instruction-done span {
 	color: $green-light;
+}
+.instruction-done p {
+	color: $blue-dark;
 	font-weight: 700;
 }
 
 .instruction-next {
-	border-bottom: 2px solid $orange;
-}
+/*	border-bottom: 2px solid $orange;
+*/}
 
 .instruction-next p {
-	color: $orange;
+	color: $blue-dark;
 	font-weight: 700;
 }
 
@@ -798,6 +797,7 @@ input.disabled {
 .follow-up-panel .panel-heading .panel-title {
 	color: $blue-dark;
 	font-weight: 700;
+	text-align: left;
 }
 
 .follow-up-panel  .instruction {
