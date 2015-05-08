@@ -144,7 +144,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 @mixin print-type {
 	color: black;
 	font-family: $proxima;
-	font-size: 14px;
+	font-size: 11px;
 	font-weight: 300;
 }
 
@@ -879,20 +879,20 @@ a.form-button.print-button {
 
 @media print {
 	.page-header {
-		font-size: 32px;
+		font-size: 28px;
 	}
 	.page-context {
 		@include print-type;
 	}
 	.homepage-subheader {
 		text-align: left;
-		font-size: 24px;
+		font-size: 16px;
 	}
 	.step-title {
-		font-size: 18px;
+		font-size: 14px;
 	}
 	.step-explanation {
-		font-size: 14px;
+		font-size: 11px;
 	}
 	.masthead {
 		display: none;
