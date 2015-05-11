@@ -553,6 +553,19 @@ EOF
           hash_including(:name_page3 => nil, :ssn_page3 => nil, :language_preference_reading => nil, :language_preference_writing => nil, :signature_agree => nil, :signature => 'fakesignatureblob', :date_of_birth => '06/09/85')
         )
       end
+
+      it 'redirects to confirmation' do
+        expect(@response).to be_redirect
+        expect(@response.location).to include('/application/confirmation')
+      end
     end
+
+    describe 'GET /application/confirmation' do
+      it 'responds successfully' do
+        get :confirmation
+        expect(@response.status).to eq(200)
+      end
+    end
+
   end
 end

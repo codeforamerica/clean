@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Apply for Calfresh in San Francisco</title>
+  <title>Your CalFresh Application Reciept | www.cleanassist.org </title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -34,8 +34,8 @@
   </script>
 </head>
 <body>
-  <%= render :partial => "masthead" %>
-  <div class="main">
+  <%= render(request.user_agent =~ /Mobile|webOS/? 'congrats_mobile' : 'congrats_web') %>
+ <div class="main">
     <%= yield %>
   </div>
   <%= render :partial => "footer" %>

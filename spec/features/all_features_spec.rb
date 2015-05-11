@@ -99,3 +99,11 @@ feature 'User goes through full application (up to review and submit)' do
       expect(page.current_path).to eq('/application/review_and_submit')
   end
 end
+
+feature 'user visits the confirmation page directly' do
+  scenario 'with no interaction' do
+    visit '/application/confirmation'
+      click_on("New application")
+      expect(page.current_path).to eq('/')
+  end
+end
