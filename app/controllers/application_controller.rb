@@ -218,9 +218,6 @@ EOF
       )
       @email_result_application = client.send(mail)
       puts @email_result_application
-      data_to_save = Case.process_data_for_storage(session.to_hash)
-      c = Case.new(data_to_save)
-      c.save
     redirect_to '/application/confirmation'
   end
 
