@@ -743,10 +743,13 @@ input.disabled {
 	display: none;
 }
 
+.instruction-image {
+	padding: 2em 0;
+}
+
 .instruction-image img {
 	width: 50%;
 	margin: 0 auto;
-	padding: 2em 0 1em 0;
 }
 
 .instruction-textbox {
