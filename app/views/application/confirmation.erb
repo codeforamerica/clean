@@ -1,31 +1,127 @@
-<form name="confirmation" action="/application/confirmation" method="post" class="form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-	<h2 class="page-header">Your application has been submitted!</h2>
-	<p class="page-context">There are a a few more steps before you can receive and use your benefits. Stay in touch with your assister&mdash;they can help you through the rest of the process.</p>
-	<p class="homepage-subheader" style="text-align:center">Here's whats next</p>
-	  <div class="row steps-to-enroll" style="margin-top: 0; padding-top: 0;">
-	    <div class="col-md-4">
-	      <div class="step-to-enroll">
-	        <div class="circle step-to-enroll-icon">1</div>
-	        <h4 class="step-title">Phone Call with HSA Staff</h4>
-	        <p class="step-explanation">Expect a phone call from San Francisco HSA. During the call, you will review your application.</p>
-	      </div>
-	    </div>
-	    <div class="col-md-4">
-	      <div class="step-to-enroll">
-	        <div class="circle step-to-enroll-icon">2</div>
-	        <h4 class="step-title">Submit any Other Documents</h4>
-	        <p class="step-explanation">You may need to submit other documents regarding residency, income and expenses</p>
-	      </div>
-	    </div>
-	    <div class="col-md-4">
-	      <div class="step-to-enroll">
-	        <div class="circle step-to-enroll-icon">3</div>
-	        <h4 class="step-title">Get Approved and Receive Benefits</h4>
-	        <p class="step-explanation">After providing the necessary information, you'll receive monthly benefits to help pay for food and groceries.</p>
-	      </div>
-	    </div>
-	  </div>
-	<div class="page-footer">
-		<a href="/" class="btn btn-primary form-button-link-solo">Start a new application</a>
+<form name="confirmation" action="/application/confirmation" method="post" class="print-hidden form col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+	<h2 class="page-header">You've applied for CalFresh :)</h2>
+	<p class="form-context">This application was successfully submitted to San Francisco HSA on <b class="date"></b>.</p>
+	<div class="row">
+		<div class="col-xs-4 instruction">
+			<div class="instruction-image">
+				<%= image_tag("calfresh_app_icon.png")%>
+				<div class="instruction-textbox instruction-done">
+					<span class="form-context">Complete</span>
+					<p class="form-context">CalFresh Application</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4 instruction">
+			<div class="instruction-image">
+				<%= image_tag("interview_icon.png")%>
+				<div class="instruction-textbox instruction-next">
+					<span class="form-context">Next</span>
+					<p class="form-context">Interview with HSA</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4 instruction">
+			<div class="instruction-image">
+				<%= image_tag("income_icon.png")%>
+				<div class="instruction-textbox instruction-next">
+					<span class="form-context">Last</span>
+					<p class="form-context">Submit Final Documents</p>
+				</div>
+			</div>
+		</div>
 	</div>
+	<div class="row instructions panel instructions-panel">
+		<div class="panel-body">
+			<div class="col-xs-12 instruction-body">
+			    <p class="page-context"><b>Expect a phone call from HSA in the next few days</b>. During the call, they will review your application with you and let you know what additional documents you'll need to provide. The conversation usually takes about 20 minutes.</p>
+				<p class="page-context">If you don't hear from HSA within 5 days, <b>call them at 1-855-355-5757.</b></p>
+			    </p>
+			</div>
+		</div>
+	</div>
+	<p class="form-label">Keep in Touch with Your Assister</p>
+	<p class="page-context">When your assister prints this page, they will have the chance to write down their name and contact information. If you have problems getting your interview, submitting documents, or getting approved&mdash;get in touch.</p>
+	<div class="row panel follow-up-panel instruction">
+		<div class="panel-heading">
+		  <p class="panel-title form-context">Recomended Follow Up</p>
+		</div>
+		<div class="panel-body">
+			<div class="col-xs-4 instruction">
+				<p class="form-context">Check-in after</p>
+				<h2>10 days</h2>
+			</div>
+			<div class="col-xs-4 instruction">
+				<p class="form-context">Check-in after</p>
+				<h2>30 days</h2>
+			</div>
+			<div class="col-xs-4 instruction">
+				<p class="form-context">Problems?</p>
+				<h2>Call Anytime</h2>
+			</div>
+		</div>
+	</div>
+
+	<%= render(request.user_agent =~ /Mobile|webOS/? 'receipt_btn_mobile' : 'receipt_btn_web') %>
+
+
+    <div class="page-footer">
+      <div class="page-footer-content col-md-4 col-md-offset-8">
+		<a href="/" class="btn form-button next-step">New application</a>
+      </div>
+    </div>
 </form>
+
+<div class="print-visible form col-xs-10 col-xs-offset-1">
+	<h2 class="page-header">Your CalFresh Application Receipt</h2>
+	<p class="form-context">Your application was submitted to San Francisco HSA on <b class="date"></b>.</p>
+	<h2 class="page-subheader">What's Next</h2>
+    <p class="page-context"><b>Expect a phone call from HSA in the next few days</b>. During the call, they will review your application with you and let you know what additional documents you'll need to provide. The conversation usually takes about 20 minutes.</p>
+	<p class="page-context">If you don't hear from HSA within 5 days, <b>call them at 1-855-355-5757.</b></p>
+	<h2 class="page-subheader">Keep in Touch with Your Assister</h2>
+	<p class="page-context">If you have problems getting your interview, submitting documents, or getting approved&mdash;get in touch with your assister.
+	</p>
+	<p class="page-context">We recommend considering checking in with your assister:</p>
+	<ul class="page-context">
+		<li>After 10 days: If you haven't yet had a phone or in person interview with San Francisco HSA, get in touch with your assister.</li>
+		<li>After 30 days: If you haven't yet been approved or denied, get in touch with your assister. The San Francisco HSA is legally required to evaluate your case in 30 days or less.</li>
+		<li>Anytime you encounter a problem: If you have any problems with your interview, submitting verification documents, or other parts of your experience, let your assister know.</li>
+	</ul>
+	<p class="page-context" style="width: 100%; display: table;">
+    	<span style="display: table-cell; width: 40%;">Assister Name:</span>
+    	<span style="display: table-cell; border-bottom: 1px solid black;"></span>
+    </p>
+ 	<p class="page-context" style="width: 100%; display: table;">
+    	<span style="display: table-cell; width: 40%;">Assister Phone Number:</span>
+    	<span style="display: table-cell; border-bottom: 1px solid black;"></span>
+    </p>
+ 	<p class="page-context" style="width: 100%; display: table;">
+    	<span style="display: table-cell; width: 40%;">Assister Email:</span>
+    	<span style="display: table-cell; border-bottom: 1px solid black;"></span>
+    </p>
+ 	<p class="page-context" style="width: 100%; display: table;">
+    	<span style="display: table-cell; width: 20%;">Notes:</span>
+    	<span style="display: table-cell; border-bottom: 1px solid black;"></span>
+    </p>
+</div>
+
+
+
+<script>
+// Get today's date
+$(function() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; // January is 0
+
+    var yyyy = today.getFullYear();
+    if (dd < 10){
+        dd='0'+dd
+    }
+    if (mm < 10){
+        mm='0'+mm
+    }
+    var today = mm+'/'+dd+'/'+yyyy;
+    $( "b.date" ).html( today );
+    console.log(today);
+});
+</script>

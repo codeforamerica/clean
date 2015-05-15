@@ -221,7 +221,12 @@ EOF
     redirect_to '/application/confirmation'
   end
 
+  def document_instructions
+    # updated route so that succesful applications now see /confirmation instead of /document_instructions
+  end
+
   def confirmation
+    render :layout => "confirmation"
   end
 
   private

@@ -3,13 +3,34 @@
 /* C L E A N    A S S I S T */
 
 /* Clean is a dead simple form for SNAP applicants */
-/* These styles are overrides and modifications on top of Bootsrap 3 */
+/* These styles are overrides and modifications on top of Bootsrap 3. */
+/* This stylesheet is mobile first (mobile unless specified via media query)*/
+
 /* If you want to suggest an improvement to these styles, please visit: */
 /* https://github.com/codeforamerica/clean/issues */
+
+
+/*================================*/
+
+/* TOC */
+/* 1. Z-INDICES */
+/* 2. COLORS */
+/* 3. FONTS & TYPE */
+/* 4. GLOBAL STYLES */
+/* 5. NAV STYLES (_partials) */
+/* 6. FORM STYLES (across app) */
+/* 7. Page Styles: Homepage; */
+/* 8. Page Styles: Document Upload; */
+/* 10. Page Styles: Signature Page; */
+/* 11. Page Styles: Confirmation Page; */
+
+/*================================*/
 
 /*================================*/
 
 /* Z INDICES */
+
+/*================================*/
 
 $zIndex-1:   100;
 $zIndex-2:   200;
@@ -18,6 +39,8 @@ $zIndex-3:   300;
 /*================================*/
 
 /* C O L O R S */
+
+/*================================*/
 
 /* Highly used colors */
 
@@ -30,9 +53,12 @@ $gray-dark: #888;
 $blue-light: #5C93D6;
 $blue-bright: #1D71F5;
 $blue-dark: #2E394B;
+$green-light:#30C49B;
 $orange: #CF6354;
 $yellow: #f1ab00;
 
+
+/* Contextual Color Variables */
 
 $background: $off-white;
 
@@ -41,45 +67,54 @@ $background: $off-white;
 
 /* F O N T S */
 
+/*================================*/
+
 /* Fonts in Use */
+
 
 $proxima: "proxima-nova",sans-serif;
 $proxima-alt: "proxima-nova-alt", sans-serif;
 
-
 /* Font applications */
 
+
 @mixin brand-type {
+	/* Used in the Masthead*/
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 21px;
 }
 
 @mixin header-type {
+	/* Page Headers */
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 42px;
 }
 
 @mixin subheader-type {
+	/* Page subheader, rarely used*/
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 32px;
 }
 
 @mixin page-context-type {
+	/* For copy explaining what each page is soliciting*/
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 21px;
 }
 
 @mixin form-type {
+	/* The default for form elements. Used for copy in form fields and form buttons*/
 	color: $blue-dark;
 	font-family: $proxima;
 	font-size: 21px;
 }
 
 @mixin form-input-type {
+	/* For the actual input into forms*/
 	color: $gray-dark;
 	font-family: $proxima;
 	font-size: 21px;
@@ -87,6 +122,7 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 }
 
 @mixin form-error {
+	/* Our error messages are smaller but brighter. */
 	color: $orange;
 	font-family: $proxima;
 	font-size: 16px;
@@ -105,20 +141,33 @@ $proxima-alt: "proxima-nova-alt", sans-serif;
 	font-weight: 300;
 }
 
+@mixin print-type {
+	color: black;
+	font-family: $proxima;
+	font-size: 11px;
+	font-weight: 300;
+}
+
 
 
 /*================================*/
 
 /* G L O B A L S */
 
-
-/* High level DOM elements */
+/*================================*/
 
 body {
 	margin: 0;
 	width: 100%;
 	height: 100%;
 	background-color: $blue-dark;
+}
+
+/* responive images by default */
+img {
+	display:block;
+	height: auto;
+	max-width: 100%;
 }
 
 .main {
@@ -129,6 +178,37 @@ body {
 	margin-top: -.4em;
 	border-top: 1px solid $gray-light;
 }
+
+.form {
+	margin-bottom: 2em;
+}
+
+/* Icons and Shapes */
+
+.circle {
+	/* in each context, redefine the equal height and width of the circle */
+	border-radius: 100%;
+}
+
+/* UNIVERSAL TOGGLE STYLES FOR PRINT */
+
+.print-hidden {
+	display: inline-block;
+}
+.print-visible {
+	display: none;
+}
+
+
+/*================================*/
+
+/* N A V I G A T I O N   P A R T I A L S */
+
+/* Top of the page, across views. Changes based on layout and view. */
+
+/*================================*/
+
+/* _masthead partial */
 
 .masthead {
 	display: inline-block;
@@ -147,16 +227,31 @@ body {
 	margin: .5em 0;
 }
 
-.form {
-	margin-bottom: 2em;
+/* _congrats partials (congrats_web & congrats_mobile) */
+
+.congratulations {
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	padding: .2em 0;
+	background-color: $green-light;
+/*	border-bottom: 1px solid $gray-light;*/
+	z-index: $zIndex-2;
 }
 
-/* Icons and Shapes */
-
-.circle {
-	/* in each context, redefine the equal height and width of the circle */
-	border-radius: 100%;
+.congrats-message {
+	@include brand-type;
+	color: white;
+	padding-right: 0.625em;
+	margin: .5em 0;
 }
+
+.congrats-message a {
+	color: white;
+	text-decoration: underline;
+}
+
+/* _footer partial */
 
 .footer {
 	width: 100%;
@@ -173,72 +268,11 @@ body {
 
 /*================================*/
 
-/* H O M E P A G E */
-/* index.html */
-
-.homepage-message {
-	text-align: center;
-}
-
-.homepage-headline {
-	@include header-type;
-	margin: 1em 0;
-
-}
-
-.homepage-subheader {
-	@include subheader-type;
-	line-height: 1.4em;
-	font-weight: 700;
-	margin-bottom: 0;
-	text-align: center;
-}
-
-
-.steps-to-enroll {
-	width: 100%;
-	text-align: justify;
-    -ms-text-justify: distribute-all-lines;
-    text-justify: distribute-all-lines;
-    margin: 1em 0;
-}
-
-.step-to-enroll {
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-}
-
-.step-title {
-	@include form-type;
-	color: $blue-dark;
-	font-weight: 700;
-}
-
-.step-explanation {
-	@include page-context-type;
-	margin: 1em 0;
-	text-align: left;
-}
-
-/* Make sure to refactor this into a generic font style*/
-.step-to-enroll-icon {
-	display: inline-block;
-	width: 75px;
-	height: 75px;
-	line-height: 75px;
-	text-align: center;
-	font-family: $proxima;
-	font-size: 24px;
-	font-weight: 700;
-	color: white;
-	background-color: $blue-dark;
-	margin: 1.5em 0;
-}
-
-
-
 /* F O R M   S T Y L E S */
+
+/* These styles are applied across the app, which is just one big mega-form */
+
+/*================================*/
 
 .page-header {
 	@include header-type;
@@ -269,10 +303,6 @@ body {
 	padding-left: 1em;
 	padding-right: 1em;
 }
-
-/* form-controls, by position in a stack. */
-/* There can only be one top and one bottom, but there can be many middles.*/
-
 
 .form-label {
 	@include form-type;
@@ -349,7 +379,7 @@ body {
 	padding-right: 20px;
 }
 
-/* F O R M   B U T T O N  and B R A N C H   N A V  B T N S  */
+/* F O R M   B U T T O N  and  N A V  B T N S  */
 
 input[type="radio"] {
     visibility:hidden;
@@ -402,7 +432,6 @@ a.form-button:focus {
 	opacity: .85;
 }
 
-
 /* Special cases like starting over. */
 .form-button-link-solo {
 	@include form-type;
@@ -446,7 +475,131 @@ input.disabled {
 }
 
 
-/* F I L E   U P L O A D */
+/* P R I M A R Y   A C T I O N   B T N   S T Y L E S */
+
+.next-step {
+	@include primary-button-type;
+	width: 100%;
+	height: 3em;
+	color: $off-white;
+	background-color: $blue-light;
+	margin: 1em 0;
+}
+
+.next-step:hover {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
+
+.next-step:focus {
+	color: white;
+	background-color: $blue-bright;
+	opacity: .85;
+}
+
+.next-step.disabled {
+	color: $gray-light;
+	background-color: $gray-medium-light;
+}
+
+.page-footer {
+    border-top: 1px solid $gray-lightest;
+    margin-top: 1em;
+}
+
+.page-footer .or {
+	text-align: center;
+}
+
+.page-footer-content {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.footer-question {
+	padding-top: 1em;
+}
+
+
+/*================================*/
+
+/* H O M E P A G E */
+/* index.html */
+
+/*================================*/
+
+.homepage-message {
+	text-align: center;
+}
+
+.homepage-headline {
+	@include header-type;
+	margin: 1em 0;
+
+}
+
+.page-subheader {
+	@include subheader-type;
+	line-height: 1.4em;
+	font-weight: 700;
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.print-visible .page-subheader {
+	text-align: left;
+}
+
+
+.steps-to-enroll {
+	width: 100%;
+	text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+    margin: 1em 0;
+}
+
+.step-to-enroll {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.step-title {
+	@include form-type;
+	color: $blue-dark;
+	font-weight: 700;
+}
+
+.step-explanation {
+	@include page-context-type;
+	margin: 1em 0;
+	text-align: left;
+}
+
+/* Make sure to refactor this into a generic font style*/
+.step-to-enroll-icon {
+	display: inline-block;
+	width: 75px;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	font-family: $proxima;
+	font-size: 24px;
+	font-weight: 700;
+	color: white;
+	background-color: $blue-dark;
+	margin: 1.5em 0;
+}
+
+/*================================*/
+
+/* D O C U M E N T  U P L O A D */
+/* application/documents.erb */
+
+/*================================*/
+
 
 .file-group {
 	padding-bottom: 1em;
@@ -502,36 +655,35 @@ input.disabled {
 	word-wrap: break-all;
 }
 
-.form-table {
+.form-document-list {
 	display: inline-block;
 	width: 100%;
 	padding: 15px;
 }
 
-.form-table a {
+.form-document-list a {
 	@include form-document;
 }
 
-.form-table span {
+.form-document-list span {
 	@include form-document;
 }
 
-.form-table .checkmark {
+.form-document-list .checkmark {
 	display: inline-block;
 }
 
-.form-table .checkmark img {
+.form-document-list .checkmark img {
 	height: 2em;
 	float: right;
 }
 
-/* jquery events */
-.form-table .errormark {
+.form-document-list .errormark {
 	display: inline-block;
 	cursor: pointer;
 }
 
-.form-table .errormark img {
+.form-document-list .errormark img {
 	height: 2em;
 	float: right;
 	cursor: pointer;
@@ -539,7 +691,143 @@ input.disabled {
 
 /* File Upload Button*/
 .form-group .fileinput-button {
-	background-color: #30C49B;
+	background-color: $green-light;
+	color: white;
+	border: none;
+	margin: 1em 0;
+}
+
+
+/*================================*/
+
+/* S I G N A T U R E   F O R M / P A G E */
+/* /review_and_submit.erb */
+
+/*================================*/
+
+
+#signature_area {
+	min-height: 6em;
+	border: 1px solid $gray-medium;
+	margin-bottom: 0;
+	border-radius: 0;
+	border-bottom: 0;
+	-ms-touch-action: none;
+}
+
+#signature_clear_button {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.jSignature {
+	min-height: 200px;
+}
+
+/*================================*/
+
+/* C O N F I R M A T I O N   P A G E / R E C I E P T */
+/* /application/confirmation.erb */
+
+/*================================*/
+
+
+.instructions {
+	/* we should have a generic section class, rather than this specific implementation.*/
+	background-color: $gray-lightest;
+}
+
+.instruction {
+	text-align: center;
+	/* don't show instruction visuals on mobile */
+	display: none;
+}
+
+.instruction-image {
+	padding: 2em 0;
+}
+
+.instruction-image img {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.instruction-textbox {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	margin-top: .65em;
+}
+
+.instruction-done {
+/*	border-bottom: 2px solid $green-light;
+*/}
+
+.instruction-done span {
+	color: $green-light;
+}
+.instruction-done p {
+	color: $blue-dark;
+	font-weight: 700;
+}
+
+.instruction-next {
+/*	border-bottom: 2px solid $orange;
+*/}
+
+.instruction-next p {
+	color: $blue-dark;
+	font-weight: 700;
+}
+
+.instruction-body {
+	margin: 2em 0 0 0;
+}
+
+/* Assister info */
+
+.follow-up-panel {
+	background-color: $background;
+	border-color: $gray-lightest;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.follow-up-panel .panel-heading {
+	background-color: $gray-lightest;	
+}
+
+.follow-up-panel .panel-heading .panel-title {
+	color: $blue-dark;
+	font-weight: 700;
+	text-align: left;
+}
+
+.follow-up-panel  .instruction {
+	padding: 1em 0;
+}
+
+.follow-up-panel .instruction p {
+	margin: 0;
+	color: $gray-dark;
+}
+.follow-up-panel .instruction h2 {
+	@include page-context-type;
+	font-weight: 700;
+	color: $blue-dark;
+	margin: 0;
+}
+
+
+.panel.instructions-panel, .panel.follow-up-panel {
+	/*a Bootstrap Panel—just ditching the shadow*/
+	box-shadow: none
+}
+
+/* Print Page Button*/
+a.form-button.print-button {
+	width: 100%;
+	background-color: $green-light;
 	color: white;
 	border: none;
 	margin: 1em 0;
@@ -547,54 +835,12 @@ input.disabled {
 
 
 
-/* F O O T E R  / P R I M A R Y   A C T I O N   B T N   S T Y L E S */
 
-.next-step {
-	@include primary-button-type;
-	width: 100%;
-	height: 3em;
-	color: $off-white;
-	background-color: $blue-light;
-	margin: 1em 0;
-}
-
-.next-step:hover {
-	color: white;
-	background-color: $blue-bright;
-	opacity: .85;
-}
-
-.next-step:focus {
-	color: white;
-	background-color: $blue-bright;
-	opacity: .85;
-}
-
-.next-step.disabled {
-	color: $gray-light;
-	background-color: $gray-medium-light;
-}
-
-.page-footer {
-    border-top: 1px solid $gray-lightest;
-    margin-top: 1em;
-}
-
-.page-footer .or {
-	text-align: center;
-}
-
-.page-footer-content {
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.footer-question {
-	padding-top: 1em;
-}
+/*================================*/
 
 /* M E D I A    Q U E R I E S */
 
+/*================================*/
 
 /* Small devices (tablets, 768px and up) */
 /* Rename this back to @screen-sm-min when we move to SCSS*/
@@ -606,7 +852,8 @@ input.disabled {
 		width: 50%;
 		margin: 2em 0;
 	}
-	.footer {
+	.instruction {
+		display: block;
 	}
 }
 
@@ -621,30 +868,34 @@ input.disabled {
 
 /* Large devices (large desktops, 1200px and up) */
 /* Rename this back to @screen-lg-min when we move to SCSS*/
-@media (min-width: 1200px) { 
+@media (min-width: 1200px) {
 }
 
+/* Bigger Smartphones & Smaller Tablets (portrait) ----------- */
+@media only screen and (max-width : 767px) {
+
+}
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
-/* Styles */
+
 }
 
 @media print {
 	.page-header {
-		font-size: 32px;
+		font-size: 28px;
 	}
 	.page-context {
-		font-size: 14px;
+		@include print-type;
 	}
 	.homepage-subheader {
 		text-align: left;
-		font-size: 24px;
+		font-size: 16px;
 	}
 	.step-title {
-		font-size: 18px;
+		font-size: 14px;
 	}
 	.step-explanation {
-		font-size: 14px;
+		font-size: 11px;
 	}
 	.masthead {
 		display: none;
@@ -661,9 +912,34 @@ input.disabled {
 	.footer {
 		display: none;
 	}
+	.print-hidden {
+		display: none;
+	}
+	.print-visible {
+		display: inline-block;
+	}
+	.page-subheader {
+		font-size: 21px;
+	}
+	.page-header {
+		font-size: 32px;
+	}
+	.form-label {
+		font-size: 16px;
+	}
+	.list {
+		font-size: 16px;
+	}
+	.page-context {
+		font-size: 16px;
+	}
 }
 
- /* B O O T S R A P   H A C K S */
+/*================================*/
+
+/* B O O T S R A P   H A C K S */
+
+/*================================*/
 
 /* No width file pickers were breaking the layout on mobile */
  input[type=file] {
