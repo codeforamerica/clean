@@ -1,3 +1,9 @@
+# Update 12/6/2015
+We're no longer developing or maintaining this codebase. If you want to learn more or have any questions feel free to get in touch with the original team:
+- [@lippytak](http://twitter.com/lippytak/)
+- [@allafarce](http://twitter.com/allafarce/)
+- [@alanjosephwilli](http://twitter.com/alanjosephwilli/)
+
 # CalFresh and So Clean
 
 [![Build Status](https://travis-ci.org/codeforamerica/clean.svg?branch=make-all-tests-pass)](https://travis-ci.org/codeforamerica/clean)
